@@ -13,13 +13,15 @@ vim.o.hlsearch = false
 vim.wo.number = true
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+vim.o.mouse = "a"
 
 -- Enable break indent
 vim.o.breakindent = true
 
 -- Save undo history
+vim.o.swapfile = false
 vim.o.undofile = true
+vim.o.undodir = HOME .. "/.config/nvim/undodir"
 
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
@@ -27,13 +29,10 @@ vim.o.smartcase = true
 
 -- Decrease update time
 vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
-
--- Set colorscheme
-vim.o.termguicolors = true
+vim.wo.signcolumn = "yes"
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = "menuone,noselect"
 
 -- More space for displaying messages
 vim.o.cmdheight = 0
@@ -65,9 +64,22 @@ vim.o.relativenumber = true
 -- Time in milliseconds to wait for a mapped sequence to complete.
 vim.o.timeoutlen = 500
 
+-- faster scrolling
+vim.o.lazyredraw = true
+
 -- [[ basic keymaps ]]
-vim.g.mapleader = ';'
-vim.g.maplocalleader = ';'
+vim.g.mapleader = ";"
+vim.g.maplocalleader = ";"
 
 -- command to start python3
 vim.g.python3_host_prog = HOME .. "/.local/debugpy/bin/python"
+
+-- Maximum number of entries in a popup
+vim.opt.pumheight = 10
+
+-- Lines of context
+vim.opt.scrolloff = 4
+
+-- vim.opt.list = true
+-- vim.opt.listchars:append "space:⋅"
+-- vim.opt.listchars:append "eol:↴"
