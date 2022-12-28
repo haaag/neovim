@@ -1,32 +1,37 @@
--- [[ efm ]] 
+-- [[ efm ]]
 
 local HOME = tostring(os.getenv("HOME"))
 local on_attach = require("me.lsp.config").on_attach
 local capabilities = require("me.lsp.config").capabilities()
+local lspconfig = require("lspconfig")
 
 -- Python
-local black = require("me.lsp.efm.black")
-local flake8 = require("me.lsp.efm.flake8")
-local isort = require("me.lsp.efm.isort")
-local mypy = require("me.lsp.efm.mypy")
+local black = require("me.lsp.efm.python").black()
+local flake8 = require("me.lsp.efm.python").flake8()
+local isort = require("me.lsp.efm.python").isort()
+local mypy = require("me.lsp.efm.python").mypy()
+local pylint = require("me.lsp.efm.python").pylint()
 
 -- Lua
-local luacheck = require("me.lsp.efm.luacheck")
-local stylua = require("me.lsp.efm.stylua")
+-- local luacheck = require("me.lsp.efm.lua").luacheck()
+local stylua = require("me.lsp.efm.lua").stylua()
 
 -- Shell
-local shellcheck = require("me.lsp.efm.shellcheck")
-local shfmt = require("me.lsp.efm.shfmt")
+local shellcheck = require("me.lsp.efm.shell").shellcheck()
+local shfmt = require("me.lsp.efm.shell").shfmt()
+
+-- web
+local eslint = require("me.lsp.efm.web").eslint()
+local prettier = require("me.lsp.efm.web").prettier()
 
 -- Others
-local eslint = require("me.lsp.efm.eslint")
 local misspell = require("me.lsp.efm.misspell")
-local prettier = require("me.lsp.efm.prettier")
 
 local languages = {
   ["="] = { misspell },
-  lua = { stylua, luacheck },
-  python = { black, isort, flake8, mypy },
+  lua = { stylua },
+  -- lua = { stylua, luacheck },
+  python = { black, isort, flake8, mypy, pylint },
   css = { prettier },
   html = { prettier },
   javascript = { prettier, eslint },
@@ -41,7 +46,7 @@ local languages = {
 }
 
 -- efm
-require('lspconfig').efm.setup({
+lspconfig.efm.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { HOME .. "/apps/github/efm-langserver/efm-langserver" },
