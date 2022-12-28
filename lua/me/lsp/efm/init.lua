@@ -26,6 +26,7 @@ local prettier = require("me.lsp.efm.web").prettier()
 
 -- Others
 local misspell = require("me.lsp.efm.misspell")
+local gitlint = require("me.lsp.efm.misc").gitlint()
 
 local languages = {
   ["="] = { misspell },
@@ -43,6 +44,7 @@ local languages = {
   typescript = { prettier, eslint },
   typescriptreact = { prettier, eslint },
   yaml = { prettier },
+  gitcommit = { gitlint },
 }
 
 -- efm

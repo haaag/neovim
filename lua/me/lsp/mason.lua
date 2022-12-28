@@ -41,8 +41,9 @@ M.tools = {
   "pylint",
   "pyproject-flake8",
   -- web
-  "prettierd",
+  "prettier",
   "eslint_d",
+  "deno",
   -- shell
   "shellcheck",
   "shfmt",
