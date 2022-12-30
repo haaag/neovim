@@ -78,6 +78,8 @@ local leader = {
   },
   g = {
     name = "+git",
+    d = { name = "+diff" },
+    h = { name = "+hunk" },
   },
   l = {
     name = "+lsp",

@@ -12,6 +12,6 @@ return {
     integrations = { diffview = true },
   },
   keys = {
-    { "<leader>gf", "<cmd>Neogit kind=floating<cr>", desc = "Neo[G]it [F]loat" },
+    { "<leader>go", "<CMD>Neogit<CR>", desc = "Neo[G]it [O]pen" },
   },
 }
