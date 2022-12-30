@@ -1,4 +1,4 @@
--- [[ diagnostic.lua ]]
+-- diagnostic.lua
 
 local config = {
   virtual_lines = true,
@@ -53,4 +53,3 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.keymap.set("n", "[a", vim.diagnostic.open_float)
--- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
