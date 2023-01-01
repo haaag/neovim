@@ -1,6 +1,4 @@
 -- settings.lua
-
--- [[ basic settings ]]
 local HOME = tostring(os.getenv("HOME"))
 local indent = 2
 
@@ -11,7 +9,6 @@ vim.o.swapfile = false -- No swap file
 vim.o.backup = false -- no backup file
 vim.o.undofile = true
 vim.o.undodir = vim.fn.stdpath("state") .. "/undodir"
--- vim.o.undodir = HOME .. "/.config/nvim/undodir"
 vim.o.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
 vim.o.smartcase = true -- Case insensitive searching UNLESS /C or capital in search
 vim.o.updatetime = 250 -- Decrease update time
@@ -37,11 +34,11 @@ vim.opt.scrolloff = 4 -- Lines of context
 vim.opt.wrap = false -- Disable line wrap
 vim.opt.termguicolors = true -- True color support
 vim.opt.spelllang = { "en", "es" } -- spellcheck
-vim.opt.cursorline = false -- Enable highlighting of the current line
-vim.opt.hidden = true -- Enable modified buffers in background
-vim.opt.grepprg = "rg --vimgrep" -- grep
-vim.opt.grepformat = "%f:%l:%c:%m" -- grep
-vim.opt.splitkeep = "screen" -- Uknown
+-- vim.opt.cursorline = false -- Enable highlighting of the current line
+-- vim.opt.hidden = true -- Enable modified buffers in background
+-- vim.opt.grepprg = "rg --vimgrep" -- grep
+-- vim.opt.grepformat = "%f:%l:%c:%m" -- grep
+-- vim.opt.splitkeep = "screen" -- Uknown
 vim.g.loaded_netrw = 1 -- disable builtin plugins
 vim.g.loaded_netrwPlugin = 1 -- disable builtin plugins
 
