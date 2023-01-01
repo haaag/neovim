@@ -2,8 +2,8 @@
 local lsp_present, lspconfig = pcall(require, "lspconfig")
 
 if lsp_present then
-  local on_attach = require("me.lsp.config").on_attach
-  local capabilities = require("me.lsp.config").capabilities()
+  local on_attach = require("me.lsp").on_attach
+  local capabilities = require("me.lsp").capabilities()
 
   local runtime_path = vim.split(package.path, ";")
   table.insert(runtime_path, "lua/?.lua")

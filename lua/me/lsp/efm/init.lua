@@ -1,8 +1,8 @@
 -- efm
 
 local HOME = tostring(os.getenv("HOME"))
-local on_attach = require("me.lsp.config").on_attach
-local capabilities = require("me.lsp.config").capabilities()
+local on_attach = require("me.lsp").on_attach
+local capabilities = require("me.lsp").capabilities()
 local lspconfig = require("lspconfig")
 
 -- Python
@@ -28,33 +28,33 @@ local prettier = require("me.lsp.efm.web").prettier()
 local misspell = require("me.lsp.efm.misspell")
 
 local languages = {
-	["="] = { misspell },
-	lua = { stylua, luacheck },
-	python = { black, isort, flake8, mypy, pylint },
-	css = { prettier },
-	html = { prettier },
-	javascript = { prettier, eslint },
-	javascriptreact = { prettier, eslint },
-	json = { prettier },
-	-- markdown = { prettier },
-	scss = { prettier },
-	sh = { shellcheck, shfmt },
-	typescript = { prettier, eslint },
-	typescriptreact = { prettier, eslint },
-	yaml = { prettier },
+  ["="] = { misspell },
+  lua = { stylua, luacheck },
+  python = { black, isort, flake8, mypy, pylint },
+  css = { prettier },
+  html = { prettier },
+  javascript = { prettier, eslint },
+  javascriptreact = { prettier, eslint },
+  json = { prettier },
+  -- markdown = { prettier },
+  scss = { prettier },
+  sh = { shellcheck, shfmt },
+  typescript = { prettier, eslint },
+  typescriptreact = { prettier, eslint },
+  yaml = { prettier },
 }
 
 -- efm
 lspconfig.efm.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	cmd = { HOME .. "/apps/github/efm-langserver/efm-langserver" },
-	init_options = { documentFormatting = true },
-	root_dir = vim.loop.cwd,
-	filetypes = vim.tbl_keys(languages),
-	settings = {
-		rootMarkers = { ".git/" },
-		lintDebounce = 100,
-		languages = languages,
-	},
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { HOME .. "/apps/github/efm-langserver/efm-langserver" },
+  init_options = { documentFormatting = true },
+  root_dir = vim.loop.cwd,
+  filetypes = vim.tbl_keys(languages),
+  settings = {
+    rootMarkers = { ".git/" },
+    lintDebounce = 100,
+    languages = languages,
+  },
 })

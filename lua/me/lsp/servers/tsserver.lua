@@ -2,8 +2,8 @@
 local lsp_present, lspconfig = pcall(require, "lspconfig")
 
 if lsp_present then
-  local on_attach = require("me.lsp.config").on_attach
-  local capabilities = require("me.lsp.config").capabilities()
+  local on_attach = require("me.lsp").on_attach
+  local capabilities = require("me.lsp").capabilities()
   lspconfig.tsserver.setup({
     capabilities = capabilities,
     on_attach = on_attach,

@@ -31,8 +31,8 @@ M.install_servers = function()
     ensure_installed = servers,
   })
 
-  local on_attach = require("me.lsp.config").on_attach
-  local capabilities = require("me.lsp.config").capabilities()
+  local on_attach = require("me.lsp").on_attach
+  local capabilities = require("me.lsp").capabilities()
 
   for _, lsp in ipairs(servers) do
     require("lspconfig")[lsp].setup({
