@@ -2,7 +2,7 @@
 
 local options = { noremap = true, silent = true }
 local silent = { silent = true }
-local wk = require("which-key")
+-- local wk = require("which-key")
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -48,7 +48,7 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", silent)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", silent)
 
 -- buffers
-vim.keymap.set("n", "<leader>bd", "<CMD>bdelete<CR>", { desc = "[B]uffer [D]elete" })
+-- vim.keymap.set("n", "<leader>bd", "<CMD>bdelete<CR>", { desc = "[B]uffer [D]elete" })
 vim.keymap.set("n", "<M-}>", "<CMD>bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<M-{>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<C-Left>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
@@ -69,7 +69,7 @@ vim.keymap.set({ "i", "n" }, "<Left>", "<NOP>")
 vim.keymap.set({ "i", "n" }, "<Right>", "<NOP>")
 
 -- which-key
-local leader = {
+--[[ local leader = {
   e = {
     name = "+edits",
   },
@@ -89,4 +89,4 @@ local leader = {
   },
 }
 
-wk.register(leader, { prefix = "<leader>" })
+wk.register(leader, { prefix = "<leader>" }) ]]

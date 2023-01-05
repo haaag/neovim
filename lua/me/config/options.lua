@@ -39,8 +39,6 @@ vim.opt.spelllang = { "en", "es" } -- spellcheck
 -- vim.opt.grepprg = "rg --vimgrep" -- grep
 -- vim.opt.grepformat = "%f:%l:%c:%m" -- grep
 -- vim.opt.splitkeep = "screen" -- Uknown
-vim.g.loaded_netrw = 1 -- disable builtin plugins
-vim.g.loaded_netrwPlugin = 1 -- disable builtin plugins
 
 -- vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"

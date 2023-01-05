@@ -1,4 +1,5 @@
 -- gitsigns.lua
+-- https://github.com/lewis6991/gitsigns.nvim
 
 local M = {
   "lewis6991/gitsigns.nvim",
@@ -8,10 +9,15 @@ local M = {
 function M.config()
   require("gitsigns").setup({
     signs = {
-      add = { hl = "GitSignsAdd", text = "▍", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+      add = {
+        hl = "GitSignsAdd",
+        text = "▎",
+        numhl = "GitSignsAddNr",
+        linehl = "GitSignsAddLn",
+      },
       change = {
         hl = "GitSignsChange",
-        text = "▍",
+        text = "▎",
         numhl = "GitSignsChangeNr",
         linehl = "GitSignsChangeLn",
       },
@@ -29,11 +35,11 @@ function M.config()
       },
       changedelete = {
         hl = "GitSignsChange",
-        text = "▍",
+        text = "▎",
         numhl = "GitSignsChangeNr",
         linehl = "GitSignsChangeLn",
       },
-      untracked = { hl = "GitSignsAdd", text = "▍", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+      untracked = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
     },
     on_attach = function(bufnr)
       local gs = package.loaded.gitsigns

@@ -12,13 +12,13 @@ local M = {
     { "<leader><F3>", "<CMD>Neotree current %:p:h:h %:p<CR>", desc = "NeoTree" },
     { "<F3>", "<CMD>NeoTreeRevealToggle<CR>", desc = "NeoTree Reveal" },
   },
+  enabled = true,
 }
 
 function M.config()
   local neotree = require("neo-tree")
-
   neotree.setup({
-    close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
+    close_if_last_window = true,
     popup_border_style = "rounded",
     enable_git_status = true,
     enable_diagnostics = true,
@@ -34,11 +34,6 @@ function M.config()
         expander_highlight = "NeoTreeExpander",
       },
       icon = {
-        -- folder_closed = "",
-        -- folder_closed = "",
-        -- folder_open = "",
-        -- folder_open = "",
-        -- folder_empty = "",
         default = "*",
       },
       modified = {
@@ -101,7 +96,7 @@ function M.config()
     nesting_rules = {},
     filesystem = {
       filtered_items = {
-        visible = false, -- when true, they will just be displayed differently than normal items
+        visible = false,
         hide_dotfiles = true,
         hide_gitignored = true,
         hide_by_name = {
@@ -112,23 +107,10 @@ function M.config()
           ".venv",
           ".env",
         },
-        hide_by_pattern = { -- uses glob style patterns
-          --"*.meta"
-        },
-        never_show = { -- remains hidden even if visible is toggled to true
-          --".DS_Store",
-          --"thumbs.db"
-        },
       },
-      follow_current_file = true, -- This will find and focus the file in the active buffer every
-      -- time the current file is changed while the tree is open.
-      hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-      -- in whatever position is specified in window.position
-      -- "open_current",  -- netrw disabled, opening a directory opens within the
-      -- window like netrw would, regardless of window.position
-      -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-      use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
-      -- instead of relying on nvim autocmd events.
+      follow_current_file = true,
+      hijack_netrw_behavior = "open_current",
+      use_libuv_file_watcher = false,
       window = {
         mappings = {
           ["<bs>"] = "navigate_up",

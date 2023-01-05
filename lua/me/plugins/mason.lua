@@ -10,7 +10,6 @@ local M = {
     "neovim/nvim-lspconfig",
     "williamboman/mason-lspconfig.nvim",
     "lukas-reineke/lsp-format.nvim",
-    "j-hui/fidget.nvim",
   },
 }
 
@@ -49,20 +48,6 @@ M.load_servers_config = function()
   require("me.lsp.efm")
 end
 
-M.load_fidget = function()
-  require("fidget").setup({
-    text = {
-      spinner = "moon",
-    },
-    align = {
-      bottom = true,
-    },
-    window = {
-      relative = "editor",
-    },
-  })
-end
-
 M.tools = {
   -- lua
   "luacheck",
@@ -99,7 +84,6 @@ function M.config()
   M.check_tools()
   M.install_servers()
   M.load_servers_config()
-  M.load_fidget()
 end
 
 return M

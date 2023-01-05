@@ -12,6 +12,8 @@ local M = {
     "hrsh7th/cmp-path",
     "onsails/lspkind-nvim",
     "rafamadriz/friendly-snippets",
+    "octaltree/cmp-look",
+    "hrsh7th/cmp-nvim-lsp-signature-help",
     { "tzachar/cmp-tabnine", build = "./install.sh", dependencies = "hrsh7th/nvim-cmp" },
   },
 }
@@ -26,6 +28,15 @@ function M.config()
   require("luasnip.loaders.from_vscode").lazy_load()
 
   cmp.setup({
+    window = {
+      completion = {
+        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+        col_offset = -3,
+        side_padding = 0,
+        border = nil,
+        scrollbar = "║",
+      },
+    },
     sorting = {
       comparators = {
         cmp.config.compare.offset,
@@ -91,8 +102,15 @@ function M.config()
       { name = "nvim_lsp" },
       { name = "luasnip" },
       { name = "path" },
-      { name = "buffer", keyword_length = 5 },
+      { name = "buffer", keyword_length = 5, max_item_count = 10 },
       { name = "cmp_tabnine" },
+      {
+        name = "look",
+        keyword_length = 5,
+        max_item_count = 5,
+        option = { convert_case = true, loud = true },
+        priority_weight = 40,
+      },
     },
 
     formatting = {
@@ -101,11 +119,13 @@ function M.config()
         with_text = true,
         menu = {
           buffer = "[buf]",
-          nvim_lsp = "[LSP]",
+          nvim_lsp = "[lsp]",
+          nvim_lsp_signature_help = "[sign]",
           nvim_lua = "[api]",
           path = "[path]",
           luasnip = "[snip]",
-          cmp_tabnine = "[TabNine]",
+          cmp_tabnine = "[t9]",
+          look = "[look]",
         },
       }),
     },
