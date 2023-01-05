@@ -8,24 +8,7 @@ local M = {
 }
 
 M.config = function()
-  local colors = {
-    background = "#24283b",
-    other_background = "#1F2335",
-    foreground = "#a9b1d6",
-    black = "#1a1b26",
-    black2 = "#1a1b26",
-    red = "#f7768e",
-    green = "#9ece6a",
-    yellow = "#e0af68",
-    orange = "#ff9e64",
-    blue = "#7aa2f7",
-    magenta = "#bb9af7",
-    violet = "#9d7cd8",
-    cyan = "#4abaaf",
-    white = "#c0caf5",
-    lightgrey = "#545c7e",
-    darkgrey = "#545c7e",
-  }
+  local colors = require("me.config.colors").current()
 
   local conditions = {
     buffer_not_empty = function()
