@@ -2,7 +2,6 @@
 
 local options = { noremap = true, silent = true }
 local silent = { silent = true }
--- local wk = require("which-key")
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -67,26 +66,3 @@ vim.keymap.set({ "i", "n" }, "<Up>", "<NOP>")
 vim.keymap.set({ "i", "n" }, "<Down>", "<NOP>")
 vim.keymap.set({ "i", "n" }, "<Left>", "<NOP>")
 vim.keymap.set({ "i", "n" }, "<Right>", "<NOP>")
-
--- which-key
---[[ local leader = {
-  e = {
-    name = "+edits",
-  },
-  b = {
-    name = "+buffers",
-  },
-  g = {
-    name = "+git",
-    d = { name = "+diff" },
-    h = { name = "+hunk" },
-  },
-  l = {
-    name = "+lsp",
-  },
-  s = {
-    name = "+search",
-  },
-}
-
-wk.register(leader, { prefix = "<leader>" }) ]]

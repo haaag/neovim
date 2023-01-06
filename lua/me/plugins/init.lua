@@ -1,15 +1,33 @@
 return {
   { -- https://github.com/folke/which-key.nvim
     "folke/which-key.nvim",
-    lazy = true,
-    config = {
-      layout = {
-        height = { min = 4, max = 25 }, -- min and max height of the columns
-        width = { min = 20, max = 50 }, -- min and max width of the columns
-        spacing = 15, -- spacing between columns
-        align = "center", -- align columns left, center or right
-      },
-    },
+    event = "VeryLazy",
+    config = function()
+      local wk = require("which-key")
+      wk.setup({
+        show_help = false,
+        plugins = { spelling = true },
+        layout = {
+          height = { min = 4, max = 25 }, -- min and max height of the columns
+          width = { min = 20, max = 50 }, -- min and max width of the columns
+          spacing = 15, -- spacing between columns
+          align = "center", -- align columns left, center or right
+        },
+      })
+      wk.register({
+        mode = { "n", "v" },
+        ["g"] = { name = "+goto" },
+        ["]"] = { name = "+next" },
+        ["["] = { name = "+prev" },
+        ["<leader>d"] = { name = "+databases" },
+        ["<leader>e"] = { name = "+edits" },
+        ["<leader>b"] = { name = "+buffers" },
+        ["<leader>g"] = { name = "+git", d = { name = "+diff" }, h = { name = "+hunk" } },
+        ["<leader>l"] = { name = "+lsp", w = { name = "+workspace" } },
+        ["<leader>s"] = { name = "+search" },
+        ["<leader>q"] = { name = "+quickfix" },
+      })
+    end,
   },
   { -- https://github.com/dstein64/vim-startuptime
     "dstein64/vim-startuptime",
