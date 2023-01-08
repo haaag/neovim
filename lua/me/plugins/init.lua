@@ -139,6 +139,14 @@ return {
       { "<leader>bm", "<CMD>MaximizerToggle<CR>", desc = "[B]uffer [M]aximizer" },
     },
   },
+  { -- https://github.com/echasnovski/mini.bufremove
+    "echasnovski/mini.bufremove",
+    -- stylua: ignore
+    keys = {
+      { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "[B]uffer [d]elete" },
+      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "[B]uffer [D]elete (Force)" },
+    },
+  },
   { -- https://github.com/j-hui/fidget.nvim
     "j-hui/fidget.nvim",
     config = {
