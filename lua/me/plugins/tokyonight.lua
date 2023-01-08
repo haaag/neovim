@@ -1,7 +1,11 @@
+-- tokyonight.lua
+-- https://github.com/folke/tokyonight.nvim
+
 local M = {
   "folke/tokyonight.nvim",
   lazy = false,
   priority = 1000,
+  enabled = true,
 }
 
 function M.config()
@@ -9,20 +13,22 @@ function M.config()
   local tokyonight = require("tokyonight")
   tokyonight.setup({
     style = "storm",
-    -- transparent = true,
     -- hide_inactive_statusline = false,
     sidebars = {
       "qf",
       "vista_kind",
+      "vista",
       "terminal",
+      "toggleterm",
       "spectre_panel",
       "NeogitStatus",
-      -- "help",
+      "help",
       "startuptime",
       "Outline",
     },
-    transparent = false,
+    transparent = true,
     styles = {},
+    -- luacheck: ignore
     on_colors = function(c) end,
     on_highlights = function(hl, c)
       -- make the current line cursor orange
@@ -61,7 +67,6 @@ function M.config()
       end
     end,
   })
-
   tokyonight.load()
 end
 

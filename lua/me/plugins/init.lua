@@ -151,14 +151,22 @@ return {
     "j-hui/fidget.nvim",
     config = {
       text = {
-        spinner = "moon",
+        spinner = "moon", -- dots_pulse, bouncing_bar
       },
       align = {
         bottom = true,
       },
       window = {
         relative = "editor",
+        blend = 0,
+        -- border = "rounded",
+      },
+      sources = {
+        ["efm"] = {
+          ignore = true,
+        },
       },
     },
+    enabled = true,
   },
 }
