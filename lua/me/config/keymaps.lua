@@ -4,7 +4,6 @@ local options = { noremap = true, silent = true }
 local silent = { silent = true }
 
 -- Keymaps for better default experience
--- See `:help vim.keymap.set()`
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Shortcut to use blackhole register by default
@@ -47,7 +46,6 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", silent)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", silent)
 
 -- buffers
--- vim.keymap.set("n", "<leader>bd", "<CMD>bdelete<CR>", { desc = "[B]uffer [D]elete" })
 vim.keymap.set("n", "<M-}>", "<CMD>bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<M-{>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<C-Left>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
@@ -66,3 +64,9 @@ vim.keymap.set({ "i", "n" }, "<Up>", "<NOP>")
 vim.keymap.set({ "i", "n" }, "<Down>", "<NOP>")
 vim.keymap.set({ "i", "n" }, "<Left>", "<NOP>")
 vim.keymap.set({ "i", "n" }, "<Right>", "<NOP>")
+
+-- quickfix
+vim.keymap.set("n", "<leader>qc", "<CMD>cclose<CR>", { desc = "[Q]uickfix [C]lose" })
+vim.keymap.set("n", "<leader>qo", "<CMD>copen<CR>", { desc = "[Q]uickfix [O]pen" })
+vim.keymap.set("n", "<leader>qg", "<CMD>cfirst<CR>", { desc = "[Q]uickfix First" })
+vim.keymap.set("n", "<leader>qG", "<CMD>clast<CR>", { desc = "[Q]uickfix Last" })

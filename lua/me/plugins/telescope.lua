@@ -22,13 +22,17 @@ local M = {
     { "<leader>gc", "<CMD>Telescope git_commits<CR>", desc = "[G]it Telescope [C]ommits" },
     { "<leader>gb", "<CMD>Telescope git_branches<CR>", desc = "[G]it Telescope [B]ranches" },
     { "<leader>sh", "<CMD>Telescope help_tags<CR>", desc = "[S]earch [H]elp" },
-    { "<leader>/", "<CMD>Telescope oldfiles<CR>", desc = "[?] Find recently opened files" },
-    { "<leader>u", "<CMD>Telescope undo<CR>", desc = "[S]earch [U]ndo" },
-    -- luacheck: ignore
-    -- stylua: ignore
-    --[[ { "<leader><space>", function()
-      require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({ hidden = true, previewer = false }))
-    end, desc = "[ ] Find existing buffers" }, ]]
+    { "<leader>su", "<CMD>Telescope undo<CR>", desc = "[S]earch [U]ndo" },
+    {
+      "<leader>/",
+      function()
+        require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_ivy({
+          winblend = 10,
+          previewer = false,
+        }))
+      end,
+      desc = "[/] Fuzzily search in current buffer]",
+    },
   },
 }
 

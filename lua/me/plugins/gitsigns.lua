@@ -77,6 +77,7 @@ function M.config()
       -- Actions
       map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "[S]tage Hunk")
       map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "[R]eset Hunk")
+      map("n", "]p", gs.preview_hunk, "[P]review [H]unk")
       map("n", "<leader>ghS", gs.stage_buffer, "[S]tage Buffer")
       map("n", "<leader>ghu", gs.undo_stage_hunk, "[U]ndo Stage [H]unk")
       map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
