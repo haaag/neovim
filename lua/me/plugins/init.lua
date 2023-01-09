@@ -29,26 +29,17 @@ return {
       })
     end,
   },
-  { -- https://github.com/dstein64/vim-startuptime
-    "dstein64/vim-startuptime",
-    cmd = "StartupTime",
-  },
-  { -- https://github.com/kyazdani42/nvim-web-devicons
-    "kyazdani42/nvim-web-devicons",
-  },
   { -- https://github.com/numToStr/Comment.nvim
     "numToStr/Comment.nvim",
     event = "VeryLazy",
     config = true,
   },
-  { -- https://github.com/Vimjas/vim-python-pep8-indent
-    "Vimjas/vim-python-pep8-indent",
-    ft = { "py", "python" },
-  },
   { -- https://github.com/ggandor/leap.nvim
     "ggandor/leap.nvim",
+    event = "VeryLazy",
+    dependencies = { { "ggandor/flit.nvim", config = { labeled_modes = "nv" } } },
     config = function()
-      require("leap").add_default_mappings()
+      require("leap").add_default_mappings(true)
     end,
     enabled = true,
   },
@@ -84,8 +75,18 @@ return {
   },
   { -- https://github.com/stevearc/dressing.nvim
     "stevearc/dressing.nvim",
-    event = "VeryLazy",
-    enabled = false,
+    init = function()
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.select = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.select(...)
+      end
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.input = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.input(...)
+      end
+    end,
   },
   { -- https://github.com/RRethy/vim-illuminate
     "RRethy/vim-illuminate",
@@ -93,14 +94,14 @@ return {
     enabled = true,
     keys = {
       {
-        "<leader>]",
+        "<space>]",
         function()
           require("illuminate").goto_next_reference(false)
         end,
         desc = "Next Reference",
       },
       {
-        "<leader>[",
+        "<space>[",
         function()
           require("illuminate").goto_prev_reference(false)
         end,
@@ -108,44 +109,9 @@ return {
       },
     },
   },
-  { -- https://github.com/doums/monark.nvim
-    "doums/monark.nvim",
-    event = "VeryLazy",
-    enabled = false,
-    config = function()
-      require("monark").setup()
-      local hl = vim.api.nvim_set_hl
-      hl(0, "monarkInsert", { fg = "#4abaaf" })
-      hl(0, "monarkNormal", { fg = "#7aa2f7" })
-      hl(0, "monarkReplace", { fg = "#9d7cd8" })
-      hl(0, "monarkVisual", { fg = "#f7768e" })
-    end,
-  },
   { -- https://github.com/Abstract-IDE/penvim
     "Abstract-IDE/penvim",
-    config = false,
-  },
-  { -- https://github.com/baskerville/vim-sxhkdrc
-    "baskerville/vim-sxhkdrc",
-    ft = { "sxhkdrc" },
-  },
-  { -- https://github.com/szw/vim-maximizer
-    "szw/vim-maximizer",
-    cmd = "MaximizerToggle",
-    config = function()
-      vim.g.maximizer_set_default_mapping = 1
-    end,
-    keys = {
-      { "<leader>bm", "<CMD>MaximizerToggle<CR>", desc = "[B]uffer [M]aximizer" },
-    },
-  },
-  { -- https://github.com/echasnovski/mini.bufremove
-    "echasnovski/mini.bufremove",
-    -- stylua: ignore
-    keys = {
-      { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "[B]uffer [d]elete" },
-      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "[B]uffer [D]elete (Force)" },
-    },
+    config = true,
   },
   { -- https://github.com/j-hui/fidget.nvim
     "j-hui/fidget.nvim",
