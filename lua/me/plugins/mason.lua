@@ -7,10 +7,12 @@ local M = {
   "williamboman/mason.nvim",
   event = "BufReadPre",
   dependencies = {
+    { "folke/neodev.nvim", config = true },
     "neovim/nvim-lspconfig",
     "williamboman/mason-lspconfig.nvim",
     "lukas-reineke/lsp-format.nvim",
   },
+  enabled = true,
 }
 
 M.install_servers = function()
@@ -23,6 +25,7 @@ M.install_servers = function()
     "bashls",
     "jsonls",
     -- "pylsp",
+    "marksman",
   }
 
   -- Ensure the servers above are installed
@@ -43,7 +46,6 @@ end
 
 M.load_servers_config = function()
   require("me.lsp.diagnostic")
-  require("me.lsp.servers.sumneko")
   require("me.lsp.servers.tsserver")
   require("me.lsp.efm")
 end
