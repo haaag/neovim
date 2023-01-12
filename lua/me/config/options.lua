@@ -25,8 +25,8 @@ vim.o.splitright = true -- Vertical splits will automatically be to the right
 vim.o.laststatus = 3 -- Always display the status line
 vim.o.showmode = false -- We don't need to see things like -- INSERT -- anymore
 vim.o.dictionary = "/usr/share/dict/words" -- EN Dictionary - <CTRL-X><CTRL-K>
-vim.o.number = false -- set numbered lines
-vim.o.relativenumber = false -- set relative numbered lines
+vim.o.number = true -- set numbered lines
+vim.o.relativenumber = true -- set relative numbered lines
 vim.o.timeoutlen = 500 -- Time in milliseconds to wait for a mapped sequence to complete.
 vim.g.python3_host_prog = HOME .. "/.local/debugpy/bin/python" -- command to start python3
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
@@ -34,7 +34,7 @@ vim.opt.scrolloff = 4 -- Lines of context
 vim.opt.wrap = false -- Disable line wrap
 vim.opt.termguicolors = true -- True color support
 vim.opt.spelllang = { "en", "es" } -- spellcheck
--- vim.opt.cursorline = false -- Enable highlighting of the current line
+vim.opt.cursorline = false -- Enable highlighting of the current line
 -- vim.opt.hidden = true -- Enable modified buffers in background
 -- vim.opt.grepprg = "rg --vimgrep" -- grep
 -- vim.opt.grepformat = "%f:%l:%c:%m" -- grep
@@ -43,3 +43,25 @@ vim.opt.spelllang = { "en", "es" } -- spellcheck
 -- vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"
 -- vim.opt.listchars:append "eol:↴"
+
+-- Disable built-ins
+vim.g.loaded_gzip = 1
+vim.g.loaded_zip = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_tar = 1
+vim.g.loaded_tarPlugin = 1
+
+vim.g.loaded_getscript = 1
+vim.g.loaded_getscriptPlugin = 1
+vim.g.loaded_vimball = 1
+vim.g.loaded_vimballPlugin = 1
+vim.g.loaded_2html_plugin = 1
+
+vim.g.loaded_matchit = 1
+vim.g.loaded_matchparen = 1
+vim.g.loaded_logiPat = 1
+vim.g.loaded_rrhelper = 1
+
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrwSettings = 1

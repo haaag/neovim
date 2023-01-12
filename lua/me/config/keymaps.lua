@@ -70,3 +70,8 @@ vim.keymap.set("n", "<leader>qc", "<CMD>cclose<CR>", { desc = "[Q]uickfix [C]los
 vim.keymap.set("n", "<leader>qo", "<CMD>copen<CR>", { desc = "[Q]uickfix [O]pen" })
 vim.keymap.set("n", "<leader>qg", "<CMD>cfirst<CR>", { desc = "[Q]uickfix First" })
 vim.keymap.set("n", "<leader>qG", "<CMD>clast<CR>", { desc = "[Q]uickfix Last" })
+
+-- personal
+vim.keymap.set("n", "<leader>ta", function()
+  require("me.config.utils").ToggleHiddenAll()
+end, { desc = "[T]oggle [A]ll" })

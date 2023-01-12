@@ -99,6 +99,7 @@ function M.config()
     }),
 
     sources = {
+      { name = "nvim_lsp_signature_help" },
       { name = "nvim_lsp" },
       { name = "luasnip" },
       { name = "path" },
@@ -114,7 +115,6 @@ function M.config()
     },
 
     formatting = {
-      -- Youtube: How to set up nice formatting for your sources.
       format = lspkind.cmp_format({
         with_text = true,
         menu = {

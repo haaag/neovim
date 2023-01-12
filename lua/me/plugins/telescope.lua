@@ -4,7 +4,9 @@
 local M = {
   "nvim-telescope/telescope.nvim",
   event = "VeryLazy",
+  version = "0.1.x",
   cmd = { "Telescope" },
+  enabled = true,
   dependencies = {
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -23,6 +25,15 @@ local M = {
     { "<leader>gb", "<CMD>Telescope git_branches<CR>", desc = "[G]it Telescope [B]ranches" },
     { "<leader>sh", "<CMD>Telescope help_tags<CR>", desc = "[S]earch [H]elp" },
     { "<leader>su", "<CMD>Telescope undo<CR>", desc = "[S]earch [U]ndo" },
+    {
+      "<leader><space>",
+      function()
+        require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({
+          previewer = false,
+        }))
+      end,
+      desc = "[S]earch [U]ndo",
+    },
     {
       "<leader>/",
       function()

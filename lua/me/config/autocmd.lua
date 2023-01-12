@@ -25,7 +25,11 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = misc,
   pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "startuptime", "netrw" },
-  command = [[nnoremap <buffer><silent> q :quit<CR>]],
+  -- command = [[nnoremap <buffer><silent> q :quit<CR>]],
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+  end,
   desc = "Use 'q' to quit from common plugins",
 })
 
@@ -37,5 +41,13 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     if mark[1] > 0 and mark[1] <= lcount then
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "gitcommit", "markdown" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
   end,
 })
