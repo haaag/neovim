@@ -1,4 +1,4 @@
--- [[ shell - efm ]]
+-- lsp.servers.efm.shell
 
 local M = {}
 

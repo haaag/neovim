@@ -1,3 +1,5 @@
+-- lsp.servers.efm.others
+
 return {
   lintCommand = "misspell",
   lintIgnoreExitCode = true,

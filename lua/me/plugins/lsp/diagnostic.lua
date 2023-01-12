@@ -50,6 +50,6 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 })
 
 -- diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "[a", vim.diagnostic.open_float)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "[D]iagnostic Prev" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "[D]iagnostic Next" })
+vim.keymap.set("n", "[a", vim.diagnostic.open_float, { desc = "[D]iagnostic Float" })

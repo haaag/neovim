@@ -1,4 +1,4 @@
--- [[ python - efm ]]
+-- lsp.servers.efm.python
 
 local M = {}
 

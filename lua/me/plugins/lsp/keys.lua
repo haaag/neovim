@@ -4,9 +4,6 @@ local M = {}
 
 function M.on_attach(bufnr)
   local nmap = function(keys, func, desc)
-    -- if desc then
-    --   desc = "LSP: " .. desc
-    -- end
     vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
   end
 

@@ -1,4 +1,4 @@
--- [[ lua - efm ]]
+-- lsp.servers.efm.lua
 
 local M = {}
 
