@@ -1,33 +1,28 @@
 return {
   { -- https://github.com/matbme/JABS.nvim
     "matbme/JABS.nvim",
-    config = {
+    opts = {
       position = { "center", "center" },
       relative = "editor",
     },
     keys = {
       { "<leader><space>", "<CMD>JABSOpen<CR>", desc = "[ ] Find existing buffers" },
     },
+    enabled = false,
   },
+
   { -- https://github.com/baskerville/vim-sxhkdrc
     "baskerville/vim-sxhkdrc",
     ft = { "sxhkdrc" },
     enabled = true,
   },
+
   { -- https://github.com/Vimjas/vim-python-pep8-indent
     "Vimjas/vim-python-pep8-indent",
     ft = { "py", "python" },
+    enabled = true,
   },
-  { -- https://github.com/szw/vim-maximizer
-    "szw/vim-maximizer",
-    cmd = "MaximizerToggle",
-    config = function()
-      vim.g.maximizer_set_default_mapping = 1
-    end,
-    keys = {
-      { "<leader>bm", "<CMD>MaximizerToggle<CR>", desc = "[B]uffer [M]aximizer" },
-    },
-  },
+
   { -- https://github.com/echasnovski/mini.bufremove
     "echasnovski/mini.bufremove",
     -- stylua: ignore
@@ -35,28 +30,57 @@ return {
       { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "[B]uffer [d]elete" },
       { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "[B]uffer [D]elete (Force)" },
     },
+    enabled = true,
   },
-  { -- https://github.com/doums/monark.nvim
-    "doums/monark.nvim",
-    event = "VeryLazy",
-    enabled = false,
-    config = function()
-      require("monark").setup()
-      local hl = vim.api.nvim_set_hl
-      hl(0, "monarkInsert", { fg = "#4abaaf" })
-      hl(0, "monarkNormal", { fg = "#7aa2f7" })
-      hl(0, "monarkReplace", { fg = "#9d7cd8" })
-      hl(0, "monarkVisual", { fg = "#f7768e" })
-    end,
-  },
+
+  -- profiling
   { -- https://github.com/dstein64/vim-startuptime
     "dstein64/vim-startuptime",
     cmd = "StartupTime",
     config = function()
       vim.g.startuptime_tries = 10
     end,
+    enabled = true,
   },
-  { -- https://github.com/kyazdani42/nvim-web-devicons
-    "kyazdani42/nvim-web-devicons",
+
+  -- colorizer.lua
+  { -- https://github.com/NvChad/nvim-colorizer.lua
+    "NvChad/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {
+      filetypes = { "*", "!lazy" },
+      buftype = { "*", "!prompt", "!nofile", "!TelescopePrompt" },
+      user_default_options = {
+        RGB = true, -- #RGB hex codes
+        RRGGBB = true, -- #RRGGBB hex codes
+        names = false, -- "Name" codes like Blue
+        RRGGBBAA = true, -- #RRGGBBAA hex codes
+        AARRGGBB = false, -- 0xAARRGGBB hex codes
+        rgb_fn = true, -- CSS rgb() and rgba() functions
+        hsl_fn = true, -- CSS hsl() and hsla() functions
+        css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        -- Available modes: foreground, background
+        -- Available modes for `mode`: foreground, background,  virtualtext
+        mode = "background", -- Set the display mode.
+        virtualtext = "■",
+      },
+    },
+    enabled = true,
+  },
+
+  -- markdown preview
+  { -- https://github.com/toppair/peek.nvim
+    "toppair/peek.nvim",
+    build = "deno task --quiet build:fast",
+    ft = { "markdown" },
+    config = function()
+      require("peek").setup({
+        theme = "light", -- 'dark'
+      })
+      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+    end,
+    enabled = true,
   },
 }

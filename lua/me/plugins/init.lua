@@ -37,26 +37,15 @@ return {
   { -- https://github.com/ggandor/leap.nvim
     "ggandor/leap.nvim",
     event = "VeryLazy",
-    dependencies = { { "ggandor/flit.nvim", config = { labeled_modes = "nv" } } },
-    config = function()
-      require("leap").add_default_mappings(true)
+    dependencies = { { "ggandor/flit.nvim", opts = { labeled_modes = "nv" } } },
+    config = function(_, opts)
+      local leap = require("leap")
+      for k, v in pairs(opts) do
+        leap.opts[k] = v
+      end
+      leap.add_default_mappings(true)
     end,
     enabled = true,
-  },
-  { -- https://github.com/utilyre/barbecue.nvim
-    "utilyre/barbecue.nvim",
-    dependencies = {
-      "smiteshp/nvim-navic",
-    },
-    enabled = true,
-    config = function()
-      require("barbecue").setup({
-        show_modified = false,
-        symbols = {
-          separator = ">",
-        },
-      })
-    end,
   },
   { -- https://github.com/liuchengxu/vista.vim
     "liuchengxu/vista.vim",
@@ -73,41 +62,15 @@ return {
     event = "BufReadPost",
     config = true,
   },
-  { -- https://github.com/stevearc/dressing.nvim
-    "stevearc/dressing.nvim",
-    init = function()
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.select(...)
-      end
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.input(...)
-      end
-    end,
-  },
   { -- https://github.com/RRethy/vim-illuminate
     "RRethy/vim-illuminate",
     event = "BufReadPost",
-    enabled = true,
+    -- stylua: ignore
     keys = {
-      {
-        "<space>]",
-        function()
-          require("illuminate").goto_next_reference(false)
-        end,
-        desc = "Next Reference",
-      },
-      {
-        "<space>[",
-        function()
-          require("illuminate").goto_prev_reference(false)
-        end,
-        desc = "Prev Reference",
-      },
+      { "<space>]", function() require("illuminate").goto_next_reference(false) end, desc = "Next Reference", },
+      { "<space>[", function() require("illuminate").goto_prev_reference(false) end, desc = "Prev Reference", },
     },
+    enabled = true,
   },
   { -- https://github.com/Abstract-IDE/penvim
     "Abstract-IDE/penvim",
@@ -115,7 +78,8 @@ return {
   },
   { -- https://github.com/j-hui/fidget.nvim
     "j-hui/fidget.nvim",
-    config = {
+    event = "VeryLazy",
+    opts = {
       text = {
         spinner = "moon", -- dots_pulse, bouncing_bar
       },
