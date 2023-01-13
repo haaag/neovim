@@ -9,6 +9,7 @@ local flake8 = require("me.plugins.lsp.servers.efm-tools.python").flake8()
 local isort = require("me.plugins.lsp.servers.efm-tools.python").isort()
 local mypy = require("me.plugins.lsp.servers.efm-tools.python").mypy()
 local pylint = require("me.plugins.lsp.servers.efm-tools.python").pylint()
+local ruff = require("me.plugins.lsp.servers.efm-tools.python").ruff()
 
 -- Lua
 local luacheck = require("me.plugins.lsp.servers.efm-tools.lua").luacheck()
@@ -30,7 +31,7 @@ local write_good = require("me.plugins.lsp.servers.efm-tools.markdown").write_go
 local languages = {
   ["="] = { misspell },
   lua = { stylua, luacheck },
-  python = { black, isort, flake8, mypy, pylint },
+  python = { black, isort, flake8, mypy, pylint, ruff },
   css = { prettier },
   html = { prettier },
   javascript = { prettier, eslint },

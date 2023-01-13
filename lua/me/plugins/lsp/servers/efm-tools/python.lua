@@ -47,4 +47,13 @@ M.pylint = function()
   }
 end
 
+M.ruff = function()
+  return {
+    lintCommand = "ruff --stdin-filename ${INPUT} -",
+    lintStdin = true,
+    lintFormats = { "%f:%l:%c: %m" },
+    lintSource = "ruff",
+  }
+end
+
 return M
