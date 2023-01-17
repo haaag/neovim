@@ -4,9 +4,9 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Python
+-- local isort = require("me.plugins.lsp.servers.efm-tools.python").isort()
 local black = require("me.plugins.lsp.servers.efm-tools.python").black()
 local flake8 = require("me.plugins.lsp.servers.efm-tools.python").flake8()
-local isort = require("me.plugins.lsp.servers.efm-tools.python").isort()
 local mypy = require("me.plugins.lsp.servers.efm-tools.python").mypy()
 local pylint = require("me.plugins.lsp.servers.efm-tools.python").pylint()
 local ruff = require("me.plugins.lsp.servers.efm-tools.python").ruff()
@@ -27,11 +27,12 @@ local prettier = require("me.plugins.lsp.servers.efm-tools.web").prettier()
 local misspell = require("me.plugins.lsp.servers.efm-tools.misspell")
 local markdownlint = require("me.plugins.lsp.servers.efm-tools.markdown").markdownlint()
 local write_good = require("me.plugins.lsp.servers.efm-tools.markdown").write_good()
+-- local cbfmt = require("me.plugins.lsp.servers.efm-tools.markdown").cbfmt()
 
 local languages = {
   ["="] = { misspell },
   lua = { stylua, luacheck },
-  python = { black, isort, flake8, mypy, pylint, ruff },
+  python = { black, flake8, mypy, pylint, ruff },
   css = { prettier },
   html = { prettier },
   javascript = { prettier, eslint },
