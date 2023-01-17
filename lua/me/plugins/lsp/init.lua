@@ -41,9 +41,12 @@ return {
     config = function(_, opts)
       require("me.plugins.lsp.utils").on_attach(function(client, bufnr)
         require("me.plugins.lsp.keys").on_attach(bufnr)
+
         if client.name ~= "clangd" then
           require("lsp-format").on_attach(client)
         end
+
+        client.server_capabilities.semanticTokensProvider = nil
       end)
 
       -- diagnostics
@@ -72,45 +75,12 @@ return {
   },
 
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = "BufReadPre",
-    dependencies = { "mason.nvim" },
-    enabled = false,
-    opts = function()
-      local null_ls = require("null-ls")
-      local b = null_ls.builtins
-      return {
-        sources = {
-          b.formatting.stylua,
-          b.formatting.shfmt,
-          b.formatting.shellharden,
-          b.formatting.isort,
-          b.formatting.black,
-          b.formatting.eslint_d,
-          -- b.formatting.ruff,
-          -- b.formatting.prettier,
-
-          b.diagnostics.shellcheck,
-          b.diagnostics.ruff,
-          b.diagnostics.mypy,
-          b.diagnostics.pyproject_flake8,
-          b.diagnostics.write_good,
-          b.diagnostics.markdownlint,
-          b.diagnostics.gitlint,
-
-          b.hover.dictionary,
-        },
-      }
-    end,
-  },
-
-  {
     "williamboman/mason.nvim",
     cmd = "Mason",
     opts = {
       ensure_installed = {
         -- lua
-        -- "luacheck",
+        "luacheck",
         "stylua",
         -- python
         "black",
@@ -129,6 +99,7 @@ return {
         -- markdown
         "markdownlint",
         "write-good",
+        "cbfmt",
       },
     },
     config = function(_, opts)

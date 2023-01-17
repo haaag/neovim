@@ -6,9 +6,9 @@ return {
       relative = "editor",
     },
     keys = {
-      { "<leader><space>", "<CMD>JABSOpen<CR>", desc = "[ ] Find existing buffers" },
+      { "<leader><leader><space>", "<CMD>JABSOpen<CR>", desc = "[ ] Find existing buffers" },
     },
-    enabled = false,
+    enabled = true,
   },
 
   { -- https://github.com/baskerville/vim-sxhkdrc
@@ -76,11 +76,16 @@ return {
     ft = { "markdown" },
     config = function()
       require("peek").setup({
-        theme = "light", -- 'dark'
+        theme = "dark", -- 'dark'
+        -- theme = "light", -- 'dark'
       })
       vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
     end,
+    keys = {
+      { "<leader>mp", "<CMD>PeekOpen<CR>", desc = "Peek Open" },
+      { "<leader>mP", "<CMD>PeekClose<CR>", desc = "Peek Close" },
+    },
     enabled = true,
   },
 }

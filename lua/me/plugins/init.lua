@@ -19,11 +19,12 @@ return {
         ["g"] = { name = "+goto" },
         ["]"] = { name = "+next" },
         ["["] = { name = "+prev" },
+        ["<leader>b"] = { name = "+buffers" },
         ["<leader>d"] = { name = "+databases" },
         ["<leader>e"] = { name = "+edits" },
-        ["<leader>b"] = { name = "+buffers" },
         ["<leader>g"] = { name = "+git", d = { name = "+diff" }, h = { name = "+hunk" } },
         ["<leader>l"] = { name = "+lsp", w = { name = "+workspace" } },
+        ["<leader>m"] = { name = "+misc" },
         ["<leader>s"] = { name = "+search" },
         ["<leader>q"] = { name = "+quickfix" },
       })

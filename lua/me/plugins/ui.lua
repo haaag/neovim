@@ -102,4 +102,48 @@ return {
     },
     enabled = true,
   },
+
+  { -- https://github.com/folke/zen-mode.nvim
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    opts = {
+      plugins = {
+        gitsigns = true,
+        tmux = true,
+        kitty = { enabled = false, font = "+2" },
+      },
+    },
+    keys = { { "<leader>mz", "<CMD>ZenMode<CR>", desc = "Zen Mode" } },
+    enabled = true,
+  },
+
+  { -- https://github.com/folke/twilight.nvim
+    "folke/twilight.nvim",
+    cmd = "Twilight",
+    enabled = true,
+  },
+
+  -- better vim.notify
+  {
+    "rcarriga/nvim-notify",
+    keys = {
+      {
+        "<leader>md",
+        function()
+          require("notify").dismiss({ silent = true, pending = true })
+        end,
+        desc = "Delete all Notifications",
+      },
+    },
+    config = {
+      timeout = 3000,
+      max_height = function()
+        return math.floor(vim.o.lines * 0.75)
+      end,
+      max_width = function()
+        return math.floor(vim.o.columns * 0.75)
+      end,
+    },
+    enabled = false,
+  },
 }

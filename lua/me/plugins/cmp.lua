@@ -21,30 +21,30 @@ local M = {
 function M.config()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
-  local lspkind = require("lspkind")
 
   -- Set completeopt to have a better completion experience
   vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
+  -- Load vsCode snippets
   require("luasnip.loaders.from_vscode").lazy_load()
 
   cmp.setup({
-    window = {
-      completion = {
-        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-        col_offset = -3,
-        side_padding = 0,
-        border = nil,
-        scrollbar = "║",
-      },
+
+    completion = {
+      autocomplete = false,
     },
+
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+
     sorting = {
       comparators = {
         cmp.config.compare.offset,
         cmp.config.compare.exact,
         cmp.config.compare.score,
 
-        -- copied from cmp-under, but I don't think I need the plugin for this.
-        -- I might add some more of my own.
         function(entry1, entry2)
           local _, entry1_under = entry1.completion_item.label:find("^_+")
           local _, entry2_under = entry2.completion_item.label:find("^_+")
@@ -100,7 +100,7 @@ function M.config()
 
     sources = {
       { name = "nvim_lsp_signature_help" },
-      { name = "nvim_lsp" },
+      { name = "nvim_lsp", keyword_length = 3 },
       { name = "luasnip" },
       { name = "path" },
       { name = "buffer", keyword_length = 5, max_item_count = 10 },
@@ -114,7 +114,7 @@ function M.config()
       },
     },
 
-    formatting = {
+    --[[ formatting = {
       format = lspkind.cmp_format({
         with_text = true,
         menu = {
@@ -128,16 +128,26 @@ function M.config()
           look = "[look]",
         },
       }),
+    }, ]]
+
+    formatting = {
+      fields = { "kind", "abbr", "menu" },
+      format = function(entry, vim_item)
+        local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+        local strings = vim.split(kind.kind, "%s", { trimempty = true })
+        kind.kind = " " .. (strings[1] or "") .. " "
+        kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+        return kind
+      end,
     },
 
-    --[[ experimental = {
-    -- I like the new menu better! Nice work hrsh7th
-    native_menu = false,
-
-    -- Let's play with this for a day or two
-    ghost_text = false,
-  }, ]]
+    view = {
+      entries = { name = "custom", selection_order = "near_cursor" }, -- can be "custom", "wildmenu" or "native"
+    },
   })
+
+  vim.keymap.set("i", "<C-x><C-o>", "<CMD>lua require('cmp').complete()<CR>", { desc = "Invoke Completion" })
 end
 
 return M
