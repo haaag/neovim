@@ -35,13 +35,14 @@ vim.opt.wrap = false -- Disable line wrap
 vim.opt.termguicolors = true -- True color support
 vim.opt.spelllang = { "en", "es" } -- spellcheck
 vim.opt.cursorline = true -- Enable highlighting of the current line
--- vim.opt.grepprg = "rg --vimgrep" -- grep
--- vim.opt.grepformat = "%f:%l:%c:%m" -- grep
+vim.opt.grepprg = "rg --vimgrep" -- grep
+vim.opt.grepformat = "%f:%l:%c:%m" -- grep
+vim.opt.guicursor = { "a:blinkon0" }
 -- vim.opt.splitkeep = "screen" -- Uknown
 
 -- vim.opt.list = true
--- vim.opt.listchars:append "space:⋅"
--- vim.opt.listchars:append "eol:↴"
+-- vim.opt.listchars:append("space:⋅")
+-- vim.opt.listchars:append("eol:↴")
 
 -- Disable built-ins
 vim.g.loaded_gzip = 1

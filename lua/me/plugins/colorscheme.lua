@@ -19,7 +19,7 @@ return {
           "startuptime",
           "Outline",
         },
-        transparent = true,
+        transparent = false,
         styles = {
           comments = { italic = true },
           keywords = { italic = true },

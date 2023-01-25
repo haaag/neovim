@@ -21,6 +21,7 @@ local M = {
 function M.config()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
+  local colors = require("me.config.colors").current()
 
   -- Set completeopt to have a better completion experience
   vim.opt.completeopt = { "menu", "menuone", "noselect" }
@@ -78,6 +79,7 @@ function M.config()
         behavior = cmp.ConfirmBehavior.Replace,
         select = true,
       }),
+
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -87,6 +89,7 @@ function M.config()
           fallback()
         end
       end, { "i", "s" }),
+
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
@@ -143,7 +146,8 @@ function M.config()
     },
 
     view = {
-      entries = { name = "custom", selection_order = "near_cursor" }, -- can be "custom", "wildmenu" or "native"
+      -- entries = { name = "custom", selection_order = "near_cursor" }, -- can be "custom", "wildmenu" or "native"
+      entries = "custom",
     },
   })
 

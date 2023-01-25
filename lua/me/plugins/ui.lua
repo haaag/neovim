@@ -63,8 +63,8 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
     opts = {
-      -- char = "▏",
-      char = "│",
+      char = "▏",
+      -- char = "│",
       filetype_exclude = { "help", "neo-tree", "Trouble", "lazy" },
       show_trailing_blankline_indent = false,
       show_current_context = false,
@@ -121,29 +121,5 @@ return {
     "folke/twilight.nvim",
     cmd = "Twilight",
     enabled = true,
-  },
-
-  -- better vim.notify
-  {
-    "rcarriga/nvim-notify",
-    keys = {
-      {
-        "<leader>md",
-        function()
-          require("notify").dismiss({ silent = true, pending = true })
-        end,
-        desc = "Delete all Notifications",
-      },
-    },
-    config = {
-      timeout = 3000,
-      max_height = function()
-        return math.floor(vim.o.lines * 0.75)
-      end,
-      max_width = function()
-        return math.floor(vim.o.columns * 0.75)
-      end,
-    },
-    enabled = false,
   },
 }
