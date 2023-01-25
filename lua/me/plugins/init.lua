@@ -57,6 +57,15 @@ return {
       vim.g.vista_sidebar_width = 45
     end,
   },
+  { -- https://github.com/simrat39/symbols-outline.nvim
+    "simrat39/symbols-outline.nvim",
+    cmd = { "SymbolsOutline" },
+    keys = {
+      { "<leader><F2>", "<CMD>SymbolsOutline<CR>", desc = "SymbolsOutline Toggle" },
+    },
+    config = true,
+    enabled = true,
+  },
   { -- https://github.com/folke/todo-comments.nvim
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
