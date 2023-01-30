@@ -23,16 +23,6 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/echasnovski/mini.bufremove
-    "echasnovski/mini.bufremove",
-    -- stylua: ignore
-    keys = {
-      { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "[B]uffer [d]elete" },
-      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "[B]uffer [D]elete (Force)" },
-    },
-    enabled = true,
-  },
-
   -- profiling
   { -- https://github.com/dstein64/vim-startuptime
     "dstein64/vim-startuptime",

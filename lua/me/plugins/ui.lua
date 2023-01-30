@@ -1,15 +1,5 @@
 return {
 
-  -- tabline
-  { -- https://github.com/echasnovski/mini.tabline
-    "echasnovski/mini.tabline",
-    event = "VeryLazy",
-    config = function()
-      require("mini.tabline").setup({})
-    end,
-    enabled = true,
-  },
-
   { -- https://github.com/kyazdani42/nvim-web-devicons
     "kyazdani42/nvim-web-devicons",
   },
