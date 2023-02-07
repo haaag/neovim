@@ -12,6 +12,7 @@ local M = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-telescope/telescope-project.nvim" }, -- https://github.com/nvim-telescope/telescope-project.nvim
     { "debugloop/telescope-undo.nvim" }, -- https://github.com/debugloop/telescope-undo.nvim
+    { "nvim-telescope/telescope-dap.nvim" },
   },
   keys = {
     { "<leader>?", "<CMD>Telescope oldfiles<CR>", desc = "[?] Find recently opened files" },
@@ -44,6 +45,11 @@ local M = {
       end,
       desc = "[/] Fuzzily search in current buffer]",
     },
+    { "<leader>dt", "<CMD>Telescope dap commands<CR>", desc = "" },
+    { "<leader>dt", "<CMD>Telescope dap configurations<CR>", desc = "" },
+    { "<leader>dt", "<CMD>Telescope dap list_breakpoints<CR>", desc = "" },
+    { "<leader>dt", "<CMD>Telescope dap variables<CR>", desc = "" },
+    { "<leader>dt", "<CMD>Telescope dap frames<CR>", desc = "" },
   },
 }
 
@@ -71,6 +77,9 @@ function M.config()
 
   -- Enable telescope project
   pcall(require("telescope").load_extension, "project")
+
+  -- Enable telescope dap
+  pcall(require("telescope").load_extension, "dap")
 end
 
 return M

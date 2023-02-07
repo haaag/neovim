@@ -6,7 +6,14 @@ return {
     "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
     event = "BufReadPre",
     dependencies = {
-      { "folke/neodev.nvim", config = true },
+      {
+        "folke/neodev.nvim",
+        config = function()
+          require("neodev").setup({
+            library = { plugins = { "nvim-dap-ui" }, types = true },
+          })
+        end,
+      },
       "mason.nvim", -- https://github.com/williamboman/mason.nvim
       "williamboman/mason-lspconfig.nvim", -- https://github.com/williamboman/mason-lspconfig.nvim
       "hrsh7th/cmp-nvim-lsp", -- https://github.com/hrsh7th/cmp-nvim-lsp
