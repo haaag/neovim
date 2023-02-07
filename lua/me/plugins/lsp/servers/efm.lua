@@ -23,6 +23,9 @@ local shfmt = require("me.plugins.lsp.servers.efm-tools.shell").shfmt()
 local eslint = require("me.plugins.lsp.servers.efm-tools.web").eslint()
 local prettier = require("me.plugins.lsp.servers.efm-tools.web").prettier()
 
+-- go
+local go = require("me.plugins.lsp.servers.efm-tools.go")
+
 -- Others
 local misspell = require("me.plugins.lsp.servers.efm-tools.misspell")
 local markdownlint = require("me.plugins.lsp.servers.efm-tools.markdown").markdownlint()
@@ -32,6 +35,7 @@ local write_good = require("me.plugins.lsp.servers.efm-tools.markdown").write_go
 local languages = {
   ["="] = { misspell },
   lua = { stylua, luacheck },
+  go = { go.go_vet(), go.goimports(), go.staticcheck() },
   python = { black, flake8, mypy, pylint, ruff },
   css = { prettier },
   html = { prettier },
