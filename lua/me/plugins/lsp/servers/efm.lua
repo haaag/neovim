@@ -1,53 +1,26 @@
 -- efm
 -- https://github.com/mattn/efm-langserver
 
+local fmt = require("me.plugins.lsp.servers.formatting")
+local linters = require("me.plugins.lsp.servers.linters")
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- Python
--- local isort = require("me.plugins.lsp.servers.efm-tools.python").isort()
-local black = require("me.plugins.lsp.servers.efm-tools.python").black()
-local flake8 = require("me.plugins.lsp.servers.efm-tools.python").flake8()
-local mypy = require("me.plugins.lsp.servers.efm-tools.python").mypy()
-local pylint = require("me.plugins.lsp.servers.efm-tools.python").pylint()
-local ruff = require("me.plugins.lsp.servers.efm-tools.python").ruff()
-
--- Lua
-local luacheck = require("me.plugins.lsp.servers.efm-tools.lua").luacheck()
-local stylua = require("me.plugins.lsp.servers.efm-tools.lua").stylua()
-
--- Shell
-local shellcheck = require("me.plugins.lsp.servers.efm-tools.shell").shellcheck()
-local shfmt = require("me.plugins.lsp.servers.efm-tools.shell").shfmt()
-
--- Web
-local eslint = require("me.plugins.lsp.servers.efm-tools.web").eslint()
-local prettier = require("me.plugins.lsp.servers.efm-tools.web").prettier()
-
--- go
-local go = require("me.plugins.lsp.servers.efm-tools.go")
-
--- Others
-local misspell = require("me.plugins.lsp.servers.efm-tools.misspell")
-local markdownlint = require("me.plugins.lsp.servers.efm-tools.markdown").markdownlint()
-local write_good = require("me.plugins.lsp.servers.efm-tools.markdown").write_good()
--- local cbfmt = require("me.plugins.lsp.servers.efm-tools.markdown").cbfmt()
-
 local languages = {
-  ["="] = { misspell },
-  lua = { stylua, luacheck },
-  go = { go.go_vet(), go.goimports(), go.staticcheck() },
-  python = { black, flake8, mypy, pylint, ruff },
-  css = { prettier },
-  html = { prettier },
-  javascript = { prettier, eslint },
-  javascriptreact = { prettier, eslint },
-  json = { prettier },
-  markdown = { markdownlint, write_good },
-  scss = { prettier },
-  sh = { shellcheck, shfmt },
-  typescript = { prettier, eslint },
-  typescriptreact = { prettier, eslint },
-  yaml = { prettier },
+  ["="] = { linters.misspell },
+  css = { fmt.prettier },
+  go = { linters.staticcheck, fmt.goimports },
+  html = { fmt.prettier },
+  javascript = { fmt.prettier, linters.eslint },
+  javascriptreact = { fmt.prettier, linters.eslint },
+  json = { fmt.prettier },
+  lua = { fmt.stylua, linters.luacheck },
+  markdown = { linters.markdownlint, linters.write_good },
+  python = { linters.mypy, fmt.black, linters.flake8, linters.pylint },
+  scss = { fmt.prettier },
+  sh = { linters.shellcheck, fmt.shfmt },
+  typescript = { fmt.prettier, linters.eslint },
+  typescriptreact = { fmt.prettier, linters.eslint },
+  yaml = { fmt.prettier },
 }
 
 return {
@@ -56,7 +29,6 @@ return {
     servers = {
       efm = {
         capabilities = capabilities,
-        cmd = { tostring(os.getenv("HOME")) .. "/apps/github/efm-langserver/efm-langserver" },
         init_options = { documentFormatting = true },
         root_dir = vim.loop.cwd,
         filetypes = vim.tbl_keys(languages),
