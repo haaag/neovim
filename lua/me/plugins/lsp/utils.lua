@@ -13,4 +13,13 @@ function M.on_attach(on_attach)
   })
 end
 
+function M.capabilities()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local present_cmp, cmp_nvim = pcall(require, "cmp_nvim_lsp")
+  if present_cmp then
+    return cmp_nvim.default_capabilities(capabilities)
+  end
+  return capabilities
+end
+
 return M

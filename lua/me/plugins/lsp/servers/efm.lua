@@ -3,7 +3,7 @@
 
 local fmt = require("me.plugins.lsp.servers.formatting")
 local linters = require("me.plugins.lsp.servers.linters")
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("me.plugins.lsp.utils").capabilities()
 
 local languages = {
   ["="] = { linters.misspell },
