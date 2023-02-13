@@ -13,21 +13,7 @@ return {
     keys = {
       { "<leader>bm", "<CMD>MaximizerToggle<CR>", desc = "[B]uffer [M]aximizer" },
     },
-  },
-
-  { -- https://github.com/doums/monark.nvim
-    "doums/monark.nvim",
-    event = "VeryLazy",
     enabled = false,
-    config = function()
-      local c = require("me.config.colors").current()
-      require("monark").setup()
-      local hl = vim.api.nvim_set_hl
-      hl(0, "monarkInsert", { fg = c.cyan })
-      hl(0, "monarkNormal", { fg = c.blue })
-      hl(0, "monarkReplace", { fg = c.magenta })
-      hl(0, "monarkVisual", { fg = c.red })
-    end,
   },
 
   -- dressing.nvim
@@ -53,8 +39,7 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
     opts = {
-      char = "▏",
-      -- char = "│",
+      char = "│",
       filetype_exclude = { "help", "neo-tree", "Trouble", "lazy" },
       show_trailing_blankline_indent = false,
       show_current_context = false,
@@ -66,50 +51,43 @@ return {
   { -- https://github.com/utilyre/barbecue.nvim
     "utilyre/barbecue.nvim",
     event = "VeryLazy",
+    branch = "fix/E36",
     dependencies = {
       "smiteshp/nvim-navic",
     },
     config = function()
+      local icons = require("me.config.icons").icons
       require("barbecue").setup({
-        theme = "tokyonight",
-        show_modified = false,
+        show_modified = true,
         symbols = {
           separator = ">",
         },
+        kinds = icons.lsp.kinds,
       })
     end,
     enabled = true,
   },
 
-  { -- https://github.com/folke/styler.nvim
-    "folke/styler.nvim",
+  {
+    "tzachar/local-highlight.nvim",
     event = "VeryLazy",
-    opts = {
-      themes = {
-        markdown = { colorscheme = "tokyonight-moon" },
-        help = { colorscheme = "tokyonight-moon" },
-      },
-    },
-    enabled = true,
+    config = function()
+      vim.api.nvim_set_hl(0, "LocalHighlight", { underline = true, bold = true })
+      require("local-highlight").setup({
+        file_types = { "python", "cpp", "lua" },
+        hlgroup = "LocalHighlight",
+      })
+    end,
   },
 
-  { -- https://github.com/folke/zen-mode.nvim
-    "folke/zen-mode.nvim",
-    cmd = "ZenMode",
-    opts = {
-      plugins = {
-        gitsigns = true,
-        tmux = true,
-        kitty = { enabled = false, font = "+2" },
-      },
+  {
+    dir = tostring(os.getenv("HOME")) .. "/dev/lua/stat.nvim",
+    dependencies = {
+      "kyazdani42/nvim-web-devicons",
     },
-    keys = { { "<leader>mz", "<CMD>ZenMode<CR>", desc = "Zen Mode" } },
+    opts = {},
+    event = "VeryLazy",
     enabled = true,
-  },
-
-  { -- https://github.com/folke/twilight.nvim
-    "folke/twilight.nvim",
-    cmd = "Twilight",
-    enabled = true,
+    config = true,
   },
 }

@@ -5,15 +5,9 @@ return {
   {
     "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
     event = "BufReadPre",
+    enabled = true,
     dependencies = {
-      {
-        "folke/neodev.nvim",
-        config = function()
-          require("neodev").setup({
-            library = { plugins = { "nvim-dap-ui" }, types = true },
-          })
-        end,
-      },
+      { "folke/neodev.nvim", config = true },
       "mason.nvim", -- https://github.com/williamboman/mason.nvim
       "williamboman/mason-lspconfig.nvim", -- https://github.com/williamboman/mason-lspconfig.nvim
       "hrsh7th/cmp-nvim-lsp", -- https://github.com/hrsh7th/cmp-nvim-lsp
@@ -23,43 +17,72 @@ return {
     opts = {
       servers = {
         clangd = {},
-        pyright = {},
-        -- pylsp = {},
-        tsserver = {},
-        sumneko_lua = {},
+        marksman = {},
+        pyright = {
+          autostart = true,
+        },
+        gopls = {
+          settings = {
+            gopls = {
+              experimentalPostfixCompletions = true,
+              analyses = {
+                unusedparams = true,
+                shadow = true,
+              },
+              staticcheck = true,
+            },
+          },
+          init_options = {
+            usePlaceholders = true,
+          },
+        },
+        lua_ls = {
+          settings = {
+            Lua = {
+              format = {
+                enable = false,
+              },
+              telemetry = {
+                enable = false,
+              },
+              workspace = {
+                checkThirdParty = false,
+              },
+              completion = {
+                callSnippet = "Replace",
+              },
+              diagnostics = {
+                enable = true,
+                globals = {
+                  "vim",
+                },
+              },
+            },
+          },
+        },
         bashls = {},
         jsonls = {},
         ruff_lsp = {},
       },
-      -- you can do any additional lsp server setup here
-      -- return true if you don't want this server to be setup with lspconfig
-      ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
-      setup = {
-        -- example to setup with typescript.nvim
-        -- tsserver = function(_, opts)
-        --   require("typescript").setup({ server = opts })
-        --   return true
-        -- end,
-        -- Specify * to use this function as a fallback for any server
-        -- ["*"] = function(server, opts) end,
-      },
+      setup = {},
     },
     ---@param opts PluginLspOpts
     config = function(_, opts)
+      -- diagnostics
+      local diagnostic = require("me.plugins.lsp.diagnostic")
+      diagnostic.setup()
+      vim.diagnostic.config(diagnostic.config())
+
       require("me.plugins.lsp.utils").on_attach(function(client, bufnr)
         require("me.plugins.lsp.keys").on_attach(bufnr)
-
+        client.server_capabilities.semanticTokensProvider = nil
         if client.name ~= "clangd" then
           require("lsp-format").on_attach(client)
         end
-
-        client.server_capabilities.semanticTokensProvider = nil
       end)
 
-      -- diagnostics
-      require("me.plugins.lsp.diagnostic")
       local servers = opts.servers
-      local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local capabilities = require("me.plugins.lsp.utils").capabilities()
 
       require("mason-lspconfig").setup({ ensure_installed = vim.tbl_keys(servers) })
       require("mason-lspconfig").setup_handlers({

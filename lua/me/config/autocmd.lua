@@ -1,31 +1,27 @@
 -- autocmd.lua
 
-local misc = vim.api.nvim_create_augroup("Misc", { clear = true })
+local function augroup(name)
+  return vim.api.nvim_create_augroup("me_" .. name, { clear = true })
+end
 
--- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
+  group = augroup("highlight_yank"),
   callback = function()
     vim.highlight.on_yank()
   end,
-  group = highlight_group,
-  pattern = "*",
+  desc = "Highlight on yank",
 })
 
--- Update binds when sxhkdrc is updated.
-local sxhkd_group = vim.api.nvim_create_augroup("SxhkdGroup", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
-  group = sxhkd_group,
+  group = augroup("sxhkd_group"),
   pattern = "*sxhkdrc",
   command = "!pkill -USR1 sxhkd",
   desc = "Update binds when sxhkdrc is updated.",
 })
 
--- Use 'q' to quit from common plugins
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = misc,
+  group = augroup("easy_close_q"),
   pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "startuptime", "netrw" },
-  -- command = [[nnoremap <buffer><silent> q :quit<CR>]],
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
@@ -33,8 +29,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   desc = "Use 'q' to quit from common plugins",
 })
 
--- go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
+  group = augroup("last_location"),
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -42,12 +38,23 @@ vim.api.nvim_create_autocmd("BufReadPost", {
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
   end,
+  desc = "go to last loc when opening a buffer",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("wrap_spell"),
   pattern = { "gitcommit", "markdown" },
   callback = function()
     vim.opt_local.wrap = true
-    vim.opt_local.spell = true
+    -- vim.opt_local.spell = true
+    vim.g.markdown_recommended_style = 0
   end,
+})
+
+vim.api.nvim_create_autocmd({ "VimResized" }, {
+  group = augroup("resize_splits"),
+  callback = function()
+    vim.cmd("tabdo wincmd =")
+  end,
+  desc = "resize splits if window got resized",
 })

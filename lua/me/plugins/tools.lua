@@ -1,15 +1,4 @@
 return {
-  { -- https://github.com/matbme/JABS.nvim
-    "matbme/JABS.nvim",
-    opts = {
-      position = { "center", "center" },
-      relative = "editor",
-    },
-    keys = {
-      { "<leader><leader><space>", "<CMD>JABSOpen<CR>", desc = "[ ] Find existing buffers" },
-    },
-    enabled = true,
-  },
 
   { -- https://github.com/baskerville/vim-sxhkdrc
     "baskerville/vim-sxhkdrc",

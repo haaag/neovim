@@ -2,33 +2,36 @@ return {
   { -- TODO: Break this config.
     "mfussenegger/nvim-dap",
     dependencies = {
+      "nvim-telescope/telescope.nvim",
       "rcarriga/nvim-dap-ui",
       "mfussenegger/nvim-dap-python",
       "theHamsta/nvim-dap-virtual-text",
     },
     enabled = false,
     init = function()
-      -- stylua: ignore
       local map = vim.keymap.set
-      map(
-        "n",
-        "<leader>db",
-        "<CMD>lua require'dap'.toggle_breakpoint()<CR>",
-        { desc = "[D]ebugging Toggle [B]reakpoint" }
-      )
+      -- stylua: ignore
+      map("n", "<leader>db", "<CMD>lua require'dap'.toggle_breakpoint()<CR>", { desc = "[D]ebugging Toggle [B]reakpoint" })
       map("n", "<leader>dr", "<cmd>lua require'dap'.run_to_cursor()<cr>", { desc = "[D]ebugging [R]un to cursor" })
       map("n", "<leader>dP", "<cmd>lua require'dap'.repl.open()<cr>", { desc = "[D]ebugging Repl open" })
       map("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { desc = "[D]ebugging [C]ontinue" })
       map("n", "<leader>dt", "<CMD>lua require('dapui').toggle()<CR>", { desc = "[D]ebugging UI [T]oggle" })
       -- step
-      map("n", "<leader>dsb", "<cmd>lua require'dap'.step_back()<cr>", { desc = "[S]tep [B]ack" })
-      map("n", "<leader>dsi", "<cmd>lua require'dap'.step_into()<cr>", { desc = "[S]tep [I]nto" })
-      map("n", "<leader>dso", "<cmd>lua require'dap'.step_over()<cr>", { desc = "[S]tep [o]ver" })
-      map("n", "<leader>dsO", "<cmd>lua require'dap'.step_out()<cr>", { desc = "[S]tep [O]ut" })
+      map("n", "<leader>dsb", "<cmd>lua require'dap'.step_back()<cr>", { desc = "[S]tep Back" })
+      map("n", "<leader>dsi", "<cmd>lua require'dap'.step_into()<cr>", { desc = "[S]tep Into" })
+      map("n", "<leader>dso", "<cmd>lua require'dap'.step_over()<cr>", { desc = "[S]tep over" })
+      map("n", "<leader>dsO", "<cmd>lua require'dap'.step_out()<cr>", { desc = "[S]tep Out" })
       -- python
       map("n", "<leader>dpm", "<cmd>lua require('dap-python').test_method()<CR>", { desc = "Test Method" })
       map("n", "<leader>dpc", "<cmd>lua require('dap-python').test_class()<CR>", { desc = "Test Class" })
       map("v", "<leader>dpd", "<cmd>lua require('dap-python').debug_selection()<CR>", { desc = "Debug Selection" })
+      -- telescope
+      -- FIXME: def keymaps
+      map("n", "<leader>dt", "<CMD>Telescope dap commands<CR>", { desc = "" })
+      map("n", "<leader>dt", "<CMD>Telescope dap configurations<CR>", { desc = "" })
+      map("n", "<leader>dt", "<CMD>Telescope dap list_breakpoints<CR>", { desc = "" })
+      map("n", "<leader>dt", "<CMD>Telescope dap variables<CR>", { desc = "" })
+      map("n", "<leader>dt", "<CMD>Telescope dap frames<CR>", { desc = "" })
     end,
     config = function()
       local dap = require("dap")

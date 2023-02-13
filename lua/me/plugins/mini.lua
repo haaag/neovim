@@ -23,30 +23,12 @@ return {
     enabled = true,
   },
 
-  -- comments
-  { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
-  {
-    "echasnovski/mini.comment",
-    event = "VeryLazy",
-    opts = {
-      hooks = {
-        pre = function()
-          require("ts_context_commentstring.internal").update_commentstring({})
-        end,
-      },
-    },
-    config = function(_, opts)
-      require("mini.comment").setup(opts)
-    end,
-  },
-
   -- active indent guide and indent text objects
   {
     "echasnovski/mini.indentscope",
     version = false, -- wait till new 0.7.0 release to put it back on semver
     event = "BufReadPre",
     opts = {
-      -- symbol = "▏",
       symbol = "│",
       options = { try_as_border = true },
     },
@@ -92,8 +74,8 @@ return {
       },
     },
     config = function(_, opts)
-      -- use gz mappings instead of s to prevent conflict with leap
       require("mini.surround").setup(opts)
     end,
+    enabled = true,
   },
 }
