@@ -31,25 +31,6 @@ return {
     lintSource = "go vet",
   },
 
-  markdownlint = {
-    lintCommand = "markdownlint --stdin",
-    lintStdin = true,
-    lintFormats = {
-      "%f:%l %m",
-      "%f:%l:%c %m",
-      "%f: %l: %m",
-    },
-    lintSource = "markdownlint",
-  },
-
-  write_good = {
-    lintCommand = "write-good ${INPUT}",
-    lintStdin = false,
-    lintFormats = { "%m on line %l at column %c" },
-    lintSource = "write_good",
-    rootMarkers = {},
-  },
-
   mypy = {
     lintCommand = "mypy --show-column-numbers --ignore-missing-imports --show-error-codes",
     lintFormats = {
@@ -61,7 +42,7 @@ return {
   },
 
   flake8 = {
-    lintCommand = "pflake8 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
+    lintCommand = "pflake8 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -", -- luacheck: ignore
     lintStdin = true,
     lintIgnoreExitCode = true,
     lintFormats = { "%f:%l:%c: %t%n%n%n %m" },
@@ -100,5 +81,34 @@ return {
     lintSource = "eslint",
   },
 
+  -- markdown
+  markdownlint = {
+    lintCommand = "markdownlint --stdin",
+    lintStdin = true,
+    lintFormats = {
+      "%f:%l %m",
+      "%f:%l:%c %m",
+      "%f: %l: %m",
+    },
+    rootMarkers = {},
+    lintSource = "markdownlint",
+  },
 
+  write_good = {
+    lintCommand = "write-good ${INPUT}",
+    lintStdin = false,
+    lintFormats = { "%m on line %l at column %c" },
+    lintSource = "write_good",
+    rootMarkers = {},
+  },
+
+  alex = {
+    lintCommand = "alex --stdin",
+    lintStdin = true,
+    lintFormats = {
+      "%r%l:%c-%r %terror %m",
+      "%r%l:%c-%r %tarning %m",
+    },
+    lintSource = "alex",
+  },
 }
