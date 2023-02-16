@@ -36,30 +36,6 @@ return {
             usePlaceholders = true,
           },
         },
-        lua_ls = {
-          settings = {
-            Lua = {
-              format = {
-                enable = false,
-              },
-              telemetry = {
-                enable = false,
-              },
-              workspace = {
-                checkThirdParty = false,
-              },
-              completion = {
-                callSnippet = "Replace",
-              },
-              diagnostics = {
-                enable = true,
-                globals = {
-                  "vim",
-                },
-              },
-            },
-          },
-        },
         bashls = {},
         jsonls = {},
         ruff_lsp = {},
@@ -107,6 +83,7 @@ return {
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
+    enabled = true,
     opts = {
       ensure_installed = {
         -- lua
@@ -130,6 +107,9 @@ return {
         "markdownlint",
         "write-good",
         "cbfmt",
+        -- go
+        "goimports",
+        "staticcheck",
       },
     },
     config = function(_, opts)
