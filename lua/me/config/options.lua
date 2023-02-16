@@ -1,5 +1,4 @@
 -- settings.lua
-local HOME = tostring(os.getenv("HOME"))
 local indent = 2
 
 vim.o.clipboard = "unnamedplus" -- clipboard
@@ -9,9 +8,9 @@ vim.o.swapfile = false -- No swap file
 vim.o.backup = false -- no backup file
 vim.o.undofile = true
 vim.o.undodir = vim.fn.stdpath("state") .. "/undodir"
+vim.o.undolevels = 10000
 vim.o.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
 vim.o.smartcase = true -- Case insensitive searching UNLESS /C or capital in search
-vim.o.updatetime = 250 -- Decrease update time
 vim.wo.signcolumn = "yes" -- Signcolumn
 vim.o.breakindent = true -- Enable break indent
 vim.opt.smartindent = true -- Insert indents automatically
@@ -27,41 +26,30 @@ vim.o.showmode = false -- We don't need to see things like -- INSERT -- anymore
 vim.o.dictionary = "/usr/share/dict/words" -- EN Dictionary - <CTRL-X><CTRL-K>
 vim.o.number = true -- set numbered lines
 vim.o.relativenumber = true -- set relative numbered lines
-vim.o.timeoutlen = 500 -- Time in milliseconds to wait for a mapped sequence to complete.
-vim.g.python3_host_prog = HOME .. "/.local/debugpy/bin/python" -- command to start python3
+vim.opt.timeoutlen = 500 -- Time in milliseconds to wait for a mapped sequence to complete.
+vim.o.updatetime = 200 -- Decrease update time
+vim.g.python3_host_prog = tostring(os.getenv("HOME")) .. "/.local/debugpy/bin/python" -- command to start python3
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.scrolloff = 4 -- Lines of context
 vim.opt.wrap = false -- Disable line wrap
 vim.opt.termguicolors = true -- True color support
 vim.opt.spelllang = { "en", "es" } -- spellcheck
-vim.opt.cursorline = true -- Enable highlighting of the current line
-vim.opt.grepprg = "rg --vimgrep" -- grep
+vim.opt.cursorline = false -- Enable highlighting of the current line
 vim.opt.grepformat = "%f:%l:%c:%m" -- grep
-vim.opt.guicursor = { "a:blinkon0" }
--- vim.opt.splitkeep = "screen" -- Uknown
+vim.opt.grepprg = "rg --vimgrep" -- grep
+vim.opt.formatoptions = "jcroqlnt" -- tcqj
+vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
+vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
+vim.opt.winminwidth = 5 -- Minimum window width
+vim.opt.pumblend = 10 -- Popup blend
 
--- vim.opt.list = true
--- vim.opt.listchars:append("space:⋅")
--- vim.opt.listchars:append("eol:↴")
+if vim.fn.has("nvim-0.9.0") == 1 then
+  vim.opt.splitkeep = "screen"
+  vim.opt.shortmess:append({ C = true })
+  vim.opt.shortmess:append({ I = true })
+end
 
--- Disable built-ins
-vim.g.loaded_gzip = 1
-vim.g.loaded_zip = 1
-vim.g.loaded_zipPlugin = 1
-vim.g.loaded_tar = 1
-vim.g.loaded_tarPlugin = 1
-
-vim.g.loaded_getscript = 1
-vim.g.loaded_getscriptPlugin = 1
-vim.g.loaded_vimball = 1
-vim.g.loaded_vimballPlugin = 1
-vim.g.loaded_2html_plugin = 1
-
-vim.g.loaded_matchit = 1
-vim.g.loaded_matchparen = 1
-vim.g.loaded_logiPat = 1
-vim.g.loaded_rrhelper = 1
-
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
--- vim.g.loaded_netrwSettings = 1
+vim.opt.guicursor = {
+  "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
+  "sm:block-blinkwait175-blinkoff150-blinkon175",
+}

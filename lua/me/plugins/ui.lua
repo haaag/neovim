@@ -80,6 +80,26 @@ return {
     end,
   },
 
+  { -- bufferline
+    "akinsho/bufferline.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "gb", "<CMD>BufferLinePick<CR>", desc = "[G]o to [B]uffer" },
+    },
+    opts = {
+      options = {
+        offsets = {
+          {
+            filetype = "neo-tree",
+            text = "Neo-tree",
+            highlight = "Directory",
+            text_align = "left",
+          },
+        },
+      },
+    },
+  },
+
   {
     dir = tostring(os.getenv("HOME")) .. "/dev/lua/stat.nvim",
     dependencies = {

@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "gitcommit", "markdown" },
   callback = function()
     vim.opt_local.wrap = true
-    -- vim.opt_local.spell = true
+    vim.opt_local.spell = true
     vim.g.markdown_recommended_style = 0
   end,
 })
@@ -58,3 +58,44 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
   end,
   desc = "resize splits if window got resized",
 })
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  group = augroup("Xresources"),
+  pattern = { "*xdefaults", "*Xresources", "*.xresources" },
+  command = "!xrdb -load ~/.Xresources",
+  desc = "Reload Xresources after buffer write",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("void_src_template"),
+  pattern = "*template",
+  callback = function(data)
+    print("PAVELL")
+    vim.pretty_print(data)
+    -- vim.opt_local.filetype = "bash"
+  end,
+  desc = "Set filetype to bash on source template void files.",
+})
+
+-- vim.api.nvim_create_autocmd({ "TermOpen" }, {
+--   group = augroup("open_term"),
+--   callback = function()
+--     local opts = { noremap = true }
+--     vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
+--     vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
+--     vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
+--     vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
+--     vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
+--   end,
+-- })
+
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--   group = augroup("suckless_group"),
+--   pattern = "*config.h",
+--   callback = function(data)
+--     local path = data.match
+--     local bufnr = data.buf
+--   end,
+--   desc = "Recompile and run suckless software",
+-- })
+--

@@ -25,7 +25,6 @@ end
 
 C.gruvbox = function()
   return {
-
     background = "#282828",
     foreground = "#ebdbb2",
     black = "#282828",
@@ -63,8 +62,27 @@ C.catppuccin_macchiato = function()
   }
 end
 
+C.material_deep_ocean = function()
+  return {
+    background = "#0F111A",
+    foreground = "#A6ACCD",
+    black = "#000000",
+    red = "#F07178",
+    green = "#C3E88D",
+    yellow = "#FFCB6B",
+    orange = "#F78C6C",
+    blue = "#82AAFF",
+    magenta = "#C792EA",
+    violet = "#B480D6",
+    cyan = "#4abaaf",
+    white = "#EEFFFF",
+    lightgrey = "#545c7e",
+    darkgrey = "#545c7e",
+  }
+end
+
 C.current = function()
-  return C.tokyonight_storm()
+  return C.material_deep_ocean()
 end
 
 return C
