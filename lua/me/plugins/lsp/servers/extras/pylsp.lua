@@ -1,9 +1,6 @@
 -- lsp.servers.pylsp
 return {
   "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
-  --[[ dependencies = {
-      "mfussenegger/nvim-dap-python",
-  }, ]]
   opts = {
     servers = {
       pylsp = {
@@ -17,10 +14,11 @@ return {
               pyflakes = { enabled = false },
               pycodestyle = { enabled = false },
               flake8 = { enabled = false },
-              pylsp_mypy = { enabled = false, live_mode = false },
-              black = { enabled = false },
-              mccabe = { enabled = false },
+              yapf = { enabled = false },
               -- enabled
+              mccabe = { enabled = true },
+              pylsp_mypy = { enabled = true, dmypy = true, report_progress = true },
+              black = { enabled = true },
               rope_autoimport = { enabled = true },
               jedi_completion = {
                 enabled = true,
@@ -40,10 +38,4 @@ return {
       },
     },
   },
-  -- TODO: Difine the keybindings for dap-python
-  --[[ keys = {
-    {"<leader>dpm", "<cmd>lua require('dap-python').test_method()<CR>", "Test Method"  },
-      { "<leader>dpc", "<cmd>lua require('dap-python').test_class()<CR>", "Test Class"  },
-      { "<leader>dpd", "<cmd>lua require('dap-python').debug_selection()<CR>", "Debug Selection", mode = { "v" } },
-  }, ]]
 }

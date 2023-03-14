@@ -51,13 +51,14 @@ return {
 
   pylint = {
     lintCommand = "pylint --output-format text --score no --msg-template {path}:{line}:{column}:{C}:{msg} ${INPUT}",
-    lintFormats = { "%f:%l:%c:%t:%m" },
-    formatStdin = false,
+    -- lintFormats = { "%f:%l:%c:%t:%m" },
+    lintFormats = { "%.%#:%l:%c: %t%.%#: %m" },
+    lintStdin = false,
     lintSource = "pylint",
   },
 
   ruff = {
-    lintCommand = "ruff --stdin-filename ${INPUT} -",
+    lintCommand = "ruff --stdin-filename --no-fix ${INPUT} -",
     lintStdin = true,
     lintFormats = { "%f:%l:%c: %m" },
     lintSource = "ruff",

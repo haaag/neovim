@@ -19,7 +19,21 @@ return {
         clangd = {},
         marksman = {},
         pyright = {
-          autostart = true,
+          autostart = false,
+          disableOrganizeImports = true,
+          handlers = { ["textDocument/publishDiagnostics"] = function() end },
+          on_attach = function(client, _)
+            client.server_capabilities.codeActionProvider = false
+          end,
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                typeCheckingMode = "off",
+                useLibraryCodeForTypes = true,
+              },
+            },
+          },
         },
         gopls = {
           settings = {
