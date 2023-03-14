@@ -66,15 +66,20 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   desc = "Reload Xresources after buffer write",
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("void_src_template"),
-  pattern = "*template",
-  callback = function(data)
-    print("PAVELL")
-    vim.pretty_print(data)
-    -- vim.opt_local.filetype = "bash"
+vim.api.nvim_create_autocmd({
+  "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
+  "BufWinEnter",
+  "CursorHold",
+  "InsertLeave",
+  "BufWritePost",
+  "TextChanged",
+  "TextChangedI",
+}, {
+  group = vim.api.nvim_create_augroup("barbecue.updater", {}),
+  callback = function()
+    require("barbecue.ui").update()
   end,
-  desc = "Set filetype to bash on source template void files.",
+  desc = "Gain better performance when moving the cursor around",
 })
 
 -- vim.api.nvim_create_autocmd({ "TermOpen" }, {
