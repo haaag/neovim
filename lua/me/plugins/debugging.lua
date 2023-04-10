@@ -1,6 +1,6 @@
 return {
   { -- TODO: Split this config.
-    -- [ ] Add conditional breakpoints
+    -- [X] Add conditional breakpoints
     -- [ ] Define telescope keybinds
     -- [ ] Add adapters for (Go, JS, TS,)
     "mfussenegger/nvim-dap",
@@ -11,20 +11,22 @@ return {
       "theHamsta/nvim-dap-virtual-text",
     },
     enabled = true,
+    -- stylua: ignore
     init = function()
       local map = vim.keymap.set
       -- stylua: ignore
-      map("n", "<leader>db", "<CMD>lua require'dap'.toggle_breakpoint()<CR>",
-        { desc = "[D]ebugging Toggle [B]reakpoint" })
+      map("n", "<leader>db", "<CMD>lua require'dap'.toggle_breakpoint()<CR>", { desc = "[D]ebugging Toggle [B]reakpoint" })
+      map("n", "<leader>dB", "<CMD>lua require'dap'.set_breakpoint(vim.fn.input('[DAP] Condition > '))<CR>", { desc = "[D]ebugging Conditional [B]reakpoint" })
       map("n", "<leader>dr", "<cmd>lua require'dap'.run_to_cursor()<cr>", { desc = "[D]ebugging [R]un to cursor" })
       map("n", "<leader>dP", "<cmd>lua require'dap'.repl.open()<cr>", { desc = "[D]ebugging Repl open" })
       map("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { desc = "[D]ebugging [C]ontinue" })
-      map("n", "<leader>dt", "<CMD>lua require('dapui').toggle()<CR>", { desc = "[D]ebugging UI [T]oggle" })
+      map("n", "<leader>dt", "<cmd>lua require('dapui').toggle()<CR>", { desc = "[D]ebugging UI [T]oggle" })
+      map("n", "<leader>dE", "<cmd>lua require('dapui').eval(vim.fn.input '[DAP] Expression > ')<CR>", { desc = "[D]ebugging add [E]xpression" })
       -- step
-      map("n", "<leader>dsb", "<cmd>lua require'dap'.step_back()<cr>", { desc = "[S]tep Back" })
-      map("n", "<leader>dsi", "<cmd>lua require'dap'.step_into()<cr>", { desc = "[S]tep Into" })
-      map("n", "<leader>dso", "<cmd>lua require'dap'.step_over()<cr>", { desc = "[S]tep over" })
-      map("n", "<leader>dsO", "<cmd>lua require'dap'.step_out()<cr>", { desc = "[S]tep Out" })
+      map("n", "<leader>dsb", "<cmd>lua require'dap'.step_back()<cr>", { desc = "[D]ebugging [S]tep Back" })
+      map("n", "<leader>dsi", "<cmd>lua require'dap'.step_into()<cr>", { desc = "[D]ebugging [S]tep Into" })
+      map("n", "<leader>dso", "<cmd>lua require'dap'.step_over()<cr>", { desc = "[D]ebugging [S]tep over" })
+      map("n", "<leader>dsO", "<cmd>lua require'dap'.step_out()<cr>", { desc = "[D]ebugging [S]tep Out" })
       map("n", "<F5>", "<cmd>lua require'dap'.step_back()<cr>", { desc = "[S]tep Back" })
       map("n", "<F6>", "<cmd>lua require'dap'.step_into()<cr>", { desc = "[S]tep Into" })
       map("n", "<F7>", "<cmd>lua require'dap'.step_over()<cr>", { desc = "[S]tep over" })
@@ -34,17 +36,15 @@ return {
       map("n", "<leader>dpc", "<cmd>lua require('dap-python').test_class()<CR>", { desc = "Test Class" })
       map("v", "<leader>dpd", "<cmd>lua require('dap-python').debug_selection()<CR>", { desc = "Debug Selection" })
       -- telescope
-      -- FIXME: def keymaps
-      --[[ map("n", "<leader>dt", "<CMD>Telescope dap commands<CR>", { desc = "" })
-      map("n", "<leader>dt", "<CMD>Telescope dap configurations<CR>", { desc = "" })
-      map("n", "<leader>dt", "<CMD>Telescope dap list_breakpoints<CR>", { desc = "" })
-      map("n", "<leader>dt", "<CMD>Telescope dap variables<CR>", { desc = "" })
-      map("n", "<leader>dt", "<CMD>Telescope dap frames<CR>", { desc = "" }) ]]
     end,
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
       require("nvim-dap-virtual-text").setup()
+
+      -- vim.keymap.set("<leader>dB", function()
+      --   dap.set_breakpoint(vim.fn.input("[DAP] Condition > "))
+      -- end)
       --
       -- dap signs
       local signs = {

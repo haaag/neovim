@@ -111,5 +111,6 @@ return {
       "%r%l:%c-%r %tarning %m",
     },
     lintSource = "alex",
+    rootMarkers = {},
   },
 }

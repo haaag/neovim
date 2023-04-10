@@ -11,9 +11,9 @@ return {
       vim.g.maximizer_set_default_mapping = 1
     end,
     keys = {
-      { "<leader>bm", "<CMD>MaximizerToggle<CR>", desc = "[B]uffer [M]aximizer" },
+      { "<C-w>m", "<CMD>MaximizerToggle<CR>", desc = "[B]uffer [M]aximizer" },
     },
-    enabled = false,
+    enabled = true,
   },
 
   -- dressing.nvim
@@ -31,7 +31,7 @@ return {
         return vim.ui.input(...)
       end
     end,
-    enabled = false,
+    enabled = true,
   },
 
   -- indent blankline
@@ -47,17 +47,37 @@ return {
     enabled = true,
   },
 
+  { -- active indent guide and indent text objects
+    "echasnovski/mini.indentscope",
+    version = false, -- wait till new 0.7.0 release to put it back on semver
+    event = "BufReadPre",
+    opts = {
+      symbol = "│",
+      options = { try_as_border = true },
+    },
+    config = function(_, opts)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+      require("mini.indentscope").setup(opts)
+    end,
+    enabled = true,
+  },
+
   -- winbar
   { -- https://github.com/utilyre/barbecue.nvim
     "utilyre/barbecue.nvim",
     event = "VeryLazy",
-    branch = "fix/E36",
     dependencies = {
       "smiteshp/nvim-navic",
     },
     config = function()
       local icons = require("me.config.icons").icons
       require("barbecue").setup({
+        create_autocmd = false,
         show_modified = true,
         symbols = {
           separator = ">",
@@ -68,24 +88,41 @@ return {
     enabled = true,
   },
 
-  {
+  --[[ {
     "tzachar/local-highlight.nvim",
     event = "VeryLazy",
     config = function()
-      vim.api.nvim_set_hl(0, "LocalHighlight", { underline = true, bold = true })
+      -- local colors = require("me.config.colors").current()
       require("local-highlight").setup({
-        file_types = { "python", "cpp", "lua" },
-        hlgroup = "LocalHighlight",
+        hlgroup = "CursorColumn",
       })
     end,
+  }, ]]
+
+  { -- https://github.com/RRethy/vim-illuminate
+    "RRethy/vim-illuminate",
+    event = "BufReadPost",
+    keys = {
+      {
+        "<leader>]",
+        function()
+          require("illuminate").goto_next_reference(false)
+        end,
+        desc = "Next Reference",
+      },
+      {
+        "<leader>[",
+        function()
+          require("illuminate").goto_prev_reference(false)
+        end,
+        desc = "Prev Reference",
+      },
+    },
   },
 
   { -- bufferline
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
-    keys = {
-      { "gb", "<CMD>BufferLinePick<CR>", desc = "[G]o to [B]uffer" },
-    },
     opts = {
       options = {
         offsets = {
@@ -96,8 +133,32 @@ return {
             text_align = "left",
           },
         },
+        -- TODO: How can i use this? :/
+        --[[ groups = {
+          options = {
+            toggle_hidden_on_enter = true, -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
+          },
+          items = {
+            {
+              name = "Tests", -- Mandatory
+              highlight = { underline = true, sp = "blue" }, -- Optional
+              priority = 2, -- determines where it will appear relative to other groups (Optional)
+              icon = "", -- Optional
+              matcher = function(buf) -- Mandatory
+                return buf.filename:match("%_test") or buf.filename:match("%_spec")
+              end,
+            },
+          },
+        }, ]]
       },
     },
+  },
+
+  { -- https://github.com/tiagovla/scope.nvim
+    "tiagovla/scope.nvim",
+    event = "VeryLazy",
+    config = true,
+    enabled = true,
   },
 
   {
@@ -109,5 +170,14 @@ return {
     event = "VeryLazy",
     enabled = true,
     config = true,
+  },
+
+  { -- https://github.com/utilyre/sentiment.nvim
+    "utilyre/sentiment.nvim",
+    name = "sentiment",
+    event = "VeryLazy",
+    version = "*",
+    config = true,
+    enabled = true,
   },
 }

@@ -1,13 +1,12 @@
 -- lsp-config
 
 return {
-  -- lspconfig
   {
     "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
     event = "BufReadPre",
     enabled = true,
     dependencies = {
-      { "folke/neodev.nvim", config = true },
+      -- { "folke/neodev.nvim", config = true },
       "mason.nvim", -- https://github.com/williamboman/mason.nvim
       "williamboman/mason-lspconfig.nvim", -- https://github.com/williamboman/mason-lspconfig.nvim
       "hrsh7th/cmp-nvim-lsp", -- https://github.com/hrsh7th/cmp-nvim-lsp
@@ -16,7 +15,6 @@ return {
     ---@class PluginLspOpts
     opts = {
       servers = {
-        clangd = {},
         marksman = {},
         pyright = {
           autostart = false,
@@ -35,7 +33,7 @@ return {
             },
           },
         },
-        gopls = {
+        --[[ gopls = {
           settings = {
             gopls = {
               experimentalPostfixCompletions = true,
@@ -49,10 +47,17 @@ return {
           init_options = {
             usePlaceholders = true,
           },
-        },
+        }, ]]
         bashls = {},
         jsonls = {},
-        ruff_lsp = {},
+        ruff_lsp = {
+          autostart = true,
+          settings = {
+            ruff_lsp = {
+              fix = false,
+            },
+          },
+        },
       },
       setup = {},
     },
@@ -68,6 +73,10 @@ return {
         client.server_capabilities.semanticTokensProvider = nil
         if client.name ~= "clangd" then
           require("lsp-format").on_attach(client)
+        end
+
+        if client.name == "ruff_lsp" then
+          client.server_capabilities.hover = false
         end
       end)
 
@@ -104,15 +113,15 @@ return {
         "luacheck",
         "stylua",
         -- python
-        "black",
-        "isort",
-        "mypy",
-        "pylint",
-        "pyproject-flake8",
+        -- "black",
+        -- "isort",
+        -- "mypy",
+        -- "pylint",
+        -- "pyproject-flake8",
         "ruff",
         -- web
-        "prettier",
-        "eslint_d",
+        -- "prettier",
+        -- "eslint_d",
         "deno",
         -- shell
         "shellcheck",
@@ -122,8 +131,8 @@ return {
         "write-good",
         "cbfmt",
         -- go
-        "goimports",
-        "staticcheck",
+        -- "goimports",
+        -- "staticcheck",
       },
     },
     config = function(_, opts)

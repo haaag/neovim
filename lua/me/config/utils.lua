@@ -1,20 +1,20 @@
 -- simple helpers functions
 
-local H = {}
+local M = {}
 
-H.ToggleHiddenAll = function()
-  if vim.wo.relativenumber then
-    vim.wo.number = false
-    vim.wo.relativenumber = false
-    vim.o.laststatus = 0
+M.toggle_numbers = function()
+  if vim.opt_local.relativenumber._value then
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.laststatus = 0
   else
-    vim.wo.number = true
-    vim.wo.relativenumber = true
-    vim.o.laststatus = 3
+    vim.opt_local.number = true
+    vim.opt_local.relativenumber = true
+    vim.opt_local.laststatus = 3
   end
 end
 
-H.highlight = setmetatable({}, {
+M.highlight = setmetatable({}, {
   __newindex = function(_, hlgroup, args)
     local guifg, guibg, gui, guisp = args.guifg, args.guibg, args.gui, args.guisp
     local cmd = { "hi", hlgroup }
@@ -34,4 +34,20 @@ H.highlight = setmetatable({}, {
   end,
 })
 
-return H
+M.toggle_all = function()
+  if vim.opt_local.relativenumber._value then
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.laststatus = 0
+    require("gitsigns").toggle_signs()
+    require("me.plugins.lsp.diagnostic").toggle_diagnostics()
+  else
+    vim.opt_local.number = true
+    vim.opt_local.relativenumber = true
+    vim.opt_local.laststatus = 3
+    require("gitsigns").toggle_signs()
+    require("me.plugins.lsp.diagnostic").toggle_diagnostics()
+  end
+end
+
+return M

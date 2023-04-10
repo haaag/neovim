@@ -41,15 +41,17 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   desc = "go to last loc when opening a buffer",
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("wrap_spell"),
-  pattern = { "gitcommit", "markdown" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-    vim.g.markdown_recommended_style = 0
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   group = augroup("wrap_spell"),
+--   pattern = { "gitcommit", "markdown" },
+--   callback = function()
+--     vim.opt_local.wrap = true
+--     vim.opt_local.spell = true
+--     -- vim.g.markdown_recommended_style = 0
+--     -- require("me.config.utils").toggle_numbers()
+--     require("me.config.utils").toggle_all()
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   group = augroup("resize_splits"),

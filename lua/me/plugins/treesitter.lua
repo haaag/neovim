@@ -5,9 +5,10 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
+    version = false,
+    enabled = true,
     build = ":TSUpdate",
-    event = "BufReadPost",
+    event = { "BufReadPost", "BufNewFile" },
     keys = {
       { "<c-space>", desc = "Increment selection" },
       { "<bs>", desc = "Schrink selection", mode = "x" },
@@ -15,10 +16,16 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
-    ---@type TSConfig
     opts = {
-      highlight = { enable = true },
-      indent = { enable = true, disable = { "python", "css" } },
+      highlight = {
+        enable = true,
+        -- disable = { "python" },
+        additional_vim_regex_highlighting = false,
+      },
+      indent = {
+        enable = false,
+        disable = { "python", "css" },
+      },
       ensure_installed = {
         "bash",
         "c",
@@ -28,7 +35,9 @@ return {
         "css",
         "diff",
         "git_rebase",
+        "gitattributes",
         "gitcommit",
+        "gitignore",
         "go",
         "help",
         "html",
@@ -37,6 +46,7 @@ return {
         "jsonc",
         "lua",
         "markdown",
+        "markdown_inline",
         "python",
         "rasi",
         "rust",
@@ -48,7 +58,7 @@ return {
         "yaml",
       },
       incremental_selection = {
-        enable = true,
+        enable = false,
         keymaps = {
           init_selection = "<C-space>",
           node_incremental = "<C-space>",
@@ -112,7 +122,6 @@ return {
         },
       },
     },
-    ---@param opts TSConfig
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
     end,

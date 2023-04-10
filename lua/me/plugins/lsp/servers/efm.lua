@@ -13,8 +13,11 @@ local languages = {
   javascript = { fmt.prettier, linters.eslint },
   javascriptreact = { fmt.prettier, linters.eslint },
   json = { fmt.prettier },
-  lua = { fmt.stylua, linters.luacheck },
+  lua = {
+    fmt.stylua, --[[ linters.luachec ]]
+  },
   markdown = { linters.markdownlint, linters.write_good, linters.alex },
+  -- python = { linters.mypy, fmt.black },
   -- python = { linters.mypy, fmt.black, linters.ruff, linters.pylint },
   scss = { fmt.prettier },
   sh = { linters.shellcheck, fmt.shfmt },

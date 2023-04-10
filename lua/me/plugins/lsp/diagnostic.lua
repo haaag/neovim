@@ -6,7 +6,7 @@ local M = {}
 
 function M.config()
   return {
-    virtual_lines = false,
+    virtual_lines = true,
     virtual_text = false,
     --[[ virtual_text = {
       prefix = " ",
@@ -66,7 +66,7 @@ function M.set_keys()
   vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "[D]iagnostic Next" })
   vim.keymap.set("n", "[a", vim.diagnostic.open_float, { desc = "[D]iagnostic Float" })
   vim.keymap.set("n", "]a", vim.diagnostic.open_float, { desc = "[D]iagnostic Float" })
-  vim.keymap.set("n", "<leader>ld", M.toggle_diagnostics, { desc = "[D]iagnostic Toggle" })
+  vim.keymap.set("n", "<leader>mtd", M.toggle_diagnostics, { desc = "[D]iagnostic Toggle" })
 end
 
 function M.setup()

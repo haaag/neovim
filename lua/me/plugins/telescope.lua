@@ -11,7 +11,6 @@ return {
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-telescope/telescope-project.nvim" }, -- https://github.com/nvim-telescope/telescope-project.nvim
-    { "nvim-telescope/telescope-frecency.nvim", dependencies = { "kkharji/sqlite.lua" } },
     -- { "debugloop/telescope-undo.nvim" }, -- https://github.com/debugloop/telescope-undo.nvim
     -- { "nvim-telescope/telescope-dap.nvim" },
   },
@@ -22,13 +21,11 @@ return {
     { "<C-p>", "<CMD>Telescope find_files<CR>", desc = "Search Files" },
     -- { "<C-p>", "<CMD>Telescope find_files theme=ivy<CR>", desc = "Search Files" },
     {
-      "<C-b>",
+      "<leader>bl",
       "<CMD>lua require('telescope.builtin').buffers(require('telescope.themes').get_cursor({ previewer = false }))<CR>",
       desc = "[S]earch Buffers",
     },
-    { "<leader><leader>", "<CMD>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>", desc = "Telescope frecency", },
     { "<leader>?", "<CMD>Telescope oldfiles<CR>", desc = "[?] Find recently opened files" },
-    { "<leader><leader>?", "<CMD>lua require('telescope').extensions.frecency.frecency()<CR>", desc = "[?] Find recently opened (frecency)", },
     { "<leader>sp", "<CMD>Telescope project<CR>", desc = "[S]earch [P]roject" },
     { "<leader>sr", "<CMD>Telescope resume<CR>", desc = "[S]earch [R]esume" },
     { "<leader>sw", "<CMD>Telescope grep_string<CR>", desc = "[S]earch current [W]ord" },
@@ -40,7 +37,7 @@ return {
     { "<leader>:", "<CMD>Telescope command_history<CR>", desc = "[S]earch Command History" },
     {
       "<leader><space>",
-      "<CMD>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({ previewer = false }))<CR>",
+      "<CMD>lua require('telescope.builtin').buffers(require('telescope.themes').get_cursor({ previewer = false }))<CR>",
       desc = "[S]earch Buffers",
     },
     {
@@ -58,9 +55,6 @@ return {
 
     -- Enable telescope project
     pcall(require("telescope").load_extension, "project")
-
-    -- Enable frecency
-    pcall(require("telescope").load_extension, "frecency")
 
     -- Enable telescope dap
     -- pcall(require("telescope").load_extension, "dap")

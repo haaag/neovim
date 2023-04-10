@@ -1,7 +1,9 @@
 -- vim-dadbod-ui
 -- https://github.com/kristijanhusak/vim-dadbod-ui
 
-local M = {
+return {}
+
+--[[ local M = {
   "kristijanhusak/vim-dadbod-ui",
   cmd = { "DBUI" },
   dependencies = {
@@ -19,6 +21,7 @@ local M = {
       desc = "[D]atabase [S]ave Query",
     },
   },
+  enabled = false,
 }
 
 function M.config()
@@ -57,12 +60,13 @@ function M.config()
   }
 
   local misc = vim.api.nvim_create_augroup("MiscDBUI", { clear = true })
-	vim.api.nvim_create_autocmd("BufWinEnter", {
-		group = misc,
-		pattern = "dbui",
-		callback = function() vim.cmd("set cmdheight=1") end,
-	})
-
+  vim.api.nvim_create_autocmd("BufWinEnter", {
+    group = misc,
+    pattern = "dbui",
+    callback = function()
+      vim.cmd("set cmdheight=1")
+    end,
+  })
 end
 
-return M
+return M ]]

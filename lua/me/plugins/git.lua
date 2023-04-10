@@ -7,7 +7,7 @@ return {
     opts = {
       kind = "split",
       signs = {
-        section = { "", "" },
+        section = { "", "" },
         item = { "", "" },
         hunk = { "", "" },
       },
@@ -20,7 +20,7 @@ return {
   },
 
   -- gitsings
-  {
+  { -- https://github.com/lewis6991/gitsigns.nvim
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
     opts = {
@@ -34,21 +34,26 @@ return {
       },
     },
     keys = {
-      { "]h", "<CMD>Gitsigns next_hunk<CR>", "Next [H]unk" },
-      { "[h", "<CMD>Gitsigns prev_hunk<CR>", "Prev [H]unk" },
-      { "<leader>ghs", ":Gitsigns stage_hunk<CR>", "[S]tage Hunk", mode = { "n", "v" } },
-      { "<leader>ghr", ":Gitsigns reset_hunk<CR>", "[R]eset Hunk", mode = { "n", "v" } },
-
-      { "]p", "<cmd>Gitsigns preview_hunk<CR>", "[P]review [H]unk" },
-      { "<leader>ghS", "<cmd>Gitsigns stage_buffer<CR>", "[S]tage Buffer" },
-      { "<leader>ghu", "<cmd>Gitsigns undo_stage_hunk<CR>", "[U]ndo Stage [H]unk" },
-      { "<leader>ghR", "<cmd>Gitsigns reset_buffer<CR>", "Reset Buffer" },
-      { "<leader>ghp", "<cmd>Gitsigns preview_hunk<CR>", "[P]review [H]unk" },
-      { "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<CR>", "[G]it Toggle [B]lame" },
-      { "<leader>ghb", '<cmd>lua require"gitsigns".blame_line{full=true}<CR>', "Show [B]lame Line" },
-      { "<leader>ghd", "<cmd>Gitsigns diffthis<CR>", "[D]iff This [H]unk" },
-      { "<leader>ghD", '<cmd>lua require"gitsigns".diffthis("~")<CR>', "Diff This ~" },
-      { "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk", mode = { "o", "x" } },
+      { "]h", "<CMD>Gitsigns next_hunk<CR>", desc = "Git Next [H]unk" },
+      { "[h", "<CMD>Gitsigns prev_hunk<CR>", desc = "Git Prev [H]unk" },
+      { "]p", "<CMD>Gitsigns preview_hunk<CR>", desc = " Git [P]review [H]unk" },
+      { "<leader>gb", "<CMD>Gitsigns toggle_current_line_blame<CR>", desc = "Git [G]it Toggle [B]lame" },
+      { "<leader>mtg", "<CMD>Gitsigns toggle_signs<CR>", desc = "[G]it [T]oggle signs" },
+      -- telescope
+      { "<leader>gts", "<CMD>Telescope git_status<CR>", desc = "[G]it [T]elescope [S]tatus" },
+      { "<leader>gtx", "<CMD>Telescope git_stash<CR>", desc = "[G]it [T]elescope stash" },
+      { "<leader>gtb", "<CMD>Telescope git_branches<CR>", desc = "[G]it [T]elescope [B]ranches" },
+      -- hunks
+      { "<leader>ghs", "<CMD>Gitsigns stage_hunk<CR>", desc = "Git [S]tage Hunk", mode = { "n", "v" } },
+      { "<leader>ghr", "<CMD>Gitsigns reset_hunk<CR>", desc = "Git [R]eset Hunk", mode = { "n", "v" } },
+      { "<leader>ghS", "<CMD>Gitsigns stage_buffer<CR>", desc = "Git [S]tage Buffer" },
+      { "<leader>ghu", "<CMD>Gitsigns undo_stage_hunk<CR>", desc = "Git [U]ndo Stage [H]unk" },
+      { "<leader>ghR", "<CMD>Gitsigns reset_buffer<CR>", desc = "Git Reset Buffer" },
+      { "<leader>ghp", "<CMD>Gitsigns preview_hunk<CR>", desc = "Git [P]review [H]unk" },
+      { "<leader>ghb", '<CMD>lua require"gitsigns".blame_line{full=true}<CR>', desc = "Git Show [B]lame Line" },
+      { "<leader>ghd", "<CMD>Gitsigns diffthis<CR>", desc = "Git [D]iff This [H]unk" },
+      { "<leader>ghD", '<CMD>lua require"gitsigns".diffthis("~")<CR>', desc = "Git Diff This ~" },
+      { "ih", ":<C-U>Gitsigns select_hunk<CR>", desc = "Git Select Hunk", mode = { "o", "x" } },
     },
   },
 

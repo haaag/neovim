@@ -2,39 +2,35 @@ return {
   { -- https://github.com/folke/which-key.nvim
     "folke/which-key.nvim",
     event = "VeryLazy",
-    config = function()
+    config = function(_, opts)
       local wk = require("which-key")
-      wk.setup({
-        show_help = false,
-        plugins = { spelling = true },
-        layout = {
-          height = { min = 4, max = 25 }, -- min and max height of the columns
-          width = { min = 20, max = 50 }, -- min and max width of the columns
-          spacing = 15, -- spacing between columns
-          align = "center", -- align columns left, center or right
-        },
-      })
+      wk.setup(opts)
       wk.register({
         mode = { "n", "v" },
         ["g"] = { name = "+goto" },
         ["]"] = { name = "+next" },
         ["["] = { name = "+prev" },
         ["<leader>b"] = { name = "+buffers" },
-        ["<leader>d"] = { name = "+databases" },
+        ["<leader>d"] = { name = "+debugging" },
+        ["<leader>dp"] = { name = "+python" },
+        ["<leader>ds"] = { name = "+step" },
         ["<leader>e"] = { name = "+edits" },
-        ["<leader>g"] = { name = "+git", d = { name = "+diff" }, h = { name = "+hunk" } },
-        ["<leader>l"] = { name = "+lsp", w = { name = "+workspace" } },
+        ["<leader>g"] = { name = "+git" },
+        ["<leader>gd"] = { name = "+diff" },
+        ["<leader>gh"] = { name = "+hunks" },
+        ["<leader>l"] = { name = "+lsp" },
+        ["<leader>lw"] = { name = "+workspace" },
         ["<leader>m"] = { name = "+misc" },
         ["<leader>s"] = { name = "+search" },
+        ["<leader>t"] = { name = "+toggle" },
         ["<leader>q"] = { name = "+quickfix" },
+        ["<leader>qs"] = { name = "+sessions" },
+        ["<leader>x"] = { name = "+diagnostics" },
       })
     end,
+    enabled = true,
   },
-  { -- https://github.com/numToStr/Comment.nvim
-    "numToStr/Comment.nvim",
-    event = "VeryLazy",
-    config = true,
-  },
+
   { -- https://github.com/ggandor/leap.nvim
     "ggandor/leap.nvim",
     event = "VeryLazy",
@@ -48,6 +44,7 @@ return {
     end,
     enabled = true,
   },
+
   { -- https://github.com/liuchengxu/vista.vim
     "liuchengxu/vista.vim",
     keys = {
@@ -56,56 +53,52 @@ return {
     config = function()
       vim.g.vista_sidebar_width = 45
     end,
-  },
-  { -- https://github.com/simrat39/symbols-outline.nvim
-    "simrat39/symbols-outline.nvim",
-    cmd = { "SymbolsOutline" },
-    keys = {
-      { "<leader><F2>", "<CMD>SymbolsOutline<CR>", desc = "SymbolsOutline Toggle" },
-    },
-    config = true,
     enabled = true,
   },
+
   { -- https://github.com/folke/todo-comments.nvim
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = "BufReadPost",
-    config = true,
-  },
-  { -- https://github.com/RRethy/vim-illuminate
-    "RRethy/vim-illuminate",
-    event = "BufReadPost",
+    opts = {
+      keywords = {
+        WIP = { icon = " ", color = "warning" },
+      },
+    },
+    config = function(_, opts)
+      require("todo-comments").setup(opts)
+    end,
     -- stylua: ignore
     keys = {
-      { "<space>]", function() require("illuminate").goto_next_reference(false) end, desc = "Next Reference", },
-      { "<space>[", function() require("illuminate").goto_prev_reference(false) end, desc = "Prev Reference", },
+      { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
+      { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
+      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
+      { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME,WIP,NOTE,HACK<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
+      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "[S]earch [T]odo" },
     },
     enabled = true,
   },
-  { -- https://github.com/Abstract-IDE/penvim
-    "Abstract-IDE/penvim",
-    config = true,
+
+  { -- https://github.com/folke/trouble.nvim
+    "folke/trouble.nvim",
+    cmd = { "TroubleToggle", "Trouble" },
+    opts = { use_diagnostic_signs = true },
+    keys = {
+      -- stylua: ignore
+      { "<leader>xx", "<CMD>TroubleToggle document_diagnostics<CR>", desc = "Document Diagnostics (Trouble)" },
+      { "<leader>xX", "<CMD>TroubleToggle workspace_diagnostics<CR>", desc = "Workspace Diagnostics (Trouble)" },
+    },
+    enabled = true,
   },
+
   { -- https://github.com/j-hui/fidget.nvim
     "j-hui/fidget.nvim",
     event = "VeryLazy",
     opts = {
-      text = {
-        spinner = "moon", -- dots_pulse, bouncing_bar
-      },
-      align = {
-        bottom = true,
-      },
-      window = {
-        relative = "editor",
-        blend = 0,
-        -- border = "rounded",
-      },
-      sources = {
-        ["efm"] = {
-          ignore = true,
-        },
-      },
+      text = { spinner = "dots_pulse" }, -- dots_pulse, bouncing_bar
+      align = { bottom = true },
+      window = { relative = "editor", blend = 0 }, -- border = "rounded",
+      sources = { ["efm"] = { ignore = true } },
     },
     enabled = true,
   },

@@ -23,6 +23,25 @@ C.tokyonight_storm = function()
   }
 end
 
+C.tokyonight_night = function()
+  return {
+    background = "#1A1B26",
+    foreground = "#C0CAF5",
+    black = "#15161E",
+    red = "#F7768E",
+    green = "#9ece6a",
+    yellow = "#e0af68",
+    orange = "#ff9e64",
+    blue = "#7aa2f7",
+    magenta = "#BB9AF7",
+    violet = "#9d7cd8",
+    cyan = "#7DCFFF",
+    white = "#a9b1d6",
+    lightgrey = "#c0caf5",
+    darkgrey = "#545c7e",
+  }
+end
+
 C.gruvbox = function()
   return {
     background = "#282828",
@@ -76,13 +95,32 @@ C.material_deep_ocean = function()
     violet = "#B480D6",
     cyan = "#4abaaf",
     white = "#EEFFFF",
-    lightgrey = "#545c7e",
+    grey = "#545c7e",
+    darkgrey = "#545c7e",
+  }
+end
+
+C.vim_nightfly = function()
+  return {
+    background = "NONE",
+    foreground = "#A6ACCD",
+    black = "#011627",
+    red = "#fc514e",
+    green = "#C3E88D",
+    yellow = "#e3d18a",
+    orange = "#f78c6c",
+    blue = "#82aaff",
+    magenta = "#C792EA",
+    violet = "#B480D6",
+    cyan = "#21c7a8",
+    white = "#c3ccdc",
+    grey = "#acb4c2",
     darkgrey = "#545c7e",
   }
 end
 
 C.current = function()
-  return C.material_deep_ocean()
+  return C.tokyonight_night()
 end
 
 return C

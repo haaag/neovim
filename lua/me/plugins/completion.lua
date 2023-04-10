@@ -29,29 +29,31 @@ return {
 
   { -- beautiful completion
     "hrsh7th/nvim-cmp",
+    version = false, -- last release is way too old
     event = "InsertEnter",
     enabled = true,
     dependencies = {
       "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
+      -- "hrsh7th/cmp-buffer",
+      -- "hrsh7th/cmp-path",
+      "onsails/lspkind.nvim",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-emoji",
       "octaltree/cmp-look",
-      { "tzachar/cmp-tabnine", build = "./install.sh", dependencies = "hrsh7th/nvim-cmp" },
+      -- { "tzachar/cmp-tabnine", build = "./install.sh", dependencies = "hrsh7th/nvim-cmp" },
     },
     opts = function()
       local cmp = require("cmp")
-      local icons = require("me.config.icons").icons
+      -- local icons = require("me.config.icons").icons
       local source_mapping = {
-        buffer = "[buf]",
         nvim_lsp = "[lsp]",
-        codeium = "[ai]",
+        -- buffer = "[buf]",
+        -- codeium = "[ai]",
         nvim_lsp_signature_help = "[sign]",
         luasnip = "[snip]",
         nvim_lua = "[lua]",
-        cmp_tabnine = "[t9]",
-        path = "[path]",
+        -- cmp_tabnine = "[t9]",
+        -- path = "[path]",
         look = "[look]",
         emoji = "[emoji]",
       }
@@ -61,8 +63,16 @@ return {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
         },
+        --[[ window = {
+          completion = {
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            col_offset = -3,
+            side_padding = 0,
+          },
+        }, ]]
         completion = {
           completeopt = "menu,menuone,noinsert",
+          -- autocomplete = false,
         },
         snippet = {
           expand = function(args)
@@ -72,10 +82,11 @@ return {
         sorting = {
           priority_weight = 2,
           comparators = {
-            require("cmp_tabnine.compare"),
-            cmp.config.compare.offset,
             cmp.config.compare.exact,
+            cmp.config.compare.offset,
             cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            -- require("cmp_tabnine.compare"),
 
             function(entry1, entry2)
               local _, entry1_under = entry1.completion_item.label:find("^_+")
@@ -109,23 +120,24 @@ return {
           }),
         }),
         sources = cmp.config.sources({
+          { name = "nvim_lsp", priority = 1 },
           { name = "nvim_lsp_signature_help" },
-          { name = "nvim_lsp" },
-          { name = "codeium" },
+          -- { name = "codeium" },
           { name = "luasnip" },
-          { name = "path" },
-          { name = "buffer", keyword_length = 5, max_item_count = 10 },
-          { name = "cmp_tabnine" },
-          {
-            name = "look",
-            keyword_length = 5,
-            max_item_count = 5,
-            option = { convert_case = true, loud = true },
-            priority_weight = 40,
-          },
-          { name = "emoji" },
+          -- { name = "path" },
+          -- { name = "buffer", keyword_length = 5, max_item_count = 10 },
+          -- { name = "cmp_tabnine" },
+          -- {
+          --   name = "look",
+          --   keyword_length = 5,
+          --   max_item_count = 5,
+          --   option = { convert_case = true, loud = true },
+          --   priority_weight = 40,
+          -- },
+          -- { name = "emoji" },
         }),
-        formatting = {
+
+        --[[ formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
             vim_item.kind = icons.lsp.kinds[vim_item.kind] .. " "
@@ -145,11 +157,78 @@ return {
             vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
             return vim_item
           end,
+        }, ]]
+
+        -- Another kind of UI menu completion
+        formatting = {
+          fields = { "kind", "abbr", "menu" },
+          format = function(entry, vim_item)
+            local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+
+            -- tabnine
+            if entry.source.name == "cmp_tabnine" then
+              strings = { "", "TabNine" }
+            end
+
+            kind.kind = " " .. (strings[1] or "") .. " "
+            kind.menu = "    (" .. (strings[2] or "") .. ")"
+            return kind
+          end,
         },
+
         view = {
           entries = "custom",
         },
-      }
+      },
+        cmp.setup.filetype({ "gitcommit", "markdown", "NeogitCommitMessage", "mail" }, {
+          sources = cmp.config.sources({
+            { name = "luasnip" },
+            { name = "emoji" },
+          }, {
+            {
+              name = "look",
+              keyword_length = 5,
+              max_item_count = 5,
+              option = { convert_case = true, loud = true },
+              priority_weight = 40,
+            },
+          }),
+        })
     end,
+  },
+
+  { -- surround
+    "echasnovski/mini.surround",
+    keys = function(plugin, keys)
+      -- Populate the keys based on the user's options
+      local opts = require("lazy.core.plugin").values(plugin, "opts", false)
+      local mappings = {
+        { opts.mappings.add, desc = "Add surrounding", mode = { "n", "v" } },
+        { opts.mappings.delete, desc = "Delete surrounding" },
+        { opts.mappings.find, desc = "Find right surrounding" },
+        { opts.mappings.find_left, desc = "Find left surrounding" },
+        { opts.mappings.highlight, desc = "Highlight surrounding" },
+        { opts.mappings.replace, desc = "Replace surrounding" },
+        { opts.mappings.update_n_lines, desc = "Update `MiniSurround.config.n_lines`" },
+      }
+      return vim.list_extend(mappings, keys)
+    end,
+    version = false,
+    opts = {
+      mappings = {
+        add = "gza", -- Add surrounding in Normal and Visual modes
+        delete = "gzd", -- Delete surrounding
+        find = "gzf", -- Find surrounding (to the right)
+        find_left = "gzF", -- Find surrounding (to the left)
+        highlight = "gzh", -- Highlight surrounding
+        replace = "gzr", -- Replace surrounding
+        update_n_lines = "gzn", -- Update `n_lines`
+      },
+    },
+    config = function(_, opts)
+      require("mini.surround").setup(opts)
+    end,
+    enabled = true,
   },
 }

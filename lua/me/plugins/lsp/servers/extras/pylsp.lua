@@ -15,8 +15,9 @@ return {
               pycodestyle = { enabled = false },
               flake8 = { enabled = false },
               yapf = { enabled = false },
+              mccabe = { enabled = false },
               -- enabled
-              mccabe = { enabled = true },
+              ruff = { enabled = false },
               pylsp_mypy = { enabled = true, dmypy = true, report_progress = true },
               black = { enabled = true },
               rope_autoimport = { enabled = true },
