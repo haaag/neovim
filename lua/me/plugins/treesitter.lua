@@ -15,6 +15,8 @@ return {
     },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
+      "windwp/nvim-ts-autotag",
+      "mrjones2014/nvim-ts-rainbow",
     },
     opts = {
       highlight = {
@@ -25,6 +27,12 @@ return {
       indent = {
         enable = false,
         disable = { "python", "css" },
+      },
+      autotag = {
+        enable = true,
+      },
+      rainbow = {
+        enable = true,
       },
       ensure_installed = {
         "bash",

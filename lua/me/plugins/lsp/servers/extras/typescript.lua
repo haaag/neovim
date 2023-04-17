@@ -5,6 +5,7 @@ return {
       "jose-elias-alvarez/typescript.nvim",
       "folke/which-key.nvim",
     },
+    ft = { "tsx", "ts", "js", "jsx" },
     opts = {
       servers = {
         tsserver = {},

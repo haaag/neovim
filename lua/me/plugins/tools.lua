@@ -6,12 +6,6 @@ return {
     enabled = true,
   },
 
-  {
-    "fladson/vim-kitty",
-    ft = { "kitty" },
-    enabled = true,
-  },
-
   { -- https://github.com/Vimjas/vim-python-pep8-indent
     "Vimjas/vim-python-pep8-indent",
     ft = { "py", "python" },

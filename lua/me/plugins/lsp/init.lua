@@ -7,9 +7,9 @@ return {
     enabled = true,
     dependencies = {
       -- { "folke/neodev.nvim", config = true },
+      -- "hrsh7th/cmp-nvim-lsp", -- https://github.com/hrsh7th/cmp-nvim-lsp
       "mason.nvim", -- https://github.com/williamboman/mason.nvim
       "williamboman/mason-lspconfig.nvim", -- https://github.com/williamboman/mason-lspconfig.nvim
-      "hrsh7th/cmp-nvim-lsp", -- https://github.com/hrsh7th/cmp-nvim-lsp
       "lukas-reineke/lsp-format.nvim", -- https://github.com/lukas-reineke/lsp-format.nvim
     },
     ---@class PluginLspOpts
@@ -17,7 +17,7 @@ return {
       servers = {
         marksman = {},
         pyright = {
-          autostart = false,
+          autostart = true,
           disableOrganizeImports = true,
           handlers = { ["textDocument/publishDiagnostics"] = function() end },
           on_attach = function(client, _)
@@ -29,6 +29,40 @@ return {
                 autoSearchPaths = true,
                 typeCheckingMode = "off",
                 useLibraryCodeForTypes = true,
+              },
+            },
+          },
+        },
+        pylsp = {
+          autostart = false,
+          settings = {
+            pylsp = {
+              plugins = {
+                -- disabled
+                pylint = { enabled = false, executable = "pylint" },
+                autopep8 = { enabled = false },
+                pyflakes = { enabled = false },
+                pycodestyle = { enabled = false },
+                flake8 = { enabled = false },
+                yapf = { enabled = false },
+                mccabe = { enabled = false },
+                -- enabled
+                ruff = { enabled = false },
+                pylsp_mypy = { enabled = true, dmypy = true, report_progress = true },
+                black = { enabled = true },
+                rope_autoimport = { enabled = true },
+                jedi_completion = {
+                  enabled = true,
+                  fuzzy = true,
+                  include_params = true,
+                },
+                jedi_hover = { enabled = true },
+                jedi_references = { enabled = true },
+                jedi_signature_help = { enabled = true },
+                jedi_symbols = {
+                  enabled = true,
+                  all_scopes = true,
+                },
               },
             },
           },
@@ -86,6 +120,7 @@ return {
       require("mason-lspconfig").setup({ ensure_installed = vim.tbl_keys(servers) })
       require("mason-lspconfig").setup_handlers({
         function(server)
+          local coq = require("coq")
           local server_opts = servers[server] or {}
           server_opts.capabilities = capabilities
           if opts.setup[server] then
@@ -97,7 +132,7 @@ return {
               return
             end
           end
-          require("lspconfig")[server].setup(server_opts)
+          require("lspconfig")[server].setup(coq.lsp_ensure_capabilities(server_opts))
         end,
       })
     end,

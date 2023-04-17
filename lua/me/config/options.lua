@@ -42,12 +42,9 @@ vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.winminwidth = 5 -- Minimum window width
 vim.opt.pumblend = 10 -- Popup blend
-
-if vim.fn.has("nvim-0.9.0") == 1 then
-  vim.opt.splitkeep = "screen"
-  vim.opt.shortmess:append({ C = true })
-  vim.opt.shortmess:append({ I = true })
-end
+vim.opt.splitkeep = "screen"
+vim.opt.shortmess:append({ C = true })
+vim.opt.shortmess:append({ I = true })
 
 vim.opt.guicursor = {
   "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
