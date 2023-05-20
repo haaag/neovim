@@ -68,7 +68,7 @@ return {
   },
 
   -- winbar
-  { -- https://github.com/utilyre/barbecue.nvim
+  --[[ { -- https://github.com/utilyre/barbecue.nvim
     "utilyre/barbecue.nvim",
     event = "VeryLazy",
     dependencies = {
@@ -86,7 +86,7 @@ return {
       })
     end,
     enabled = true,
-  },
+  }, ]]
 
   --[[ {
     "tzachar/local-highlight.nvim",
@@ -133,33 +133,16 @@ return {
             text_align = "left",
           },
         },
-        -- TODO: How can i use this? :/
-        --[[ groups = {
-          options = {
-            toggle_hidden_on_enter = true, -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
-          },
-          items = {
-            {
-              name = "Tests", -- Mandatory
-              highlight = { underline = true, sp = "blue" }, -- Optional
-              priority = 2, -- determines where it will appear relative to other groups (Optional)
-              icon = "", -- Optional
-              matcher = function(buf) -- Mandatory
-                return buf.filename:match("%_test") or buf.filename:match("%_spec")
-              end,
-            },
-          },
-        }, ]]
       },
     },
   },
 
-  { -- https://github.com/tiagovla/scope.nvim
+  --[[ { -- https://github.com/tiagovla/scope.nvim
     "tiagovla/scope.nvim",
     event = "VeryLazy",
     config = true,
     enabled = true,
-  },
+  }, ]]
 
   {
     dir = tostring(os.getenv("HOME")) .. "/dev/lua/stat.nvim",

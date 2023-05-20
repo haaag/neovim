@@ -25,7 +25,7 @@ return {
   },
 
   shfmt = {
-    formatCommand = "shfmt ${-i:tabWidth}",
+    formatCommand = "shfmt ${-i:tabWidth} -",
     formatStdin = true,
   },
 

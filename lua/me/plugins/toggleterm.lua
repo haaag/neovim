@@ -35,6 +35,18 @@ function M.config()
     end,
   })
 
+  local run_python = Terminal:new({
+    cmd = "python %",
+    dir = ".",
+    hidden = true,
+    direction = "horizontal",
+    size = 10,
+    -- on_open = function(term)
+    --   vim.cmd("startinsert!")
+    --   vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+    -- end,
+  })
+
   function _G.set_terminal_keymaps()
     local opts = { noremap = true }
     vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
@@ -50,6 +62,21 @@ function M.config()
   vim.keymap.set("n", "<leader>gl", function()
     lazygit:toggle()
   end, { desc = "[L]azy[G]it" })
+
+  vim.keymap.set(
+    "n",
+    "<leader>tp",
+    "<CMD>TermExec cmd='python %' size=10 direction=horizontal<CR>",
+    { desc = "[T]erminal [P]ython" }
+  )
+
+  vim.keymap.set("n", "<leader>tt", function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
+    if filetype == "python" then
+      run_python:toggle()
+    end
+  end, { desc = "[T]erminal [P]ython" })
 end
 
 return M

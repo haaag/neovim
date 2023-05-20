@@ -1,9 +1,33 @@
 return {
+  --[[ { -- https://github.com/catppuccin/nvim
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = false,
+    priority = 1000,
+    enabled = true,
+    opts = function()
+      return {
+        flavour = "macchiato", -- latte, frappe, macchiato, mocha
+        transparent_background = true,
+        show_end_of_buffer = true,
+        dim_inactive = {
+          enabled = false,
+          shade = "dark",
+          percentage = 0.15,
+        },
+      }
+    end,
+    config = function(_, opts)
+      require("catppuccin").setup(opts)
+      vim.cmd.colorscheme("catppuccin")
+    end,
+  }, ]]
+
   { -- https://github.com/folke/tokyonight.nvim
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    enabled = true,
+    enabled = false,
     opts = function()
       return {
         style = "night",
@@ -14,33 +38,33 @@ return {
           "terminal",
           "toggleterm",
           "spectre_panel",
-          "NeogitStatus",
+          "neogitstatus",
           "help",
           "startuptime",
-          "Outline",
+          "outline",
         },
-        transparent = false,
+        transparent = true,
         styles = {
           comments = { italic = true },
           keywords = { italic = true },
           functions = { bold = false },
           variables = {},
-          sidebars = "dark", -- "dark", "transparent" or "normal"
-          floats = "dark", -- "dark", "transparent" or "normal"
+          sidebars = "normal", -- "dark", "transparent" or "normal"
+          floats = "normal", -- "dark", "transparent" or "normal"
         },
         on_highlights = function(hl, c)
           local prompt = "#2d3149"
-          hl.CursorLineNr = { fg = c.orange, bold = true }
-          hl.LineNr = { fg = c.orange, bold = true }
-          hl.LineNrAbove = { fg = c.fg_gutter }
-          hl.LineNrBelow = { fg = c.fg_gutter }
-          hl.TelescopeNormal = { bg = c.bg_dark, fg = c.fg_dark }
-          hl.TelescopeBorder = { bg = c.bg_dark, fg = c.bg_dark }
-          hl.TelescopePromptNormal = { bg = prompt }
-          hl.TelescopePromptBorder = { bg = prompt, fg = prompt }
-          hl.TelescopePromptTitle = { bg = c.fg_gutter, fg = c.orange }
-          hl.TelescopePreviewTitle = { bg = c.bg_dark, fg = c.bg_dark }
-          hl.TelescopeResultsTitle = { bg = c.bg_dark, fg = c.bg_dark }
+          hl.cursorlinenr = { fg = c.orange, bold = true }
+          hl.linenr = { fg = c.orange, bold = true }
+          hl.linenrabove = { fg = c.fg_gutter }
+          hl.linenrbelow = { fg = c.fg_gutter }
+          hl.telescopenormal = { bg = c.bg_dark, fg = c.fg_dark }
+          hl.telescopeborder = { bg = c.bg_dark, fg = c.bg_dark }
+          hl.telescopepromptnormal = { bg = prompt }
+          hl.telescopepromptborder = { bg = prompt, fg = prompt }
+          hl.telescopeprompttitle = { bg = c.fg_gutter, fg = c.orange }
+          hl.telescopepreviewtitle = { bg = c.bg_dark, fg = c.bg_dark }
+          hl.telescoperesultstitle = { bg = c.bg_dark, fg = c.bg_dark }
         end,
       }
     end,
@@ -52,26 +76,34 @@ return {
   },
 
   -- gruvbox
-  --[[ { -- https://github.com/sainnhe/gruvbox-material
+  { -- https://github.com/sainnhe/gruvbox-material
     "sainnhe/gruvbox-material",
     lazy = false,
     priority = 1000,
     enabled = true,
-    init = function()
-      local g = vim.g
-      g.gruvbox_material_enable_bold = true
-      g.gruvbox_material_enable_italic = true
-      g.gruvbox_material_transparent_background = true
-      g.gruvbox_material_dim_inactive_windows = false
-      g.gruvbox_material_disable_italic_comment = false
-      g.gruvbox_material_diagnostic_text_highlight = false
-      g.gruvbox_material_background = "medium" -- hard, medium, soft
-      g.gruvbox_material_foreground = "mix" -- material, mix, original
-    end,
+    -- init = function()
+    --   local g = vim.g
+    --   g.gruvbox_material_enable_bold = true
+    --   g.gruvbox_material_enable_italic = true
+    --   g.gruvbox_material_transparent_background = true
+    --   g.gruvbox_material_dim_inactive_windows = false
+    --   g.gruvbox_material_disable_italic_comment = false
+    --   g.gruvbox_material_diagnostic_text_highlight = false
+    --   g.gruvbox_material_background = "medium" -- hard, medium, soft
+    --   g.gruvbox_material_foreground = "mix" -- material, mix, original
+    -- end,
     config = function()
+      vim.o.background = "dark"
+      vim.g.gruvbox_material_enable_bold = true
+      vim.g.gruvbox_material_enable_italic = true
+      vim.g.gruvbox_material_transparent_background = true
+      vim.g.gruvbox_material_dim_inactive_windows = false
+      vim.g.gruvbox_material_disable_italic_comment = false
+      vim.g.gruvbox_material_diagnostic_text_highlight = false
+      vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
       vim.cmd("colorscheme gruvbox-material")
     end,
-  }, ]]
+  },
 
   -- {
   --   "bluz71/vim-nightfly-guicolors",
@@ -99,7 +131,7 @@ return {
   --   end,
   -- },
 
-  --[[ { -- https://github.com/marko-cerovac/material.nvim
+  { -- https://github.com/marko-cerovac/material.nvim
     "marko-cerovac/material.nvim",
     lazy = false,
     priority = 1000,
@@ -111,13 +143,13 @@ return {
         floating_windows = true, -- Enable contrast for floating windows
         cursor_line = false, -- Enable darker background for the cursor line
         non_current_windows = false, -- Enable darker background for non-current windows
-        filetypes = { "neo-tree" }, -- Specify which filetypes get the contrasted (darker) background
+        filetypes = { "neo-tree", "toggleterm", "mason" }, -- Specify which filetypes get the contrasted (darker) background
       },
       styles = {
         comments = { italic = true },
         strings = {},
         keywords = {},
-        functions = { bold = false },
+        functions = { bold = true },
         variables = {},
         operators = {},
         types = {},
@@ -140,7 +172,7 @@ return {
       disable = {
         colored_cursor = true, -- Disable the colored cursor
         borders = false, -- Disable borders between vertically split windows
-        -- background = false, -- Prevent the theme from setting the background
+        background = true, -- Prevent the theme from setting the background
         -- term_colors = false, -- Prevent the theme from setting terminal colors
         -- eob_lines = false, -- Hide the end-of-buffer lines
       },
@@ -148,7 +180,8 @@ return {
     config = function(_, opts)
       require("material").setup(opts)
       vim.g.material_style = "deep ocean"
+      vim.g.material_disable_background = true
       vim.cmd("colorscheme material")
     end,
-  }, ]]
+  },
 }

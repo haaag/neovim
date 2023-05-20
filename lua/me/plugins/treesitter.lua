@@ -47,7 +47,7 @@ return {
         "gitcommit",
         "gitignore",
         "go",
-        "help",
+        -- "help",
         "html",
         "javascript",
         "json",
@@ -63,10 +63,12 @@ return {
         "tsx",
         "typescript",
         "vim",
+        "vimdoc",
         "yaml",
+        "fish",
       },
       incremental_selection = {
-        enable = false,
+        enable = true,
         keymaps = {
           init_selection = "<C-space>",
           node_incremental = "<C-space>",
@@ -78,36 +80,9 @@ return {
         enable = true,
         swap = {
           enable = false,
-          swap_next = {
-            ["<leader>a"] = "@parameter.inner",
-          },
-          swap_previous = {
-            ["<leader>A"] = "@parameter.inner",
-          },
         },
         move = {
-          enable = true,
-          set_jumps = true,
-          goto_next_start = {
-            ["]f"] = "@function.outer",
-            ["]p"] = "@parameter.outer",
-            ["]c"] = "@class.outer",
-          },
-          goto_next_end = {
-            ["]F"] = "@function.outer",
-            ["]P"] = "@parameter.outer",
-            ["]C"] = "@class.outer",
-          },
-          goto_previous_start = {
-            ["[f"] = "@function.outer",
-            ["[p"] = "@parameter.outer",
-            ["[c"] = "@class.outer",
-          },
-          goto_previous_end = {
-            ["[F"] = "@function.outer",
-            ["[P"] = "@parameter.outer",
-            ["[C"] = "@class.outer",
-          },
+          enable = false,
         },
         select = {
           enable = true,

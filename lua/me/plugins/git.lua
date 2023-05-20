@@ -1,7 +1,7 @@
 return {
 
   -- neogit
-  { -- https://github.com/TimUntersberger/neogit
+  --[[ { -- https://github.com/TimUntersberger/neogit
     "TimUntersberger/neogit",
     cmd = "Neogit",
     opts = {
@@ -17,9 +17,8 @@ return {
       { "<leader>go", "<CMD>Neogit<CR>", desc = "Neo[G]it [O]pen" },
     },
     enabled = true,
-  },
+  }, ]]
 
-  -- gitsings
   { -- https://github.com/lewis6991/gitsigns.nvim
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
@@ -57,8 +56,7 @@ return {
     },
   },
 
-  -- diffview.lua
-  { -- https://github.com/sindrets/diffview.nvim
+  --[[ { -- https://github.com/sindrets/diffview.nvim
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
     config = true,
@@ -69,5 +67,5 @@ return {
       { "<leader>gdh", "<CMD>DiffviewFileHistory %<CR>", desc = "[D]iffview file [H]istory" },
     },
     enabled = true,
-  },
+  }, ]]
 }

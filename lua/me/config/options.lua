@@ -38,13 +38,23 @@ vim.opt.cursorline = false -- Enable highlighting of the current line
 vim.opt.grepformat = "%f:%l:%c:%m" -- grep
 vim.opt.grepprg = "rg --vimgrep" -- grep
 vim.opt.formatoptions = "jcroqlnt" -- tcqj
-vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
+vim.opt.conceallevel = 2 -- Hide * markup for bold and italic
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.winminwidth = 5 -- Minimum window width
 vim.opt.pumblend = 10 -- Popup blend
 vim.opt.splitkeep = "screen"
 vim.opt.shortmess:append({ C = true })
 vim.opt.shortmess:append({ I = true })
+
+vim.opt.fillchars:append("stl: ")
+vim.opt.fillchars:append("eob: ")
+vim.opt.fillchars:append("fold: ")
+vim.opt.fillchars:append("foldopen: ")
+vim.opt.fillchars:append("foldsep: ")
+vim.opt.fillchars:append("foldclose:")
+
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
 
 vim.opt.guicursor = {
   "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",

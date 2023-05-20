@@ -28,8 +28,8 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- Use ctlr + hjkl to resize windows:
 map("n", "<C-j>", ":resize -2<CR>", options)
 map("n", "<C-S-k>", ":resize +2<CR>", options)
-map("n", "<C-l>", ":vertical resize -2<CR>", options)
-map("n", "<C-h>", ":vertical resize +2<CR>", options)
+map("n", "<C-h>", ":vertical resize -2<CR>", options)
+map("n", "<C-l>", ":vertical resize +2<CR>", options)
 
 -- Keep search results centred
 map("n", "n", "nzzzv", silent)
@@ -84,6 +84,8 @@ end, { desc = "[T]oggle [G]it signs" })
 map("n", "<leader>ta", function()
   require("me.config.utils").toggle_all()
 end, { desc = "[T]oggle [A]all" })
+
+map("n", "<S-A-CR>", ":TermExec cmd='python %' size=10 direction=horizontal <CR>")
 
 --[[ map("n", "<leader>bc", "<cmd>%bd|e#<cr>", { desc = "Close all buffers but the current one" })
 -- https://stackoverflow.com/a/42071865/516188 ]]

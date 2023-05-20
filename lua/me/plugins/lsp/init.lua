@@ -1,9 +1,9 @@
 -- lsp-config
 
 return {
-  {
-    "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
-    event = "BufReadPre",
+  { -- https://github.com/neovim/nvim-lspconfig
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     enabled = true,
     dependencies = {
       -- { "folke/neodev.nvim", config = true },
@@ -11,79 +11,14 @@ return {
       "mason.nvim", -- https://github.com/williamboman/mason.nvim
       "williamboman/mason-lspconfig.nvim", -- https://github.com/williamboman/mason-lspconfig.nvim
       "lukas-reineke/lsp-format.nvim", -- https://github.com/lukas-reineke/lsp-format.nvim
+      { "raimon49/requirements.txt.vim", event = "BufReadPre requirements*.txt" },
     },
     ---@class PluginLspOpts
     opts = {
       servers = {
         marksman = {},
-        pyright = {
-          autostart = true,
-          disableOrganizeImports = true,
-          handlers = { ["textDocument/publishDiagnostics"] = function() end },
-          on_attach = function(client, _)
-            client.server_capabilities.codeActionProvider = false
-          end,
-          settings = {
-            python = {
-              analysis = {
-                autoSearchPaths = true,
-                typeCheckingMode = "off",
-                useLibraryCodeForTypes = true,
-              },
-            },
-          },
-        },
-        pylsp = {
-          autostart = false,
-          settings = {
-            pylsp = {
-              plugins = {
-                -- disabled
-                pylint = { enabled = false, executable = "pylint" },
-                autopep8 = { enabled = false },
-                pyflakes = { enabled = false },
-                pycodestyle = { enabled = false },
-                flake8 = { enabled = false },
-                yapf = { enabled = false },
-                mccabe = { enabled = false },
-                -- enabled
-                ruff = { enabled = false },
-                pylsp_mypy = { enabled = true, dmypy = true, report_progress = true },
-                black = { enabled = true },
-                rope_autoimport = { enabled = true },
-                jedi_completion = {
-                  enabled = true,
-                  fuzzy = true,
-                  include_params = true,
-                },
-                jedi_hover = { enabled = true },
-                jedi_references = { enabled = true },
-                jedi_signature_help = { enabled = true },
-                jedi_symbols = {
-                  enabled = true,
-                  all_scopes = true,
-                },
-              },
-            },
-          },
-        },
-        --[[ gopls = {
-          settings = {
-            gopls = {
-              experimentalPostfixCompletions = true,
-              analyses = {
-                unusedparams = true,
-                shadow = true,
-              },
-              staticcheck = true,
-            },
-          },
-          init_options = {
-            usePlaceholders = true,
-          },
-        }, ]]
         bashls = {},
-        jsonls = {},
+        jsonls = {autostart = false},
         ruff_lsp = {
           autostart = true,
           settings = {
@@ -149,15 +84,13 @@ return {
         "stylua",
         -- python
         -- "black",
-        -- "isort",
         -- "mypy",
-        -- "pylint",
-        -- "pyproject-flake8",
+        -- "sourcery",
         "ruff",
         -- web
-        -- "prettier",
-        -- "eslint_d",
-        "deno",
+        --[[ "prettier",
+        "eslint_d",
+        "deno", ]]
         -- shell
         "shellcheck",
         "shfmt",

@@ -68,21 +68,21 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   desc = "Reload Xresources after buffer write",
 })
 
-vim.api.nvim_create_autocmd({
-  "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
-  "BufWinEnter",
-  "CursorHold",
-  "InsertLeave",
-  "BufWritePost",
-  "TextChanged",
-  "TextChangedI",
-}, {
-  group = vim.api.nvim_create_augroup("barbecue.updater", {}),
-  callback = function()
-    require("barbecue.ui").update()
-  end,
-  desc = "Gain better performance when moving the cursor around",
-})
+-- vim.api.nvim_create_autocmd({
+--   "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
+--   "BufWinEnter",
+--   "CursorHold",
+--   "InsertLeave",
+--   "BufWritePost",
+--   "TextChanged",
+--   "TextChangedI",
+-- }, {
+--   group = vim.api.nvim_create_augroup("barbecue.updater", {}),
+--   callback = function()
+--     require("barbecue.ui").update()
+--   end,
+--   desc = "Gain better performance when moving the cursor around",
+-- })
 
 -- vim.api.nvim_create_autocmd({ "TermOpen" }, {
 --   group = augroup("open_term"),

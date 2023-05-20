@@ -62,6 +62,26 @@ C.gruvbox = function()
   }
 end
 
+C.gruvbox_material = function()
+  return {
+    background = "#1d2021",
+    foreground = "#d4be98",
+    black = "#32302f",
+    black2 = "#32302f",
+    red = "#ea6962",
+    green = "#a9b665",
+    yellow = "#e78a4e",
+    blue = "#7daea3",
+    purple = "#d3869b",
+    magenta = "#d3869b",
+    orange = "#e78a4e",
+    cyan = "#89b482",
+    white = "#d4be98",
+    lightgrey = "#928374",
+    darkgrey = "#a89984",
+  }
+end
+
 C.catppuccin_macchiato = function()
   return {
     background = "#24273A",
@@ -120,7 +140,7 @@ C.vim_nightfly = function()
 end
 
 C.current = function()
-  return C.tokyonight_night()
+  return C.gruvbox_material()
 end
 
 return C

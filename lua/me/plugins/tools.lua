@@ -41,6 +41,7 @@ return {
   -- markdown preview
   { -- https://github.com/toppair/peek.nvim
     "toppair/peek.nvim",
+    event = { "BufRead", "BufNewFile" },
     build = "deno task --quiet build:fast",
     ft = { "markdown" },
     config = function()

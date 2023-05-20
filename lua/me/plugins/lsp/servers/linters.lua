@@ -73,13 +73,19 @@ return {
 
   eslint = {
     lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
-    lintIgnoreExitCode = true,
     lintStdin = true,
-    lintFormats = {
-      "%f(%l,%c): %tarning %m",
-      "%f(%l,%c): %rror %m",
+    lintFormats = { "<text>(%l,%c): %trror %m", "<text>(%l,%c): %tarning %m" },
+    lintIgnoreExitCode = true,
+    rootMarkers = {
+      ".eslintrc",
+      ".eslintrc.cjs",
+      ".eslintrc.js",
+      ".eslintrc.json",
+      ".eslintrc.yaml",
+      ".eslintrc.yml",
+      "package.json",
     },
-    lintSource = "eslint",
+    lintSource = "eslint_d",
   },
 
   -- markdown
