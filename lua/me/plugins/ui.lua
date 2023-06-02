@@ -88,36 +88,20 @@ return {
     enabled = true,
   }, ]]
 
-  --[[ {
+  { -- https://github.com/tzachar/local-highlight.nvim
     "tzachar/local-highlight.nvim",
     event = "VeryLazy",
     config = function()
-      -- local colors = require("me.config.colors").current()
+      vim.api.nvim_set_hl(0, "MyLocalHighlight", {
+        fg = "NONE",
+        bg = "NONE",
+        bold = true,
+        underline = true,
+      })
       require("local-highlight").setup({
-        hlgroup = "CursorColumn",
+        hlgroup = "MyLocalHighlight",
       })
     end,
-  }, ]]
-
-  { -- https://github.com/RRethy/vim-illuminate
-    "RRethy/vim-illuminate",
-    event = "BufReadPost",
-    keys = {
-      {
-        "<leader>]",
-        function()
-          require("illuminate").goto_next_reference(false)
-        end,
-        desc = "Next Reference",
-      },
-      {
-        "<leader>[",
-        function()
-          require("illuminate").goto_prev_reference(false)
-        end,
-        desc = "Prev Reference",
-      },
-    },
   },
 
   { -- bufferline
