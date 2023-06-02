@@ -18,7 +18,7 @@ return {
       servers = {
         marksman = {},
         bashls = {},
-        jsonls = {autostart = false},
+        jsonls = { autostart = false },
         ruff_lsp = {
           autostart = true,
           settings = {

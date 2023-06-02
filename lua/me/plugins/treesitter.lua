@@ -17,6 +17,7 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "windwp/nvim-ts-autotag",
       "mrjones2014/nvim-ts-rainbow",
+      "nvim-treesitter/nvim-treesitter-context",
     },
     opts = {
       highlight = {

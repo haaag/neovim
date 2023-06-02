@@ -34,7 +34,7 @@ vim.opt.scrolloff = 4 -- Lines of context
 vim.opt.wrap = false -- Disable line wrap
 vim.opt.termguicolors = true -- True color support
 vim.opt.spelllang = { "en_us", "es" } -- spellcheck
-vim.opt.cursorline = false -- Enable highlighting of the current line
+vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.grepformat = "%f:%l:%c:%m" -- grep
 vim.opt.grepprg = "rg --vimgrep" -- grep
 vim.opt.formatoptions = "jcroqlnt" -- tcqj
@@ -43,6 +43,7 @@ vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.winminwidth = 5 -- Minimum window width
 vim.opt.pumblend = 10 -- Popup blend
 vim.opt.splitkeep = "screen"
+vim.opt.colorcolumn = "80"
 vim.opt.shortmess:append({ C = true })
 vim.opt.shortmess:append({ I = true })
 
