@@ -16,7 +16,6 @@ vim.opt.runtimepath:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { import = "me.plugins" },
-    { import = "me.plugins.lsp.servers.efm" },
     { import = "me.plugins.lsp.servers.extras.lua_ls" },
     { import = "me.plugins.lsp.servers.extras.pylsp" },
     { import = "me.plugins.lsp.servers.extras.json" },
