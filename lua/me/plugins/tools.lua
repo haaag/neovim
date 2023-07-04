@@ -252,4 +252,35 @@ return {
       },
     },
   },
+
+  { -- https://github.com/akinsho/toggleterm.nvim
+    "akinsho/toggleterm.nvim",
+    event = "VeryLazy",
+    enabled = true,
+    opts = {
+      size = 18,
+      open_mapping = [[<c-\>]],
+      hide_numbers = true, -- hide the number column in toggleterm buffers
+      shade_terminals = false,
+      direction = "float", -- | 'horizontal' | 'window' | 'float',
+      close_on_exit = true, -- close the terminal window when the process exits
+      float_opts = {
+        border = "curved",
+        winblend = 0,
+      },
+    },
+    config = function(_, opts)
+      require("toggleterm").setup(opts)
+      function _G.set_terminal_keymaps()
+        local options = { noremap = true }
+        vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], options)
+        vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], options)
+        vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], options)
+        vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], options)
+        vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], options)
+      end
+
+      vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+    end,
+  },
 }
