@@ -81,18 +81,8 @@ return {
     lazy = false,
     priority = 1000,
     enabled = true,
-    -- init = function()
-    --   local g = vim.g
-    --   g.gruvbox_material_enable_bold = true
-    --   g.gruvbox_material_enable_italic = true
-    --   g.gruvbox_material_transparent_background = true
-    --   g.gruvbox_material_dim_inactive_windows = false
-    --   g.gruvbox_material_disable_italic_comment = false
-    --   g.gruvbox_material_diagnostic_text_highlight = false
-    --   g.gruvbox_material_background = "medium" -- hard, medium, soft
-    --   g.gruvbox_material_foreground = "mix" -- material, mix, original
-    -- end,
     config = function()
+      -- vim.o.background = "light"
       vim.o.background = "dark"
       vim.g.gruvbox_material_enable_bold = true
       vim.g.gruvbox_material_enable_italic = true
@@ -101,35 +91,14 @@ return {
       vim.g.gruvbox_material_disable_italic_comment = false
       vim.g.gruvbox_material_diagnostic_text_highlight = false
       vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
+      vim.g.gruvbox_material_diagnostic_virtual_text = "colored" -- grey, colored, highlighted
+      vim.g.gruvbox_material_spell_foreground = "colored" -- none
+      vim.g.gruvbox_material_ui_contrast = "low" -- 'low' 'high'
+      vim.g.gruvbox_material_show_eob = 0
+      vim.g.gruvbox_material_current_word = "underline"
       vim.cmd("colorscheme gruvbox-material")
     end,
   },
-
-  -- {
-  --   "bluz71/vim-nightfly-guicolors",
-  --   lazy = false,
-  --   priority = 1000,
-  --   enabled = false,
-  --   config = function()
-  --     vim.g.nightflyCursorColor = true
-  --     vim.g.nightflyNormalFloat = true
-  --     vim.g.nightflyTerminalColors = true
-  --     vim.g.nightflyTransparent = true
-  --     vim.g.nightflyUndercurls = true
-  --     vim.g.nightflyVirtualTextColor = true
-  --     vim.g.nightflyUnderlineMatchParen = true
-  --     vim.g.nightflyWinSeparator = 2
-  --     vim.cmd.colorscheme("nightfly")
-  --     vim.o.termguicolors = true
-  --     -- Enable transparent terminal background
-  --     -- vim.cmd([[
-  --     --   hi Normal guibg=NONE ctermbg=NONE
-  --     --   hi LineNr guibg=NONE ctermbg=NONE
-  --     --   hi SignColumn guibg=NONE ctermbg=NONE
-  --     --   hi EndOfBuffer guibg=NONE ctermbg=NONE
-  --     -- ]])
-  --   end,
-  -- },
 
   { -- https://github.com/marko-cerovac/material.nvim
     "marko-cerovac/material.nvim",

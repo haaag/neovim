@@ -16,13 +16,14 @@ return {
         ["<leader>ds"] = { name = "+step" },
         ["<leader>e"] = { name = "+edits" },
         ["<leader>g"] = { name = "+git" },
+        ["<leader>gt"] = { name = "+telescope" },
         ["<leader>gd"] = { name = "+diff" },
         ["<leader>gh"] = { name = "+hunks" },
         ["<leader>l"] = { name = "+lsp" },
         ["<leader>lw"] = { name = "+workspace" },
         ["<leader>m"] = { name = "+misc" },
         ["<leader>s"] = { name = "+search" },
-        ["<leader>t"] = { name = "+toggle" },
+        ["<leader>t"] = { name = "+test" },
         ["<leader>q"] = { name = "+quickfix" },
         ["<leader>qs"] = { name = "+sessions" },
         ["<leader>x"] = { name = "+diagnostics" },
@@ -31,7 +32,7 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/ggandor/leap.nvim
+  --[[ { -- https://github.com/ggandor/leap.nvim
     "ggandor/leap.nvim",
     event = "VeryLazy",
     dependencies = { { "ggandor/flit.nvim", opts = { labeled_modes = "nv" } } },
@@ -43,7 +44,7 @@ return {
       leap.add_default_mappings(true)
     end,
     enabled = true,
-  },
+  }, ]]
 
   { -- https://github.com/liuchengxu/vista.vim
     "liuchengxu/vista.vim",
@@ -94,6 +95,7 @@ return {
   { -- https://github.com/j-hui/fidget.nvim
     "j-hui/fidget.nvim",
     event = "VeryLazy",
+    tag = "legacy",
     opts = {
       text = { spinner = "dots_pulse" }, -- dots_pulse, bouncing_bar
       align = { bottom = true },

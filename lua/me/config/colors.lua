@@ -77,8 +77,8 @@ C.gruvbox_material = function()
     orange = "#e78a4e",
     cyan = "#89b482",
     white = "#d4be98",
-    lightgrey = "#928374",
-    darkgrey = "#a89984",
+    lightgrey = "#a89984",
+    darkgrey = "#3c3836",
   }
 end
 

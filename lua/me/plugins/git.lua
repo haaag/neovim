@@ -24,12 +24,12 @@ return {
     event = "BufReadPre",
     opts = {
       signs = {
-        add = { text = "▎" },
-        change = { text = "▎" },
+        add = { text = "▏" },
+        change = { text = "▏" },
         delete = { text = "‾" },
         topdelete = { text = "‾" },
-        changedelete = { text = "▎" },
-        untracked = { text = "▎" },
+        changedelete = { text = "▏" },
+        untracked = { text = "▏" },
       },
     },
     keys = {
@@ -37,7 +37,7 @@ return {
       { "[h", "<CMD>Gitsigns prev_hunk<CR>", desc = "Git Prev [H]unk" },
       { "]p", "<CMD>Gitsigns preview_hunk<CR>", desc = " Git [P]review [H]unk" },
       { "<leader>gb", "<CMD>Gitsigns toggle_current_line_blame<CR>", desc = "Git [G]it Toggle [B]lame" },
-      { "<leader>mtg", "<CMD>Gitsigns toggle_signs<CR>", desc = "[G]it [T]oggle signs" },
+      { "<leader>gs", "<CMD>Gitsigns toggle_signs<CR>", desc = "[G]it [T]oggle signs" },
       -- telescope
       { "<leader>gts", "<CMD>Telescope git_status<CR>", desc = "[G]it [T]elescope [S]tatus" },
       { "<leader>gtx", "<CMD>Telescope git_stash<CR>", desc = "[G]it [T]elescope stash" },
@@ -56,7 +56,7 @@ return {
     },
   },
 
-  --[[ { -- https://github.com/sindrets/diffview.nvim
+  { -- https://github.com/sindrets/diffview.nvim
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
     config = true,
@@ -67,5 +67,5 @@ return {
       { "<leader>gdh", "<CMD>DiffviewFileHistory %<CR>", desc = "[D]iffview file [H]istory" },
     },
     enabled = true,
-  }, ]]
+  },
 }
