@@ -1,23 +1,13 @@
 return {
 
-  -- neogit
-  --[[ { -- https://github.com/TimUntersberger/neogit
-    "TimUntersberger/neogit",
-    cmd = "Neogit",
-    opts = {
-      kind = "split",
-      signs = {
-        section = { "", "" },
-        item = { "", "" },
-        hunk = { "", "" },
-      },
-      integrations = { diffview = true },
-    },
-    keys = {
-      { "<leader>go", "<CMD>Neogit<CR>", desc = "Neo[G]it [O]pen" },
-    },
+  { -- https://github.com/tpope/vim-fugitive
+    "tpope/vim-fugitive",
     enabled = true,
-  }, ]]
+    cmd = { "Git" },
+    keys = {
+      { "<leader>go", "Git", desc = "[G]it Fugitive" },
+    },
+  },
 
   { -- https://github.com/lewis6991/gitsigns.nvim
     "lewis6991/gitsigns.nvim",
