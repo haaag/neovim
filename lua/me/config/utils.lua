@@ -50,4 +50,30 @@ M.toggle_all = function()
   end
 end
 
+M.confirmation = function(mesg, choices)
+  local valid_choices = {}
+
+  for _, choice in ipairs(choices) do
+    valid_choices[choice:lower()] = true
+  end
+
+  local choice = vim.fn.input(mesg)
+  choice = choice:lower()
+
+  if valid_choices[choice] then
+    return true
+  else
+    return false
+  end
+end
+
+M.git_branch = function()
+  local cmd = io.popen("git symbolic-ref --short HEAD 2> /dev/null")
+  local branch = cmd and cmd:read("*l") or ""
+  if cmd then
+    cmd:close()
+  end
+  return branch
+end
+
 return M

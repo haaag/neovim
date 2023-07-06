@@ -1,3 +1,17 @@
+local git_push = function()
+  -- TODO: Extract function...
+  if vim.bo.ft ~= "fugitive" then
+    return
+  end
+
+  local utils = require("me.config.utils")
+  local confirmation = utils.confirmation("Push changes? [y/n]: ", { "Yes", "y" })
+
+  if confirmation then
+    vim.cmd("Git push")
+  end
+end
+
 return {
 
   { -- https://github.com/tpope/vim-fugitive
@@ -5,7 +19,8 @@ return {
     enabled = true,
     cmd = { "Git" },
     keys = {
-      { "<leader>go", "Git", desc = "[G]it Fugitive" },
+      { "<leader>go", "<CMD>Git<CR>", desc = "[G]it Fugitive" },
+      { "<leader>gp", git_push, desc = "[G]it [P]ush" },
     },
   },
 
