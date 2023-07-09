@@ -1,7 +1,7 @@
 return {
 
-  { -- https://github.com/kyazdani42/nvim-web-devicons
-    "kyazdani42/nvim-web-devicons",
+  { -- https://github.com/nvim-tree/nvim-web-devicons
+    "nvim-tree/nvim-web-devicons",
   },
 
   { -- https://github.com/szw/vim-maximizer
@@ -34,7 +34,6 @@ return {
     enabled = true,
   },
 
-  -- indent blankline
   { -- https://github.com/lukas-reineke/indent-blankline.nvim
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
@@ -67,36 +66,16 @@ return {
     enabled = true,
   },
 
-  -- winbar
-  --[[ { -- https://github.com/utilyre/barbecue.nvim
-    "utilyre/barbecue.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "smiteshp/nvim-navic",
-    },
-    config = function()
-      local icons = require("me.config.icons").icons
-      require("barbecue").setup({
-        create_autocmd = false,
-        show_modified = true,
-        symbols = {
-          separator = ">",
-        },
-        kinds = icons.lsp.kinds,
-      })
-    end,
-    enabled = true,
-  }, ]]
-
   { -- https://github.com/tzachar/local-highlight.nvim
     "tzachar/local-highlight.nvim",
-    event = "VeryLazy",
+    lazy = false,
+    -- event = "VeryLazy",
     config = function()
+      -- local theme = require("me.config.colors").current()
       vim.api.nvim_set_hl(0, "MyLocalHighlight", {
-        fg = "NONE",
-        bg = "NONE",
-        bold = true,
+        -- bg = theme.darkgrey,
         underline = true,
+        bold = true,
       })
       require("local-highlight").setup({
         hlgroup = "MyLocalHighlight",
@@ -104,34 +83,16 @@ return {
     end,
   },
 
-  { -- bufferline
-    "akinsho/bufferline.nvim",
-    event = "VeryLazy",
-    opts = {
-      options = {
-        offsets = {
-          {
-            filetype = "neo-tree",
-            text = "Neo-tree",
-            highlight = "Directory",
-            text_align = "left",
-          },
-        },
-      },
-    },
-  },
-
-  --[[ { -- https://github.com/tiagovla/scope.nvim
-    "tiagovla/scope.nvim",
+  {
+    "lukas-reineke/virt-column.nvim",
     event = "VeryLazy",
     config = true,
-    enabled = true,
-  }, ]]
+  },
 
   {
     dir = tostring(os.getenv("HOME")) .. "/dev/lua/stat.nvim",
     dependencies = {
-      "kyazdani42/nvim-web-devicons",
+      "nvim-tree/nvim-web-devicons",
     },
     opts = {},
     event = "VeryLazy",
@@ -146,5 +107,11 @@ return {
     version = "*",
     config = true,
     enabled = true,
+  },
+
+  {
+    "b0o/incline.nvim",
+    event = "VeryLazy",
+    config = true,
   },
 }
