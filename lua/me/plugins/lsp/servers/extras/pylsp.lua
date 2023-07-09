@@ -4,7 +4,7 @@ return {
   opts = {
     servers = {
       pylsp = {
-        autostart = false,
+        autostart = true,
         settings = {
           pylsp = {
             plugins = {
@@ -16,10 +16,10 @@ return {
               flake8 = { enabled = false },
               yapf = { enabled = false },
               mccabe = { enabled = false },
-              -- enabled
               ruff = { enabled = false },
-              pylsp_mypy = { enabled = true, dmypy = true, report_progress = true },
-              black = { enabled = true },
+              pylsp_mypy = { enabled = false, dmypy = true, report_progress = true },
+              black = { enabled = false },
+              -- enabled
               rope_autoimport = { enabled = true },
               jedi_completion = {
                 enabled = true,

@@ -80,28 +80,6 @@ return {
     enabled = true,
   },
 
-  --[[ { -- https://github.com/Exafunction/codeium.vim
-    "Exafunction/codeium.vim",
-    event = "InsertEnter",
-    config = function()
-      vim.g.codeium_enabled = true
-      -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set("i", "<C-g>", function()
-        return vim.fn["codeium#Accept"]()
-      end, { expr = true })
-      vim.keymap.set("i", "<c-;>", function()
-        return vim.fn["codeium#CycleCompletions"](1)
-      end, { expr = true })
-      vim.keymap.set("i", "<c-,>", function()
-        return vim.fn["codeium#CycleCompletions"](-1)
-      end, { expr = true })
-      vim.keymap.set("i", "<c-x>", function()
-        return vim.fn["codeium#Clear"]()
-      end, { expr = true })
-    end,
-    enabled = true,
-  }, ]]
-
   { -- https://github.com/echasnovski/mini.bufremove
     "echasnovski/mini.bufremove",
     -- stylua: ignore
@@ -173,8 +151,7 @@ return {
     },
   },
 
-  {
-
+  { -- https://github.com/jose-elias-alvarez/null-ls.nvim
     "jose-elias-alvarez/null-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "mason.nvim" },
@@ -191,9 +168,9 @@ return {
           nls.builtins.diagnostics.write_good,
           nls.builtins.diagnostics.alex,
           -- python
-          nls.builtins.diagnostics.mypy,
-          nls.builtins.diagnostics.ruff,
-          -- nls.builtins.formatting.black,
+          nls.builtins.diagnostics.mypy.with({ method = nls.methods.DIAGNOSTICS_ON_SAVE }),
+          -- nls.builtins.diagnostics.ruff,
+          nls.builtins.formatting.black,
           -- shell
           nls.builtins.formatting.shfmt,
           nls.builtins.formatting.fish_indent,
@@ -271,16 +248,6 @@ return {
     },
     config = function(_, opts)
       require("toggleterm").setup(opts)
-      function _G.set_terminal_keymaps()
-        local options = { noremap = true }
-        vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], options)
-        vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], options)
-        vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], options)
-        vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], options)
-        vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], options)
-      end
-
-      vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
     end,
   },
 }

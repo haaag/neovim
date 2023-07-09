@@ -1,8 +1,8 @@
 -- colors.lua
 
-local C = {}
+local M = {}
 
-C.tokyonight_storm = function()
+M.tokyonight_storm = function()
   return {
     background = "#24283b",
     other_background = "#1F2335",
@@ -23,7 +23,7 @@ C.tokyonight_storm = function()
   }
 end
 
-C.tokyonight_night = function()
+M.tokyonight_night = function()
   return {
     background = "#1A1B26",
     foreground = "#C0CAF5",
@@ -42,7 +42,7 @@ C.tokyonight_night = function()
   }
 end
 
-C.gruvbox = function()
+M.gruvbox = function()
   return {
     background = "#282828",
     foreground = "#ebdbb2",
@@ -62,7 +62,7 @@ C.gruvbox = function()
   }
 end
 
-C.gruvbox_material = function()
+M.gruvbox_material = function()
   return {
     background = "#1d2021",
     foreground = "#d4be98",
@@ -82,7 +82,7 @@ C.gruvbox_material = function()
   }
 end
 
-C.catppuccin_macchiato = function()
+M.catppuccin_macchiato = function()
   return {
     background = "#24273A",
     other_background = "#1F2335",
@@ -101,7 +101,7 @@ C.catppuccin_macchiato = function()
   }
 end
 
-C.material_deep_ocean = function()
+M.material_deep_ocean = function()
   return {
     background = "#0F111A",
     foreground = "#A6ACCD",
@@ -120,7 +120,7 @@ C.material_deep_ocean = function()
   }
 end
 
-C.vim_nightfly = function()
+M.vim_nightfly = function()
   return {
     background = "NONE",
     foreground = "#A6ACCD",
@@ -139,8 +139,8 @@ C.vim_nightfly = function()
   }
 end
 
-C.current = function()
-  return C.gruvbox_material()
+M.current = function()
+  return M.gruvbox_material()
 end
 
-return C
+return M

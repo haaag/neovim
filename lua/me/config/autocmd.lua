@@ -41,18 +41,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   desc = "go to last loc when opening a buffer",
 })
 
--- vim.api.nvim_create_autocmd("FileType", {
---   group = augroup("wrap_spell"),
---   pattern = { "gitcommit", "markdown" },
---   callback = function()
---     vim.opt_local.wrap = true
---     vim.opt_local.spell = true
---     -- vim.g.markdown_recommended_style = 0
---     -- require("me.config.utils").toggle_numbers()
---     require("me.config.utils").toggle_all()
---   end,
--- })
-
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   group = augroup("resize_splits"),
   callback = function()
@@ -68,30 +56,14 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   desc = "Reload Xresources after buffer write",
 })
 
--- vim.api.nvim_create_autocmd({
---   "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
---   "BufWinEnter",
---   "CursorHold",
---   "InsertLeave",
---   "BufWritePost",
---   "TextChanged",
---   "TextChangedI",
--- }, {
---   group = vim.api.nvim_create_augroup("barbecue.updater", {}),
---   callback = function()
---     require("barbecue.ui").update()
---   end,
---   desc = "Gain better performance when moving the cursor around",
--- })
-
--- vim.api.nvim_create_autocmd({ "TermOpen" }, {
---   group = augroup("open_term"),
---   callback = function()
---     local opts = { noremap = true }
---     vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
---     vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
---     vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
---     vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
---     vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
---   end,
--- })
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+  group = augroup("open_term"),
+  callback = function()
+    local opts = { noremap = true }
+    vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
+    vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
+    vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
+    vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
+    vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
+  end,
+})

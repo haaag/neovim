@@ -6,8 +6,6 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     enabled = true,
     dependencies = {
-      -- { "folke/neodev.nvim", config = true },
-      -- "hrsh7th/cmp-nvim-lsp", -- https://github.com/hrsh7th/cmp-nvim-lsp
       "mason.nvim", -- https://github.com/williamboman/mason.nvim
       "williamboman/mason-lspconfig.nvim", -- https://github.com/williamboman/mason-lspconfig.nvim
       "lukas-reineke/lsp-format.nvim", -- https://github.com/lukas-reineke/lsp-format.nvim
@@ -80,17 +78,18 @@ return {
     opts = {
       ensure_installed = {
         -- lua
-        "luacheck",
+        -- "luacheck",
         "stylua",
         -- python
         -- "black",
         -- "mypy",
         -- "sourcery",
         "ruff",
+        "debugpy",
         -- web
-        --[[ "prettier",
+        "prettier",
         "eslint_d",
-        "deno", ]]
+        -- "deno",
         -- shell
         "shellcheck",
         "shfmt",
@@ -98,6 +97,7 @@ return {
         "markdownlint",
         "write-good",
         "cbfmt",
+        "alex",
         -- go
         -- "goimports",
         -- "staticcheck",

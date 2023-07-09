@@ -1,29 +1,6 @@
 return {
-  --[[ { -- https://github.com/catppuccin/nvim
-    "catppuccin/nvim",
-    name = "catppuccin",
-    lazy = false,
-    priority = 1000,
-    enabled = true,
-    opts = function()
-      return {
-        flavour = "macchiato", -- latte, frappe, macchiato, mocha
-        transparent_background = true,
-        show_end_of_buffer = true,
-        dim_inactive = {
-          enabled = false,
-          shade = "dark",
-          percentage = 0.15,
-        },
-      }
-    end,
-    config = function(_, opts)
-      require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin")
-    end,
-  }, ]]
 
-  { -- https://github.com/folke/tokyonight.nvim
+  --[[ { -- https://github.com/folke/tokyonight.nvim
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
@@ -73,7 +50,7 @@ return {
       tokyonight.setup(opts)
       tokyonight.load()
     end,
-  },
+  }, ]]
 
   -- gruvbox
   { -- https://github.com/sainnhe/gruvbox-material
@@ -93,14 +70,14 @@ return {
       vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
       vim.g.gruvbox_material_diagnostic_virtual_text = "colored" -- grey, colored, highlighted
       vim.g.gruvbox_material_spell_foreground = "colored" -- none
-      vim.g.gruvbox_material_ui_contrast = "low" -- 'low' 'high'
+      vim.g.gruvbox_material_ui_contrast = "high" -- 'low' 'high'
       vim.g.gruvbox_material_show_eob = 0
       vim.g.gruvbox_material_current_word = "underline"
       vim.cmd("colorscheme gruvbox-material")
     end,
   },
 
-  { -- https://github.com/marko-cerovac/material.nvim
+  --[[ { -- https://github.com/marko-cerovac/material.nvim
     "marko-cerovac/material.nvim",
     lazy = false,
     priority = 1000,
@@ -152,5 +129,5 @@ return {
       vim.g.material_disable_background = true
       vim.cmd("colorscheme material")
     end,
-  },
+  }, ]]
 }

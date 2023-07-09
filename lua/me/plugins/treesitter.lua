@@ -16,8 +16,6 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "windwp/nvim-ts-autotag",
-      "mrjones2014/nvim-ts-rainbow",
-      "nvim-treesitter/nvim-treesitter-context",
     },
     opts = {
       highlight = {
@@ -30,9 +28,6 @@ return {
         disable = { "python", "css" },
       },
       autotag = {
-        enable = true,
-      },
-      rainbow = {
         enable = true,
       },
       ensure_installed = {
@@ -48,7 +43,7 @@ return {
         "gitcommit",
         "gitignore",
         "go",
-        -- "help",
+        "org",
         "html",
         "javascript",
         "json",

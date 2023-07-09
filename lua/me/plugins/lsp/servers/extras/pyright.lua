@@ -5,7 +5,7 @@ return {
   opts = {
     servers = {
       pyright = {
-        autostart = true,
+        autostart = false,
         disableOrganizeImports = true,
         handlers = { ["textDocument/publishDiagnostics"] = function() end },
         on_attach = function(client, _)
