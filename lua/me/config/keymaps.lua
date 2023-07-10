@@ -5,7 +5,7 @@ local silent = { silent = true }
 local map = vim.keymap.set
 
 -- Keymaps for better default experience
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+-- vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Shortcut to use blackhole register by default
 vim.keymap.set("v", "d", '"_d', options)
@@ -69,23 +69,25 @@ map("n", "<leader>qg", "<CMD>cfirst<CR>", { desc = "[Q]uickfix First" })
 map("n", "<leader>qG", "<CMD>clast<CR>", { desc = "[Q]uickfix Last" })
 
 -- personal
-map("n", "<leader>tn", function()
+map("n", "<leader>wn", function()
   require("me.config.utils").toggle_numbers()
-end, { desc = "[T]oggle [N]umber" })
+end, { desc = "Toggle [N]umber" })
 
-map("n", "<leader>td", function()
+map("n", "<leader>wd", function()
   require("me.plugins.lsp.diagnostic").toggle_diagnostics()
-end, { desc = "[T]oggle [D]iagnostics signs" })
+end, { desc = "Toggle [D]iagnostics signs" })
 
-map("n", "<leader>tg", function()
+map("n", "<leader>wg", function()
   require("gitsigns").toggle_signs()
-end, { desc = "[T]oggle [G]it signs" })
+end, { desc = "Toggle [G]it signs" })
 
-map("n", "<leader>ta", function()
+map("n", "<leader>wa", function()
   require("me.config.utils").toggle_all()
-end, { desc = "[T]oggle [A]all" })
+end, { desc = "Toggle [A]all" })
 
-map("n", "<S-A-CR>", ":TermExec cmd='python %' size=10 direction=horizontal <CR>")
+vim.keymap.set("n", "<leader>go", vim.cmd.Git)
+
+-- map("n", "<S-A-CR>", ":TermExec cmd='python %' size=10 direction=horizontal <CR>")
 
 --[[ map("n", "<leader>bc", "<cmd>%bd|e#<cr>", { desc = "Close all buffers but the current one" })
 -- https://stackoverflow.com/a/42071865/516188 ]]

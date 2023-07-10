@@ -21,6 +21,7 @@ return {
     keys = {
       { "<leader>go", "<CMD>Git<CR>", desc = "[G]it Fugitive" },
       { "<leader>gp", git_push, desc = "[G]it [P]ush" },
+      { "<leader>gl", "<CMD>Git log --oneline<CR>", desc = "[G]it [L]og" },
     },
   },
 

@@ -19,14 +19,9 @@ return {
   keys = {
     -- search
     { "<C-p>", "<CMD>Telescope find_files<CR>", desc = "Search Files" },
-    -- { "<C-p>", "<CMD>Telescope find_files theme=ivy<CR>", desc = "Search Files" },
-    {
-      "<leader>bl",
-      "<CMD>lua require('telescope.builtin').buffers(require('telescope.themes').get_cursor({ previewer = false }))<CR>",
-      desc = "[S]earch Buffers",
-    },
     { "<leader>?", "<CMD>Telescope oldfiles<CR>", desc = "[?] Find recently opened files" },
-    { "<leader>sp", "<CMD>Telescope project<CR>", desc = "[S]earch [P]roject" },
+    -- { "<leader>sp", "<CMD>Telescope project theme=get_cursor<CR>", desc = "[S]earch [P]roject" },
+    { "<leader>sp", "<CMD>lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>", desc = "[S]earch [P]roject" },
     { "<leader>sr", "<CMD>Telescope resume<CR>", desc = "[S]earch [R]esume" },
     { "<leader>sw", "<CMD>Telescope grep_string<CR>", desc = "[S]earch current [W]ord" },
     { "<leader>sg", "<CMD>Telescope live_grep<CR>", desc = "[S]earch by [G]rep" },
@@ -42,7 +37,7 @@ return {
     },
     {
       "<leader>/",
-      "<CMD>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy({winblend = 10, previewer = false}))<CR>",
+      "<CMD>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy({previewer = false}))<CR>",
       desc = "[/] Fuzzily search in current buffer]",
     },
   },
