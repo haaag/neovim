@@ -18,7 +18,6 @@ return {
     -- luacheck: ignore
   keys = {
     -- search
-    { "<C-p>", "<CMD>Telescope find_files<CR>", desc = "Search Files" },
     { "<leader>?", "<CMD>Telescope oldfiles<CR>", desc = "[?] Find recently opened files" },
     -- { "<leader>sp", "<CMD>Telescope project theme=get_cursor<CR>", desc = "[S]earch [P]roject" },
     { "<leader>sp", "<CMD>lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>", desc = "[S]earch [P]roject" },

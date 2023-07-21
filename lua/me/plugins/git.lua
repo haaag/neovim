@@ -1,5 +1,18 @@
-local git_push = function()
-  -- TODO: Extract function...
+local M = {}
+-- TODO: Extract ...
+
+function M.find_files()
+  local builtin
+  local theme = require("telescope.themes")
+  if vim.loop.fs_stat(vim.loop.cwd() .. "/.git") then
+    builtin = "git_files"
+  else
+    builtin = "find_files"
+  end
+  require("telescope.builtin")[builtin](theme.get_ivy())
+end
+
+function M.git_push()
   if vim.bo.ft ~= "fugitive" then
     return
   end
@@ -20,8 +33,9 @@ return {
     cmd = { "Git" },
     keys = {
       { "<leader>go", "<CMD>Git<CR>", desc = "[G]it Fugitive" },
-      { "<leader>gp", git_push, desc = "[G]it [P]ush" },
       { "<leader>gl", "<CMD>Git log --oneline<CR>", desc = "[G]it [L]og" },
+      { "<leader>gp", M.git_push, desc = "[G]it [P]ush" },
+      { "<C-p>", M.find_files, desc = "Find Files" },
     },
   },
 
