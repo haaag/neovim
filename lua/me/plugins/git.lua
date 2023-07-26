@@ -35,7 +35,7 @@ return {
       { "<leader>go", "<CMD>Git<CR>", desc = "[G]it Fugitive" },
       { "<leader>gl", "<CMD>Git log --oneline<CR>", desc = "[G]it [L]og" },
       { "<leader>gp", M.git_push, desc = "[G]it [P]ush" },
-      { "<C-p>", M.find_files, desc = "Find Files" },
+      { "<leader>gf", M.find_files, desc = "[G]it [F]iles" },
     },
   },
 

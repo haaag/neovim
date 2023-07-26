@@ -10,16 +10,15 @@ return {
   dependencies = {
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    { "nvim-telescope/telescope-project.nvim" }, -- https://github.com/nvim-telescope/telescope-project.nvim
-    -- { "debugloop/telescope-undo.nvim" }, -- https://github.com/debugloop/telescope-undo.nvim
+    { "nvim-telescope/telescope-project.nvim" },
     -- { "nvim-telescope/telescope-dap.nvim" },
   },
     -- stylua: ignore
     -- luacheck: ignore
   keys = {
     -- search
+    { "<C-p>", "<CMD>Telescope find_files theme=get_ivy<CR>", desc = "Search Files" },
     { "<leader>?", "<CMD>Telescope oldfiles<CR>", desc = "[?] Find recently opened files" },
-    -- { "<leader>sp", "<CMD>Telescope project theme=get_cursor<CR>", desc = "[S]earch [P]roject" },
     { "<leader>sp", "<CMD>lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>", desc = "[S]earch [P]roject" },
     { "<leader>sr", "<CMD>Telescope resume<CR>", desc = "[S]earch [R]esume" },
     { "<leader>sw", "<CMD>Telescope grep_string<CR>", desc = "[S]earch current [W]ord" },
@@ -43,9 +42,6 @@ return {
   init = function()
     -- Enable telescope fzf native
     pcall(require("telescope").load_extension, "fzf")
-
-    -- Enable telescope undo
-    -- pcall(require("telescope").load_extension, "undo")
 
     -- Enable telescope project
     pcall(require("telescope").load_extension, "project")

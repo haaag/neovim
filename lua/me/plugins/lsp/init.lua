@@ -9,7 +9,17 @@ return {
       "mason.nvim", -- https://github.com/williamboman/mason.nvim
       "williamboman/mason-lspconfig.nvim", -- https://github.com/williamboman/mason-lspconfig.nvim
       "lukas-reineke/lsp-format.nvim", -- https://github.com/lukas-reineke/lsp-format.nvim
-      { "raimon49/requirements.txt.vim", event = "BufReadPre requirements*.txt" },
+      { -- https://github.com/j-hui/fidget.nvim
+        "j-hui/fidget.nvim",
+        event = "VeryLazy",
+        tag = "legacy",
+        opts = {
+          text = { spinner = "dots_pulse" }, -- dots_pulse, bouncing_bar
+          align = { bottom = true },
+          window = { relative = "editor", blend = 0 }, -- border = "rounded",
+        },
+        enabled = true,
+      },
     },
     ---@class PluginLspOpts
     opts = {

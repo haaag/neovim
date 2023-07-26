@@ -77,17 +77,4 @@ return {
     },
     enabled = true,
   },
-
-  { -- https://github.com/j-hui/fidget.nvim
-    "j-hui/fidget.nvim",
-    event = "VeryLazy",
-    tag = "legacy",
-    opts = {
-      text = { spinner = "dots_pulse" }, -- dots_pulse, bouncing_bar
-      align = { bottom = true },
-      window = { relative = "editor", blend = 0 }, -- border = "rounded",
-      sources = { ["efm"] = { ignore = true } },
-    },
-    enabled = true,
-  },
 }
