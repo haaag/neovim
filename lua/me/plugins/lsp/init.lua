@@ -91,15 +91,11 @@ return {
         -- "luacheck",
         "stylua",
         -- python
-        -- "black",
-        -- "mypy",
-        -- "sourcery",
         "ruff",
         "debugpy",
         -- web
         "prettier",
         "eslint_d",
-        -- "deno",
         -- shell
         "shellcheck",
         "shfmt",
@@ -123,5 +119,35 @@ return {
         end
       end
     end,
+  },
+
+  -- TODO: Replace tool (deprecated)
+  { -- https://github.com/jose-elias-alvarez/null-ls.nvim
+    "jose-elias-alvarez/null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "mason.nvim" },
+    opts = function()
+      local nls = require("null-ls")
+      return {
+        root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
+        sources = {
+          nls.builtins.formatting.stylua,
+          nls.builtins.formatting.prettier,
+          nls.builtins.code_actions.refactoring,
+          -- markdown
+          nls.builtins.diagnostics.markdownlint,
+          nls.builtins.diagnostics.write_good,
+          nls.builtins.diagnostics.alex,
+          -- python
+          nls.builtins.diagnostics.mypy.with({ method = nls.methods.DIAGNOSTICS_ON_SAVE }),
+          -- nls.builtins.diagnostics.ruff,
+          nls.builtins.formatting.black,
+          -- shell
+          nls.builtins.formatting.shfmt,
+          nls.builtins.code_actions.shellcheck,
+        },
+      }
+    end,
+    enabled = true,
   },
 }

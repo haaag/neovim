@@ -25,7 +25,7 @@ return {
       },
       indent = {
         enable = false,
-        disable = { "python", "css" },
+        -- disable = { "python", "css" },
       },
       autotag = {
         enable = true,
@@ -61,7 +61,6 @@ return {
         "vim",
         "vimdoc",
         "yaml",
-        "fish",
       },
       incremental_selection = {
         enable = true,

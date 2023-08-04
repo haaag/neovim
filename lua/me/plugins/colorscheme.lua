@@ -61,7 +61,7 @@ return {
     config = function()
       -- vim.o.background = "light"
       vim.o.background = "dark"
-      vim.g.gruvbox_material_enable_bold = true
+      vim.g.gruvbox_material_enable_bold = false
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_transparent_background = true
       vim.g.gruvbox_material_dim_inactive_windows = false
@@ -73,6 +73,8 @@ return {
       vim.g.gruvbox_material_ui_contrast = "high" -- 'low' 'high'
       vim.g.gruvbox_material_show_eob = 0
       vim.g.gruvbox_material_current_word = "underline"
+      -- vim.g.gruvbox_material_visual = "reverse"
+      vim.g.gruvbox_material_diagnostic_line_highlight = true
       vim.cmd("colorscheme gruvbox-material")
     end,
   },

@@ -4,24 +4,18 @@ return {
   opts = {
     servers = {
       lua_ls = {
+        autostart = true,
         settings = {
           Lua = {
-            format = {
-              enable = false,
-            },
-            telemetry = {
-              enable = false,
-            },
-            workspace = {
-              checkThirdParty = false,
-            },
-            completion = {
-              callSnippet = "Replace",
-            },
+            format = { enable = false },
+            telemetry = { enable = false },
+            workspace = { checkThirdParty = false },
+            completion = { callSnippet = "Replace" },
             diagnostics = {
               enable = true,
               globals = {
                 "vim",
+                "xplr",
               },
             },
           },

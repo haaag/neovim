@@ -7,11 +7,11 @@ local M = {}
 function M.config()
   return {
     virtual_lines = true,
-    -- virtual_text = false,
-    virtual_text = {
+    virtual_text = false,
+    --[[ virtual_text = {
       prefix = " ",
       source = "always",
-    },
+    }, ]]
     signs = true,
     update_in_insert = false,
     underline = true,

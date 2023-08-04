@@ -62,7 +62,7 @@ M.gruvbox = function()
   }
 end
 
-M.gruvbox_material = function()
+M.gruvbox_material_dark = function()
   return {
     background = "#1d2021",
     foreground = "#d4be98",
@@ -79,6 +79,26 @@ M.gruvbox_material = function()
     white = "#d4be98",
     lightgrey = "#a89984",
     darkgrey = "#3c3836",
+  }
+end
+
+M.gruvbox_material_light = function()
+  return {
+    background = "#f9f5d7",
+    foreground = "#654735",
+    black = "#32302f",
+    black2 = "#32302f",
+    red = "#c14a4a",
+    green = "#6c782e",
+    yellow = "#c35e0a",
+    orange = "#c35e0a",
+    blue = "#45707a",
+    magenta = "#945e80",
+    violet = "#945e80",
+    cyan = "#4c7a5d",
+    white = "#654735",
+    grey = "#32302f",
+    darkgrey = "#1d2021",
   }
 end
 
@@ -140,7 +160,7 @@ M.vim_nightfly = function()
 end
 
 M.current = function()
-  return M.gruvbox_material()
+  return M.gruvbox_material_dark()
 end
 
 return M

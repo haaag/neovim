@@ -37,13 +37,15 @@ return {
   { -- https://github.com/ms-jpq/coq_nvim
     "ms-jpq/coq_nvim",
     branch = "coq",
+    cmd = { "COQnow", "COQdeps", "COQhelp", "COQsnips", "COQstats" },
     init = function()
       local icons = require("me.config.icons").icons
       vim.g.coq_settings = {
         auto_start = "shut-up",
         keymap = {
           pre_select = false,
-          jump_to_mark = "<c-y>",
+          manual_complete_insertion_only = true,
+          jump_to_mark = "",
         },
         display = {
           icons = {
@@ -52,7 +54,7 @@ return {
           },
         },
         completion = {
-          always = true,
+          always = false,
           skip_after = {
             "{",
             "}",
@@ -62,7 +64,6 @@ return {
         },
         clients = {
           tags = { enabled = true, short_name = "tags" },
-          tabnine = { enabled = true, short_name = "t9" },
           tmux = { enabled = true, short_name = "tmux" },
           buffers = { same_filetype = true, short_name = "buf" },
           paths = { preview_lines = 3, short_name = "path" },
@@ -85,15 +86,14 @@ return {
       require("coq_3p")({
         { src = "nvimlua", short_name = "api", conf_only = true }, -- Lua
         { src = "bc", short_name = "math", precision = 6 }, -- Calculator
-        { src = "vim_dadbod_completion", short_name = "DB" },
+        -- { src = "vim_dadbod_completion", short_name = "DB" },
         { src = "cow", trigger = "!cow" },
-        { -- figlet command
+        {
           src = "figlet",
           trigger = "!big",
           short_name = "BIG",
           fonts = {
             "/usr/share/figlet/standard.flf",
-            "/usr/share/figlet/cybermedium.flf",
           },
         },
         -- { src = "dap" },
@@ -109,4 +109,52 @@ return {
     end,
     lazy = false,
   },
+
+  { -- https://github.com/numToStr/Comment.nvim
+    "numToStr/Comment.nvim",
+    event = "VeryLazy",
+    config = true,
+    enabled = true,
+  },
+
+  { -- https://github.com/liuchengxu/vista.vim
+    "liuchengxu/vista.vim",
+    keys = {
+      { "<F2>", "<CMD>Vista!!<CR>", desc = "Vista toggle" },
+    },
+    config = function()
+      vim.g.vista_sidebar_width = 45
+    end,
+    enabled = true,
+  },
+
+  { -- https://github.com/Vimjas/vim-python-pep8-indent
+    "Vimjas/vim-python-pep8-indent",
+    ft = { "py", "python" },
+    enabled = true,
+  },
+
+  -- { -- https://github.com/Exafunction/codeium.vim
+  --   "Exafunction/codeium.vim",
+  --   event = "InsertEnter",
+  --   ft = { "python", "javascript", "sh", "typescript", "typescriptreact", "lua" },
+  --   config = function()
+  --     vim.g.codeium_enabled = true
+  --     -- vim.g.codeium_render = false
+  --     -- Change '<C-g>' here to any keycode you like.
+  --     vim.keymap.set("i", "<C-g>", function()
+  --       return vim.fn["codeium#Accept"]()
+  --     end, { expr = true })
+  --     vim.keymap.set("i", "<M-;>", function()
+  --       return vim.fn["codeium#CycleCompletions"](1)
+  --     end, { expr = true })
+  --     vim.keymap.set("i", "<C-,>", function()
+  --       return vim.fn["codeium#CycleCompletions"](-1)
+  --     end, { expr = true })
+  --     vim.keymap.set("i", "<C-x>", function()
+  --       return vim.fn["codeium#Clear"]()
+  --     end, { expr = true })
+  --   end,
+  --   enabled = true,
+  -- },
 }

@@ -19,7 +19,7 @@ require("lazy").setup({
     { import = "me.plugins.lsp.servers.extras.lua_ls" },
     { import = "me.plugins.lsp.servers.extras.pylsp" },
     -- { import = "me.plugins.lsp.servers.extras.json" },
-    { import = "me.plugins.lsp.servers.extras.typescript" },
+    -- { import = "me.plugins.lsp.servers.extras.typescript" },
     -- { import = "me.plugins.lsp.servers.extras.go_ls" },
     { import = "me.plugins.lsp.servers.extras.pyright" },
   },
