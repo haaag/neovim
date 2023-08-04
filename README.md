@@ -32,7 +32,7 @@
 
 - [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter configurations and abstraction layer for neovim.
 - [nvim-treesitter/nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - Create your own textobjects using tree-sitter queries!.
-- [echasnovski/mini.bufremove](https://github.com/echasnovski/mini.bufremove) - Module of `mini.nvim` for buffer removing (unshow, delete, wipeout) while saving window layout.
+- [echasnovski/mini.bufremove](https://github.com/echasnovski/mini.bufremove) - Buffer removing (unshow, delete, wipeout) while saving window layout.
 - [akinsho/toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) - Persist and toggle multiple terminals during an editing session
 - [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim) - Highlight and search for todo comments like TODO, etc.
 - [folke/trouble.nvim](https://github.com/folke/trouble.nvim) - Show diagnostics, references, quickfix and location.
@@ -47,7 +47,7 @@
 ### 🛠️ Git
 
 - [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Super fast git decorations implemented purely in lua/teal.
-- [sindrets/diffview.nvim](https://github.com/sindrets/diffview.nvim) - Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
+- [sindrets/diffview.nvim](https://github.com/sindrets/diffview.nvim) - Interface for easily cycling through diffs for all modified files for any git rev.
 - [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive) - Fugitive is the premier Vim plugin for Git.
 
 ### 🌈 Colorschemes
@@ -71,5 +71,5 @@
 
 - [baskerville/vim-sxhkdrc](https://github.com/baskerville/vim-sxhkdrc) - `sxhkdrc` syntax highlight.
 - [tpope/vim-repeat](https://github.com/tpope/vim-repeat) - `Repeat.vim` remaps `.` in a way that plugins can tap into it.
-- [Abstract-IDE/penvim](https://github.com/Abstract-IDE/penvim) - Project's root directory and documents Indentation detector with project based config loader.
+- [Abstract-IDE/penvim](https://github.com/Abstract-IDE/penvim) - Project's root directory.
 - [toppair/peek.nvim](https://github.com/toppair/peek.nvim) - Markdown preview plugin for Neovim.
