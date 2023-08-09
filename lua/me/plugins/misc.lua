@@ -11,13 +11,6 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/Abstract-IDE/penvim
-    "Abstract-IDE/penvim",
-    event = "VeryLazy",
-    config = true,
-    enabled = true,
-  },
-
   { -- https://github.com/toppair/peek.nvim
     "toppair/peek.nvim",
     event = { "BufRead", "BufNewFile" },
