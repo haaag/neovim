@@ -54,28 +54,28 @@ return {
 
   -- gruvbox
   { -- https://github.com/sainnhe/gruvbox-material
-    "sainnhe/gruvbox-material",
+    'sainnhe/gruvbox-material',
     lazy = false,
     priority = 1000,
     enabled = true,
     config = function()
       -- vim.o.background = "light"
-      vim.o.background = "dark"
+      vim.o.background = 'dark'
       vim.g.gruvbox_material_enable_bold = false
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_transparent_background = true
       vim.g.gruvbox_material_dim_inactive_windows = false
       vim.g.gruvbox_material_disable_italic_comment = false
       vim.g.gruvbox_material_diagnostic_text_highlight = false
-      vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
-      vim.g.gruvbox_material_diagnostic_virtual_text = "colored" -- grey, colored, highlighted
-      vim.g.gruvbox_material_spell_foreground = "colored" -- none
-      vim.g.gruvbox_material_ui_contrast = "high" -- 'low' 'high'
+      vim.g.gruvbox_material_background = 'hard' -- hard, medium, soft
+      vim.g.gruvbox_material_diagnostic_virtual_text = 'colored' -- grey, colored, highlighted
+      vim.g.gruvbox_material_spell_foreground = 'colored' -- none
+      vim.g.gruvbox_material_ui_contrast = 'high' -- 'low' 'high'
       vim.g.gruvbox_material_show_eob = 0
-      vim.g.gruvbox_material_current_word = "underline"
+      vim.g.gruvbox_material_current_word = 'underline'
       -- vim.g.gruvbox_material_visual = "reverse"
       vim.g.gruvbox_material_diagnostic_line_highlight = true
-      vim.cmd("colorscheme gruvbox-material")
+      vim.cmd('colorscheme gruvbox-material')
     end,
   },
 

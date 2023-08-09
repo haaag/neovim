@@ -1,7 +1,7 @@
 return {
 
   { -- https://github.com/echasnovski/mini.bufremove
-    "echasnovski/mini.bufremove",
+    'echasnovski/mini.bufremove',
     -- stylua: ignore
     keys = {
       { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "[B]uffer [d]elete" },
@@ -11,37 +11,37 @@ return {
   },
 
   { -- https://github.com/akinsho/toggleterm.nvim
-    "akinsho/toggleterm.nvim",
-    event = "VeryLazy",
+    'akinsho/toggleterm.nvim',
+    event = 'VeryLazy',
     enabled = true,
     opts = {
       size = 18,
       open_mapping = [[<c-\>]],
       hide_numbers = true, -- hide the number column in toggleterm buffers
       shade_terminals = false,
-      direction = "float", -- | 'horizontal' | 'window' | 'float',
+      direction = 'float', -- | 'horizontal' | 'window' | 'float',
       close_on_exit = true, -- close the terminal window when the process exits
       float_opts = {
-        border = "curved",
+        border = 'curved',
         winblend = 0,
       },
     },
     config = function(_, opts)
-      require("toggleterm").setup(opts)
+      require('toggleterm').setup(opts)
     end,
   },
 
   { -- https://github.com/folke/todo-comments.nvim
-    "folke/todo-comments.nvim",
-    cmd = { "TodoTrouble", "TodoTelescope" },
-    event = "BufReadPost",
+    'folke/todo-comments.nvim',
+    cmd = { 'TodoTrouble', 'TodoTelescope' },
+    event = 'BufReadPost',
     opts = {
       keywords = {
-        WIP = { icon = " ", color = "warning" },
+        WIP = { icon = ' ', color = 'warning' },
       },
     },
     config = function(_, opts)
-      require("todo-comments").setup(opts)
+      require('todo-comments').setup(opts)
     end,
     -- stylua: ignore
     keys = {
@@ -55,13 +55,13 @@ return {
   },
 
   { -- https://github.com/folke/trouble.nvim
-    "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
+    'folke/trouble.nvim',
+    cmd = { 'TroubleToggle', 'Trouble' },
     opts = { use_diagnostic_signs = true },
     keys = {
       -- stylua: ignore
       { "<leader>xx", "<CMD>TroubleToggle document_diagnostics<CR>", desc = "Document Diagnostics (Trouble)" },
-      { "<leader>xX", "<CMD>TroubleToggle workspace_diagnostics<CR>", desc = "Workspace Diagnostics (Trouble)" },
+      { '<leader>xX', '<CMD>TroubleToggle workspace_diagnostics<CR>', desc = 'Workspace Diagnostics (Trouble)' },
     },
     enabled = true,
   },

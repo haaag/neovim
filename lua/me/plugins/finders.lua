@@ -3,15 +3,15 @@
 return {
   { -- https://github.com/nvim-telescope/telescope.nvim
 
-    "nvim-telescope/telescope.nvim",
-    event = "VeryLazy",
-    version = "0.1.x",
-    cmd = { "Telescope" },
+    'nvim-telescope/telescope.nvim',
+    event = 'VeryLazy',
+    version = '0.1.x',
+    cmd = { 'Telescope' },
     enabled = true,
     dependencies = {
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      { "nvim-telescope/telescope-project.nvim" },
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      { 'nvim-telescope/telescope-project.nvim' },
       -- { "nvim-telescope/telescope-dap.nvim" },
     },
     -- stylua: ignore
@@ -42,10 +42,10 @@ return {
   },
     init = function()
       -- Enable telescope fzf native
-      pcall(require("telescope").load_extension, "fzf")
+      pcall(require('telescope').load_extension, 'fzf')
 
       -- Enable telescope project
-      pcall(require("telescope").load_extension, "project")
+      pcall(require('telescope').load_extension, 'project')
 
       -- Enable telescope dap
       -- pcall(require("telescope").load_extension, "dap")
@@ -53,22 +53,22 @@ return {
   },
 
   { -- https://github.com/neo-tree.nvim
-    "nvim-neo-tree/neo-tree.nvim",
+    'nvim-neo-tree/neo-tree.nvim',
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
     },
     keys = {
-      { "<leader><F3>", "<CMD>Neotree current %:p:h:h %:p<CR>", desc = "NeoTree Current" },
-      { "<F3>", "<CMD>Neotree toggle<CR>", desc = "NeoTree Toggle" },
+      { '<leader><F3>', '<CMD>Neotree current %:p:h:h %:p<CR>', desc = 'NeoTree Current' },
+      { '<F3>', '<CMD>Neotree toggle<CR>', desc = 'NeoTree Toggle' },
     },
     init = function()
       vim.g.neo_tree_remove_legacy_commands = 1
       if vim.fn.argc() == 1 then
         local stat = vim.loop.fs_stat(vim.fn.argv(0))
-        if stat and stat.type == "directory" then
-          require("neo-tree")
+        if stat and stat.type == 'directory' then
+          require('neo-tree')
         end
       end
     end,
@@ -78,49 +78,49 @@ return {
         follow_current_file = true,
       },
       window = {
-        position = "right",
+        position = 'right',
         width = 30,
         mapping_options = {
           noremap = true,
           nowait = true,
         },
         mappings = {
-          ["<space>"] = {
-            "toggle_node",
+          ['<space>'] = {
+            'toggle_node',
             nowait = false,
           },
-          ["<2-LeftMouse>"] = "open",
-          ["<cr>"] = "open",
-          ["o"] = "open",
-          ["S"] = "open_split",
-          ["s"] = "open_vsplit",
-          ["t"] = "open_tabnew",
-          ["w"] = "open_with_window_picker",
-          ["C"] = "close_node",
-          ["a"] = "add",
-          ["A"] = "add_directory",
-          ["d"] = "delete",
-          ["r"] = "rename",
-          ["y"] = "copy_to_clipboard",
-          ["x"] = "cut_to_clipboard",
-          ["p"] = "paste_from_clipboard",
-          ["c"] = "copy", -- takes text input for destination
-          ["m"] = "move", -- takes text input for destination
-          ["q"] = "close_window",
-          ["R"] = "refresh",
+          ['<2-LeftMouse>'] = 'open',
+          ['<cr>'] = 'open',
+          ['o'] = 'open',
+          ['S'] = 'open_split',
+          ['s'] = 'open_vsplit',
+          ['t'] = 'open_tabnew',
+          ['w'] = 'open_with_window_picker',
+          ['C'] = 'close_node',
+          ['a'] = 'add',
+          ['A'] = 'add_directory',
+          ['d'] = 'delete',
+          ['r'] = 'rename',
+          ['y'] = 'copy_to_clipboard',
+          ['x'] = 'cut_to_clipboard',
+          ['p'] = 'paste_from_clipboard',
+          ['c'] = 'copy', -- takes text input for destination
+          ['m'] = 'move', -- takes text input for destination
+          ['q'] = 'close_window',
+          ['R'] = 'refresh',
         },
       },
     },
   },
 
   { -- https://github.com/ggandor/leap.nvim
-    "ggandor/leap.nvim",
-    event = "VeryLazy",
+    'ggandor/leap.nvim',
+    event = 'VeryLazy',
     dependencies = { -- https://github.com/ggandor/flit.nvim
-      { "ggandor/flit.nvim", opts = { labeled_modes = "nv" } },
+      { 'ggandor/flit.nvim', opts = { labeled_modes = 'nv' } },
     },
     config = function(_, opts)
-      local leap = require("leap")
+      local leap = require('leap')
       for k, v in pairs(opts) do
         leap.opts[k] = v
       end

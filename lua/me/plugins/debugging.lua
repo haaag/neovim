@@ -1,11 +1,11 @@
 return {
   { -- https://github.com/mfussenegger/nvim-dap
-    "mfussenegger/nvim-dap",
+    'mfussenegger/nvim-dap',
     lazy = true,
     dependencies = {
-      "rcarriga/nvim-dap-ui",
-      "mfussenegger/nvim-dap-python",
-      "theHamsta/nvim-dap-virtual-text",
+      'rcarriga/nvim-dap-ui',
+      'mfussenegger/nvim-dap-python',
+      'theHamsta/nvim-dap-virtual-text',
     },
     enabled = true,
     -- stylua: ignore
@@ -34,32 +34,32 @@ return {
       map("v", "<leader>dpd", "<CMD>lua require('dap-python').debug_selection()<CR>", { desc = "Debug Selection" })
     end,
     config = function()
-      local dap = require("dap")
-      local dapui = require("dapui")
-      require("nvim-dap-virtual-text").setup()
+      local dap = require('dap')
+      local dapui = require('dapui')
+      require('nvim-dap-virtual-text').setup()
 
       -- dap signs
       local signs = {
         DapBreakpoint = {
-          text = "",
-          texthl = "DiagnosticSignError",
+          text = '',
+          texthl = 'DiagnosticSignError',
         },
         DapBreakpointCondition = {
-          text = "ﴫ•",
-          texthl = "DiagnosticSignHint",
+          text = 'ﴫ•',
+          texthl = 'DiagnosticSignHint',
         },
         DapBreakpointRejected = {
-          text = "ﴫ•",
-          texthl = "DiagnosticSignWarn",
+          text = 'ﴫ•',
+          texthl = 'DiagnosticSignWarn',
         },
         DapLogPoint = {
-          text = "",
-          texthl = "DiagnosticSignError",
+          text = '',
+          texthl = 'DiagnosticSignError',
         },
         DapStopped = {
-          text = "⇥",
-          texthl = "DiagnosticSignInfo",
-          linehl = "CursorLine",
+          text = '⇥',
+          texthl = 'DiagnosticSignInfo',
+          linehl = 'CursorLine',
         },
       }
 
@@ -69,15 +69,15 @@ return {
       --
       -- dap-ui
       local dapui_config = {
-        icons = { expanded = "▾", collapsed = "▸", circular = "" },
+        icons = { expanded = '▾', collapsed = '▸', circular = '' },
         mappings = {
           -- Use a table to apply multiple mappings
-          expand = { "<CR>", "<2-LeftMouse>" },
-          open = "o",
-          remove = "d",
-          edit = "e",
-          repl = "r",
-          toggle = "t",
+          expand = { '<CR>', '<2-LeftMouse>' },
+          open = 'o',
+          remove = 'd',
+          edit = 'e',
+          repl = 'r',
+          toggle = 't',
         },
         -- Use this to override mappings for specific elements
         element_mappings = {},
@@ -85,36 +85,36 @@ return {
         layouts = {
           {
             elements = {
-              "scopes",
-              "breakpoints",
-              "stacks",
-              "watches",
+              'scopes',
+              'breakpoints',
+              'stacks',
+              'watches',
             },
             size = 80,
-            position = "left",
+            position = 'left',
           },
           {
             elements = {
-              "repl",
-              "console",
+              'repl',
+              'console',
             },
             size = 10,
-            position = "bottom",
+            position = 'bottom',
           },
         },
         controls = {
           enabled = false,
           -- Display controls in this element
-          element = "repl",
+          element = 'repl',
           icons = {
-            pause = "",
-            play = "",
-            step_into = "",
-            step_over = "",
-            step_out = "",
-            step_back = "",
-            run_last = "",
-            terminate = "",
+            pause = '',
+            play = '',
+            step_into = '',
+            step_over = '',
+            step_out = '',
+            step_back = '',
+            run_last = '',
+            terminate = '',
           },
         },
         floating = {
@@ -122,7 +122,7 @@ return {
           max_width = 0.5, -- Floats will be treated as percentage of your screen.
           border = vim.g.border_chars, -- Border style. Can be 'single', 'double' or 'rounded'
           mappings = {
-            close = { "q", "<Esc>" },
+            close = { 'q', '<Esc>' },
           },
         },
         windows = { indent = 1 },
@@ -132,37 +132,37 @@ return {
         },
       }
       dapui.setup(dapui_config)
-      dap.listeners.after.event_initialized["dapui_config"] = function()
+      dap.listeners.after.event_initialized['dapui_config'] = function()
         dapui.open()
       end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
+      dap.listeners.before.event_terminated['dapui_config'] = function()
         dapui.close()
       end
-      dap.listeners.before.event_exited["dapui_config"] = function()
+      dap.listeners.before.event_exited['dapui_config'] = function()
         dapui.close()
       end
       --
       -- dap-python
       dap.configurations.python = {
         {
-          type = "python",
-          request = "launch",
-          name = "Launch file",
-          program = "${file}",
+          type = 'python',
+          request = 'launch',
+          name = 'Launch file',
+          program = '${file}',
           pythonPath = function()
             local cwd = vim.fn.getcwd()
-            if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
-              return cwd .. "/venv/bin/python"
-            elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
-              return cwd .. "/.venv/bin/python"
+            if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
+              return cwd .. '/venv/bin/python'
+            elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+              return cwd .. '/.venv/bin/python'
             else
-              return vim.fn.exepath("python3") or vim.fn.exepath("python")
+              return vim.fn.exepath('python3') or vim.fn.exepath('python')
             end
           end,
         },
       }
-      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-      require("dap-python").setup(path)
+      local path = '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python'
+      require('dap-python').setup(path)
     end,
   },
 }

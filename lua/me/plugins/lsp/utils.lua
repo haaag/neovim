@@ -4,7 +4,7 @@ local M = {}
 
 ---@param on_attach fun(client, buffer)
 function M.on_attach(on_attach)
-  vim.api.nvim_create_autocmd("LspAttach", {
+  vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
       local buffer = args.buf
       local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -31,8 +31,8 @@ end
 
 function M.capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.offsetEncoding = { "utf-16" }
-  capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
+  capabilities.offsetEncoding = { 'utf-16' }
+  capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
   capabilities.textDocument.completion.completionItem.snippetSupport = true
   capabilities.textDocument.completion.completionItem.preselectSupport = true
   capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
@@ -42,9 +42,9 @@ function M.capabilities()
   capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
   capabilities.textDocument.completion.completionItem.resolveSupport = {
     properties = {
-      "documentation",
-      "detail",
-      "additionalTextEdits",
+      'documentation',
+      'detail',
+      'additionalTextEdits',
     },
   }
   return capabilities

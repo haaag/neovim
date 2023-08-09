@@ -1,32 +1,33 @@
 return {
 
   { -- https://github.com/nvim-tree/nvim-web-devicons
-    "nvim-tree/nvim-web-devicons",
+    'nvim-tree/nvim-web-devicons',
+    enabled = true,
   },
 
   { -- https://github.com/szw/vim-maximizer
-    "szw/vim-maximizer",
-    cmd = "MaximizerToggle",
+    'szw/vim-maximizer',
+    cmd = 'MaximizerToggle',
     config = function()
       vim.g.maximizer_set_default_mapping = 1
     end,
     keys = {
-      { "<C-w>m", "<CMD>MaximizerToggle<CR>", desc = "Buffer Maximizer" },
+      { '<C-w>m', '<CMD>MaximizerToggle<CR>', desc = 'Buffer Maximizer' },
     },
     enabled = true,
   },
 
   { -- https://github.com/stevearc/dressing.nvim
-    "stevearc/dressing.nvim",
+    'stevearc/dressing.nvim',
     init = function()
       ---@diagnostic disable-next-line: duplicate-set-field
       vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
+        require('lazy').load({ plugins = { 'dressing.nvim' } })
         return vim.ui.select(...)
       end
       ---@diagnostic disable-next-line: duplicate-set-field
       vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
+        require('lazy').load({ plugins = { 'dressing.nvim' } })
         return vim.ui.input(...)
       end
     end,
@@ -34,60 +35,63 @@ return {
   },
 
   { -- https://github.com/tzachar/local-highlight.nvim
-    "tzachar/local-highlight.nvim",
+    'tzachar/local-highlight.nvim',
     lazy = false,
     -- event = "VeryLazy",
     config = function()
       -- local theme = require("me.config.colors").current()
-      vim.api.nvim_set_hl(0, "MyLocalHighlight", {
+      vim.api.nvim_set_hl(0, 'MyLocalHighlight', {
         -- bg = theme.darkgrey,
         underline = true,
         bold = true,
       })
-      require("local-highlight").setup({
-        hlgroup = "MyLocalHighlight",
+      require('local-highlight').setup({
+        hlgroup = 'MyLocalHighlight',
       })
     end,
+    enabled = true,
   },
 
   { -- https://github.com/lukas-reineke/virt-column.nvim
-    "lukas-reineke/virt-column.nvim",
-    event = "VeryLazy",
+    'lukas-reineke/virt-column.nvim',
+    event = 'VeryLazy',
     config = true,
+    enabled = true,
   },
 
   { -- my.statusline.nvim
-    dir = tostring(os.getenv("HOME")) .. "/dev/lua/stat.nvim",
+    dir = tostring(os.getenv('HOME')) .. '/dev/lua/stat.nvim',
     dependencies = {
-      "nvim-tree/nvim-web-devicons",
+      'nvim-tree/nvim-web-devicons',
     },
     opts = {},
-    event = "VeryLazy",
-    enabled = true,
+    event = 'VeryLazy',
     config = true,
+    enabled = true,
   },
 
   { -- https://github.com/utilyre/sentiment.nvim
-    "utilyre/sentiment.nvim",
-    name = "sentiment",
-    event = "VeryLazy",
-    version = "*",
+    'utilyre/sentiment.nvim',
+    name = 'sentiment',
+    event = 'VeryLazy',
+    version = '*',
     config = true,
     enabled = true,
   },
 
   { -- https://github.com/b0o/incline.nvim
-    "b0o/incline.nvim",
-    event = "VeryLazy",
+    'b0o/incline.nvim',
+    event = 'VeryLazy',
     config = true,
+    enabled = true,
   },
 
   { -- https://github.com/NvChad/nvim-colorizer.lua
-    "NvChad/nvim-colorizer.lua",
-    event = "BufReadPre",
+    'NvChad/nvim-colorizer.lua',
+    event = 'BufReadPre',
     opts = {
-      filetypes = { "*", "!lazy" },
-      buftype = { "*", "!prompt", "!nofile", "!TelescopePrompt" },
+      filetypes = { '*', '!lazy' },
+      buftype = { '*', '!prompt', '!nofile', '!TelescopePrompt' },
       user_default_options = {
         RGB = true, -- #RGB hex codes
         RRGGBB = true, -- #RRGGBB hex codes
@@ -100,41 +104,41 @@ return {
         css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
         -- Available modes: foreground, background
         -- Available modes for `mode`: foreground, background,  virtualtext
-        mode = "background", -- Set the display mode.
-        virtualtext = "■",
+        mode = 'background', -- Set the display mode.
+        virtualtext = '■',
       },
     },
     enabled = true,
   },
 
   { -- https://github.com/folke/which-key.nvim
-    "folke/which-key.nvim",
-    event = "VeryLazy",
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
     config = function(_, opts)
-      local wk = require("which-key")
+      local wk = require('which-key')
       wk.setup(opts)
       wk.register({
-        mode = { "n", "v" },
-        ["g"] = { name = "+goto" },
-        ["]"] = { name = "+next" },
-        ["["] = { name = "+prev" },
-        ["<leader>b"] = { name = "+buffers" },
-        ["<leader>d"] = { name = "+debugging" },
-        ["<leader>dp"] = { name = "+python" },
-        ["<leader>ds"] = { name = "+step" },
-        ["<leader>e"] = { name = "+edits" },
-        ["<leader>g"] = { name = "+git" },
-        ["<leader>gt"] = { name = "+telescope" },
-        ["<leader>gd"] = { name = "+diff" },
-        ["<leader>gh"] = { name = "+hunks" },
-        ["<leader>l"] = { name = "+lsp" },
-        ["<leader>lw"] = { name = "+workspace" },
-        ["<leader>m"] = { name = "+misc" },
-        ["<leader>s"] = { name = "+search" },
-        ["<leader>t"] = { name = "+test" },
-        ["<leader>q"] = { name = "+quickfix" },
-        ["<leader>qs"] = { name = "+sessions" },
-        ["<leader>x"] = { name = "+diagnostics" },
+        mode = { 'n', 'v' },
+        ['g'] = { name = '+goto' },
+        [']'] = { name = '+next' },
+        ['['] = { name = '+prev' },
+        ['<leader>b'] = { name = '+buffers' },
+        ['<leader>d'] = { name = '+debugging' },
+        ['<leader>dp'] = { name = '+python' },
+        ['<leader>ds'] = { name = '+step' },
+        ['<leader>e'] = { name = '+edits' },
+        ['<leader>g'] = { name = '+git' },
+        ['<leader>gt'] = { name = '+telescope' },
+        ['<leader>gd'] = { name = '+diff' },
+        ['<leader>gh'] = { name = '+hunks' },
+        ['<leader>l'] = { name = '+lsp' },
+        ['<leader>lw'] = { name = '+workspace' },
+        ['<leader>m'] = { name = '+misc' },
+        ['<leader>s'] = { name = '+search' },
+        ['<leader>t'] = { name = '+test' },
+        ['<leader>q'] = { name = '+quickfix' },
+        ['<leader>qs'] = { name = '+sessions' },
+        ['<leader>x'] = { name = '+diagnostics' },
       })
     end,
     enabled = true,
