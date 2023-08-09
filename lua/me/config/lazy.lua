@@ -1,4 +1,4 @@
--- lazy.boostrap
+-- lazy.bootstrap
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -18,10 +18,10 @@ require("lazy").setup({
     { import = "me.plugins" },
     { import = "me.plugins.lsp.servers.extras.lua_ls" },
     { import = "me.plugins.lsp.servers.extras.pylsp" },
+    -- { import = "me.plugins.lsp.servers.extras.pyright" },
     -- { import = "me.plugins.lsp.servers.extras.json" },
     -- { import = "me.plugins.lsp.servers.extras.typescript" },
     -- { import = "me.plugins.lsp.servers.extras.go_ls" },
-    { import = "me.plugins.lsp.servers.extras.pyright" },
   },
   defaults = { lazy = true },
   install = { colorscheme = { "tokyonight" } },

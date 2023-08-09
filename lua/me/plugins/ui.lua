@@ -11,7 +11,7 @@ return {
       vim.g.maximizer_set_default_mapping = 1
     end,
     keys = {
-      { "<C-w>m", "<CMD>MaximizerToggle<CR>", desc = "[B]uffer [M]aximizer" },
+      { "<C-w>m", "<CMD>MaximizerToggle<CR>", desc = "Buffer Maximizer" },
     },
     enabled = true,
   },

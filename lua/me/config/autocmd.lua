@@ -78,6 +78,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = augroup("json_au"),
   pattern = { "json", "jsonc" },
   callback = function()
     vim.wo.spell = false
