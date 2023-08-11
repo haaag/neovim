@@ -70,15 +70,6 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/utilyre/sentiment.nvim
-    'utilyre/sentiment.nvim',
-    name = 'sentiment',
-    event = 'VeryLazy',
-    version = '*',
-    config = true,
-    enabled = true,
-  },
-
   { -- https://github.com/b0o/incline.nvim
     'b0o/incline.nvim',
     event = 'VeryLazy',
