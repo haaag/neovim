@@ -3,6 +3,7 @@
 local options = { noremap = true, silent = true }
 local silent = { silent = true }
 local map = vim.keymap.set
+local Util = require('me.config.utils')
 
 -- Keymaps for better default experience
 -- vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
@@ -86,6 +87,9 @@ map('n', '<leader>wa', function()
 end, { desc = 'Toggle [A]all' })
 
 vim.keymap.set('n', '<leader>go', vim.cmd.Git)
+vim.keymap.set('n', '<leader>ma', function()
+  Util.set_root()
+end)
 
 -- map("n", "<S-A-CR>", ":TermExec cmd='python %' size=10 direction=horizontal <CR>")
 

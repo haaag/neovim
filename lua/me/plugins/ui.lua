@@ -5,18 +5,6 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/szw/vim-maximizer
-    'szw/vim-maximizer',
-    cmd = 'MaximizerToggle',
-    config = function()
-      vim.g.maximizer_set_default_mapping = 1
-    end,
-    keys = {
-      { '<C-w>m', '<CMD>MaximizerToggle<CR>', desc = 'Buffer Maximizer' },
-    },
-    enabled = true,
-  },
-
   { -- https://github.com/stevearc/dressing.nvim
     'stevearc/dressing.nvim',
     init = function()
@@ -37,7 +25,6 @@ return {
   { -- https://github.com/tzachar/local-highlight.nvim
     'tzachar/local-highlight.nvim',
     lazy = false,
-    -- event = "VeryLazy",
     config = function()
       -- local theme = require("me.config.colors").current()
       vim.api.nvim_set_hl(0, 'MyLocalHighlight', {
@@ -54,7 +41,7 @@ return {
 
   { -- https://github.com/lukas-reineke/virt-column.nvim
     'lukas-reineke/virt-column.nvim',
-    event = 'VeryLazy',
+    lazy = false,
     config = true,
     enabled = true,
   },
@@ -79,7 +66,12 @@ return {
 
   { -- https://github.com/NvChad/nvim-colorizer.lua
     'NvChad/nvim-colorizer.lua',
-    event = 'BufReadPre',
+    cmd = {
+      'ColorizerAttachToBuffer',
+      'ColorizerDetachFromBuffer',
+      'ColorizerReloadAllBuffers',
+      'ColorizerToggle',
+    },
     opts = {
       filetypes = { '*', '!lazy' },
       buftype = { '*', '!prompt', '!nofile', '!TelescopePrompt' },
@@ -104,7 +96,6 @@ return {
 
   { -- https://github.com/folke/which-key.nvim
     'folke/which-key.nvim',
-    event = 'VeryLazy',
     config = function(_, opts)
       local wk = require('which-key')
       wk.setup(opts)

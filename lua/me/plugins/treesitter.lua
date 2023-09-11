@@ -15,6 +15,7 @@ return {
     },
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/nvim-treesitter-context',
       'windwp/nvim-ts-autotag',
     },
     opts = {
@@ -25,7 +26,7 @@ return {
       },
       indent = {
         enable = false,
-        -- disable = { "python", "css" },
+        disable = { 'python', 'css' },
       },
       autotag = {
         enable = true,

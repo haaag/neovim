@@ -52,65 +52,13 @@ return {
     end,
   },
 
-  { -- https://github.com/neo-tree.nvim
-    'nvim-neo-tree/neo-tree.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons',
-      'MunifTanjim/nui.nvim',
-    },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
     keys = {
-      { '<leader><F3>', '<CMD>Neotree current %:p:h:h %:p<CR>', desc = 'NeoTree Current' },
-      { '<F3>', '<CMD>Neotree toggle<CR>', desc = 'NeoTree Toggle' },
+      { '-', '<CMD>Oil<CR>', desc = 'Open parent directory' },
     },
-    init = function()
-      vim.g.neo_tree_remove_legacy_commands = 1
-      if vim.fn.argc() == 1 then
-        local stat = vim.loop.fs_stat(vim.fn.argv(0))
-        if stat and stat.type == 'directory' then
-          require('neo-tree')
-        end
-      end
-    end,
-    opts = {
-      filesystem = {
-        bind_to_cwd = false,
-        follow_current_file = true,
-      },
-      window = {
-        position = 'right',
-        width = 30,
-        mapping_options = {
-          noremap = true,
-          nowait = true,
-        },
-        mappings = {
-          ['<space>'] = {
-            'toggle_node',
-            nowait = false,
-          },
-          ['<2-LeftMouse>'] = 'open',
-          ['<cr>'] = 'open',
-          ['o'] = 'open',
-          ['S'] = 'open_split',
-          ['s'] = 'open_vsplit',
-          ['t'] = 'open_tabnew',
-          ['w'] = 'open_with_window_picker',
-          ['C'] = 'close_node',
-          ['a'] = 'add',
-          ['A'] = 'add_directory',
-          ['d'] = 'delete',
-          ['r'] = 'rename',
-          ['y'] = 'copy_to_clipboard',
-          ['x'] = 'cut_to_clipboard',
-          ['p'] = 'paste_from_clipboard',
-          ['c'] = 'copy', -- takes text input for destination
-          ['m'] = 'move', -- takes text input for destination
-          ['q'] = 'close_window',
-          ['R'] = 'refresh',
-        },
-      },
-    },
+    lazy = false,
   },
 
   { -- https://github.com/ggandor/leap.nvim

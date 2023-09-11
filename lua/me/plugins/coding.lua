@@ -37,11 +37,12 @@ return {
   { -- https://github.com/ms-jpq/coq_nvim
     'ms-jpq/coq_nvim',
     branch = 'coq',
+    build = ':COQdeps',
     lazy = false,
     init = function()
       local icons = require('me.config.icons').icons
       vim.g.coq_settings = {
-        -- auto_start = "shut-up",
+        auto_start = 'shut-up',
         keymap = {
           pre_select = false,
           manual_complete_insertion_only = false,
@@ -86,6 +87,7 @@ return {
       require('coq_3p')({
         { src = 'nvimlua', short_name = 'api', conf_only = true }, -- Lua
         { src = 'bc', short_name = 'math', precision = 6 }, -- Calculator
+        { src = 'codeium', short_name = 'cod' },
         -- { src = "vim_dadbod_completion", short_name = "DB" },
         { src = 'cow', trigger = '!cow' },
         {
@@ -117,15 +119,15 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/liuchengxu/vista.vim
-    'liuchengxu/vista.vim',
+  {
+    'stevearc/aerial.nvim',
+    opts = { show_guides = true },
     keys = {
-      { '<F2>', '<CMD>Vista!!<CR>', desc = 'Vista toggle' },
+      { '<F2>', '<CMD>AerialToggle<CR>', desc = 'Aerial toggle' },
+      { '<leader><F2>', '<CMD>AerialNavToggle<CR>', desc = 'Aerial toggle' },
+      { '[f', '<cmd>AerialPrev<CR>', desc = 'Aerial Prev' },
+      { ']f', '<cmd>AerialNext<CR>', desc = 'Aerial Next' },
     },
-    config = function()
-      vim.g.vista_sidebar_width = 45
-    end,
-    enabled = true,
   },
 
   { -- https://github.com/Vimjas/vim-python-pep8-indent

@@ -13,7 +13,6 @@ return {
   { -- https://github.com/akinsho/toggleterm.nvim
     'akinsho/toggleterm.nvim',
     event = 'VeryLazy',
-    enabled = true,
     opts = {
       size = 18,
       open_mapping = [[<c-\>]],
@@ -29,6 +28,7 @@ return {
     config = function(_, opts)
       require('toggleterm').setup(opts)
     end,
+    enabled = true,
   },
 
   { -- https://github.com/folke/todo-comments.nvim

@@ -5,12 +5,6 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/tpope/vim-repeat
-    'tpope/vim-repeat',
-    event = 'VeryLazy',
-    enabled = true,
-  },
-
   { -- https://github.com/toppair/peek.nvim
     'toppair/peek.nvim',
     event = { 'BufRead', 'BufNewFile' },

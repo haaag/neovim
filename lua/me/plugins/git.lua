@@ -29,19 +29,7 @@ return {
 
   { -- https://github.com/tpope/vim-fugitive
     'tpope/vim-fugitive',
-    cmd = {
-      'Git',
-      'Gdiffsplit',
-      'Gvdiffsplit',
-      'Gstatus',
-      'Gedit',
-      'Gsplit',
-      'GDelete',
-      'GBrowse',
-      'GMove',
-      'Gread',
-      'Gwrite',
-    },
+    cmd = { 'Git', 'G' },
     keys = {
       { '<leader>go', '<CMD>Git<CR>', desc = '[G]it Fugitive' },
       { '<leader>gl', '<CMD>Git log --oneline<CR>', desc = '[G]it [L]og' },
@@ -56,12 +44,12 @@ return {
     event = 'BufReadPre',
     opts = {
       signs = {
-        add = { text = '▏' },
-        change = { text = '▏' },
+        add = { text = '+' },
+        change = { text = '~' },
         delete = { text = '‾' },
         topdelete = { text = '‾' },
-        changedelete = { text = '▏' },
-        untracked = { text = '▏' },
+        changedelete = { text = '~_' },
+        -- untracked = { text = '▏' },
       },
     },
     keys = {

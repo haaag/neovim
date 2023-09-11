@@ -60,8 +60,8 @@
 
 - [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) -
   Highly extendable fuzzy finder over lists.
-- [nvim-neo-tree/neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) -
-  Browse the file system and other tree like structures.
+- [stevearc/oil.nvim](https://github.com/stevearc/oil.nvim) -
+  A vim-vinegar like file explorer.
 - [ggandor/leap.nvim](https://github.com/ggandor/leap.nvim) - Leap is a
   general-purpose motion plugin for Neovim.
 - [ggandor/flit.nvim](https://github.com/ggandor/flit.nvim) - f/F/t/T motions on

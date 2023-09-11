@@ -1,4 +1,5 @@
 -- autocmd.lua
+local Util = require('me.config.utils')
 
 local function augroup(name)
   return vim.api.nvim_create_augroup('me_' .. name, { clear = true })
@@ -21,7 +22,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   group = augroup('easy_close_q'),
-  pattern = { 'qf', 'help', 'man', 'lspinfo', 'spectre_panel', 'startuptime', 'netrw' },
+  pattern = { 'qf', 'help', 'man', 'lspinfo', 'startuptime', 'netrw' },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
@@ -65,5 +66,12 @@ vim.api.nvim_create_autocmd({ 'TermOpen' }, {
     vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
     vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
     vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  group = augroup('auto_root'),
+  callback = function()
+    Util.get_root()
   end,
 })
