@@ -8,7 +8,6 @@ return {
     dependencies = {
       'mason.nvim', -- https://github.com/williamboman/mason.nvim
       'williamboman/mason-lspconfig.nvim', -- https://github.com/williamboman/mason-lspconfig.nvim
-      'lukas-reineke/lsp-format.nvim', -- https://github.com/lukas-reineke/lsp-format.nvim
       { -- https://github.com/j-hui/fidget.nvim
         'j-hui/fidget.nvim',
         event = 'VeryLazy',
@@ -50,9 +49,6 @@ return {
       require('me.plugins.lsp.utils').on_attach(function(client, bufnr)
         require('me.plugins.lsp.keys').on_attach(bufnr)
         client.server_capabilities.semanticTokensProvider = nil
-        if client.name ~= 'clangd' then
-          require('lsp-format').on_attach(client)
-        end
 
         if client.name == 'ruff_lsp' then
           client.server_capabilities.hover = false
