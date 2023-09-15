@@ -119,7 +119,7 @@ return {
     enabled = true,
   },
 
-  {
+  { -- https://github.com/stevearc/aerial.nvim
     'stevearc/aerial.nvim',
     opts = { show_guides = true },
     keys = {
@@ -136,27 +136,27 @@ return {
     enabled = true,
   },
 
-  -- { -- https://github.com/Exafunction/codeium.vim
-  --   "Exafunction/codeium.vim",
-  --   event = "InsertEnter",
-  --   ft = { "python", "javascript", "sh", "typescript", "typescriptreact", "lua" },
-  --   config = function()
-  --     vim.g.codeium_enabled = true
-  --     -- vim.g.codeium_render = false
-  --     -- Change '<C-g>' here to any keycode you like.
-  --     vim.keymap.set("i", "<C-g>", function()
-  --       return vim.fn["codeium#Accept"]()
-  --     end, { expr = true })
-  --     vim.keymap.set("i", "<M-;>", function()
-  --       return vim.fn["codeium#CycleCompletions"](1)
-  --     end, { expr = true })
-  --     vim.keymap.set("i", "<C-,>", function()
-  --       return vim.fn["codeium#CycleCompletions"](-1)
-  --     end, { expr = true })
-  --     vim.keymap.set("i", "<C-x>", function()
-  --       return vim.fn["codeium#Clear"]()
-  --     end, { expr = true })
-  --   end,
-  --   enabled = true,
-  -- },
+  { -- https://github.com/Exafunction/codeium.vim
+    'Exafunction/codeium.vim',
+    event = 'InsertEnter',
+    ft = { 'python', 'javascript', 'sh', 'typescript', 'typescriptreact', 'lua' },
+    config = function()
+      vim.g.codeium_enabled = true
+      -- vim.g.codeium_render = false
+      -- Change '<C-g>' here to any keycode you like.
+      vim.keymap.set('i', '<C-g>', function()
+        return vim.fn['codeium#Accept']()
+      end, { expr = true })
+      vim.keymap.set('i', '<M-;>', function()
+        return vim.fn['codeium#CycleCompletions'](1)
+      end, { expr = true })
+      vim.keymap.set('i', '<M-,>', function()
+        return vim.fn['codeium#CycleCompletions'](-1)
+      end, { expr = true })
+      -- vim.keymap.set('i', '<C-x>', function()
+      --   return vim.fn['codeium#Clear']()
+      -- end, { expr = true })
+    end,
+    enabled = true,
+  },
 }

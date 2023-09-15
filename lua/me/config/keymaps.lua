@@ -86,7 +86,6 @@ map('n', '<leader>wa', function()
   require('me.config.utils').toggle_all()
 end, { desc = 'Toggle [A]all' })
 
-vim.keymap.set('n', '<leader>go', vim.cmd.Git)
 vim.keymap.set('n', '<leader>ma', function()
   Util.set_root()
 end)

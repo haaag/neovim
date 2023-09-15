@@ -57,6 +57,20 @@ return {
     enabled = true,
   },
 
+  { -- https://github.com/echasnovski/mini.tabline
+    'echasnovski/mini.tabline',
+    dependencies = { -- https://github.com/tiagovla/scope.nvim
+      'tiagovla/scope.nvim',
+      opts = {},
+    },
+    opts = {
+      tabpage_section = 'right',
+    },
+    version = false,
+    event = 'VeryLazy',
+    enabled = true,
+  },
+
   { -- https://github.com/NvChad/nvim-colorizer.lua
     'NvChad/nvim-colorizer.lua',
     cmd = {

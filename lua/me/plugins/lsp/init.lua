@@ -138,8 +138,6 @@ return {
           nls.builtins.diagnostics.codespell,
           -- python
           nls.builtins.diagnostics.mypy.with({ method = nls.methods.DIAGNOSTICS_ON_SAVE }),
-          nls.builtins.formatting.black,
-          -- nls.builtins.diagnostics.ruff,
           -- shell
           nls.builtins.formatting.shfmt,
           nls.builtins.code_actions.shellcheck,
