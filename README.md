@@ -30,16 +30,12 @@
 ### 💻 Code
 
 - [coq_nvim](https://github.com/ms-jpq/coq_nvim) - A completion engine
-- [coq.thirdparty](https://github.com/ms-jpq/coq.thirdparty) - First party lua
-  sources & third party integration for `coq.nvim`
 - [mini.surround](https://github.com/echasnovski/mini.surround) - Module of
   `mini.nvim` for working with text surroundings
 - [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim) - Smart and
   Powerful comment plugin.
-- [liuchengxu/vista.vim](https://github.com/liuchengxu/vista.vim) - View and
-  search LSP symbols, tags.
-- [vimjas/vim-python-pep8-indent](https://github.com/vimjas/vim-python-pep8-indent) -
-  Modifies vim’s indentation behavior to comply with pep8.
+- [stevearc/aerial.nvim](https://github.com/stevearc/aerial.nvim) -
+  A code outline window for skimming and quick navigation
 
 ### 🧰 Tools & Tree-sitter
 
@@ -56,7 +52,7 @@
 - [folke/trouble.nvim](https://github.com/folke/trouble.nvim) - Show
   diagnostics, references, quickfix and location.
 
-### 🔎 Finders
+### 🔎 Finders & Explorers
 
 - [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) -
   Highly extendable fuzzy finder over lists.
@@ -88,18 +84,14 @@
 
 - [nvim-tree/nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) -
   Nerd fonts moved some symbols with version 3.0
-- [szw/vim-maximizer](https://github.com/szw/vim-maximizer) - Maximizes and
-  restores the current window in vim.
 - [stevearc/dressing.nvim](https://github.com/stevearc/dressing.nvim) - Improve
   the built-in `vim.ui` interfaces with telescope, fzf, etc.
 - [tzachar/local-highlight.nvim](https://github.com/tzachar/local-highlight.nvim) -
   Using regexes and extmarks to highlight uses of word under the cursor.
 - [lukas-reineke/virt-column.nvim](https://github.com/lukas-reineke/virt-column.nvim) -
   Display a character as the colorcolumn.
-- [utilyre/sentiment.nvim](https://github.com/utilyre/sentiment.nvim) - Enhanced
-  matchparen.vim plugin for Neovim to highlight the outer pair.
-- [b0o/incline.nvim](https://github.com/b0o/incline.nvim) - Lightweight floating
-  statuslines, best used with Neovim's global statusline.
+- [echasnovski/mini.tabline](https://github.com/echasnovski/mini.tabline) - 
+  Minimal and fast tabline showing listed buffers.
 - [nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) -
   High-performance color highlighter which has no external dependencies!.
 - [folke/which-key.nvim](https://github.com/folke/which-key.nvim) - Displays a
@@ -111,7 +103,5 @@
   `sxhkdrc` syntax highlight.
 - [tpope/vim-repeat](https://github.com/tpope/vim-repeat) - `Repeat.vim` remaps
   `.` in a way that plugins can tap into it.
-- [Abstract-IDE/penvim](https://github.com/Abstract-IDE/penvim) - Project's root
-  directory.
 - [toppair/peek.nvim](https://github.com/toppair/peek.nvim) - Markdown preview
   plugin for Neovim.

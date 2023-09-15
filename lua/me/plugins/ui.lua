@@ -57,13 +57,6 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/b0o/incline.nvim
-    'b0o/incline.nvim',
-    event = 'VeryLazy',
-    config = true,
-    enabled = true,
-  },
-
   { -- https://github.com/NvChad/nvim-colorizer.lua
     'NvChad/nvim-colorizer.lua',
     cmd = {
