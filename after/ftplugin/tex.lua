@@ -1,21 +1,23 @@
 vim.opt_local.wrap = true
 vim.opt_local.spell = true
-vim.keymap.set('n', '<leader>p', function()
-  local fname = vim.fn.expand('%:p')
-  local command = 'lualatex ' .. fname
-  vim.fn.jobstart(command)
-end, { silent = true })
 
-vim.api.nvim_create_autocmd('BufWritePost', {
-  group = vim.api.nvim_create_augroup('me_latex', { clear = true }),
-  pattern = 'resume.tex',
-  callback = function(event)
-    local fname = event.match
-    local notify_err = function(on_stderr)
-      vim.print(on_stderr)
-    end
+vim.api.nvim_buf_create_user_command(0, 'LatexRunCompile', function(opts)
+  local command = { 'lualatex' }
+  local filepath = vim.fn.expand('%:p')
+  local filename = vim.api.nvim_buf_get_name(0)
+  local file_output = opts.args
 
-    vim.call('jobstart', 'lualatex ' .. fname, { on_stderr = notify_err })
-  end,
-  desc = 'Recompile resume.tex on save',
-})
+  if file_output == '' then
+    file_output = filename
+  end
+
+  table.insert(command, '-jobname=' .. file_output)
+  table.insert(command, filepath)
+  local commandString = table.concat(command, ' ')
+
+  local notify_err = function(on_stderr)
+    vim.print(on_stderr)
+  end
+
+  vim.call('jobstart', commandString, { on_stderr = notify_err })
+end, { nargs = '?' })
