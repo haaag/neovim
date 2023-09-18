@@ -14,6 +14,7 @@ end
 
 function M.git_push()
   if vim.bo.ft ~= 'fugitive' then
+    print('Not in vim-fugitive buffer')
     return
   end
 
@@ -31,10 +32,11 @@ return {
     'tpope/vim-fugitive',
     cmd = { 'Git', 'G', 'Gw' },
     keys = {
-      { '<leader>go', '<CMD>tab Git<CR>', desc = '[G]it Fugitive' },
-      { '<leader>gl', '<CMD>tab Git log --oneline<CR>', desc = '[G]it [L]og' },
-      { '<leader>gp', M.git_push, desc = '[G]it [P]ush' },
-      { '<leader>gf', M.find_files, desc = '[G]it [F]iles' },
+      { '<leader>go', '<CMD>tab Git<CR>', desc = 'Git Fugitive' },
+      { '<leader>gl', '<CMD>tab Git log <CR>', desc = 'Git Log' },
+      { '<leader>gw', '<CMD>Gw<CR>', desc = 'Git Write' },
+      { '<leader>gp', M.git_push, desc = 'Git Push' },
+      { '<leader>gf', M.find_files, desc = 'Git Files' },
     },
     enabled = true,
   },
