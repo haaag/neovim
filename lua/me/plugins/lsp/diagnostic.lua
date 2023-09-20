@@ -4,14 +4,10 @@ local enabled = true
 
 local M = {}
 
-function M.config()
+function M.defaults()
   return {
     virtual_lines = true,
-    virtual_text = false,
-    --[[ virtual_text = {
-      prefix = " ",
-      source = "always",
-    }, ]]
+    virtual_text = false, -- prefix = " "
     signs = true,
     update_in_insert = false,
     underline = true,

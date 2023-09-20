@@ -55,7 +55,7 @@ return {
           },
         },
         completion = {
-          always = false,
+          always = true,
           skip_after = {
             '{',
             '}',
@@ -77,7 +77,6 @@ return {
           },
         },
       }
-      -- vim.print(vim.g.coq_settings)
     end,
     dependencies = { -- https://github.com/ms-jpq/coq.thirdparty
       { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
@@ -142,7 +141,7 @@ return {
     ft = { 'python', 'javascript', 'sh', 'typescript', 'typescriptreact', 'lua' },
     config = function()
       vim.g.codeium_enabled = true
-      -- vim.g.codeium_render = false
+      vim.g.codeium_render = false
       -- Change '<C-g>' here to any keycode you like.
       vim.keymap.set('i', '<C-g>', function()
         return vim.fn['codeium#Accept']()

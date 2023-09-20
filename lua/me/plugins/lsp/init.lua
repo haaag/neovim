@@ -44,7 +44,7 @@ return {
       -- diagnostics
       local diagnostic = require('me.plugins.lsp.diagnostic')
       diagnostic.setup()
-      vim.diagnostic.config(diagnostic.config())
+      vim.diagnostic.config(diagnostic.defaults())
 
       require('me.plugins.lsp.utils').on_attach(function(client, bufnr)
         require('me.plugins.lsp.keys').on_attach(bufnr)
@@ -138,6 +138,7 @@ return {
           nls.builtins.diagnostics.codespell,
           -- python
           nls.builtins.diagnostics.mypy.with({ method = nls.methods.DIAGNOSTICS_ON_SAVE }),
+          nls.builtins.formatting.black,
           -- shell
           nls.builtins.formatting.shfmt,
           nls.builtins.code_actions.shellcheck,
