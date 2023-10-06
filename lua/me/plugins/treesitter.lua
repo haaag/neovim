@@ -31,6 +31,11 @@ return {
       autotag = {
         enable = true,
       },
+      context = {
+        enabled = true,
+        max_lines = 0,
+        multiline_threshold = 10,
+      },
       ensure_installed = {
         'bash',
         'c',

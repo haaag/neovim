@@ -37,6 +37,7 @@ return {
       { '<leader>gw', '<CMD>Gw<CR>', desc = 'Git Write' },
       { '<leader>gp', M.git_push, desc = 'Git Push' },
       { '<leader>gf', M.find_files, desc = 'Git Files' },
+      { '<leader>ga', '<CMD>Git commit --amend --no-edit<CR>', desc = 'Git amend' },
     },
     enabled = true,
   },
@@ -59,7 +60,6 @@ return {
       { '[h', '<CMD>Gitsigns prev_hunk<CR>', desc = 'Git Prev [H]unk' },
       { ']p', '<CMD>Gitsigns preview_hunk<CR>', desc = ' Git [P]review [H]unk' },
       { '<leader>gb', '<CMD>Gitsigns toggle_current_line_blame<CR>', desc = 'Git [G]it Toggle [B]lame' },
-      { '<leader>gs', '<CMD>Gitsigns toggle_signs<CR>', desc = '[G]it [T]oggle signs' },
       -- telescope
       { '<leader>gts', '<CMD>Telescope git_status<CR>', desc = '[G]it [T]elescope [S]tatus' },
       { '<leader>gtx', '<CMD>Telescope git_stash<CR>', desc = '[G]it [T]elescope stash' },

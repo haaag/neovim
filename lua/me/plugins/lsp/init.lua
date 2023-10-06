@@ -28,6 +28,7 @@ return {
         marksman = {},
         pyright = { autostart = false },
         jsonls = { autostart = false },
+        taplo = {},
         ruff_lsp = {
           autostart = true,
           settings = {

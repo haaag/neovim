@@ -24,7 +24,7 @@ return {
 
   { -- https://github.com/tzachar/local-highlight.nvim
     'tzachar/local-highlight.nvim',
-    lazy = false,
+    event = 'VeryLazy',
     config = function()
       -- local theme = require("me.config.colors").current()
       vim.api.nvim_set_hl(0, 'MyLocalHighlight', {

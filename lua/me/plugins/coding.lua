@@ -141,7 +141,7 @@ return {
     ft = { 'python', 'javascript', 'sh', 'typescript', 'typescriptreact', 'lua' },
     config = function()
       vim.g.codeium_enabled = true
-      vim.g.codeium_render = false
+      -- vim.g.codeium_render = false
       -- Change '<C-g>' here to any keycode you like.
       vim.keymap.set('i', '<C-g>', function()
         return vim.fn['codeium#Accept']()
