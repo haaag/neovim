@@ -7,13 +7,13 @@ return {
 
   { -- https://github.com/toppair/peek.nvim
     'toppair/peek.nvim',
-    event = { 'BufRead', 'BufNewFile' },
+    -- event = { 'BufRead', 'BufNewFile' },
     build = 'deno task --quiet build:fast',
-    ft = { 'markdown' },
+    -- ft = { 'markdown' },
+    cmd = { 'PeekClose', 'PeekOpen' },
     config = function()
       require('peek').setup({
-        -- theme = "dark", -- 'dark'
-        theme = 'light', -- 'dark'
+        theme = 'light',
       })
       vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
       vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})

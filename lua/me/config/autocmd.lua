@@ -1,11 +1,11 @@
 -- autocmd.lua
 local Util = require('me.config.utils')
-
+local autocmd = vim.api.nvim_create_autocmd
 local function augroup(name)
   return vim.api.nvim_create_augroup('me_' .. name, { clear = true })
 end
 
-vim.api.nvim_create_autocmd('TextYankPost', {
+autocmd('TextYankPost', {
   group = augroup('highlight_yank'),
   callback = function()
     vim.highlight.on_yank()
@@ -13,14 +13,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight on yank',
 })
 
-vim.api.nvim_create_autocmd('BufWritePost', {
+autocmd('BufWritePost', {
   group = augroup('sxhkd_group'),
   pattern = '*sxhkdrc',
   command = '!pkill -USR1 sxhkd',
   desc = 'Update binds when sxhkdrc is updated.',
 })
 
-vim.api.nvim_create_autocmd({ 'FileType' }, {
+autocmd({ 'FileType' }, {
   group = augroup('easy_close_q'),
   pattern = { 'qf', 'help', 'man', 'lspinfo', 'startuptime', 'netrw' },
   callback = function(event)
@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   desc = "Use 'q' to quit from common plugins",
 })
 
-vim.api.nvim_create_autocmd('BufReadPost', {
+autocmd('BufReadPost', {
   group = augroup('last_location'),
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
@@ -39,25 +39,17 @@ vim.api.nvim_create_autocmd('BufReadPost', {
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
   end,
-  desc = 'go to last loc when opening a buffer',
+  desc = 'Go to last loc when opening a buffer',
 })
 
---[[ vim.api.nvim_create_autocmd({ 'VimResized' }, {
-  group = augroup('resize_splits'),
-  callback = function()
-    vim.cmd('tabdo wincmd =')
-  end,
-  desc = 'resize splits if window got resized',
-}) ]]
-
-vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+autocmd({ 'BufWritePost' }, {
   group = augroup('Xresources'),
   pattern = { '*xdefaults', '*Xresources', '*.xresources' },
   command = '!xrdb -load ~/.Xresources',
   desc = 'Reload Xresources after buffer write',
 })
 
-vim.api.nvim_create_autocmd({ 'TermOpen' }, {
+autocmd({ 'TermOpen' }, {
   group = augroup('open_term'),
   callback = function()
     local opts = { noremap = true }
@@ -69,9 +61,16 @@ vim.api.nvim_create_autocmd({ 'TermOpen' }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+autocmd({ 'BufEnter' }, {
   group = augroup('auto_root'),
   callback = function()
     Util.get_root()
+  end,
+})
+
+autocmd('BufRead', {
+  pattern = { '*.*' },
+  callback = function(data)
+    require('local-highlight').attach(data.buf)
   end,
 })
