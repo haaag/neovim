@@ -10,27 +10,6 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/akinsho/toggleterm.nvim
-    'akinsho/toggleterm.nvim',
-    event = 'VeryLazy',
-    opts = {
-      size = 18,
-      open_mapping = [[<c-\>]],
-      hide_numbers = true, -- hide the number column in toggleterm buffers
-      shade_terminals = false,
-      direction = 'float', -- | 'horizontal' | 'window' | 'float',
-      close_on_exit = true, -- close the terminal window when the process exits
-      float_opts = {
-        border = 'curved',
-        winblend = 0,
-      },
-    },
-    config = function(_, opts)
-      require('toggleterm').setup(opts)
-    end,
-    enabled = true,
-  },
-
   { -- https://github.com/folke/todo-comments.nvim
     'folke/todo-comments.nvim',
     cmd = { 'TodoTrouble', 'TodoTelescope' },

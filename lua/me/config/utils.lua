@@ -141,4 +141,29 @@ function M.get_root()
   vim.fn.chdir(root)
 end
 
+function M.find_files()
+  local builtin
+  local theme = require('telescope.themes')
+  if vim.loop.fs_stat(vim.loop.cwd() .. '/.git') then
+    builtin = 'git_files'
+  else
+    builtin = 'find_files'
+  end
+  require('telescope.builtin')[builtin](theme.get_ivy())
+end
+
+function M.git_push()
+  if vim.bo.ft ~= 'fugitive' then
+    print('Not in vim-fugitive buffer')
+    return
+  end
+
+  local utils = require('me.config.utils')
+  local confirmation = utils.confirmation('Push changes? [y/n]: ', { 'Yes', 'y' })
+
+  if confirmation then
+    vim.cmd('Git push')
+  end
+end
+
 return M
