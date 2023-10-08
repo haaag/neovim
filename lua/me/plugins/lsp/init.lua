@@ -3,14 +3,14 @@
 return {
   { -- https://github.com/neovim/nvim-lspconfig
     'neovim/nvim-lspconfig',
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'BufReadPost' },
     enabled = true,
     dependencies = {
       'mason.nvim', -- https://github.com/williamboman/mason.nvim
       'williamboman/mason-lspconfig.nvim', -- https://github.com/williamboman/mason-lspconfig.nvim
       { -- https://github.com/j-hui/fidget.nvim
         'j-hui/fidget.nvim',
-        event = 'VeryLazy',
+        event = 'LspAttach',
         tag = 'legacy',
         opts = {
           text = { spinner = 'dots_pulse' }, -- dots_pulse, bouncing_bar
@@ -29,6 +29,7 @@ return {
         pyright = { autostart = false },
         jsonls = { autostart = false },
         taplo = {},
+        gopls = {},
         ruff_lsp = {
           autostart = true,
           settings = {
@@ -57,12 +58,12 @@ return {
       end)
 
       local servers = opts.servers
-      local capabilities = require('me.plugins.lsp.utils').capabilities()
+      -- local capabilities = require('me.plugins.lsp.utils').capabilities()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities(require('me.plugins.lsp.utils').capabilities())
 
       require('mason-lspconfig').setup({ ensure_installed = vim.tbl_keys(servers) })
       require('mason-lspconfig').setup_handlers({
         function(server)
-          local coq = require('coq')
           local server_opts = servers[server] or {}
           server_opts.capabilities = capabilities
           if opts.setup[server] then
@@ -74,7 +75,7 @@ return {
               return
             end
           end
-          require('lspconfig')[server].setup(coq.lsp_ensure_capabilities(server_opts))
+          require('lspconfig')[server].setup(server_opts)
         end,
       })
     end,
@@ -104,8 +105,8 @@ return {
         'cbfmt',
         'alex',
         -- go
-        -- "goimports",
-        -- "staticcheck",
+        'goimports',
+        'staticcheck',
       },
     },
     config = function(_, opts)

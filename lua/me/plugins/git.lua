@@ -1,50 +1,24 @@
-local M = {}
--- TODO: Extract ...
-
-function M.find_files()
-  local builtin
-  local theme = require('telescope.themes')
-  if vim.loop.fs_stat(vim.loop.cwd() .. '/.git') then
-    builtin = 'git_files'
-  else
-    builtin = 'find_files'
-  end
-  require('telescope.builtin')[builtin](theme.get_ivy())
-end
-
-function M.git_push()
-  if vim.bo.ft ~= 'fugitive' then
-    print('Not in vim-fugitive buffer')
-    return
-  end
-
-  local utils = require('me.config.utils')
-  local confirmation = utils.confirmation('Push changes? [y/n]: ', { 'Yes', 'y' })
-
-  if confirmation then
-    vim.cmd('Git push')
-  end
-end
-
 return {
-
   { -- https://github.com/tpope/vim-fugitive
     'tpope/vim-fugitive',
     cmd = { 'Git', 'G', 'Gw' },
-    keys = {
-      { '<leader>go', '<CMD>tab Git<CR>', desc = 'Git Fugitive' },
-      { '<leader>gl', '<CMD>tab Git log <CR>', desc = 'Git Log' },
-      { '<leader>gw', '<CMD>Gw<CR>', desc = 'Git Write' },
-      { '<leader>gp', M.git_push, desc = 'Git Push' },
-      { '<leader>gf', M.find_files, desc = 'Git Files' },
-      { '<leader>ga', '<CMD>Git commit --amend --no-edit<CR>', desc = 'Git amend' },
-    },
+    keys = function()
+      local Utils = require('me.config.utils')
+      return {
+        { '<leader>go', '<CMD>tab Git<CR>', desc = 'Git Fugitive' },
+        { '<leader>gl', '<CMD>tab Git log --oneline<CR>', desc = 'Git Log' },
+        { '<leader>gw', '<CMD>Gw<CR>', desc = 'Git Write' },
+        { '<leader>gp', Utils.git_push, desc = 'Git Push' },
+        { '<leader>gf', Utils.find_files, desc = 'Git Files' },
+        { '<leader>ga', '<CMD>Git commit --amend --no-edit<CR>', desc = 'Git amend' },
+      }
+    end,
     enabled = true,
   },
 
   { -- https://github.com/lewis6991/gitsigns.nvim
     'lewis6991/gitsigns.nvim',
-    event = 'BufReadPre',
+    event = 'BufReadPost',
     opts = {
       signs = {
         add = { text = '+' },
@@ -52,28 +26,28 @@ return {
         delete = { text = '‾' },
         topdelete = { text = '‾' },
         changedelete = { text = '~_' },
-        -- untracked = { text = '▏' },
       },
     },
     keys = {
-      { ']h', '<CMD>Gitsigns next_hunk<CR>', desc = 'Git Next [H]unk' },
-      { '[h', '<CMD>Gitsigns prev_hunk<CR>', desc = 'Git Prev [H]unk' },
-      { ']p', '<CMD>Gitsigns preview_hunk<CR>', desc = ' Git [P]review [H]unk' },
-      { '<leader>gb', '<CMD>Gitsigns toggle_current_line_blame<CR>', desc = 'Git [G]it Toggle [B]lame' },
-      -- telescope
-      { '<leader>gts', '<CMD>Telescope git_status<CR>', desc = '[G]it [T]elescope [S]tatus' },
-      { '<leader>gtx', '<CMD>Telescope git_stash<CR>', desc = '[G]it [T]elescope stash' },
-      { '<leader>gtb', '<CMD>Telescope git_branches<CR>', desc = '[G]it [T]elescope [B]ranches' },
-      -- hunks
-      { '<leader>ghs', '<CMD>Gitsigns stage_hunk<CR>', desc = 'Git [S]tage Hunk', mode = { 'n', 'v' } },
-      { '<leader>ghr', '<CMD>Gitsigns reset_hunk<CR>', desc = 'Git [R]eset Hunk', mode = { 'n', 'v' } },
-      { '<leader>ghS', '<CMD>Gitsigns stage_buffer<CR>', desc = 'Git [S]tage Buffer' },
-      { '<leader>ghu', '<CMD>Gitsigns undo_stage_hunk<CR>', desc = 'Git [U]ndo Stage [H]unk' },
-      { '<leader>ghR', '<CMD>Gitsigns reset_buffer<CR>', desc = 'Git Reset Buffer' },
-      { '<leader>ghp', '<CMD>Gitsigns preview_hunk<CR>', desc = 'Git [P]review [H]unk' },
-      { '<leader>ghb', '<CMD>lua require"gitsigns".blame_line{full=true}<CR>', desc = 'Git Show [B]lame Line' },
-      { '<leader>ghd', '<CMD>Gitsigns diffthis<CR>', desc = 'Git [D]iff This [H]unk' },
+      -- misc
+      { '<leader>gb', '<CMD>Gitsigns toggle_current_line_blame<CR>', desc = 'Git Toggle Blame' },
       { '<leader>ghD', '<CMD>lua require"gitsigns".diffthis("~")<CR>', desc = 'Git Diff This ~' },
+      -- telescope
+      { '<leader>gts', '<CMD>Telescope git_status<CR>', desc = 'Git Telescope Status' },
+      { '<leader>gtx', '<CMD>Telescope git_stash<CR>', desc = 'Git Telescope stash' },
+      { '<leader>gtB', '<CMD>Telescope git_branches<CR>', desc = 'Git Telescope Branches' },
+      { '<leader>gtb', '<CMD>Telescope git_bcommits<CR>', desc = 'Git Telescope Buffer Commits' },
+      -- hunks
+      { ']h', '<CMD>Gitsigns next_hunk<CR>', desc = 'Git Next Hunk' },
+      { '[h', '<CMD>Gitsigns prev_hunk<CR>', desc = 'Git Prev Hunk' },
+      { ']p', '<CMD>Gitsigns preview_hunk<CR>', desc = ' Git Preview Hunk' },
+      { '<leader>ghs', '<CMD>Gitsigns stage_hunk<CR>', desc = 'Git Stage Hunk', mode = { 'n', 'v' } },
+      { '<leader>ghr', '<CMD>Gitsigns reset_hunk<CR>', desc = 'Git Reset Hunk', mode = { 'n', 'v' } },
+      { '<leader>ghS', '<CMD>Gitsigns stage_buffer<CR>', desc = 'Git Stage Buffer' },
+      { '<leader>ghu', '<CMD>Gitsigns undo_stage_hunk<CR>', desc = 'Git Undo Stage Hunk' },
+      { '<leader>ghR', '<CMD>Gitsigns reset_buffer<CR>', desc = 'Git Reset Buffer' },
+      { '<leader>ghp', '<CMD>Gitsigns preview_hunk<CR>', desc = 'Git Preview Hunk' },
+      { '<leader>ghd', '<CMD>Gitsigns diffthis<CR>', desc = 'Git Diff This Hunk' },
       { 'ih', ':<C-U>Gitsigns select_hunk<CR>', desc = 'Git Select Hunk', mode = { 'o', 'x' } },
     },
     enabled = true,
@@ -84,10 +58,10 @@ return {
     cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
     config = true,
     keys = {
-      { '<leader>gdo', '<CMD>DiffviewOpen<CR>', desc = '[D]iffview [O]pen' },
-      { '<leader>gdc', '<CMD>DiffviewClose<CR>', desc = '[D]iffview [C]lose' },
-      { '<leader>gdf', '<CMD>DiffviewToggleFiles<CR>', desc = '[D]iffview [F]iles' },
-      { '<leader>gdh', '<CMD>DiffviewFileHistory %<CR>', desc = '[D]iffview file [H]istory' },
+      { '<leader>gdo', '<CMD>DiffviewOpen<CR>', desc = 'Diffview Open' },
+      { '<leader>gdc', '<CMD>DiffviewClose<CR>', desc = 'Diffview Close' },
+      { '<leader>gdf', '<CMD>DiffviewToggleFiles<CR>', desc = 'Diffview Files' },
+      { '<leader>gdh', '<CMD>DiffviewFileHistory %<CR>', desc = 'Diffview file History' },
     },
     enabled = true,
   },

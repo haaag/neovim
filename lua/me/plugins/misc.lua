@@ -7,9 +7,8 @@ return {
 
   { -- https://github.com/toppair/peek.nvim
     'toppair/peek.nvim',
-    -- event = { 'BufRead', 'BufNewFile' },
+    cmd = { 'PeekOpen', 'PeekClose' },
     build = 'deno task --quiet build:fast',
-    -- ft = { 'markdown' },
     cmd = { 'PeekClose', 'PeekOpen' },
     config = function()
       require('peek').setup({
