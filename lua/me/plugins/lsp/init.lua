@@ -29,6 +29,7 @@ return {
         pyright = { autostart = false },
         jsonls = { autostart = false },
         taplo = {},
+        gopls = {},
         ruff_lsp = {
           autostart = true,
           settings = {
@@ -104,8 +105,8 @@ return {
         'cbfmt',
         'alex',
         -- go
-        -- "goimports",
-        -- "staticcheck",
+        'goimports',
+        'staticcheck',
       },
     },
     config = function(_, opts)

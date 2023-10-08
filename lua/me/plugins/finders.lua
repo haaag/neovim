@@ -2,7 +2,6 @@
 
 return {
   { -- https://github.com/nvim-telescope/telescope.nvim
-
     'nvim-telescope/telescope.nvim',
     event = 'VeryLazy',
     version = '0.1.x',
@@ -20,15 +19,15 @@ return {
     -- search
     { "<C-p>", "<CMD>Telescope find_files theme=get_ivy<CR>", desc = "Search Files" },
     { "<leader>?", "<CMD>Telescope oldfiles<CR>", desc = "[?] Find recently opened files" },
-    { "<leader>sp", "<CMD>lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>", desc = "[S]earch [P]roject" },
-    { "<leader>sr", "<CMD>Telescope resume<CR>", desc = "[S]earch [R]esume" },
-    { "<leader>sw", "<CMD>Telescope grep_string<CR>", desc = "[S]earch current [W]ord" },
-    { "<leader>sg", "<CMD>Telescope live_grep<CR>", desc = "[S]earch by [G]rep" },
-    { "<leader>sd", "<CMD>Telescope diagnostics<CR>", desc = "[S]earch [D]iagnostics" },
-    { "<leader>sh", "<CMD>Telescope help_tags<CR>", desc = "[S]earch [H]elp" },
-    { "<leader>su", "<CMD>Telescope undo<CR>", desc = "[S]earch [U]ndo" },
-    { "<leader>sk", "<CMD>Telescope keymaps<CR>", desc = "[S]earch [K]eymaps" },
-    { "<leader>:", "<CMD>Telescope command_history<CR>", desc = "[S]earch Command History" },
+    { "<leader>sp", "<CMD>lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>", desc = "Search Project" },
+    { "<leader>sr", "<CMD>Telescope resume<CR>", desc = "Search Resume" },
+    { "<leader>sw", "<CMD>Telescope grep_string<CR>", desc = "Search current [W]ord" },
+    { "<leader>sg", "<CMD>Telescope live_grep<CR>", desc = "Search by Grep" },
+    { "<leader>sd", "<CMD>Telescope diagnostics<CR>", desc = "Search Diagnostics" },
+    { "<leader>sh", "<CMD>Telescope help_tags<CR>", desc = "Search Help" },
+    { "<leader>su", "<CMD>Telescope undo<CR>", desc = "Search Undo" },
+    { "<leader>sk", "<CMD>Telescope keymaps<CR>", desc = "Search Keymaps" },
+    { "<leader>:", "<CMD>Telescope command_history<CR>", desc = "Search Command History" },
     {
       "<leader><space>",
       "<CMD>lua require('telescope.builtin').buffers(require('telescope.themes').get_cursor({ previewer = false }))<CR>",

@@ -18,6 +18,7 @@ function M.setup()
   end
 
   cmp.setup({
+
     window = {
       completion = {
         border = border('CmpDocBorder'),
@@ -29,6 +30,7 @@ function M.setup()
         winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
       },
     },
+
     formatting = {
       format = function(entry, vim_item)
         vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
@@ -43,11 +45,13 @@ function M.setup()
         return vim_item
       end,
     },
+
     snippet = {
       expand = function(args)
         luasnip.lsp_expand(args.body)
       end,
     },
+
     mapping = {
       ['<C-d>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -68,12 +72,14 @@ function M.setup()
       }),
       ['<c-space>'] = cmp.mapping.complete(),
     },
+
     sources = {
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
       { name = 'buffer' },
       { name = 'path' },
     },
+
     sorting = {
       comparators = {
         cmp.config.compare.offset,
