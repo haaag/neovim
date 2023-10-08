@@ -7,6 +7,7 @@ return {
 
   { -- https://github.com/stevearc/dressing.nvim
     'stevearc/dressing.nvim',
+    event = 'BufReadPost',
     init = function()
       ---@diagnostic disable-next-line: duplicate-set-field
       vim.ui.select = function(...)

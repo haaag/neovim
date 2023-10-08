@@ -3,14 +3,14 @@
 return {
   { -- https://github.com/neovim/nvim-lspconfig
     'neovim/nvim-lspconfig',
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'BufReadPost' },
     enabled = true,
     dependencies = {
       'mason.nvim', -- https://github.com/williamboman/mason.nvim
       'williamboman/mason-lspconfig.nvim', -- https://github.com/williamboman/mason-lspconfig.nvim
       { -- https://github.com/j-hui/fidget.nvim
         'j-hui/fidget.nvim',
-        event = 'VeryLazy',
+        event = 'LspAttach',
         tag = 'legacy',
         opts = {
           text = { spinner = 'dots_pulse' }, -- dots_pulse, bouncing_bar

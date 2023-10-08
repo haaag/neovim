@@ -65,7 +65,7 @@ return {
 
   { -- https://github.com/numToStr/Comment.nvim
     'numToStr/Comment.nvim',
-    event = 'VeryLazy',
+    keys = { 'gcc' },
     config = true,
     enabled = true,
   },

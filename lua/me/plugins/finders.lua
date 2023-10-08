@@ -52,20 +52,35 @@ return {
     end,
   },
 
-  {
+  { -- https://github.com/stevearc/oil.nvim
     'stevearc/oil.nvim',
     opts = {},
     keys = {
       { '-', '<CMD>Oil<CR>', desc = 'Open parent directory' },
     },
     lazy = false,
+    enabled = true,
+  },
+
+  { -- https://github.com/ggandor/flit.nvim
+    'ggandor/flit.nvim',
+    keys = function()
+      local ret = {}
+      for _, key in ipairs({ 'f', 'F', 't', 'T' }) do
+        ret[#ret + 1] = { key, mode = { 'n', 'x', 'o' }, desc = key }
+      end
+      return ret
+    end,
+    opts = { labeled_modes = 'nx' },
+    enabled = true,
   },
 
   { -- https://github.com/ggandor/leap.nvim
     'ggandor/leap.nvim',
-    event = 'VeryLazy',
-    dependencies = { -- https://github.com/ggandor/flit.nvim
-      { 'ggandor/flit.nvim', opts = { labeled_modes = 'nv' } },
+    keys = {
+      { 's', mode = { 'n', 'x', 'o' }, desc = 'Leap forward to' },
+      { 'S', mode = { 'n', 'x', 'o' }, desc = 'Leap backward to' },
+      { 'gs', mode = { 'n', 'x', 'o' }, desc = 'Leap from windows' },
     },
     config = function(_, opts)
       local leap = require('leap')
@@ -73,6 +88,8 @@ return {
         leap.opts[k] = v
       end
       leap.add_default_mappings(true)
+      vim.keymap.del({ 'x', 'o' }, 'x')
+      vim.keymap.del({ 'x', 'o' }, 'X')
     end,
     enabled = true,
   },
