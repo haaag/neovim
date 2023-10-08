@@ -57,12 +57,12 @@ return {
       end)
 
       local servers = opts.servers
-      local capabilities = require('me.plugins.lsp.utils').capabilities()
+      -- local capabilities = require('me.plugins.lsp.utils').capabilities()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities(require('me.plugins.lsp.utils').capabilities())
 
       require('mason-lspconfig').setup({ ensure_installed = vim.tbl_keys(servers) })
       require('mason-lspconfig').setup_handlers({
         function(server)
-          local coq = require('coq')
           local server_opts = servers[server] or {}
           server_opts.capabilities = capabilities
           if opts.setup[server] then
@@ -74,7 +74,7 @@ return {
               return
             end
           end
-          require('lspconfig')[server].setup(coq.lsp_ensure_capabilities(server_opts))
+          require('lspconfig')[server].setup(server_opts)
         end,
       })
     end,
