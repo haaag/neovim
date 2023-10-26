@@ -29,7 +29,6 @@ return {
         pyright = { autostart = false },
         jsonls = { autostart = false },
         taplo = {},
-        gopls = {},
         ruff_lsp = {
           autostart = true,
           settings = {
@@ -144,6 +143,11 @@ return {
           -- shell
           nls.builtins.formatting.shfmt,
           nls.builtins.code_actions.shellcheck,
+          -- go
+          nls.builtins.diagnostics.staticcheck,
+          nls.builtins.diagnostics.golangci_lint,
+          nls.builtins.formatting.goimports,
+          nls.builtins.formatting.golines,
         },
       }
     end,

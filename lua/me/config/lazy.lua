@@ -19,10 +19,10 @@ require('lazy').setup({
     { import = 'me.plugins.lsp.servers.lua_ls' },
     { import = 'me.plugins.lsp.servers.pylsp' },
     { import = 'me.plugins.lsp.servers.pyright' },
+    { import = 'me.plugins.lsp.servers.go_ls' },
     -- { import = 'me.plugins.lsp.servers.json' },
     -- { import = 'me.plugins.lsp.servers.efm' },
     -- { import = "me.plugins.lsp.servers.typescript" },
-    -- { import = "me.plugins.lsp.servers.go_ls" },
   },
   defaults = { lazy = false },
   install = { colorscheme = { 'tokyonight' } },
@@ -38,7 +38,7 @@ require('lazy').setup({
     rtp = {
       disabled_plugins = {
         'gzip',
-        -- "matchit",
+        'matchit',
         -- "matchparen",
         'netrwPlugin',
         'tarPlugin',

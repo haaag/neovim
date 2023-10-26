@@ -25,6 +25,7 @@ return {
 
   { -- https://github.com/tzachar/local-highlight.nvim
     'tzachar/local-highlight.nvim',
+    event = 'VeryLazy',
     config = function()
       vim.api.nvim_set_hl(0, 'MyLocalHighlight', {
         underline = true,
@@ -46,11 +47,11 @@ return {
 
   { -- my.statusline.nvim
     dir = tostring(os.getenv('HOME')) .. '/dev/lua/stat.nvim',
+    event = 'VeryLazy',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
     },
     opts = {},
-    event = 'VeryLazy',
     config = true,
     enabled = true,
   },
@@ -129,5 +130,66 @@ return {
       })
     end,
     enabled = true,
+  },
+
+  -- indent guides for Neovim
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    event = 'VeryLazy',
+    opts = {
+      indent = {
+        char = '│',
+        tab_char = '│',
+      },
+      scope = { enabled = false },
+      exclude = {
+        filetypes = {
+          'help',
+          'alpha',
+          'dashboard',
+          'neo-tree',
+          'Trouble',
+          'lazy',
+          'mason',
+          'notify',
+          'toggleterm',
+          'lazyterm',
+        },
+      },
+    },
+    main = 'ibl',
+  },
+
+  -- Active indent guide and indent text objects. When you're browsing
+  -- code, this highlights the current level of indentation, and animates
+  -- the highlighting.
+  { -- https://github.com/echasnovski/mini.indentscope
+    'echasnovski/mini.indentscope',
+    version = false, -- wait till new 0.7.0 release to put it back on semver
+    event = 'VeryLazy',
+    opts = {
+      -- symbol = "▏",
+      symbol = '│',
+      options = { try_as_border = true },
+    },
+    init = function()
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = {
+          'help',
+          'alpha',
+          'dashboard',
+          'neo-tree',
+          'Trouble',
+          'lazy',
+          'mason',
+          'notify',
+          'toggleterm',
+          'lazyterm',
+        },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+    end,
   },
 }

@@ -11,6 +11,7 @@ return {
             telemetry = { enable = false },
             workspace = { checkThirdParty = false },
             completion = { callSnippet = 'Replace' },
+            hint = { enable = true },
             diagnostics = {
               enable = true,
               globals = {

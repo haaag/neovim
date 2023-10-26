@@ -1,11 +1,10 @@
 -- lsp.servers.go
 return {
   'neovim/nvim-lspconfig', -- https://github.com/neovim/nvim-lspconfig
-  -- enabled = false,
   opts = {
     servers = {
       gopls = {
-        autostart = false,
+        autostart = true,
         settings = {
           gopls = {
             experimentalPostfixCompletions = true,
@@ -14,6 +13,7 @@ return {
               shadow = true,
             },
             staticcheck = true,
+            hints = { enable = true },
           },
         },
         init_options = {
