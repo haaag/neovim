@@ -3,10 +3,13 @@ return {
     'nvim-neotest/neotest',
     dependencies = {
       'nvim-neotest/neotest-python',
+      'nvim-neotest/neotest-go',
     },
+    commit = '1e67a504d03def3a6a1125d934cb511680f72555',
     opts = {
       adapters = {
         ['neotest-python'] = {},
+        ['neotest-go'] = {},
       },
       status = { virtual_text = true },
       output = { open_on_run = true },
