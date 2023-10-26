@@ -1,24 +1,24 @@
 return {
 
   --[[ { -- https://github.com/folke/tokyonight.nvim
-    "folke/tokyonight.nvim",
+    'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
-    enabled = false,
+    enabled = true,
     opts = function()
       return {
-        style = "night",
+        style = 'night',
         sidebars = {
-          "qf",
-          "vista_kind",
-          "vista",
-          "terminal",
-          "toggleterm",
-          "spectre_panel",
-          "neogitstatus",
-          "help",
-          "startuptime",
-          "outline",
+          'qf',
+          'vista_kind',
+          'vista',
+          'terminal',
+          'toggleterm',
+          'spectre_panel',
+          'neogitstatus',
+          'help',
+          'startuptime',
+          'outline',
         },
         transparent = true,
         styles = {
@@ -26,27 +26,13 @@ return {
           keywords = { italic = true },
           functions = { bold = false },
           variables = {},
-          sidebars = "normal", -- "dark", "transparent" or "normal"
-          floats = "normal", -- "dark", "transparent" or "normal"
+          sidebars = 'normal', -- "dark", "transparent" or "normal"
+          floats = 'normal', -- "dark", "transparent" or "normal"
         },
-        on_highlights = function(hl, c)
-          local prompt = "#2d3149"
-          hl.cursorlinenr = { fg = c.orange, bold = true }
-          hl.linenr = { fg = c.orange, bold = true }
-          hl.linenrabove = { fg = c.fg_gutter }
-          hl.linenrbelow = { fg = c.fg_gutter }
-          hl.telescopenormal = { bg = c.bg_dark, fg = c.fg_dark }
-          hl.telescopeborder = { bg = c.bg_dark, fg = c.bg_dark }
-          hl.telescopepromptnormal = { bg = prompt }
-          hl.telescopepromptborder = { bg = prompt, fg = prompt }
-          hl.telescopeprompttitle = { bg = c.fg_gutter, fg = c.orange }
-          hl.telescopepreviewtitle = { bg = c.bg_dark, fg = c.bg_dark }
-          hl.telescoperesultstitle = { bg = c.bg_dark, fg = c.bg_dark }
-        end,
       }
     end,
     config = function(_, opts)
-      local tokyonight = require("tokyonight")
+      local tokyonight = require('tokyonight')
       tokyonight.setup(opts)
       tokyonight.load()
     end,
@@ -65,16 +51,18 @@ return {
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_transparent_background = true
       vim.g.gruvbox_material_dim_inactive_windows = false
-      vim.g.gruvbox_material_disable_italic_comment = false
-      vim.g.gruvbox_material_diagnostic_text_highlight = false
-      vim.g.gruvbox_material_background = 'hard' -- hard, medium, soft
+      vim.g.gruvbox_material_disable_italic_comment = true
+      vim.g.gruvbox_material_diagnostic_text_highlight = true
+      vim.g.gruvbox_material_background = 'medium' -- hard, medium, soft
       vim.g.gruvbox_material_diagnostic_virtual_text = 'colored' -- grey, colored, highlighted
       vim.g.gruvbox_material_spell_foreground = 'colored' -- none
-      vim.g.gruvbox_material_ui_contrast = 'high' -- 'low' 'high'
-      vim.g.gruvbox_material_show_eob = 0
+      vim.g.gruvbox_material_ui_contrast = 'low' -- 'low' 'high'
+      vim.g.gruvbox_material_show_eob = true
       vim.g.gruvbox_material_current_word = 'underline'
+      -- vim.g.gruvbox_material_diagnostic_line_highlight = true
+      vim.g.gruvbox_material_menu_selection_background = 'red'
+      vim.g.gruvbox_material_float_style = 'bright' -- 'bright', 'dim'
       -- vim.g.gruvbox_material_visual = "reverse"
-      vim.g.gruvbox_material_diagnostic_line_highlight = true
       vim.cmd('colorscheme gruvbox-material')
     end,
   },

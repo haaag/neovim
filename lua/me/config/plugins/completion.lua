@@ -22,12 +22,12 @@ function M.setup()
     window = {
       completion = {
         border = border('CmpDocBorder'),
-        winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+        -- winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
         scrollbar = false,
       },
       documentation = {
         border = border('CmpDocBorder'),
-        winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+        -- winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
       },
     },
 

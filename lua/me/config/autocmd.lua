@@ -22,7 +22,7 @@ autocmd('BufWritePost', {
 
 autocmd({ 'FileType' }, {
   group = augroup('easy_close_q'),
-  pattern = { 'qf', 'help', 'man', 'lspinfo', 'startuptime', 'netrw' },
+  pattern = { 'qf', 'help', 'man', 'lspinfo', 'startuptime', 'netrw', 'neotest-output' },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
@@ -68,9 +68,9 @@ autocmd({ 'BufEnter' }, {
   end,
 })
 
-autocmd('BufRead', {
+--[[ autocmd('BufRead', {
   pattern = { '*.*' },
   callback = function(data)
     require('local-highlight').attach(data.buf)
   end,
-})
+}) ]]

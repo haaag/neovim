@@ -65,7 +65,7 @@ return {
 
   { -- https://github.com/numToStr/Comment.nvim
     'numToStr/Comment.nvim',
-    keys = { 'gcc' },
+    -- keys = { 'gcc', 'gbc', 'gbi', 'gci' },
     config = true,
     enabled = true,
   },
