@@ -13,6 +13,7 @@ return {
               shadow = true,
             },
             staticcheck = true,
+            gofumpt = true,
             hints = { enable = true },
           },
         },
