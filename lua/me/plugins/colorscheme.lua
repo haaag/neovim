@@ -47,7 +47,7 @@ return {
     config = function()
       -- vim.o.background = "light"
       vim.o.background = 'dark'
-      vim.g.gruvbox_material_enable_bold = false
+      vim.g.gruvbox_material_enable_bold = true
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_transparent_background = true
       vim.g.gruvbox_material_dim_inactive_windows = false

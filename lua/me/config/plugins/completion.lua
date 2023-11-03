@@ -18,7 +18,9 @@ function M.setup()
   end
 
   cmp.setup({
-
+    completion = {
+      autocomplete = false,
+    },
     window = {
       completion = {
         border = border('CmpDocBorder'),

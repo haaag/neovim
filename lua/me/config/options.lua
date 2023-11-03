@@ -58,3 +58,8 @@ vim.opt.fillchars:append('fold: ')
 vim.opt.fillchars:append('foldopen: ')
 vim.opt.fillchars:append('foldsep: ')
 vim.opt.fillchars:append('foldclose:')
+
+vim.opt.guicursor = {
+  'a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor',
+  'sm:block-blinkwait175-blinkoff150-blinkon175',
+}

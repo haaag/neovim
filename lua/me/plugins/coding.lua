@@ -90,9 +90,9 @@ return {
   { -- https://github.com/Exafunction/codeium.vim
     'Exafunction/codeium.vim',
     event = 'InsertEnter',
-    ft = { 'python', 'javascript', 'sh', 'typescript', 'typescriptreact', 'lua' },
+    ft = { 'python', 'javascript', 'sh', 'typescript', 'typescriptreact', 'lua', 'gitcommit' },
     config = function()
-      vim.g.codeium_enabled = true
+      vim.g.codeium_enabled = false
       -- vim.g.codeium_render = false
       -- Change '<C-g>' here to any keycode you like.
       vim.keymap.set('i', '<C-g>', function()
