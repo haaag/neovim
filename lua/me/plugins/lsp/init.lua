@@ -11,11 +11,10 @@ return {
       { -- https://github.com/j-hui/fidget.nvim
         'j-hui/fidget.nvim',
         event = 'LspAttach',
-        tag = 'legacy',
         opts = {
-          text = { spinner = 'dots_pulse' }, -- dots_pulse, bouncing_bar
-          align = { bottom = true },
-          window = { relative = 'editor', blend = 0 }, -- border = "rounded",
+          notification = {
+            window = { winblend = 0 },
+          },
         },
         enabled = true,
       },
@@ -146,7 +145,6 @@ return {
           -- go
           nls.builtins.diagnostics.staticcheck,
           nls.builtins.diagnostics.golangci_lint,
-          nls.builtins.formatting.goimports,
           nls.builtins.formatting.golines,
         },
       }
