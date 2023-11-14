@@ -7,7 +7,10 @@ local M = {}
 function M.defaults()
   return {
     virtual_lines = true,
-    virtual_text = false, -- prefix = " "
+    virtual_text = {
+      prefix = ' ',
+      source = 'always',
+    },
     signs = true,
     update_in_insert = false,
     underline = true,

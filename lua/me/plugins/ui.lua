@@ -56,7 +56,7 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/echasnovski/mini.tabline
+  --[[ { -- https://github.com/echasnovski/mini.tabline
     'echasnovski/mini.tabline',
     dependencies = { -- https://github.com/tiagovla/scope.nvim
       'tiagovla/scope.nvim',
@@ -68,6 +68,24 @@ return {
     version = false,
     event = 'VeryLazy',
     enabled = true,
+  }, ]]
+
+  { -- https://github.com/akinsho/bufferline.nvim
+    'akinsho/bufferline.nvim',
+    event = 'VeryLazy',
+    dependencies = { -- https://github.com/tiagovla/scope.nvim
+      'tiagovla/scope.nvim',
+      opts = {},
+    },
+    opts = {
+      options = {
+        -- indicator = {
+        --   icon = '', -- this should be omitted if indicator style is not 'icon'
+        --   style = 'none', -- | 'underline' | 'none',
+        -- },
+        buffer_close_icon = '',
+      },
+    },
   },
 
   { -- https://github.com/NvChad/nvim-colorizer.lua

@@ -160,7 +160,7 @@ M.vim_nightfly = function()
 end
 
 M.current = function()
-  return M.gruvbox_material_dark()
+  return M.tokyonight_storm()
 end
 
 return M

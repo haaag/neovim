@@ -1,13 +1,13 @@
 return {
 
-  --[[ { -- https://github.com/folke/tokyonight.nvim
+  { -- https://github.com/folke/tokyonight.nvim
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
     enabled = true,
     opts = function()
       return {
-        style = 'night',
+        style = 'storm',
         sidebars = {
           'qf',
           'vista_kind',
@@ -24,7 +24,7 @@ return {
         styles = {
           comments = { italic = true },
           keywords = { italic = true },
-          functions = { bold = false },
+          functions = { bold = true },
           variables = {},
           sidebars = 'normal', -- "dark", "transparent" or "normal"
           floats = 'normal', -- "dark", "transparent" or "normal"
@@ -36,10 +36,10 @@ return {
       tokyonight.setup(opts)
       tokyonight.load()
     end,
-  }, ]]
+  },
 
   -- gruvbox
-  { -- https://github.com/sainnhe/gruvbox-material
+  --[[ { -- https://github.com/sainnhe/gruvbox-material
     'sainnhe/gruvbox-material',
     lazy = false,
     priority = 1000,
@@ -65,7 +65,7 @@ return {
       -- vim.g.gruvbox_material_visual = "reverse"
       vim.cmd('colorscheme gruvbox-material')
     end,
-  },
+  }, ]]
 
   --[[ { -- https://github.com/marko-cerovac/material.nvim
     "marko-cerovac/material.nvim",
