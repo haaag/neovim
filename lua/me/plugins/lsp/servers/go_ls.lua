@@ -1,6 +1,7 @@
 -- lsp.servers.go
+-- https://github.com/neovim/nvim-lspconfig
 return {
-  'neovim/nvim-lspconfig', -- https://github.com/neovim/nvim-lspconfig
+  'neovim/nvim-lspconfig',
   opts = {
     servers = {
       gopls = {

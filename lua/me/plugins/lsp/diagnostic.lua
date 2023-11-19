@@ -6,10 +6,12 @@ local M = {}
 
 function M.defaults()
   return {
-    virtual_lines = true,
+    virtual_lines = false,
     virtual_text = {
-      prefix = ' ',
-      source = 'always',
+      spacing = 3,
+      prefix = ' ',
+      severity_sort = true,
+      source = 'if_many',
     },
     signs = true,
     update_in_insert = false,
@@ -61,11 +63,11 @@ function M.toggle_diagnostics()
 end
 
 function M.set_keys()
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = '[D]iagnostic Prev' })
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = '[D]iagnostic Next' })
-  vim.keymap.set('n', '[a', vim.diagnostic.open_float, { desc = '[D]iagnostic Float' })
-  vim.keymap.set('n', ']a', vim.diagnostic.open_float, { desc = '[D]iagnostic Float' })
-  vim.keymap.set('n', '<leader>mtd', M.toggle_diagnostics, { desc = '[D]iagnostic Toggle' })
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Diagnostic Prev' })
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostic Next' })
+  vim.keymap.set('n', '[a', vim.diagnostic.open_float, { desc = 'Diagnostic Float' })
+  vim.keymap.set('n', ']a', vim.diagnostic.open_float, { desc = 'Diagnostic Float' })
+  vim.keymap.set('n', '<leader>mtd', M.toggle_diagnostics, { desc = 'Diagnostic Toggle' })
 end
 
 function M.setup()

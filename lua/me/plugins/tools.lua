@@ -44,4 +44,22 @@ return {
     },
     enabled = true,
   },
+
+  { -- https://github.com/toppair/peek.nvim
+    'toppair/peek.nvim',
+    build = 'deno task --quiet build:fast',
+    cmd = { 'PeekClose', 'PeekOpen' },
+    config = function()
+      require('peek').setup({
+        theme = 'light',
+      })
+      vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+      vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+    end,
+    keys = {
+      { '<leader>mp', '<CMD>PeekOpen<CR>', desc = 'Peek Open' },
+      { '<leader>mP', '<CMD>PeekClose<CR>', desc = 'Peek Close' },
+    },
+    enabled = true,
+  },
 }

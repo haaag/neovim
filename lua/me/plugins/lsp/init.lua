@@ -48,6 +48,7 @@ return {
 
       require('me.plugins.lsp.utils').on_attach(function(client, bufnr)
         require('me.plugins.lsp.keys').on_attach(bufnr)
+
         client.server_capabilities.semanticTokensProvider = nil
 
         if client.name == 'ruff_lsp' then
@@ -56,7 +57,6 @@ return {
       end)
 
       local servers = opts.servers
-      -- local capabilities = require('me.plugins.lsp.utils').capabilities()
       local capabilities = require('cmp_nvim_lsp').default_capabilities(require('me.plugins.lsp.utils').capabilities())
 
       require('mason-lspconfig').setup({ ensure_installed = vim.tbl_keys(servers) })
@@ -119,36 +119,39 @@ return {
     end,
   },
 
-  -- TODO: Replace tool (deprecated)
-  { -- https://github.com/jose-elias-alvarez/null-ls.nvim
-    'jose-elias-alvarez/null-ls.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
-    dependencies = { 'mason.nvim' },
-    opts = function()
-      local nls = require('null-ls')
-      return {
-        root_dir = require('null-ls.utils').root_pattern('.null-ls-root', '.neoconf.json', 'Makefile', '.git'),
-        sources = {
-          nls.builtins.formatting.stylua,
-          nls.builtins.formatting.prettier,
-          -- markdown
-          nls.builtins.diagnostics.markdownlint,
-          nls.builtins.diagnostics.write_good,
-          nls.builtins.diagnostics.alex,
-          nls.builtins.diagnostics.codespell,
-          -- python
-          nls.builtins.diagnostics.mypy.with({ method = nls.methods.DIAGNOSTICS_ON_SAVE }),
-          nls.builtins.formatting.black,
-          -- shell
-          nls.builtins.formatting.shfmt,
-          nls.builtins.code_actions.shellcheck,
-          -- go
-          nls.builtins.diagnostics.staticcheck,
-          nls.builtins.diagnostics.golangci_lint,
-          nls.builtins.formatting.golines,
-        },
+  { -- https://github.com/mfussenegger/nvim-lint
+    'mfussenegger/nvim-lint',
+    event = { 'BufReadPre' },
+    config = function()
+      local lint = require('lint')
+      lint.linters_by_ft = {
+        go = { 'golangcilint', 'codespell' },
+        markdown = { 'markdownlint', 'write_good', 'alex' },
+        python = { 'mypy', 'ruff' },
+        sh = { 'shellcheck' },
+        ['*'] = { 'codespell', 'misspell' },
       }
     end,
+  },
+
+  { -- https://github.com/stevearc/conform.nvim
+    'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
     enabled = true,
+    opts = {
+      formatters_by_ft = {
+        go = { 'goimports' },
+        javascript = { { 'prettierd', 'prettier' } },
+        lua = { 'stylua' },
+        python = { 'ruff_format' },
+        sh = { 'shfmt' },
+        ['_'] = { 'trim_whitespace' },
+      },
+      format_on_save = {
+        lsp_fallback = true,
+        timeout_ms = 500,
+      },
+    },
   },
 }

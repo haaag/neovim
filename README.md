@@ -90,7 +90,7 @@
   Using regexes and extmarks to highlight uses of word under the cursor.
 - [lukas-reineke/virt-column.nvim](https://github.com/lukas-reineke/virt-column.nvim) -
   Display a character as the colorcolumn.
-- [echasnovski/mini.tabline](https://github.com/echasnovski/mini.tabline) - 
+- [echasnovski/mini.tabline](https://github.com/echasnovski/mini.tabline) -
   Minimal and fast tabline showing listed buffers.
 - [nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) -
   High-performance color highlighter which has no external dependencies!.
@@ -99,8 +99,6 @@
 
 ### 🚧 Misc
 
-- [baskerville/vim-sxhkdrc](https://github.com/baskerville/vim-sxhkdrc) -
-  `sxhkdrc` syntax highlight.
 - [tpope/vim-repeat](https://github.com/tpope/vim-repeat) - `Repeat.vim` remaps
   `.` in a way that plugins can tap into it.
 - [toppair/peek.nvim](https://github.com/toppair/peek.nvim) - Markdown preview

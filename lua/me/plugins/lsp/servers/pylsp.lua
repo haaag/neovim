@@ -18,8 +18,8 @@ return {
               mccabe = { enabled = false },
               ruff = { enabled = false },
               -- enabled
-              pylsp_mypy = { enabled = true, dmypy = true, report_progress = true },
-              black = { enabled = true },
+              pylsp_mypy = { enabled = false, dmypy = true, report_progress = true },
+              black = { enabled = false },
               rope_autoimport = { enabled = true },
               jedi_completion = {
                 enabled = true,

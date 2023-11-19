@@ -68,9 +68,31 @@ autocmd({ 'BufEnter' }, {
   end,
 })
 
---[[ autocmd('BufRead', {
-  pattern = { '*.*' },
-  callback = function(data)
-    require('local-highlight').attach(data.buf)
+autocmd({ 'InsertLeave', 'BufWritePost' }, {
+  group = augroup('linting'),
+  callback = function()
+    local lint_status, lint = pcall(require, 'lint')
+    if lint_status then
+      lint.try_lint()
+    end
   end,
+  desc = 'Lint code via nvim-lint',
+})
+
+--[[ autocmd('BufWritePre', {
+  group = augroup('formatting'),
+  pattern = '*',
+  callback = function(_)
+    require('conform').format({ async = true, lsp_fallback = true })
+  end,
+  desc = 'Format code via conform.nvim',
+}) ]]
+
+--[[ autocmd('BufWritePre', {
+  group = augroup('formatting'),
+  pattern = '*',
+  callback = function(_)
+    require('conform').format({ async = true, lsp_fallback = true })
+  end,
+  desc = 'Format code via conform.nvim',
 }) ]]

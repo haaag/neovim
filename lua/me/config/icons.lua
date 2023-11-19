@@ -43,7 +43,7 @@ return {
         Error = ' ',
         Hint = ' ',
         Info = ' ',
-        Warn = ' ',
+        Warn = ' ',
       },
     },
     ui = {
