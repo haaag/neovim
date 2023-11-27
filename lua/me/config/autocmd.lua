@@ -10,14 +10,14 @@ autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
   end,
-  desc = 'Highlight on yank',
+  desc = 'highlight on yank',
 })
 
 autocmd('BufWritePost', {
   group = augroup('sxhkd_group'),
   pattern = '*sxhkdrc',
   command = '!pkill -USR1 sxhkd',
-  desc = 'Update binds when sxhkdrc is updated.',
+  desc = 'update binds when sxhkdrc is updated.',
 })
 
 autocmd({ 'FileType' }, {
@@ -27,7 +27,7 @@ autocmd({ 'FileType' }, {
     vim.bo[event.buf].buflisted = false
     vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
   end,
-  desc = "Use 'q' to quit from common plugins",
+  desc = "use 'q' to quit from common plugins",
 })
 
 autocmd('BufReadPost', {
@@ -39,14 +39,14 @@ autocmd('BufReadPost', {
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
   end,
-  desc = 'Go to last loc when opening a buffer',
+  desc = 'go to last loc when opening a buffer',
 })
 
 autocmd({ 'BufWritePost' }, {
   group = augroup('Xresources'),
   pattern = { '*xdefaults', '*Xresources', '*.xresources' },
   command = '!xrdb -load ~/.Xresources',
-  desc = 'Reload Xresources after buffer write',
+  desc = 'reload xresources after buffer write',
 })
 
 autocmd({ 'TermOpen' }, {

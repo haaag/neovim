@@ -21,9 +21,9 @@ function M.on_attach(bufnr)
 
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-  nmap('<leader>lf', function()
+  --[[ nmap('<leader>lf', function()
     vim.lsp.buf.format({ async = true })
-  end, '[L]sp [F]ormat')
+  end, '[L]sp [F]ormat') ]]
   nmap('<leader>lws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
   nmap('<leader>lwa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   nmap('<leader>lwr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')

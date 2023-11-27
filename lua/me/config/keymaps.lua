@@ -1,49 +1,44 @@
 -- keymaps
 
+local map = vim.keymap.set
 local options = { noremap = true, silent = true }
 local silent = { silent = true }
-local map = vim.keymap.set
 local Util = require('me.config.utils')
 
--- Keymaps for better default experience
--- vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+-- shortcut to use blackhole register by default
+map('v', 'd', '"_d', options)
+map('v', 'D', '"_D', options)
+map('v', 'c', '"_c', options)
+map('v', 'C', '"_C', options)
+map('v', 'x', '"_x', options)
+map('v', 'X', '"_X', options)
+map('n', 'd', '"_d', options)
+map('n', 'D', '"_D', options)
+map('n', 'c', '"_c', options)
+map('n', 'C', '"_C', options)
+map('n', 'x', '"_x', options)
+map('n', 'X', '"_X', options)
 
--- Shortcut to use blackhole register by default
-vim.keymap.set('v', 'd', '"_d', options)
-vim.keymap.set('v', 'D', '"_D', options)
-vim.keymap.set('v', 'c', '"_c', options)
-vim.keymap.set('v', 'C', '"_C', options)
-vim.keymap.set('v', 'x', '"_x', options)
-vim.keymap.set('v', 'X', '"_X', options)
-vim.keymap.set('n', 'd', '"_d', options)
-vim.keymap.set('n', 'D', '"_D', options)
-vim.keymap.set('n', 'c', '"_c', options)
-vim.keymap.set('n', 'C', '"_C', options)
-vim.keymap.set('n', 'x', '"_x', options)
-vim.keymap.set('n', 'X', '"_X', options)
-
--- Remap for dealing with word wrap
+-- remap for dealing with word wrap
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Use ctlr + hjkl to resize windows:
-map('n', '<C-j>', ':resize -2<CR>', options)
-map('n', '<C-S-k>', ':resize +2<CR>', options)
+-- use ctlr + hjkl to resize windows:
 map('n', '<C-h>', ':vertical resize -2<CR>', options)
 map('n', '<C-l>', ':vertical resize +2<CR>', options)
 
--- Keep search results centred
+-- keep search results centred
 map('n', 'n', 'nzzzv', silent)
 map('n', 'N', 'Nzzzv', silent)
 
--- Make Y yank to end of the line
+-- make y yank to end of the line
 map('n', 'Y', 'y$', silent)
 
--- Move lines
+-- move lines
 map('v', 'K', ":move '<-2<CR>gv-gv", {})
 map('v', 'J', ":move '>+1<CR>gv-gv", {})
 
--- C-d 'n C-u centred
+-- c-d 'n c-u centred
 map('n', '<C-d>', '<C-d>zz', silent)
 map('n', '<C-u>', '<C-u>zz', silent)
 
@@ -89,14 +84,3 @@ end, { desc = 'Toggle [A]all' })
 vim.keymap.set('n', '<leader>ma', function()
   Util.set_root()
 end)
-
--- map("n", "<S-A-CR>", ":TermExec cmd='python %' size=10 direction=horizontal <CR>")
-
---[[ map("n", "<leader>bc", "<cmd>%bd|e#<cr>", { desc = "Close all buffers but the current one" })
--- https://stackoverflow.com/a/42071865/516188 ]]
-
--- disable the arrow keys
---[[ map({ "i", "n" }, "<Up>", "<NOP>")
-map({ "i", "n" }, "<Down>", "<NOP>")
-map({ "i", "n" }, "<Left>", "<NOP>")
-map({ "i", "n" }, "<Right>", "<NOP>") ]]

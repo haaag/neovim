@@ -69,7 +69,6 @@ function M.setup()
         vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
         vim_item.menu = ({
           buffer = '[Buf]',
-          codeium = '[Cod]',
           nvim_lsp = '[LSP]',
           nvim_lua = '[API]',
           path = '[Path]',
@@ -88,31 +87,39 @@ function M.setup()
     },
 
     mapping = {
-      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<C-n>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif luasnip.choice_active() then
-          luasnip.change_choice(1)
-        else
-          fallback()
-        end
-      end, { 'i', 's' }),
-      ['<C-p>'] = cmp.mapping.select_prev_item(),
+      ['<c-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<c-f>'] = cmp.mapping.scroll_docs(4),
+      ['<c-e>'] = cmp.mapping.abort(),
+      ['<c-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+      ['<c-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+      ['<c-space>'] = cmp.mapping.complete(),
+      ['<tab>'] = cmp.config.disable,
       ['<Cr>'] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
       }),
-      ['<c-space>'] = cmp.mapping.complete(),
+      ['<c-y>'] = cmp.mapping(
+        cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = true,
+        }),
+        { 'i', 'c' }
+      ),
     },
 
     sources = {
-      { name = 'nvim_lsp' },
-      { name = 'luasnip' },
-      { name = 'buffer' },
-      { name = 'path' },
+      { name = 'path', priority_weight = 110 },
+      { name = 'nvim_lsp', max_item_count = 20, priority_weight = 100 },
+      { name = 'nvim_lua', priority_weight = 90 },
+      { name = 'luasnip', priority_weight = 80 },
+      {
+        name = 'buffer',
+        max_item_count = 5,
+        priority_weight = 50,
+        entry_filter = function(entry)
+          return not entry.exact
+        end,
+      },
       {
         name = 'rg',
         keyword_length = 5,
@@ -121,6 +128,16 @@ function M.setup()
         option = {
           additional_arguments = '--smart-case --hidden',
         },
+        entry_filter = function(entry)
+          return not entry.exact
+        end,
+      },
+      {
+        name = 'look',
+        keyword_length = 5,
+        max_item_count = 5,
+        option = { convert_case = true, loud = true },
+        priority_weight = 40,
         entry_filter = function(entry)
           return not entry.exact
         end,

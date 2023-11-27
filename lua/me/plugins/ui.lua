@@ -5,24 +5,6 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/stevearc/dressing.nvim
-    'stevearc/dressing.nvim',
-    event = 'BufReadPost',
-    init = function()
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.select = function(...)
-        require('lazy').load({ plugins = { 'dressing.nvim' } })
-        return vim.ui.select(...)
-      end
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.input = function(...)
-        require('lazy').load({ plugins = { 'dressing.nvim' } })
-        return vim.ui.input(...)
-      end
-    end,
-    enabled = true,
-  },
-
   { -- https://github.com/tzachar/local-highlight.nvim
     'tzachar/local-highlight.nvim',
     event = 'VeryLazy',
