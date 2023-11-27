@@ -118,40 +118,4 @@ return {
       end
     end,
   },
-
-  { -- https://github.com/mfussenegger/nvim-lint
-    'mfussenegger/nvim-lint',
-    event = { 'BufReadPre' },
-    config = function()
-      local lint = require('lint')
-      lint.linters_by_ft = {
-        go = { 'golangcilint', 'codespell' },
-        markdown = { 'markdownlint', 'write_good', 'alex' },
-        python = { 'mypy', 'ruff' },
-        sh = { 'shellcheck' },
-        ['*'] = { 'codespell', 'misspell' },
-      }
-    end,
-  },
-
-  { -- https://github.com/stevearc/conform.nvim
-    'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
-    cmd = { 'ConformInfo' },
-    enabled = true,
-    opts = {
-      formatters_by_ft = {
-        go = { 'goimports' },
-        javascript = { { 'prettierd', 'prettier' } },
-        lua = { 'stylua' },
-        python = { 'ruff_format' },
-        sh = { 'shfmt' },
-        ['_'] = { 'trim_whitespace' },
-      },
-      format_on_save = {
-        lsp_fallback = true,
-        timeout_ms = 500,
-      },
-    },
-  },
 }

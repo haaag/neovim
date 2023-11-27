@@ -76,23 +76,5 @@ autocmd({ 'InsertLeave', 'BufWritePost' }, {
       lint.try_lint()
     end
   end,
-  desc = 'Lint code via nvim-lint',
+  desc = 'lint code via nvim-lint',
 })
-
---[[ autocmd('BufWritePre', {
-  group = augroup('formatting'),
-  pattern = '*',
-  callback = function(_)
-    require('conform').format({ async = true, lsp_fallback = true })
-  end,
-  desc = 'Format code via conform.nvim',
-}) ]]
-
---[[ autocmd('BufWritePre', {
-  group = augroup('formatting'),
-  pattern = '*',
-  callback = function(_)
-    require('conform').format({ async = true, lsp_fallback = true })
-  end,
-  desc = 'Format code via conform.nvim',
-}) ]]
