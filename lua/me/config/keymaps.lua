@@ -67,20 +67,20 @@ map('n', '<leader>qG', '<CMD>clast<CR>', { desc = '[Q]uickfix Last' })
 -- personal
 map('n', '<leader>wn', function()
   require('me.config.utils').toggle_numbers()
-end, { desc = 'Toggle [N]umber' })
+end, { desc = 'Toggle Number' })
 
 map('n', '<leader>wd', function()
   require('me.plugins.lsp.diagnostic').toggle_diagnostics()
-end, { desc = 'Toggle [D]iagnostics signs' })
+end, { desc = 'Toggle Diagnostics signs' })
 
 map('n', '<leader>wg', function()
   require('gitsigns').toggle_signs()
-end, { desc = 'Toggle [G]it signs' })
+end, { desc = 'Toggle Git signs' })
 
 map('n', '<leader>wa', function()
   require('me.config.utils').toggle_all()
-end, { desc = 'Toggle [A]all' })
+end, { desc = 'Toggle Aall' })
 
-vim.keymap.set('n', '<leader>ma', function()
+map('n', '<leader>ma', function()
   Util.set_root()
-end)
+end, { desc = 'Set current root' })

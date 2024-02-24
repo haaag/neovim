@@ -67,7 +67,6 @@ function M.set_keys()
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostic Next' })
   vim.keymap.set('n', '[a', vim.diagnostic.open_float, { desc = 'Diagnostic Float' })
   vim.keymap.set('n', ']a', vim.diagnostic.open_float, { desc = 'Diagnostic Float' })
-  vim.keymap.set('n', '<leader>mtd', M.toggle_diagnostics, { desc = 'Diagnostic Toggle' })
 end
 
 function M.setup()

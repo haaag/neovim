@@ -34,39 +34,6 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/L3MON4D3/LuaSnip
-    'L3MON4D3/LuaSnip',
-    version = 'v2.*',
-    event = 'InsertEnter',
-    dependencies = {
-      'rafamadriz/friendly-snippets',
-      config = function()
-        require('luasnip.loaders.from_vscode').lazy_load()
-      end,
-    },
-    main = 'me.config.plugins.luasnip',
-    config = true,
-  },
-
-  { -- https://github.com/hrsh7th/nvim-cmp/releases
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
-    dependencies = {
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lua',
-      'davidsierradz/cmp-conventionalcommits',
-      'lukas-reineke/cmp-under-comparator',
-      'lukas-reineke/cmp-rg',
-      'saadparwaiz1/cmp_luasnip',
-      'octaltree/cmp-look',
-      -- "andersevenrud/cmp-tmux",
-    },
-    main = 'me.config.plugins.completion',
-    config = true,
-  },
-
   { -- https://github.com/numToStr/Comment.nvim
     'numToStr/Comment.nvim',
     -- keys = { 'gcc', 'gbc', 'gbi', 'gci' },
