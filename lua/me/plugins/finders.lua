@@ -11,7 +11,6 @@ return {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
       { 'nvim-telescope/telescope-project.nvim' },
-      -- { "nvim-telescope/telescope-dap.nvim" },
     },
     -- stylua: ignore
     -- luacheck: ignore
@@ -45,9 +44,6 @@ return {
 
       -- Enable telescope project
       pcall(require('telescope').load_extension, 'project')
-
-      -- Enable telescope dap
-      -- pcall(require("telescope").load_extension, "dap")
     end,
   },
 

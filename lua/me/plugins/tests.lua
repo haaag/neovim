@@ -1,11 +1,11 @@
 return {
   { -- https://github.com/nvim-neotest/neotest
     'nvim-neotest/neotest',
+    enabled = true,
     dependencies = {
       'nvim-neotest/neotest-python',
       'nvim-neotest/neotest-go',
     },
-    commit = '1e67a504d03def3a6a1125d934cb511680f72555',
     opts = {
       adapters = {
         ['neotest-python'] = {},

@@ -109,7 +109,7 @@ function M.setup()
 
     sources = {
       { name = 'path', priority_weight = 110 },
-      { name = 'nvim_lsp', max_item_count = 20, priority_weight = 100 },
+      { name = 'nvim_lsp', max_item_count = 25, priority_weight = 100 },
       { name = 'nvim_lua', priority_weight = 90 },
       { name = 'luasnip', priority_weight = 80 },
       {
@@ -138,9 +138,9 @@ function M.setup()
         max_item_count = 5,
         option = { convert_case = true, loud = true },
         priority_weight = 40,
-        entry_filter = function(entry)
+        --[[ entry_filter = function(entry)
           return not entry.exact
-        end,
+        end, ]]
       },
     },
 

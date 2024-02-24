@@ -7,7 +7,7 @@ return {
       'mfussenegger/nvim-dap-python',
       'theHamsta/nvim-dap-virtual-text',
     },
-    enabled = true,
+    enabled = NVIM_DEBUG,
     -- stylua: ignore
     init = function()
       local map = vim.keymap.set

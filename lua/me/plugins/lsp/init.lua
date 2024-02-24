@@ -85,25 +85,17 @@ return {
     enabled = true,
     opts = {
       ensure_installed = {
-        -- lua
-        -- "luacheck",
         'stylua',
-        -- python
         'ruff',
-        'debugpy',
-        -- web
-        'prettier',
-        'eslint_d',
-        -- shell
-        'shellcheck',
         'shfmt',
-        -- markdown
+        'prettier',
+        'debugpy',
+        'eslint_d',
+        'shellcheck',
         'markdownlint',
         'write-good',
-        'cbfmt',
-        'alex',
-        -- go
         'goimports',
+        'alex',
         'staticcheck',
       },
     },

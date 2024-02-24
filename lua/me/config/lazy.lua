@@ -20,7 +20,6 @@ require('lazy').setup({
     { import = 'me.plugins.lsp.servers.go_ls' },
     { import = 'me.plugins.lsp.servers.pyright' },
     { import = 'me.plugins.lsp.servers.pylsp' },
-    -- { import = 'me.plugins.lsp.servers.efm' },
     -- { import = 'me.plugins.lsp.servers.json' },
     -- { import = "me.plugins.lsp.servers.typescript" },
   },

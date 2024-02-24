@@ -42,9 +42,29 @@ M.tokyonight_night = function()
   }
 end
 
-M.gruvbox = function()
+M.gruvbox_medium = function()
   return {
     background = '#282828',
+    foreground = '#ebdbb2',
+    black = '#282828',
+    black2 = '#282828',
+    red = '#fb4934',
+    green = '#b8bb26',
+    yellow = '#fabd2f',
+    blue = '#83a598',
+    purple = '#8f3f71',
+    magenta = '#d3869b',
+    orange = '#fe8019',
+    cyan = '#8ec07c',
+    white = '#ebdbb2',
+    lightgrey = '#928374',
+    darkgrey = '#a89984',
+  }
+end
+
+M.gruvbox_hard = function()
+  return {
+    background = '#1d2021',
     foreground = '#ebdbb2',
     black = '#282828',
     black2 = '#282828',
@@ -160,7 +180,7 @@ M.vim_nightfly = function()
 end
 
 M.current = function()
-  return M.tokyonight_storm()
+  return M.gruvbox_hard()
 end
 
 return M

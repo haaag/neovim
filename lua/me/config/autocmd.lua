@@ -22,7 +22,7 @@ autocmd('BufWritePost', {
 
 autocmd({ 'FileType' }, {
   group = augroup('easy_close_q'),
-  pattern = { 'qf', 'help', 'man', 'lspinfo', 'startuptime', 'netrw', 'neotest-output' },
+  pattern = { 'qf', 'help', 'man', 'lspinfo', 'startuptime', 'netrw', 'neotest-output', 'neotest-output-panel' },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
@@ -68,7 +68,7 @@ autocmd({ 'BufEnter' }, {
   end,
 })
 
-autocmd({ 'InsertLeave', 'BufWritePost' }, {
+--[[ autocmd({ 'InsertLeave', 'BufWritePost' }, {
   group = augroup('linting'),
   callback = function()
     local lint_status, lint = pcall(require, 'lint')
@@ -77,4 +77,4 @@ autocmd({ 'InsertLeave', 'BufWritePost' }, {
     end
   end,
   desc = 'lint code via nvim-lint',
-})
+}) ]]

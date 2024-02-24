@@ -3,6 +3,10 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- global envs
+NVIM_DEBUG = os.getenv('DEBUG') or false
+NVIM_TEST = os.getenv('TEST') or false
+
 require('me.config.lazy')
 require('me.config.options')
 

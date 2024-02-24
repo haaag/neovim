@@ -27,16 +27,95 @@ return {
     enabled = true,
   },
 
-  { -- my.statusline.nvim
-    dir = tostring(os.getenv('HOME')) .. '/dev/lua/stat.nvim',
+  { -- https://github.com/tamton-aquib/staline.nvim
+    'tamton-aquib/staline.nvim',
+    enabled = true,
+    config = function()
+      local colors = require('me.config.colors').current()
+      local highlight = require('me.config.utils').highlight
+      local git_status = function(type, prefix)
+        local status = vim.b.gitsigns_status_dict
+        if not status then
+          return nil
+        end
+        if not status[type] or status[type] == 0 then
+          return nil
+        end
+        return prefix .. status[type]
+      end
+
+      highlight.BranchName = {
+        guifg = colors.orange,
+      }
+
+      highlight.StatusGrey = {
+        guifg = colors.darkgrey,
+        -- gui = 'bold',
+      }
+
+      highlight.SFilename = {
+        guifg = colors.cyan,
+        -- gui = 'bold',
+      }
+
+      require('staline').setup({
+        sections = {
+          left = {
+            '',
+            { 'SFilename', 'file_name' },
+            { 'BranchName', 'branch' },
+            '',
+            {
+              'StatusGrey',
+              function()
+                return git_status('added', '+') or ''
+              end,
+            },
+            '',
+            {
+              'StatusGrey',
+              function()
+                return git_status('changed', '~') or ''
+              end,
+            },
+            '',
+            {
+              'StatusGrey',
+              function()
+                return git_status('removed', '-') or ''
+              end,
+            },
+          },
+          mid = {},
+          right = { 'lsp', '', { 'StatusGrey', 'lsp_name' }, { 'StatusGrey', 'line_column' } },
+        },
+        defaults = {
+          true_colors = true,
+          line_column = ' [%l/%L] :%c  ',
+          branch_symbol = ' ',
+        },
+      })
+    end,
+  },
+
+  --[[ { -- https://github.com/romgrk/barbar.nvim
+    'romgrk/barbar.nvim',
     event = 'VeryLazy',
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
+      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
     },
-    opts = {},
-    config = true,
-    enabled = true,
-  },
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
+    opts = {
+      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+      -- animation = true,
+      -- insert_at_start = true,
+      -- …etc.
+    },
+    version = '^1.0.0', -- optional: only update when a new 1.x version is released
+  }, ]]
 
   { -- https://github.com/akinsho/bufferline.nvim
     'akinsho/bufferline.nvim',
@@ -51,6 +130,7 @@ return {
         modified_icon = '',
       },
     },
+    enabled = true,
   },
 
   { -- https://github.com/NvChad/nvim-colorizer.lua
@@ -113,5 +193,67 @@ return {
       })
     end,
     enabled = true,
+  },
+
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    event = 'VeryLazy',
+    opts = {
+      indent = {
+        char = '│',
+        tab_char = '│',
+      },
+      scope = { enabled = false },
+      exclude = {
+        filetypes = {
+          'help',
+          'alpha',
+          'dashboard',
+          'neo-tree',
+          'Trouble',
+          'trouble',
+          'lazy',
+          'mason',
+          'notify',
+          'toggleterm',
+          'lazyterm',
+        },
+      },
+    },
+    main = 'ibl',
+  },
+
+  -- Active indent guide and indent text objects. When you're browsing
+  -- code, this highlights the current level of indentation, and animates
+  -- the highlighting.
+  {
+    'echasnovski/mini.indentscope',
+    version = false, -- wait till new 0.7.0 release to put it back on semver
+    event = 'VeryLazy',
+    opts = {
+      -- symbol = "▏",
+      symbol = '│',
+      options = { try_as_border = true },
+    },
+    init = function()
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = {
+          'help',
+          'alpha',
+          'dashboard',
+          'neo-tree',
+          'Trouble',
+          'trouble',
+          'lazy',
+          'mason',
+          'notify',
+          'toggleterm',
+          'lazyterm',
+        },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+    end,
   },
 }

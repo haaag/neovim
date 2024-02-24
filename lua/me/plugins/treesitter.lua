@@ -32,8 +32,8 @@ return {
         enable = true,
       },
       context = {
-        enabled = true,
-        max_lines = 0,
+        enabled = false,
+        max_lines = 10,
         multiline_threshold = 10,
       },
       ensure_installed = {

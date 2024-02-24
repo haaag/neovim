@@ -1,7 +1,8 @@
 return {
   { -- https://github.com/mfussenegger/nvim-lint
     'mfussenegger/nvim-lint',
-    events = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
+    enabled = true,
+    event = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
     config = function()
       local autocmd = vim.api.nvim_create_autocmd
       local lint_group = vim.api.nvim_create_augroup('lint_me', { clear = true })
@@ -9,7 +10,7 @@ return {
 
       lint.linters_by_ft = {
         ['*'] = { 'codespell', 'misspell' },
-        ['go'] = { 'golangcilint', 'codespell' },
+        ['go'] = { 'golangcilint' },
         ['javascript'] = { 'eslint_d' },
         ['javascriptreact'] = { 'eslint_d' },
         ['markdown'] = { 'markdownlint', 'write_good', 'alex' },

@@ -4,7 +4,7 @@ return {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
-    enabled = true,
+    enabled = false,
     opts = function()
       return {
         style = 'storm',
@@ -24,7 +24,7 @@ return {
         styles = {
           comments = { italic = true },
           keywords = { italic = true },
-          functions = { bold = true },
+          functions = { bold = false },
           variables = {},
           sidebars = 'normal', -- "dark", "transparent" or "normal"
           floats = 'normal', -- "dark", "transparent" or "normal"
@@ -38,30 +38,67 @@ return {
     end,
   },
 
-  -- gruvbox
-  --[[ { -- https://github.com/sainnhe/gruvbox-material
-    'sainnhe/gruvbox-material',
+  { -- https://github.com/ellisonleao/gruvbox.nvim
+    'ellisonleao/gruvbox.nvim',
     lazy = false,
     priority = 1000,
     enabled = true,
     config = function()
+      require('gruvbox').setup({
+        terminal_colors = true,
+        undercurl = true,
+        underline = true,
+        bold = false,
+        italic = {
+          strings = true,
+          emphasis = true,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = true,
+        invert_intend_guides = false,
+        inverse = true, -- invert background for search, diffs, statuslines and errors
+        contrast = 'hard', -- can be "hard", "soft" or empty string
+        dim_inactive = false,
+        transparent_mode = true,
+        palette_overrides = {},
+        overrides = {
+          SignColumn = { bg = 'NONE' },
+        },
+      })
+      -- vim.o.background = 'light'
+      vim.cmd('colorscheme gruvbox')
+    end,
+  },
+
+  --[[ { -- https://github.com/sainnhe/gruvbox-material
+    'sainnhe/gruvbox-material',
+    lazy = false,
+    priority = 1000,
+    enabled = false,
+    config = function()
       -- vim.o.background = "light"
       vim.o.background = 'dark'
-      vim.g.gruvbox_material_enable_bold = true
+      vim.g.gruvbox_material_enable_bold = false
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_transparent_background = true
       vim.g.gruvbox_material_dim_inactive_windows = false
-      vim.g.gruvbox_material_disable_italic_comment = true
+      vim.g.gruvbox_material_disable_italic_comment = false
       vim.g.gruvbox_material_diagnostic_text_highlight = true
-      vim.g.gruvbox_material_background = 'medium' -- hard, medium, soft
+      vim.g.gruvbox_material_background = 'hard' -- hard, medium, soft
       vim.g.gruvbox_material_diagnostic_virtual_text = 'colored' -- grey, colored, highlighted
       vim.g.gruvbox_material_spell_foreground = 'colored' -- none
       vim.g.gruvbox_material_ui_contrast = 'low' -- 'low' 'high'
-      vim.g.gruvbox_material_show_eob = true
-      vim.g.gruvbox_material_current_word = 'underline'
-      -- vim.g.gruvbox_material_diagnostic_line_highlight = true
+      vim.g.gruvbox_material_show_eob = true -- Whether to show hl-EndOfBuffer
+      vim.g.gruvbox_material_current_word = 'underline' -- 'grey background', 'bold', 'underline', 'italic'
+      vim.g.gruvbox_material_diagnostic_line_highlight = false
       vim.g.gruvbox_material_menu_selection_background = 'red'
       vim.g.gruvbox_material_float_style = 'bright' -- 'bright', 'dim'
+      vim.g.gruvbox_material_foreground = 'material' -- 'material', 'mix', 'original'
       -- vim.g.gruvbox_material_visual = "reverse"
       vim.cmd('colorscheme gruvbox-material')
     end,
