@@ -61,14 +61,14 @@ return {
     end,
   -- stylua: ignore
   keys = {
-    { "<leader>tt", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run File" },
-    { "<leader>tT", function() require("neotest").run.run(vim.loop.cwd()) end, desc = "Run All Test Files" },
-    { "<leader>tr", function() require("neotest").run.run() end, desc = "Run Nearest" },
-    { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle Summary" },
-    { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "Show Output" },
-    { "<leader>tO", function() require("neotest").output_panel.toggle() end, desc = "Toggle Output Panel" },
-    { "<leader>tS", function() require("neotest").run.stop() end, desc = "Stop" },
-    { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Run Last Test" },
+    { "<leader>tt", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "test run file" },
+    { "<leader>tT", function() require("neotest").run.run(vim.loop.cwd()) end, desc = "test run all files" },
+    { "<leader>tr", function() require("neotest").run.run() end, desc = "test run nearest" },
+    { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "test toggle summary" },
+    { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "test show output" },
+    { "<leader>tO", function() require("neotest").output_panel.toggle() end, desc = "test toggle output panel" },
+    { "<leader>tS", function() require("neotest").run.stop() end, desc = "test stop" },
+    { "<leader>tl", function() require("neotest").run.run_last() end, desc = "test run last" },
   },
   },
 }

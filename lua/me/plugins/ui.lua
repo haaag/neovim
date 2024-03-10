@@ -8,6 +8,9 @@ return {
   { -- https://github.com/tzachar/local-highlight.nvim
     'tzachar/local-highlight.nvim',
     event = 'VeryLazy',
+    keys = {
+      { '<leader>bh', '<CMD>LocalHighlightToggle<CR>', desc = 'highlight word toggle' },
+    },
     config = function()
       vim.api.nvim_set_hl(0, 'MyLocalHighlight', {
         underline = true,
@@ -17,13 +20,6 @@ return {
         hlgroup = 'MyLocalHighlight',
       })
     end,
-    enabled = true,
-  },
-
-  { -- https://github.com/lukas-reineke/virt-column.nvim
-    'lukas-reineke/virt-column.nvim',
-    lazy = false,
-    config = true,
     enabled = true,
   },
 
@@ -61,6 +57,9 @@ return {
       'ColorizerDetachFromBuffer',
       'ColorizerReloadAllBuffers',
       'ColorizerToggle',
+    },
+    keys = {
+      { '<leader>bc', '<CMD>ColorizerToggle<CR>', desc = 'colorizer' },
     },
     opts = {
       filetypes = { '*', '!lazy' },

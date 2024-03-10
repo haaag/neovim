@@ -6,13 +6,13 @@ return {
       -- Populate the keys based on the user's options
       local opts = require('lazy.core.plugin').values(plugin, 'opts', false)
       local mappings = {
-        { opts.mappings.add, desc = 'Add surrounding', mode = { 'n', 'v' } },
-        { opts.mappings.delete, desc = 'Delete surrounding' },
-        { opts.mappings.find, desc = 'Find right surrounding' },
-        { opts.mappings.find_left, desc = 'Find left surrounding' },
-        { opts.mappings.highlight, desc = 'Highlight surrounding' },
-        { opts.mappings.replace, desc = 'Replace surrounding' },
-        { opts.mappings.update_n_lines, desc = 'Update `MiniSurround.config.n_lines`' },
+        { opts.mappings.add, desc = 'add surrounding', mode = { 'n', 'v' } },
+        { opts.mappings.delete, desc = 'delete surrounding' },
+        { opts.mappings.find, desc = 'find right surrounding' },
+        { opts.mappings.find_left, desc = 'find left surrounding' },
+        { opts.mappings.highlight, desc = 'highlight surrounding' },
+        { opts.mappings.replace, desc = 'replace surrounding' },
+        { opts.mappings.update_n_lines, desc = 'update `MiniSurround.config.n_lines`' },
       }
       return vim.list_extend(mappings, keys)
     end,
@@ -36,7 +36,6 @@ return {
 
   { -- https://github.com/numToStr/Comment.nvim
     'numToStr/Comment.nvim',
-    -- keys = { 'gcc', 'gbc', 'gbi', 'gci' },
     config = true,
     enabled = true,
   },
@@ -45,17 +44,10 @@ return {
     'stevearc/aerial.nvim',
     opts = { show_guides = true },
     keys = {
-      { '<F2>', '<CMD>AerialToggle<CR>', desc = 'Aerial toggle' },
-      { '<leader><F2>', '<CMD>AerialNavToggle<CR>', desc = 'Aerial toggle' },
-      { '[f', '<cmd>AerialPrev<CR>', desc = 'Aerial Prev' },
-      { ']f', '<cmd>AerialNext<CR>', desc = 'Aerial Next' },
+      { '<F2>', '<CMD>AerialToggle<CR>', desc = 'aerial toggle' },
+      { '[f', '<cmd>AerialPrev<CR>', desc = 'aerial prev' },
+      { ']f', '<cmd>AerialNext<CR>', desc = 'aerial next' },
     },
-  },
-
-  { -- https://github.com/Vimjas/vim-python-pep8-indent
-    'Vimjas/vim-python-pep8-indent',
-    ft = { 'py', 'python' },
-    enabled = true,
   },
 
   { -- https://github.com/Exafunction/codeium.vim

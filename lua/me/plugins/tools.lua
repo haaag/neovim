@@ -4,8 +4,8 @@ return {
     'echasnovski/mini.bufremove',
     -- stylua: ignore
     keys = {
-      { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Buffer [d]elete" },
-      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Buffer [D]elete (Force)" },
+      { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "buffer delete" },
+      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "buffer delete (force)" },
     },
     enabled = true,
   },
@@ -13,7 +13,6 @@ return {
   { -- https://github.com/folke/todo-comments.nvim
     'folke/todo-comments.nvim',
     cmd = { 'TodoTrouble', 'TodoTelescope' },
-    event = 'BufReadPost',
     opts = {
       keywords = {
         WIP = { icon = ' ', color = 'warning' },
@@ -24,11 +23,11 @@ return {
     end,
     -- stylua: ignore
     keys = {
-      { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-      { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
-      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
-      { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME,WIP,NOTE,HACK<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
-      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Search Todo" },
+      { "]t", function() require("todo-comments").jump_next() end, desc = "next todo comment" },
+      { "[t", function() require("todo-comments").jump_prev() end, desc = "previous todo comment" },
+      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "todo (trouble)" },
+      { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME,WIP,NOTE,HACK<cr>", desc = "TODO/FIX/FIXME (trouble)" },
+      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "search todo" },
     },
     enabled = true,
   },
@@ -39,8 +38,8 @@ return {
     opts = { use_diagnostic_signs = true },
     keys = {
       -- stylua: ignore
-      { "<leader>xx", "<CMD>TroubleToggle document_diagnostics<CR>", desc = "Document Diagnostics (Trouble)" },
-      { '<leader>xX', '<CMD>TroubleToggle workspace_diagnostics<CR>', desc = 'Workspace Diagnostics (Trouble)' },
+      { "<leader>xx", "<CMD>TroubleToggle document_diagnostics<CR>", desc = "document diagnostics (trouble)" },
+      { '<leader>xX', '<CMD>TroubleToggle workspace_diagnostics<CR>', desc = 'workspace diagnostics (trouble)' },
     },
     enabled = true,
   },
@@ -57,24 +56,9 @@ return {
       vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
     end,
     keys = {
-      { '<leader>mp', '<CMD>PeekOpen<CR>', desc = 'Peek Open' },
-      { '<leader>mP', '<CMD>PeekClose<CR>', desc = 'Peek Close' },
+      { '<leader>mp', '<CMD>PeekOpen<CR>', desc = 'peek open' },
+      { '<leader>mP', '<CMD>PeekClose<CR>', desc = 'peek close' },
     },
     enabled = true,
-  },
-
-  { -- https://github.com/glacambre/firenvim
-    'glacambre/firenvim',
-    -- Lazy load firenvim
-    -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
-    opts = function()
-      vim.o.laststatus = 0 -- Disable statusline
-      vim.o.showtabline = 0 -- Disable tabline
-    end,
-    lazy = not vim.g.started_by_firenvim,
-    build = function()
-      vim.fn['firenvim#install'](0)
-    end,
-    enabled = false,
   },
 }
