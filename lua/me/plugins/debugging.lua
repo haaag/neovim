@@ -1,5 +1,5 @@
 return {
-  { -- https://github.com/mfussenegger/nvim-dap
+  --[[ { -- https://github.com/mfussenegger/nvim-dap
     'mfussenegger/nvim-dap',
     lazy = true,
     dependencies = {
@@ -197,5 +197,5 @@ return {
         },
       }
     end,
-  },
+  }, ]]
 }

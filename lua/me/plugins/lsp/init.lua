@@ -25,7 +25,6 @@ return {
         bashls = {},
         clangd = { autostart = false },
         marksman = {},
-        pyright = { autostart = false },
         jsonls = { autostart = false },
         taplo = {},
         ruff_lsp = {
@@ -48,12 +47,10 @@ return {
 
       require('me.plugins.lsp.utils').on_attach(function(client, bufnr)
         require('me.plugins.lsp.keys').on_attach(bufnr)
-
-        client.server_capabilities.semanticTokensProvider = nil
-
-        if client.name == 'ruff_lsp' then
-          client.server_capabilities.hover = false
-        end
+        -- client.server_capabilities.semanticTokensProvider = nil
+        -- if client.name == 'ruff_lsp' then
+        --   client.server_capabilities.hover = false
+        -- end
       end)
 
       local servers = opts.servers
@@ -79,7 +76,7 @@ return {
     end,
   },
 
-  {
+  { -- https://github.com/williamboman/mason.nvim
     'williamboman/mason.nvim',
     cmd = 'Mason',
     enabled = true,

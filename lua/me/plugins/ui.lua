@@ -18,6 +18,10 @@ return {
       })
       require('local-highlight').setup({
         hlgroup = 'MyLocalHighlight',
+        cw_hlgroup = nil,
+        insert_mode = false,
+        min_match_len = 1,
+        max_match_len = math.huge,
       })
     end,
     enabled = true,
@@ -34,19 +38,14 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/akinsho/bufferline.nvim
-    'akinsho/bufferline.nvim',
-    event = 'VeryLazy',
-    dependencies = { -- https://github.com/tiagovla/scope.nvim
-      'tiagovla/scope.nvim',
-      opts = {},
-    },
-    opts = {
-      options = {
-        buffer_close_icon = ' ',
-        modified_icon = '',
-      },
-    },
+  { -- https://github.com/echasnovski/mini.tabline
+    'echasnovski/mini.tabline',
+    config = function()
+      require('mini.tabline').setup({
+        show_icons = true,
+        tabpage_section = 'right',
+      })
+    end,
     enabled = true,
   },
 
@@ -83,41 +82,10 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/folke/which-key.nvim
-    'folke/which-key.nvim',
-    config = function(_, opts)
-      local wk = require('which-key')
-      wk.setup(opts)
-      wk.register({
-        mode = { 'n', 'v' },
-        ['g'] = { name = '+goto' },
-        [']'] = { name = '+next' },
-        ['['] = { name = '+prev' },
-        ['<leader>b'] = { name = '+buffers' },
-        ['<leader>d'] = { name = '+debugging' },
-        ['<leader>dp'] = { name = '+python' },
-        ['<leader>ds'] = { name = '+step' },
-        ['<leader>e'] = { name = '+edits' },
-        ['<leader>g'] = { name = '+git' },
-        ['<leader>gt'] = { name = '+telescope' },
-        ['<leader>gd'] = { name = '+diff' },
-        ['<leader>gh'] = { name = '+hunks' },
-        ['<leader>l'] = { name = '+lsp' },
-        ['<leader>lw'] = { name = '+workspace' },
-        ['<leader>m'] = { name = '+misc' },
-        ['<leader>s'] = { name = '+search' },
-        ['<leader>t'] = { name = '+test' },
-        ['<leader>q'] = { name = '+quickfix' },
-        ['<leader>qs'] = { name = '+sessions' },
-        ['<leader>x'] = { name = '+diagnostics' },
-      })
-    end,
-    enabled = true,
-  },
-
-  {
+  { -- https://github.com/lukas-reineke/indent-blankline.nvim
     'lukas-reineke/indent-blankline.nvim',
     event = 'VeryLazy',
+    enabled = true,
     opts = {
       indent = {
         char = '│',
@@ -143,12 +111,10 @@ return {
     main = 'ibl',
   },
 
-  -- Active indent guide and indent text objects. When you're browsing
-  -- code, this highlights the current level of indentation, and animates
-  -- the highlighting.
-  {
+  { -- https://github.com/echasnovski/mini.indentscope
     'echasnovski/mini.indentscope',
     version = false, -- wait till new 0.7.0 release to put it back on semver
+    enabled = true,
     event = 'VeryLazy',
     opts = {
       -- symbol = "▏",
@@ -158,21 +124,89 @@ return {
     init = function()
       vim.api.nvim_create_autocmd('FileType', {
         pattern = {
-          'help',
           'alpha',
           'dashboard',
-          'neo-tree',
-          'Trouble',
-          'trouble',
+          'help',
           'lazy',
+          'lazyterm',
           'mason',
           'notify',
+          'oil',
           'toggleterm',
-          'lazyterm',
+          'Trouble',
+          'trouble',
         },
         callback = function()
           vim.b.miniindentscope_disable = true
         end,
+      })
+    end,
+  },
+
+  { -- https://github.com/echasnovski/mini.clue
+    'echasnovski/mini.clue',
+    version = false,
+    event = 'VeryLazy',
+    config = function()
+      local miniclue = require('mini.clue')
+      miniclue.setup({
+        triggers = {
+          -- Leader triggers
+          { mode = 'n', keys = '<Leader>' },
+          { mode = 'x', keys = '<Leader>' },
+
+          -- Built-in completion
+          { mode = 'i', keys = '<C-x>' },
+
+          -- `g` key
+          { mode = 'n', keys = 'g' },
+          { mode = 'x', keys = 'g' },
+
+          -- Marks
+          { mode = 'n', keys = "'" },
+          { mode = 'n', keys = '`' },
+          { mode = 'x', keys = "'" },
+          { mode = 'x', keys = '`' },
+
+          -- Registers
+          { mode = 'n', keys = '"' },
+          { mode = 'x', keys = '"' },
+          { mode = 'i', keys = '<C-r>' },
+          { mode = 'c', keys = '<C-r>' },
+
+          -- Window commands
+          { mode = 'n', keys = '<C-w>' },
+
+          -- `z` key
+          { mode = 'n', keys = 'z' },
+          { mode = 'x', keys = 'z' },
+
+          -- `[ ]` keys
+          { mode = 'n', keys = ']' },
+          { mode = 'x', keys = ']' },
+          { mode = 'n', keys = '[' },
+          { mode = 'x', keys = '[' },
+        },
+
+        clues = {
+          -- Enhance this by adding descriptions for <Leader> mapping groups
+          miniclue.gen_clues.builtin_completion(),
+          miniclue.gen_clues.g(),
+          miniclue.gen_clues.marks(),
+          miniclue.gen_clues.registers(),
+          miniclue.gen_clues.windows(),
+          miniclue.gen_clues.z(),
+
+          { mode = 'n', keys = '<Leader>b', desc = '+buffers' },
+          { mode = 'n', keys = '<Leader>e', desc = '+edit' },
+          { mode = 'n', keys = '<Leader>g', desc = '+git' },
+          { mode = 'n', keys = '<Leader>gd', desc = '+diff' },
+          { mode = 'n', keys = '<Leader>gh', desc = '+hunks' },
+          { mode = 'n', keys = '<Leader>gt', desc = '+telescope' },
+          { mode = 'n', keys = '<Leader>l', desc = '+lsp' },
+          { mode = 'n', keys = '<Leader>s', desc = '+search' },
+          { mode = 'n', keys = '<Leader>t', desc = '+test' },
+        },
       })
     end,
   },
