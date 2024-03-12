@@ -141,6 +141,24 @@ M.catppuccin_macchiato = function()
   }
 end
 
+M.catppuccin_latte = function()
+  return {
+    background = '#4C4F69',
+    other_background = '#4C4F69',
+    foreground = '#EFF1F5',
+    black = '#5C5F77',
+    red = '#D20F39',
+    green = '#40A02B',
+    yellow = '#DF8E1D',
+    blue = '#1E66F5',
+    purple = '#EA76CB',
+    cyan = '#179299',
+    white = '#ACB0BE',
+    lightgrey = '#A5ADCB',
+    darkgrey = '#A5ADCB',
+  }
+end
+
 M.material_deep_ocean = function()
   return {
     background = '#0F111A',
@@ -180,7 +198,7 @@ M.vim_nightfly = function()
 end
 
 M.current = function()
-  return M.gruvbox_hard()
+  return M.catppuccin_latte()
 end
 
 return M
