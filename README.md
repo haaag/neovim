@@ -22,10 +22,10 @@
   Bridges mason.nvim with the lspconfig plugin
 - [j-hui/fidget.nvim](https://github.com/j-hui/fidget.nvim) - Standalone UI for
   nvim-lsp progress. Eye candy for the impatient.
-- [jose-elias-alvarez/typescript.nvim](https://github.com/jose-elias-alvarez/typescript.nvim) -
-  A minimal `typescript-language-server`.
-- [jose-elias-alvarez/null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) -
-  Inject LSP diagnostics, code actions, and more via Lua.
+- [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim) -
+  Lightweight yet powerful formatter plugin for Neovim
+- [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint) - An
+  asynchronous linter plugin for Neovim
 
 ### 💻 Code
 
@@ -45,8 +45,6 @@
   Create your own textobjects using tree-sitter queries!.
 - [echasnovski/mini.bufremove](https://github.com/echasnovski/mini.bufremove) -
   Buffer removing (unshow, delete, wipeout) while saving window layout.
-- [akinsho/toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) -
-  Persist and toggle multiple terminals during an editing session
 - [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim) -
   Highlight and search for todo comments like TODO, etc.
 - [folke/trouble.nvim](https://github.com/folke/trouble.nvim) - Show
@@ -77,29 +75,27 @@
 
 - [folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim) - A dark and
   light theme.
-- ⭐ [sainnhe/gruvbox-material](https://github.com/sainnhe/gruvbox-material) -
-  Gruvbox Material is a modified version of Gruvbox.
+- [ellisonleao/gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) -
+  A port of gruvbox community theme to lua with treesitter and semantic
+  highlights support!
+- ⭐ [catppuccin/nvim](https://github.com/catppuccin/nvim) - Catppuccin is a
+  community-driven pastel theme that aims to be the middle ground between low
+  and high contrast themes
 
 ### 🎨 UI
 
 - [nvim-tree/nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) -
   Nerd fonts moved some symbols with version 3.0
-- [stevearc/dressing.nvim](https://github.com/stevearc/dressing.nvim) - Improve
-  the built-in `vim.ui` interfaces with telescope, fzf, etc.
 - [tzachar/local-highlight.nvim](https://github.com/tzachar/local-highlight.nvim) -
   Using regexes and extmarks to highlight uses of word under the cursor.
-- [lukas-reineke/virt-column.nvim](https://github.com/lukas-reineke/virt-column.nvim) -
-  Display a character as the colorcolumn.
 - [echasnovski/mini.tabline](https://github.com/echasnovski/mini.tabline) -
   Minimal and fast tabline showing listed buffers.
 - [nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) -
   High-performance color highlighter which has no external dependencies!.
-- [folke/which-key.nvim](https://github.com/folke/which-key.nvim) - Displays a
-  popup with possible key bindings of the command you started typing.
+- [echasnovski/mini.clue](https://github.com/echasnovski/mini.clue) - Show next
+  key clues
 
 ### 🚧 Misc
 
-- [tpope/vim-repeat](https://github.com/tpope/vim-repeat) - `Repeat.vim` remaps
-  `.` in a way that plugins can tap into it.
 - [toppair/peek.nvim](https://github.com/toppair/peek.nvim) - Markdown preview
   plugin for Neovim.
