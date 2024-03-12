@@ -10,11 +10,11 @@ return {
 
       lint.linters_by_ft = {
         ['*'] = { 'codespell', 'misspell' },
-        ['go'] = { 'golangcilint' },
+        ['go'] = { 'revive' },
         ['javascript'] = { 'eslint_d' },
         ['javascriptreact'] = { 'eslint_d' },
         ['markdown'] = { 'markdownlint', 'write_good', 'alex' },
-        ['python'] = { 'mypy', 'ruff' },
+        ['python'] = { 'mypy' },
         ['sh'] = { 'shellcheck' },
         ['typescript'] = { 'eslint_d' },
         ['typescriptreact'] = { 'eslint_d' },

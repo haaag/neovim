@@ -16,15 +16,15 @@ vim.opt.runtimepath:prepend(lazypath)
 require('lazy').setup({
   spec = {
     { import = 'me.plugins' },
-    { import = 'me.plugins.lsp.servers.lua_ls' },
-    { import = 'me.plugins.lsp.servers.go_ls' },
+    { import = 'me.plugins.lsp.servers.lualang' },
+    { import = 'me.plugins.lsp.servers.golang' },
     { import = 'me.plugins.lsp.servers.pyright' },
     { import = 'me.plugins.lsp.servers.pylsp' },
     -- { import = 'me.plugins.lsp.servers.json' },
     -- { import = "me.plugins.lsp.servers.typescript" },
   },
   defaults = { lazy = false },
-  install = { colorscheme = { 'tokyonight' } },
+  install = { colorscheme = { 'catppuccin' } },
   checker = { enabled = false },
   diff = {
     cmd = 'terminal_git',
