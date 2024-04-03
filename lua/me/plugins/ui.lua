@@ -7,9 +7,8 @@ return {
 
   { -- https://github.com/tzachar/local-highlight.nvim
     'tzachar/local-highlight.nvim',
-    event = 'VeryLazy',
     keys = {
-      { '<leader>bh', '<CMD>LocalHighlightToggle<CR>', desc = 'highlight word toggle' },
+      { '<leader>bw', '<CMD>LocalHighlightToggle<CR>', desc = 'highlight word' },
     },
     config = function()
       vim.api.nvim_set_hl(0, 'MyLocalHighlight', {
@@ -34,17 +33,34 @@ return {
     },
     opts = {},
     event = 'VeryLazy',
+    lazy = false,
     config = true,
     enabled = true,
   },
 
-  { -- https://github.com/echasnovski/mini.tabline
-    'echasnovski/mini.tabline',
-    config = function()
-      require('mini.tabline').setup({
-        show_icons = true,
-        tabpage_section = 'right',
-      })
+  { -- https://github.com/akinsho/bufferline.nvim
+    'akinsho/bufferline.nvim',
+    after = 'catppuccin',
+    event = 'VeryLazy',
+    dependencies = { -- https://github.com/tiagovla/scope.nvim
+      'tiagovla/scope.nvim',
+      config = true,
+      enabled = true,
+    },
+    opts = function()
+      local ok, _ = pcall(require, 'catppuccin')
+      local opts = {
+        options = {
+          buffer_close_icon = ' ',
+          modified_icon = '',
+        },
+      }
+
+      if ok then
+        opts.highlights = require('catppuccin.groups.integrations.bufferline').get()
+      end
+
+      return opts
     end,
     enabled = true,
   },
@@ -82,7 +98,7 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/lukas-reineke/indent-blankline.nvim
+  --[[ { -- https://github.com/lukas-reineke/indent-blankline.nvim
     'lukas-reineke/indent-blankline.nvim',
     event = 'VeryLazy',
     enabled = true,
@@ -105,6 +121,7 @@ return {
           'notify',
           'toggleterm',
           'lazyterm',
+          'oil_preview',
         },
       },
     },
@@ -141,7 +158,7 @@ return {
         end,
       })
     end,
-  },
+  }, ]]
 
   { -- https://github.com/echasnovski/mini.clue
     'echasnovski/mini.clue',
@@ -204,6 +221,7 @@ return {
           { mode = 'n', keys = '<Leader>gh', desc = '+hunks' },
           { mode = 'n', keys = '<Leader>gt', desc = '+telescope' },
           { mode = 'n', keys = '<Leader>l', desc = '+lsp' },
+          { mode = 'n', keys = '<Leader>lw', desc = '+workspace' },
           { mode = 'n', keys = '<Leader>s', desc = '+search' },
           { mode = 'n', keys = '<Leader>t', desc = '+test' },
         },

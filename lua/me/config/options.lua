@@ -85,7 +85,7 @@ vim.g.floating_window_border_dark = {
 
 -- misc
 -- Fix markdown indentation settings
-vim.g.markdown_recommended_style = 0
+-- vim.g.markdown_recommended_style = 0
 -- command to start python3
 vim.g.python3_host_prog = os.getenv('HOME') .. '/.local/debugpy/bin/python'
 

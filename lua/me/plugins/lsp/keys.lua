@@ -14,7 +14,7 @@ function M.on_attach(bufnr)
   nmap('gr', require('telescope.builtin').lsp_references, 'goto references')
   nmap('gI', vim.lsp.buf.implementation, 'goto implementation')
   nmap('<leader>lD', vim.lsp.buf.type_definition, 'type definition')
-  nmap('<leader>ls', require('telescope.builtin').lsp_document_symbols, 'document symbols')
+  nmap('<leader>lS', require('telescope.builtin').lsp_document_symbols, 'document symbols')
 
   nmap('K', vim.lsp.buf.hover, 'hover documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'signature documentation')

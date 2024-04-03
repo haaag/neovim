@@ -65,22 +65,25 @@ map('n', '<leader>qg', '<CMD>cfirst<CR>', { desc = 'quickfix first' })
 map('n', '<leader>qG', '<CMD>clast<CR>', { desc = 'quickfix last' })
 
 -- personal
-map('n', '<leader>wn', function()
+map('n', '<leader>bn', function()
   require('me.config.utils').toggle_numbers()
 end, { desc = 'toggle number' })
 
-map('n', '<leader>wd', function()
+map('n', '<leader>bs', function()
   require('me.plugins.lsp.diagnostic').toggle_diagnostics()
 end, { desc = 'toggle diagnostics signs' })
 
-map('n', '<leader>wg', function()
+map('n', '<leader>bg', function()
   require('gitsigns').toggle_signs()
 end, { desc = 'toggle git signs' })
 
 map('n', '<leader>wa', function()
   require('me.config.utils').toggle_all()
-end, { desc = 'toggle aall' })
+end, { desc = 'toggle all' })
 
 map('n', '<leader>ma', function()
   Util.set_root()
 end, { desc = 'set current root' })
+
+-- LSP
+map('n', '<leader>ls', '<CMD>LspStart<CR>', { desc = 'lsp start' })

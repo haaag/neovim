@@ -3,7 +3,8 @@
 return {
   { -- https://github.com/neovim/nvim-lspconfig
     'neovim/nvim-lspconfig',
-    event = { 'BufReadPost' },
+    -- event = { 'BufReadPost' },
+    cmd = { 'LspStart' },
     enabled = true,
     dependencies = {
       'mason.nvim', -- https://github.com/williamboman/mason.nvim
@@ -47,10 +48,6 @@ return {
 
       require('me.plugins.lsp.utils').on_attach(function(client, bufnr)
         require('me.plugins.lsp.keys').on_attach(bufnr)
-        -- client.server_capabilities.semanticTokensProvider = nil
-        -- if client.name == 'ruff_lsp' then
-        --   client.server_capabilities.hover = false
-        -- end
       end)
 
       local servers = opts.servers

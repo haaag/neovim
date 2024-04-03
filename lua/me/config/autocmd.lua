@@ -22,7 +22,17 @@ autocmd('BufWritePost', {
 
 autocmd({ 'FileType' }, {
   group = augroup('easy_close_q'),
-  pattern = { 'qf', 'help', 'man', 'lspinfo', 'startuptime', 'netrw', 'neotest-output', 'neotest-output-panel' },
+  pattern = {
+    'qf',
+    'help',
+    'man',
+    'lspinfo',
+    'startuptime',
+    'netrw',
+    'neotest-output',
+    'neotest-output-panel',
+    'fugitive',
+  },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
@@ -47,6 +57,13 @@ autocmd({ 'BufWritePost' }, {
   pattern = { '*xdefaults', '*Xresources', '*.xresources' },
   command = '!xrdb -load ~/.Xresources',
   desc = 'reload xresources after buffer write',
+})
+
+autocmd({ 'BufWritePost' }, {
+  group = augroup('Dunstrc'),
+  pattern = { 'dunstrc' },
+  command = '!dunst-theme-loader -r',
+  desc = 'reload dunstrc after buffer write',
 })
 
 autocmd({ 'TermOpen' }, {

@@ -3,6 +3,7 @@
 local M = {}
 
 M.toggle_numbers = function()
+  ---@diagnostic disable-next-line: undefined-field
   if vim.opt_local.relativenumber._value then
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false

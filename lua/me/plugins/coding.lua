@@ -50,10 +50,13 @@ return {
     },
   },
 
-  { -- https://github.com/Exafunction/codeium.vim
+  --[[ { -- https://github.com/Exafunction/codeium.vim
     'Exafunction/codeium.vim',
-    event = 'InsertEnter',
-    ft = { 'python', 'javascript', 'sh', 'typescript', 'typescriptreact', 'lua', 'gitcommit' },
+    -- ft = { 'python', 'javascript', 'sh', 'typescript', 'typescriptreact', 'lua', 'gitcommit' },
+    cmd = { 'CodeiumEnable', 'Codeium' },
+    keys = {
+      { '<leader>lc', '<CMD>CodeiumEnable<CR>', desc = 'start codeium' },
+    },
     config = function()
       vim.g.codeium_enabled = false
       -- vim.g.codeium_render = false
@@ -72,5 +75,5 @@ return {
       -- end, { expr = true })
     end,
     enabled = true,
-  },
+  }, ]]
 }

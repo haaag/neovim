@@ -9,8 +9,8 @@ return {
       local lint = require('lint')
 
       lint.linters_by_ft = {
-        ['*'] = { 'codespell', 'misspell' },
-        ['go'] = { 'revive' },
+        ['*'] = { 'codespell', 'misspell', 'typos' },
+        ['go'] = { 'golangcilint' }, -- 'revive' },
         ['javascript'] = { 'eslint_d' },
         ['javascriptreact'] = { 'eslint_d' },
         ['markdown'] = { 'markdownlint', 'write_good', 'alex' },

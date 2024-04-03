@@ -1,9 +1,10 @@
 return {
-  --[[ { -- https://github.com/mfussenegger/nvim-dap
+  { -- https://github.com/mfussenegger/nvim-dap
     'mfussenegger/nvim-dap',
     lazy = true,
     dependencies = {
       'rcarriga/nvim-dap-ui',
+      'nvim-neotest/nvim-nio',
       'mfussenegger/nvim-dap-python',
       'theHamsta/nvim-dap-virtual-text',
     },
@@ -12,18 +13,18 @@ return {
     init = function()
       local map = vim.keymap.set
       -- stylua: ignore
-      map("n", "<leader>db", "<CMD>lua require'dap'.toggle_breakpoint()<CR>", { desc = "debugging toggle breakpoint" })
-      map("n", "<leader>dB", "<CMD>lua require'dap'.set_breakpoint(vim.fn.input('[DAP] Condition > '))<CR>", { desc = "debugging conditional breakpoint" })
-      map("n", "<leader>dr", "<CMD>lua require'dap'.run_to_cursor()<CR>", { desc = "debugging run to cursor" })
-      map("n", "<leader>dP", "<CMD>lua require'dap'.repl.open()<CR>", { desc = "debugging repl open" })
-      map("n", "<leader>dc", "<CMD>lua require'dap'.continue()<CR>", { desc = "debugging continue" })
-      map("n", "<leader>dt", "<CMD>lua require('dapui').toggle()<CR>", { desc = "debugging ui toggle" })
-      map("n", "<leader>dE", "<CMD>lua require('dapui').eval(vim.fn.input '[DAP] Expression > ')<CR>", { desc = "debugging add expression" })
+      map("n", "<leader>db", "<CMD>lua require'dap'.toggle_breakpoint()<CR>", { desc = "debug toggle breakpoint" })
+      map("n", "<leader>dB", "<CMD>lua require'dap'.set_breakpoint(vim.fn.input('[DAP] Condition > '))<CR>", { desc = "debug conditional breakpoint" })
+      map("n", "<leader>dr", "<CMD>lua require'dap'.run_to_cursor()<CR>", { desc = "debug run to cursor" })
+      map("n", "<leader>dP", "<CMD>lua require'dap'.repl.open()<CR>", { desc = "debug repl open" })
+      map("n", "<leader>dc", "<CMD>lua require'dap'.continue()<CR>", { desc = "debug continue" })
+      map("n", "<leader>dt", "<CMD>lua require('dapui').toggle()<CR>", { desc = "debug ui toggle" })
+      map("n", "<leader>dE", "<CMD>lua require('dapui').eval(vim.fn.input '[DAP] Expression > ')<CR>", { desc = "debug add expression" })
       -- step
-      map("n", "<leader>dsb", "<CMD>lua require'dap'.step_back()<CR>", { desc = "debugging step back" })
-      map("n", "<leader>dsi", "<CMD>lua require'dap'.step_into()<CR>", { desc = "debugging step into" })
-      map("n", "<leader>dso", "<CMD>lua require'dap'.step_over()<CR>", { desc = "debugging step over" })
-      map("n", "<leader>dsO", "<CMD>lua require'dap'.step_out()<CR>", { desc = "debugging step out" })
+      map("n", "<leader>dsb", "<CMD>lua require'dap'.step_back()<CR>", { desc = "debug step back" })
+      map("n", "<leader>dsi", "<CMD>lua require'dap'.step_into()<CR>", { desc = "debug step into" })
+      map("n", "<leader>dso", "<CMD>lua require'dap'.step_over()<CR>", { desc = "debug step over" })
+      map("n", "<leader>dsO", "<CMD>lua require'dap'.step_out()<CR>", { desc = "debug step out" })
       map("n", "<F5>", "<CMD>lua require'dap'.step_back()<CR>", { desc = "step back" })
       map("n", "<F6>", "<CMD>lua require'dap'.step_into()<CR>", { desc = "step into" })
       map("n", "<F7>", "<CMD>lua require'dap'.step_over()<CR>", { desc = "step over" })
@@ -39,7 +40,7 @@ return {
       require('nvim-dap-virtual-text').setup()
 
       -- dap signs
-      local signs = {
+      --[[ local signs = {
         DapBreakpoint = {
           text = '',
           texthl = 'DiagnosticSignError',
@@ -65,10 +66,10 @@ return {
 
       for sign, options in pairs(signs) do
         vim.fn.sign_define(sign, options)
-      end
+      end ]]
       --
       -- dap-ui
-      local dapui_config = {
+      --[[ local dapui_config = {
         icons = { expanded = '▾', collapsed = '▸', circular = '' },
         mappings = {
           -- Use a table to apply multiple mappings
@@ -131,14 +132,18 @@ return {
           max_value_lines = 100, -- Can be integer or nil.
         },
       }
-      dapui.setup(dapui_config)
-      dap.listeners.after.event_initialized['dapui_config'] = function()
+      dapui.setup(dapui_config) ]]
+      dapui.setup()
+      dap.listeners.before.attach.dapui_config = function()
         dapui.open()
       end
-      dap.listeners.before.event_terminated['dapui_config'] = function()
+      dap.listeners.before.launch.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated.dapui_config = function()
         dapui.close()
       end
-      dap.listeners.before.event_exited['dapui_config'] = function()
+      dap.listeners.before.event_exited.dapui_config = function()
         dapui.close()
       end
       --
@@ -197,5 +202,5 @@ return {
         },
       }
     end,
-  }, ]]
+  },
 }

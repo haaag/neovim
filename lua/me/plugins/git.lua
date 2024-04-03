@@ -5,11 +5,12 @@ return {
     keys = function()
       local Utils = require('me.config.utils')
       return {
-        { '<leader>go', '<CMD>tab Git<CR>', desc = 'git fugitive' },
+        { '<leader>go', '<CMD>tab Git<CR>', desc = 'git fugitive tab' },
         { '<leader>gw', '<CMD>Gw<CR>', desc = 'git write' },
         { '<leader>gp', Utils.git_push, desc = 'git push' },
         { '<leader>gf', Utils.find_files, desc = 'git files' },
         { '<leader>ga', '<CMD>Git commit --amend --no-edit<CR>', desc = 'git amend' },
+        { '<leader>gc', '<CMD>Gvdiffsplit!<CR>', desc = 'git merge conflict' },
       }
     end,
     enabled = true,
@@ -17,7 +18,7 @@ return {
 
   { -- https://github.com/lewis6991/gitsigns.nvim
     'lewis6991/gitsigns.nvim',
-    event = 'BufReadPost',
+    -- event = 'BufReadPost',
     opts = {
       signs = {
         add = { text = '+' },
@@ -25,12 +26,13 @@ return {
         delete = { text = '_' },
         topdelete = { text = '-' },
         changedelete = { text = '~_' },
+        untracked = { text = '┆' },
       },
+      -- signcolumn = false,
     },
     keys = {
       -- misc
       { '<leader>gb', '<CMD>Gitsigns toggle_current_line_blame<CR>', desc = 'git toggle blame' },
-      { '<leader>ghD', '<CMD>lua require"gitsigns".diffthis("~")<CR>', desc = 'git diff this ~' },
       -- telescope
       { '<leader>gts', '<CMD>Telescope git_status<CR>', desc = 'git telescope status' },
       { '<leader>gtx', '<CMD>Telescope git_stash<CR>', desc = 'git telescope stash' },
@@ -47,6 +49,7 @@ return {
       { '<leader>ghR', '<CMD>Gitsigns reset_buffer<CR>', desc = 'git reset buffer' },
       { '<leader>ghp', '<CMD>Gitsigns preview_hunk<CR>', desc = 'git preview hunk' },
       { '<leader>ghd', '<CMD>Gitsigns diffthis<CR>', desc = 'git diff this hunk' },
+      { '<leader>ghD', '<CMD>lua require"gitsigns".diffthis("~")<CR>', desc = 'git diff this ~' },
       { 'ih', ':<C-U>Gitsigns select_hunk<CR>', desc = 'git select hunk', mode = { 'o', 'x' } },
       -- highlights
       { '<leader>ghl', '<CMD>Gitsigns toggle_linehl<CR>', desc = 'git highlight line' },

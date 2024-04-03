@@ -8,14 +8,14 @@ return {
     enabled = true,
     opts = function()
       return {
-        flavour = 'latte',
+        flavour = 'mocha',
         transparent_background = true,
         show_end_of_buffer = true,
         styles = {
           comments = { 'italic' },
           conditionals = { 'italic' },
           loops = {},
-          functions = { 'bold' },
+          functions = {},
           keywords = {},
           strings = { 'italic' },
           variables = {},
@@ -28,16 +28,21 @@ return {
         integrations = {
           cmp = false,
           gitsigns = true,
-          nvimtree = true,
+          nvimtree = false,
           treesitter = true,
+          treesitter_context = false,
           neotest = true,
           lsp_trouble = true,
-          which_key = true,
+          which_key = false,
           aerial = true,
           fidget = true,
           leap = true,
           mason = true,
+          dap = true,
+          dap_ui = true,
+
           indent_blankline = { enabled = true, colored_indent_levels = true },
+          mini = { enabled = true, indentscope_color = '' },
         },
       }
     end,
@@ -85,7 +90,7 @@ return {
     end,
   }, ]]
 
-  --[[ { -- https://github.com/ellisonleao/gruvbox.nvim
+  { -- https://github.com/ellisonleao/gruvbox.nvim
     'ellisonleao/gruvbox.nvim',
     lazy = false,
     priority = 1000,
@@ -120,5 +125,5 @@ return {
       vim.o.background = 'dark'
       vim.cmd('colorscheme gruvbox')
     end,
-  }, ]]
+  },
 }
