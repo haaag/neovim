@@ -1,7 +1,7 @@
 return {
   { -- https://github.com/nvim-neotest/neotest
     'nvim-neotest/neotest',
-    enabled = true,
+    enabled = false,
     dependencies = {
       'nvim-neotest/neotest-python',
       'nvim-neotest/neotest-go',
