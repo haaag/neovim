@@ -3,14 +3,17 @@
 return {
   { -- https://github.com/nvim-telescope/telescope.nvim
     'nvim-telescope/telescope.nvim',
-    event = 'VeryLazy',
+    -- event = 'VeryLazy',
     version = '0.1.x',
     cmd = { 'Telescope' },
     enabled = true,
     dependencies = {
       { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-      { 'nvim-telescope/telescope-project.nvim' },
+      -- { -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+      --   'nvim-telescope/telescope-fzf-native.nvim',
+      --   build = 'make',
+      -- },
+      { 'nvim-telescope/telescope-project.nvim' }, -- https://github.com/nvim-telescope/telescope-project.nvim
     },
     -- luacheck: ignore
     keys = {
@@ -41,18 +44,12 @@ return {
         desc = '[/] fuzzily search in current buffer]',
       },
     },
-    init = function()
-      -- Enable telescope fzf native
-      pcall(require('telescope').load_extension, 'fzf')
-
-      -- Enable telescope project
-      pcall(require('telescope').load_extension, 'project')
-    end,
   },
 
   { -- https://github.com/stevearc/oil.nvim
     'stevearc/oil.nvim',
     opts = {},
+    cmd = { 'Oil' },
     keys = {
       { '-', '<CMD>Oil<CR>', desc = 'open parent directory' },
     },
@@ -71,19 +68,6 @@ return {
     end,
     opts = { labeled_modes = 'nx' },
     enabled = true,
-  },
-
-  { -- https://github.com/ggandor/flit.nvim
-    'ggandor/flit.nvim',
-    enabled = true,
-    keys = function()
-      local ret = {}
-      for _, key in ipairs({ 'f', 'F', 't', 'T' }) do
-        ret[#ret + 1] = { key, mode = { 'n', 'x', 'o' }, desc = key }
-      end
-      return ret
-    end,
-    opts = { labeled_modes = 'nx' },
   },
 
   { -- https://github.com/ggandor/leap.nvim

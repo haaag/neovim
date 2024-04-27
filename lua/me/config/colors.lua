@@ -198,7 +198,7 @@ M.vim_nightfly = function()
 end
 
 M.current = function()
-  return M.catppuccin_macchiato()
+  return M.gruvbox_hard()
 end
 
 return M

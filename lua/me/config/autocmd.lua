@@ -55,7 +55,7 @@ autocmd('BufReadPost', {
 autocmd({ 'BufWritePost' }, {
   group = augroup('Xresources'),
   pattern = { '*xdefaults', '*Xresources', '*.xresources' },
-  command = '!xrdb -load ~/.Xresources',
+  command = '!xrdb -load ~/.config/X11/xresources',
   desc = 'reload xresources after buffer write',
 })
 

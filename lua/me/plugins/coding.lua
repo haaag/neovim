@@ -37,7 +37,9 @@ return {
   { -- https://github.com/numToStr/Comment.nvim
     'numToStr/Comment.nvim',
     config = true,
-    enabled = true,
+    enabled = function()
+      return vim.fn.has('nvim-0.10') ~= 1
+    end,
   },
 
   { -- https://github.com/stevearc/aerial.nvim

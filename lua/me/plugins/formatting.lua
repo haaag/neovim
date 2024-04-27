@@ -26,6 +26,7 @@ return {
           ['typescriptreact'] = { 'prettier' },
           ['yaml'] = { 'prettier' },
         },
+
         format_on_save = {
           lsp_fallback = true,
           timeout_ms = 1000,

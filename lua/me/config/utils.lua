@@ -7,11 +7,9 @@ M.toggle_numbers = function()
   if vim.opt_local.relativenumber._value then
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
-    vim.opt_local.laststatus = 0
   else
     vim.opt_local.number = true
     vim.opt_local.relativenumber = true
-    vim.opt_local.laststatus = 3
   end
 end
 

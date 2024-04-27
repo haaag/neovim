@@ -5,7 +5,7 @@ return {
     name = 'catppuccin',
     priority = 1000,
     lazy = false,
-    enabled = true,
+    enabled = false,
     opts = function()
       return {
         flavour = 'mocha',
@@ -26,7 +26,7 @@ return {
           operators = {},
         },
         integrations = {
-          cmp = false,
+          cmp = true,
           gitsigns = true,
           nvimtree = false,
           treesitter = true,
@@ -94,7 +94,7 @@ return {
     'ellisonleao/gruvbox.nvim',
     lazy = false,
     priority = 1000,
-    enabled = false,
+    enabled = true,
     config = function()
       require('gruvbox').setup({
         terminal_colors = true,

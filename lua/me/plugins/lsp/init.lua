@@ -1,33 +1,50 @@
 -- lsp-config
 
 return {
+
+  { -- https://github.com/j-hui/fidget.nvim
+    'j-hui/fidget.nvim',
+    event = 'LspAttach',
+    opts = {
+      notification = {
+        window = { winblend = 0 },
+      },
+    },
+    enabled = true,
+  },
+
   { -- https://github.com/neovim/nvim-lspconfig
     'neovim/nvim-lspconfig',
-    -- event = { 'BufReadPost' },
+    event = 'InsertEnter',
     cmd = { 'LspStart' },
     enabled = true,
     dependencies = {
-      'mason.nvim', -- https://github.com/williamboman/mason.nvim
-      'williamboman/mason-lspconfig.nvim', -- https://github.com/williamboman/mason-lspconfig.nvim
-      { -- https://github.com/j-hui/fidget.nvim
-        'j-hui/fidget.nvim',
-        event = 'LspAttach',
+      { -- https://github.com/williamboman/mason.nvim
+        'mason.nvim',
         opts = {
-          notification = {
-            window = { winblend = 0 },
+          ui = {
+            icons = {
+              package_installed = '●',
+              package_pending = '➜',
+              package_uninstalled = '○',
+            },
           },
         },
-        enabled = true,
       },
+      'williamboman/mason-lspconfig.nvim', -- https://github.com/williamboman/mason-lspconfig.nvim
     },
     ---@class PluginLspOpts
     opts = {
+      inlay_hints = { enabled = true },
       servers = {
         bashls = {},
         clangd = { autostart = false },
         marksman = {},
         jsonls = { autostart = false },
         taplo = {},
+        docker_compose_language_service = {
+          autostart = true,
+        },
         ruff_lsp = {
           autostart = true,
           settings = {
@@ -57,6 +74,7 @@ return {
       require('mason-lspconfig').setup_handlers({
         function(server)
           local server_opts = servers[server] or {}
+          -- capabilities.semanticTokensProvider = nil
           server_opts.capabilities = capabilities
           if opts.setup[server] then
             if opts.setup[server](server, server_opts) then
@@ -89,6 +107,7 @@ return {
         'markdownlint',
         'write-good',
         'goimports',
+        'golangci-lint',
         'alex',
         'staticcheck',
       },

@@ -9,7 +9,7 @@ return {
           disableOrganizeImports = true,
           handlers = { ['textDocument/publishDiagnostics'] = function() end },
           on_attach = function(client, _)
-            client.server_capabilities.codeActionProvider = false
+            client.server_capabilities.semanticTokensProvider = nil
           end,
           settings = {
             python = {

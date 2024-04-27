@@ -6,6 +6,9 @@ return {
       servers = {
         lua_ls = {
           autostart = true,
+          on_attach = function(client, _)
+            client.server_capabilities.semanticTokensProvider = nil
+          end,
           settings = {
             Lua = {
               format = { enable = false },

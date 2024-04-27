@@ -35,12 +35,12 @@ return {
     event = 'VeryLazy',
     lazy = false,
     config = true,
-    enabled = true,
+    enabled = false,
   },
 
   { -- https://github.com/akinsho/bufferline.nvim
     'akinsho/bufferline.nvim',
-    after = 'catppuccin',
+    after = 'gruvbox',
     event = 'VeryLazy',
     dependencies = { -- https://github.com/tiagovla/scope.nvim
       'tiagovla/scope.nvim',
@@ -48,21 +48,21 @@ return {
       enabled = true,
     },
     opts = function()
-      local ok, _ = pcall(require, 'catppuccin')
-      local opts = {
+      local bufferline = require('bufferline')
+      return {
         options = {
-          buffer_close_icon = ' ',
-          modified_icon = '',
+          style_preset = bufferline.style_preset.minimal,
+          always_show_bufferline = false,
+          show_buffer_close_icons = false,
+          modified_icon = '',
+          indicator = {
+            icon = '▏',
+            style = 'icon',
+          },
         },
       }
-
-      if ok then
-        opts.highlights = require('catppuccin.groups.integrations.bufferline').get()
-      end
-
-      return opts
     end,
-    enabled = true,
+    enabled = false,
   },
 
   { -- https://github.com/NvChad/nvim-colorizer.lua
@@ -224,6 +224,7 @@ return {
           { mode = 'n', keys = '<Leader>lw', desc = '+workspace' },
           { mode = 'n', keys = '<Leader>s', desc = '+search' },
           { mode = 'n', keys = '<Leader>t', desc = '+test' },
+          { mode = 'n', keys = '<Leader>q', desc = '+quickfix' },
         },
       })
     end,

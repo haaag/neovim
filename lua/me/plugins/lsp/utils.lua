@@ -27,6 +27,7 @@ function M.capabilities()
     capabilities.textDocument.completion.completionItem.deprecatedSupport = true
     capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
     capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+    -- capabilities.textDocument.semanticTokensProvider = nil
     capabilities.textDocument.completion.completionItem.resolveSupport = {
       properties = {
         'documentation',
