@@ -1,3 +1,6 @@
+local Utils = require('me.config.utils')
+local enabled = Utils.boolme(os.getenv('NVIM_DEBUG'))
+
 return {
   { -- https://github.com/mfussenegger/nvim-dap
     'mfussenegger/nvim-dap',
@@ -8,7 +11,7 @@ return {
       'mfussenegger/nvim-dap-python',
       'theHamsta/nvim-dap-virtual-text',
     },
-    enabled = NVIM_DEBUG,
+    enabled = enabled,
     -- stylua: ignore
     init = function()
       local map = vim.keymap.set
@@ -37,28 +40,29 @@ return {
     config = function()
       local dap = require('dap')
       local dapui = require('dapui')
+      local icons = require('me.config.icons').debug
       require('nvim-dap-virtual-text').setup()
 
       -- dap signs
-      --[[ local signs = {
+      local signs = {
         DapBreakpoint = {
-          text = '',
+          text = icons.signs.breakpoint,
           texthl = 'DiagnosticSignError',
         },
         DapBreakpointCondition = {
-          text = 'ﴫ•',
+          text = icons.signs.breakpoint_condition,
           texthl = 'DiagnosticSignHint',
         },
         DapBreakpointRejected = {
-          text = 'ﴫ•',
+          text = icons.signs.breakpoint_rejected,
           texthl = 'DiagnosticSignWarn',
         },
         DapLogPoint = {
-          text = '',
+          text = icons.signs.log_point,
           texthl = 'DiagnosticSignError',
         },
         DapStopped = {
-          text = '⇥',
+          text = icons.signs.stopped,
           texthl = 'DiagnosticSignInfo',
           linehl = 'CursorLine',
         },
@@ -66,11 +70,12 @@ return {
 
       for sign, options in pairs(signs) do
         vim.fn.sign_define(sign, options)
-      end ]]
+      end
+
       --
       -- dap-ui
-      --[[ local dapui_config = {
-        icons = { expanded = '▾', collapsed = '▸', circular = '' },
+      local dapui_config = {
+        icons = icons.ui,
         mappings = {
           -- Use a table to apply multiple mappings
           expand = { '<CR>', '<2-LeftMouse>' },
@@ -107,16 +112,7 @@ return {
           enabled = false,
           -- Display controls in this element
           element = 'repl',
-          icons = {
-            pause = '',
-            play = '',
-            step_into = '',
-            step_over = '',
-            step_out = '',
-            step_back = '',
-            run_last = '',
-            terminate = '',
-          },
+          icons = icons.constrols,
         },
         floating = {
           max_height = 0.9,
@@ -132,8 +128,10 @@ return {
           max_value_lines = 100, -- Can be integer or nil.
         },
       }
-      dapui.setup(dapui_config) ]]
-      dapui.setup()
+
+      dapui.setup(dapui_config)
+
+      -- dapui.setup()
       dap.listeners.before.attach.dapui_config = function()
         dapui.open()
       end

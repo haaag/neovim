@@ -1,7 +1,10 @@
+local Utils = require('me.config.utils')
+local enabled = Utils.boolme(os.getenv('NVIM_TEST'))
+
 return {
   { -- https://github.com/nvim-neotest/neotest
     'nvim-neotest/neotest',
-    enabled = false,
+    enabled = enabled,
     dependencies = {
       'nvim-neotest/neotest-python',
       'nvim-neotest/neotest-go',
