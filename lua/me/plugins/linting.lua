@@ -8,6 +8,14 @@ return {
       local autocmd = vim.api.nvim_create_autocmd
       local lint = require('lint')
 
+      lint.linters.shellcheck.args = {
+        '--format',
+        'json',
+        '--rcfile',
+        os.getenv('HOME') .. '/.dotfiles/shellcheck/shellcheckrc',
+        '-',
+      }
+
       lint.linters_by_ft = {
         ['*'] = { 'codespell', 'misspell', 'typos' },
         ['c'] = { 'cpplint' },
@@ -22,7 +30,7 @@ return {
       }
 
       autocmd({ 'InsertLeave', 'BufWritePost' }, {
-        group = lint_group,
+        group = augroup('lint'),
         callback = function()
           lint.try_lint()
         end,
