@@ -1,13 +1,28 @@
+-- git.lua
+local Utils = require('me.config.utils')
+
+local git_push = function()
+  if vim.bo.ft ~= 'fugitive' then
+    print('Not in vim-fugitive buffer')
+    return
+  end
+
+  local confirmation = Utils.confirmation('Push changes? [y/n]: ', { 'Yes', 'y' })
+
+  if confirmation then
+    vim.cmd('Git push')
+  end
+end
+
 return {
   { -- https://github.com/tpope/vim-fugitive
     'tpope/vim-fugitive',
     cmd = { 'Git', 'G', 'Gw' },
     keys = function()
-      local Utils = require('me.config.utils')
       return {
         { '<leader>go', '<CMD>tab Git<CR>', desc = 'git fugitive tab' },
         { '<leader>gw', '<CMD>Gw<CR>', desc = 'git write' },
-        { '<leader>gp', Utils.git_push, desc = 'git push' },
+        { '<leader>gp', git_push, desc = 'git push' },
         { '<leader>gf', Utils.find_files, desc = 'git files' },
         { '<leader>ga', '<CMD>Git commit --amend --no-edit<CR>', desc = 'git amend' },
         { '<leader>gc', '<CMD>Gvdiffsplit!<CR>', desc = 'git merge conflict' },
@@ -18,7 +33,7 @@ return {
 
   { -- https://github.com/lewis6991/gitsigns.nvim
     'lewis6991/gitsigns.nvim',
-    -- event = 'InsertEnter',
+    cset_handlersmd = { 'Gitsigns' },
     opts = {
       signs = {
         add = { text = '+' },
