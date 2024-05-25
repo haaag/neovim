@@ -2,17 +2,6 @@
 
 local M = {}
 
-M.toggle_numbers = function()
-  ---@diagnostic disable-next-line: undefined-field
-  if vim.opt_local.relativenumber._value then
-    vim.opt_local.number = false
-    vim.opt_local.relativenumber = false
-  else
-    vim.opt_local.number = true
-    vim.opt_local.relativenumber = true
-  end
-end
-
 M.highlight = setmetatable({}, {
   __newindex = function(_, hlgroup, args)
     local guifg, guibg, gui, guisp = args.guifg, args.guibg, args.gui, args.guisp
@@ -33,23 +22,25 @@ M.highlight = setmetatable({}, {
   end,
 })
 
-M.toggle_all = function()
-  if vim.opt_local.relativenumber._value then
-    vim.opt_local.number = false
-    vim.opt_local.relativenumber = false
-    vim.opt_local.laststatus = 0
-    require('gitsigns').toggle_signs()
-    require('me.plugins.lsp.diagnostic').toggle_diagnostics()
+function M.toggle_signcolumn()
+  ---@diagnostic disable-next-line: undefined-field
+  local value = M.boolme(vim.opt_local.signcolumn._value)
+  if value then
+    vim.opt_local.signcolumn = 'no'
   else
-    vim.opt_local.number = true
-    vim.opt_local.relativenumber = true
-    vim.opt_local.laststatus = 3
-    require('gitsigns').toggle_signs()
-    require('me.plugins.lsp.diagnostic').toggle_diagnostics()
+    vim.opt_local.signcolumn = 'yes'
   end
 end
 
-M.confirmation = function(mesg, choices)
+function M.minimalist()
+  vim.opt_local.relativenumber = false
+  vim.opt_local.number = false
+  vim.opt_local.laststatus = 0
+  vim.opt_local.signcolumn = 'no'
+end
+
+-- M.confirmation = function(mesg, choices)
+function M.confirmation(mesg, choices)
   local valid_choices = {}
 
   for _, choice in ipairs(choices) do
@@ -64,15 +55,6 @@ M.confirmation = function(mesg, choices)
   else
     return false
   end
-end
-
-M.git_branch = function()
-  local cmd = io.popen('git symbolic-ref --short HEAD 2> /dev/null')
-  local branch = cmd and cmd:read('*l') or ''
-  if cmd then
-    cmd:close()
-  end
-  return branch
 end
 
 function M.set_root()
@@ -151,18 +133,30 @@ function M.find_files()
   require('telescope.builtin')[builtin](theme.get_ivy())
 end
 
-function M.git_push()
-  if vim.bo.ft ~= 'fugitive' then
-    print('Not in vim-fugitive buffer')
-    return
+function M.contains(array, target)
+  for _, value in ipairs(array) do
+    if value == target then
+      return true
+    end
+  end
+  return false
+end
+
+function M.boolme(value)
+  local falseish = { 'false', 'no', 'n', '0', 0, false, nil, 'nil' }
+  if M.contains(falseish, value) then
+    return false
   end
 
-  local utils = require('me.config.utils')
-  local confirmation = utils.confirmation('Push changes? [y/n]: ', { 'Yes', 'y' })
+  return true
+end
 
-  if confirmation then
-    vim.cmd('Git push')
-  end
+function M.toggle(value)
+  return not value
+end
+
+function M.augroup(name)
+  return vim.api.nvim_create_augroup('me_' .. name, { clear = true })
 end
 
 return M

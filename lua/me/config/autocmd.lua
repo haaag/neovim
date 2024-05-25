@@ -1,9 +1,7 @@
 -- autocmd.lua
-local Util = require('me.config.utils')
+local Utils = require('me.config.utils')
+local augroup = Utils.augroup
 local autocmd = vim.api.nvim_create_autocmd
-local function augroup(name)
-  return vim.api.nvim_create_augroup('me_' .. name, { clear = true })
-end
 
 autocmd('TextYankPost', {
   group = augroup('highlight_yank'),
@@ -11,13 +9,6 @@ autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
   desc = 'highlight on yank',
-})
-
-autocmd('BufWritePost', {
-  group = augroup('sxhkd_group'),
-  pattern = '*sxhkdrc',
-  command = '!pkill -USR1 sxhkd',
-  desc = 'update binds when sxhkdrc is updated.',
 })
 
 autocmd({ 'FileType' }, {
@@ -54,7 +45,7 @@ autocmd('BufReadPost', {
 
 autocmd({ 'BufWritePost' }, {
   group = augroup('Xresources'),
-  pattern = { '*xdefaults', '*Xresources', '*.xresources' },
+  pattern = { '*xdefaults', '*Xresources', '*xresources' },
   command = '!xrdb -load ~/.config/X11/xresources',
   desc = 'reload xresources after buffer write',
 })
@@ -81,17 +72,6 @@ autocmd({ 'TermOpen' }, {
 autocmd({ 'BufEnter' }, {
   group = augroup('auto_root'),
   callback = function()
-    Util.get_root()
+    Utils.get_root()
   end,
 })
-
---[[ autocmd({ 'InsertLeave', 'BufWritePost' }, {
-  group = augroup('linting'),
-  callback = function()
-    local lint_status, lint = pcall(require, 'lint')
-    if lint_status then
-      lint.try_lint()
-    end
-  end,
-  desc = 'lint code via nvim-lint',
-}) ]]

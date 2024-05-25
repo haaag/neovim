@@ -1,5 +1,7 @@
 -- lsp-config
 
+local Utils = require('me.plugins.lsp.utils')
+
 return {
 
   { -- https://github.com/j-hui/fidget.nvim
@@ -17,8 +19,10 @@ return {
     'neovim/nvim-lspconfig',
     event = 'InsertEnter',
     cmd = { 'LspStart' },
+    keys = { '<leader>ls', '<CMD>LspStart<CR>', desc = 'lsp start' },
     enabled = true,
     dependencies = {
+      { 'folke/neodev.nvim', opts = {} },
       { -- https://github.com/williamboman/mason.nvim
         'mason.nvim',
         opts = {
@@ -63,12 +67,13 @@ return {
       diagnostic.setup()
       vim.diagnostic.config(diagnostic.defaults())
 
-      require('me.plugins.lsp.utils').on_attach(function(client, bufnr)
+      Utils.logfile_size()
+      Utils.on_attach(function(_, bufnr)
         require('me.plugins.lsp.keys').on_attach(bufnr)
       end)
 
       local servers = opts.servers
-      local capabilities = require('me.plugins.lsp.utils').capabilities()
+      local capabilities = Utils.capabilities()
 
       require('mason-lspconfig').setup({ ensure_installed = vim.tbl_keys(servers) })
       require('mason-lspconfig').setup_handlers({
