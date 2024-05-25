@@ -8,7 +8,7 @@ return {
   { -- https://github.com/tzachar/local-highlight.nvim
     'tzachar/local-highlight.nvim',
     keys = {
-      { '<leader>bw', '<CMD>LocalHighlightToggle<CR>', desc = 'highlight word' },
+      { '<leader>bw', '<CMD>LocalHighlightToggle<CR>', desc = 'toggle highlight word' },
     },
     config = function()
       vim.api.nvim_set_hl(0, 'MyLocalHighlight', {
@@ -35,7 +35,7 @@ return {
     event = 'VeryLazy',
     lazy = false,
     config = true,
-    enabled = false,
+    enabled = true,
   },
 
   { -- https://github.com/akinsho/bufferline.nvim
@@ -62,7 +62,7 @@ return {
         },
       }
     end,
-    enabled = false,
+    enabled = true,
   },
 
   { -- https://github.com/NvChad/nvim-colorizer.lua
@@ -74,7 +74,7 @@ return {
       'ColorizerToggle',
     },
     keys = {
-      { '<leader>bc', '<CMD>ColorizerToggle<CR>', desc = 'colorizer' },
+      { '<leader>bc', '<CMD>ColorizerToggle<CR>', desc = 'toggle colorizer' },
     },
     opts = {
       filetypes = { '*', '!lazy' },

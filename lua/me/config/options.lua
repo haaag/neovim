@@ -16,7 +16,7 @@ opt.undodir       = vim.fn.stdpath('state') .. '/undodir'
 opt.undolevels    = 10000
 opt.ignorecase    = true -- Case insensitive searching UNLESS /C or capital in search
 opt.smartcase     = true -- Case insensitive searching UNLESS /C or capital in search
-opt.signcolumn    = 'yes' -- Signcolumn
+opt.signcolumn    = 'no' -- Signcolumn
 opt.breakindent   = true -- Enable break indent
 opt.smartindent   = true -- Insert indents automatically
 opt.shiftround    = true -- Round indent
@@ -24,7 +24,7 @@ opt.shiftwidth    = 2 -- Size of an indent
 opt.tabstop       = 2 -- Number of spaces tabs count for
 opt.expandtab     = true -- Use spaces instead of tabs
 opt.cmdheight     = 1 -- More space for displaying messages
-opt.showtabline   = 0 -- Disable tabline
+opt.showtabline   = 1 -- Disable tabline
 opt.tabline       = ""
 opt.splitbelow    = true -- Horizontal splits will automatically be below
 opt.splitright    = true -- Vertical splits will automatically be to the right
@@ -36,11 +36,12 @@ opt.relativenumber= false -- set relative numbered lines
 opt.timeoutlen    = 500 -- Time in milliseconds to wait for a mapped sequence to complete.
 opt.updatetime    = 200 -- Decrease update time
 opt.pumheight     = 10 -- Maximum number of entries in a popup
-opt.scrolloff     = 0 -- Lines of context
+opt.scrolloff     = 10 -- Lines of context
+opt.sidescrolloff = 10 -- Lines of context
 opt.wrap          = false -- Disable line wrap
 opt.termguicolors = true -- True color support
 opt.spelllang     = { 'en_us', 'es' } -- spellcheck
-opt.cursorline    = false -- Enable highlighting of the current line
+opt.cursorline    = true -- Enable highlighting of the current line
 opt.grepformat    = '%f:%l:%c:%m' -- grep
 opt.grepprg       = 'rg --vimgrep' -- grep
 opt.formatoptions = 'jcroqlnt' -- tcqj
@@ -49,10 +50,11 @@ opt.wildmode      = 'longest:full,full' -- Command-line completion mode
 opt.winminwidth   = 5 -- Minimum window width
 opt.pumblend      = 10 -- Popup blend
 opt.splitkeep     = 'cursor' -- cursor, screen, topline, scroll behavior when opening, closing or resizing horizontal splits
--- opt.colorcolumn   = '81'
 opt.list          = false -- Show some invisible characters (tabs...
 opt.inccommand    = "nosplit" -- preview incremental substitute
 opt.confirm       = true -- Confirm to save changes before exiting modified buffer
+opt.showbreak     = '↪'
+opt.smoothscroll  = true
 
 -- see :h shortmess
 opt.shortmess:append({
@@ -63,12 +65,12 @@ opt.shortmess:append({
 })
 
 opt.fillchars = {
-  foldopen = '',
-  foldclose = '',
-  fold = ' ',
-  foldsep = ' ',
   diff = '╱',
   eob = '~',
+  fold = ' ',
+  foldclose = '',
+  foldopen = '',
+  foldsep = ' ',
 }
 
 vim.g.floating_window_border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' }
@@ -83,19 +85,12 @@ vim.g.floating_window_border_dark = {
   { '│', 'FloatBorderDark' },
 }
 
--- misc
--- Fix markdown indentation settings
--- vim.g.markdown_recommended_style = 0
--- command to start python3
+-- others
 vim.g.python3_host_prog = os.getenv('HOME') .. '/.local/debugpy/bin/python'
-
--- nvim-0.10
-if vim.fn.has('nvim-0.10') == 1 then
-  opt.smoothscroll = true
-end
+vim.g.loaded_perl_provider = false
 
 -- cursor block
--- vim.opt.guicursor = {
---   'a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor',
---   'sm:block-blinkwait175-blinkoff150-blinkon175',
--- }
+vim.opt.guicursor = {
+  'a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor',
+  'sm:block-blinkwait175-blinkoff150-blinkon175',
+}

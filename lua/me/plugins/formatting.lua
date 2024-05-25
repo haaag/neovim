@@ -27,10 +27,10 @@ return {
           ['yaml'] = { 'prettier' },
         },
 
-        format_on_save = {
-          lsp_fallback = true,
-          timeout_ms = 1000,
-        },
+        -- format_on_save = {
+        --   lsp_fallback = true,
+        --   timeout_ms = 1000,
+        -- },
       })
 
       vim.keymap.set({ 'n', 'v' }, '<leader>lf', function()
