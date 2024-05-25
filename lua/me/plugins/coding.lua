@@ -37,9 +37,10 @@ return {
   { -- https://github.com/numToStr/Comment.nvim
     'numToStr/Comment.nvim',
     config = true,
-    enabled = function()
-      return vim.fn.has('nvim-0.10') ~= 1
-    end,
+    enabled = true,
+    -- enabled = function()
+    --   return vim.fn.has('nvim-0.10') ~= 1
+    -- end,
   },
 
   { -- https://github.com/stevearc/aerial.nvim
@@ -50,32 +51,6 @@ return {
       { '[f', '<cmd>AerialPrev<CR>', desc = 'aerial prev' },
       { ']f', '<cmd>AerialNext<CR>', desc = 'aerial next' },
     },
-  },
-
-  { -- https://github.com/hrsh7th/nvim-cmp
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
-    dependencies = {
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-nvim-lsp',
-      'davidsierradz/cmp-conventionalcommits',
-      'lukas-reineke/cmp-under-comparator',
-      { -- https://github.com/L3MON4D3/LuaSnip
-        'L3MON4D3/LuaSnip',
-        dependencies = {
-          'rafamadriz/friendly-snippets',
-        },
-        version = 'v2.*',
-        main = 'me.config.plugins.luasnip',
-        config = function()
-          require('luasnip.loaders.from_vscode').lazy_load()
-        end,
-      },
-      'saadparwaiz1/cmp_luasnip',
-    },
-    main = 'me.config.plugins.cmp',
-    config = true,
   },
 
   { -- https://github.com/Exafunction/codeium.vim

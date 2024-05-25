@@ -3,7 +3,7 @@ local M = {}
 M.setup = function()
   local cmp = require('cmp')
   local luasnip = require('luasnip')
-  local kind_icons = require('me.config.icons').icons.lsp.kinds
+  local icons = require('me.config.icons').lsp.kinds
 
   cmp.setup({
     window = {
@@ -18,14 +18,14 @@ M.setup = function()
 
     formatting = {
       format = function(entry, vim_item)
-        vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+        vim_item.kind = string.format('%s %s', icons[vim_item.kind], vim_item.kind)
         vim_item.menu = ({
-          codeium = '[COD]',
-          nvim_lsp = '[LSP]',
-          buffer = '[BUF]',
-          luasnip = '[SNP]',
-          nvim_lua = '[LUA]',
-          path = '[PATH]',
+          codeium = '[codeium]',
+          nvim_lsp = '[lsp]',
+          buffer = '[buf]',
+          luasnip = '[snip]',
+          nvim_lua = '[lua]',
+          path = '[path]',
         })[entry.source.name]
         return vim_item
       end,
@@ -51,10 +51,10 @@ M.setup = function()
         end
       end, { 'i', 's' }),
       ['<C-p>'] = cmp.mapping.select_prev_item(),
-      ['<Cr>'] = cmp.mapping.confirm({
+      ['<C-y>'] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
-      }),
+      }, { 'i', 'c' }),
       ['<c-space>'] = cmp.mapping.complete(),
     },
 
@@ -79,6 +79,15 @@ M.setup = function()
     },
   })
 
+  -- setup for vim-dadbod
+  cmp.setup.filetype('sql', {
+    sources = {
+      { name = 'vim-dadbod-completion' },
+      { name = 'buffer' },
+    },
+  })
+
+  -- setup for gitcommit
   cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
       { name = 'conventionalcommits' },

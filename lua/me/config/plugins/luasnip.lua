@@ -1,9 +1,9 @@
-local ls = require('luasnip')
-local types = require('luasnip.util.types')
-
 local M = {}
 
 function M.setup()
+  local ls = require('luasnip')
+  local types = require('luasnip.util.types')
+
   ls.config.set_config({
     -- This tells LuaSnip to remember to keep around the last snippet.
     -- You can jump back into even if you move outside of the selection
@@ -47,6 +47,14 @@ function M.setup()
       ls.change_choice(1)
     end
   end)
+
+  -- load custom snippets
+  for _, ft_path in ipairs(vim.api.nvim_get_runtime_file('lua/me/snippets/*.lua', true)) do
+    loadfile(ft_path)()
+  end
+
+  -- load snippets
+  require('luasnip.loaders.from_vscode').lazy_load()
 end
 
 return M
