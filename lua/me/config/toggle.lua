@@ -2,7 +2,6 @@ local M = {}
 
 local Utils = require('me.config.utils')
 local minimalist = false
-local diagnostic_enable = true
 
 function M.statusline()
   if Utils.boolme(vim.opt_local.laststatus._value) then
@@ -48,12 +47,7 @@ function M.minimalist()
 end
 
 function M.diagnostic_signs()
-  diagnostic_enable = not diagnostic_enable
-  if diagnostic_enable then
-    vim.diagnostic.enable()
-  else
-    vim.diagnostic.disable()
-  end
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end
 
 function M.inlay_hints()

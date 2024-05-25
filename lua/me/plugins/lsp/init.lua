@@ -64,7 +64,8 @@ return {
     config = function(_, opts)
       -- diagnostics
       local diagnostic = require('me.plugins.lsp.diagnostic')
-      diagnostic.setup()
+      diagnostic.set_keys()
+      diagnostic.set_handlers()
       vim.diagnostic.config(diagnostic.defaults())
 
       Utils.logfile_size()

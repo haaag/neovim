@@ -1,23 +1,27 @@
 -- diagnostic.lua
-
-local enabled = true
+local icons = require('me.config.icons').lsp.diagnostic
 
 local M = {}
 
 function M.defaults()
   return {
     virtual_lines = false,
-    virtual_text = false,
-    --[[ virtual_text = {
-      spacing = 3,
-      prefix = ' ',
-      severity_sort = true,
+    virtual_text = {
+      spacing = 4,
       source = 'if_many',
-    }, ]]
-    signs = true,
+      prefix = '',
+    },
     update_in_insert = false,
     underline = true,
     severity_sort = true,
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = icons.Error,
+        [vim.diagnostic.severity.WARN] = icons.Warn,
+        [vim.diagnostic.severity.HINT] = icons.Hint,
+        [vim.diagnostic.severity.INFO] = icons.Info,
+      },
+    },
     float = {
       focusable = false,
       style = 'minimal',
@@ -27,14 +31,6 @@ function M.defaults()
       prefix = '',
     },
   }
-end
-
-function M.set_signs()
-  local icons = require('me.config.icons').icons
-  for type, icon in pairs(icons.lsp.diagnostic) do
-    local hl = 'DiagnosticSign' .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-  end
 end
 
 function M.set_handlers()
@@ -54,26 +50,11 @@ function M.set_handlers()
   })
 end
 
-function M.toggle_diagnostics()
-  enabled = not enabled
-  if enabled then
-    vim.diagnostic.enable()
-  else
-    vim.diagnostic.disable()
-  end
-end
-
 function M.set_keys()
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Diagnostic Prev' })
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostic Next' })
   vim.keymap.set('n', '[a', vim.diagnostic.open_float, { desc = 'Diagnostic Float' })
   vim.keymap.set('n', ']a', vim.diagnostic.open_float, { desc = 'Diagnostic Float' })
-end
-
-function M.setup()
-  M.set_signs()
-  M.set_keys()
-  M.set_handlers()
 end
 
 return M
