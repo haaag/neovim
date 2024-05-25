@@ -4,6 +4,7 @@ local map = vim.keymap.set
 local options = { noremap = true, silent = true }
 local silent = { silent = true }
 local Util = require('me.config.utils')
+local Toggle = require('me.config.toggle')
 
 -- shortcut to use blackhole register by default
 map('v', 'd', '"_d', options)
@@ -65,25 +66,15 @@ map('n', '<leader>qg', '<CMD>cfirst<CR>', { desc = 'quickfix first' })
 map('n', '<leader>qG', '<CMD>clast<CR>', { desc = 'quickfix last' })
 
 -- personal
-map('n', '<leader>bn', function()
-  require('me.config.utils').toggle_numbers()
-end, { desc = 'toggle number' })
-
-map('n', '<leader>bs', function()
-  require('me.plugins.lsp.diagnostic').toggle_diagnostics()
-end, { desc = 'toggle diagnostics signs' })
-
-map('n', '<leader>bg', function()
-  require('gitsigns').toggle_signs()
-end, { desc = 'toggle git signs' })
-
-map('n', '<leader>wa', function()
-  require('me.config.utils').toggle_all()
-end, { desc = 'toggle all' })
-
-map('n', '<leader>ma', function()
-  Util.set_root()
-end, { desc = 'set current root' })
+-- stylua: ignore start
+map('n', '<leader>bn', function() Toggle.numbers() end, { desc = 'toggle numbers' })
+map('n', '<leader>bs', function() Toggle.diagnostic_signs() end, { desc = 'toggle diagnostics signs' })
+map('n', '<leader>bi', function() Toggle.inlay_hints() end, { desc = 'toggle inlay hints' })
+map('n', '<leader>bg', function() Toggle.gitsings() end, { desc = 'toggle git signs' })
+map('n', '<leader>bS', function() Toggle.signcolumn() end, { desc = 'toggle signcolumn' })
+map('n', '<leader>bM', function() Toggle.minimalist() end, { desc = 'toggle minimalist' })
+map('n', '<leader>bl', function() Toggle.statusline() end, { desc = 'toggle statusline' })
+map('n', '<leader>ma', function() Util.set_root() end, { desc = 'set current root' })
 
 -- LSP
 map('n', '<leader>ls', '<CMD>LspStart<CR>', { desc = 'lsp start' })
