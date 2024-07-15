@@ -71,4 +71,11 @@ return {
     end,
     enabled = true,
   },
+
+  { -- https://github.com/mbbill/undotree
+    'mbbill/undotree',
+    keys = {
+      { '<F4>', '<CMD>UndotreeToggle<CR>', desc = 'undotree' },
+    },
+  },
 }
