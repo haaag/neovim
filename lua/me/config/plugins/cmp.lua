@@ -5,9 +5,12 @@ M.setup = function()
   local luasnip = require('luasnip')
   local icons = require('me.config.icons').lsp.kinds
 
+  vim.api.nvim_set_hl(0, 'CmpGhostText', { link = 'Comment', default = true })
+
   cmp.setup({
     window = {
       completion = {
+        completeopt = 'menu,menuone,noinsert',
         border = 'rounded',
       },
       documentation = {
@@ -64,6 +67,14 @@ M.setup = function()
       { name = 'buffer' },
       { name = 'path' },
     },
+
+    experimental = {
+      ghost_text = {
+        hl_group = 'CmpGhostText',
+      },
+    },
+
+    -- sorting = defaults.sorting,
 
     sorting = {
       comparators = {

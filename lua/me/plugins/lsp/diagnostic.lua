@@ -6,11 +6,12 @@ local M = {}
 function M.defaults()
   return {
     virtual_lines = false,
-    virtual_text = {
+    virtual_text = false,
+    --[[ virtual_text = {
       spacing = 4,
       source = 'if_many',
       prefix = '',
-    },
+    }, ]]
     update_in_insert = false,
     underline = true,
     severity_sort = true,

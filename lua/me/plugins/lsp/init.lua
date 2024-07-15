@@ -40,6 +40,7 @@ return {
     ---@class PluginLspOpts
     opts = {
       inlay_hints = { enabled = true },
+      document_highlight = { enabled = true },
       servers = {
         bashls = {},
         clangd = { autostart = false },
@@ -80,7 +81,6 @@ return {
       require('mason-lspconfig').setup_handlers({
         function(server)
           local server_opts = servers[server] or {}
-          -- capabilities.semanticTokensProvider = nil
           server_opts.capabilities = capabilities
           if opts.setup[server] then
             if opts.setup[server](server, server_opts) then

@@ -57,6 +57,12 @@ function M.confirmation(mesg, choices)
   end
 end
 
+function M.input(mesg)
+  local choice = vim.fn.input(mesg)
+  choice = choice:lower()
+  return choice
+end
+
 function M.set_root()
   ---@type string?
   local path = vim.api.nvim_buf_get_name(0)

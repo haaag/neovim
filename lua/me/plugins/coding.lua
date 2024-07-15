@@ -38,9 +38,6 @@ return {
     'numToStr/Comment.nvim',
     config = true,
     enabled = true,
-    -- enabled = function()
-    --   return vim.fn.has('nvim-0.10') ~= 1
-    -- end,
   },
 
   { -- https://github.com/stevearc/aerial.nvim
@@ -55,15 +52,14 @@ return {
 
   { -- https://github.com/Exafunction/codeium.vim
     'Exafunction/codeium.vim',
-    -- ft = { 'python', 'javascript', 'sh', 'typescript', 'typescriptreact', 'lua', 'gitcommit' },
     cmd = { 'CodeiumEnable', 'Codeium' },
     keys = {
       { '<leader>lc', '<CMD>CodeiumEnable<CR>', desc = 'start codeium' },
     },
+    enabled = true,
     config = function()
       vim.g.codeium_enabled = false
       -- vim.g.codeium_render = false
-      -- Change '<C-g>' here to any keycode you like.
       vim.keymap.set('i', '<C-g>', function()
         return vim.fn['codeium#Accept']()
       end, { expr = true })
@@ -77,6 +73,5 @@ return {
       --   return vim.fn['codeium#Clear']()
       -- end, { expr = true })
     end,
-    enabled = true,
   },
 }

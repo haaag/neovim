@@ -7,9 +7,8 @@ local git_push = function()
     return
   end
 
-  local confirmation = Utils.confirmation('Push changes? [y/n]: ', { 'Yes', 'y' })
-
-  if confirmation then
+  local confirm = Utils.confirmation('Push changes? [y/n]: ', { 'Yes', 'y' })
+  if confirm then
     vim.cmd('Git push')
   end
 end
@@ -26,6 +25,10 @@ return {
         { '<leader>gf', Utils.find_files, desc = 'git files' },
         { '<leader>ga', '<CMD>Git commit --amend --no-edit<CR>', desc = 'git amend' },
         { '<leader>gc', '<CMD>Gvdiffsplit!<CR>', desc = 'git merge conflict' },
+        { '<leader>gl', '<CMD>0Gclog<CR>', desc = 'show file versions' },
+        -- :0Glog - select one version, which opens up in a split. Then use gO to open another vertical split.
+        -- Go back to quickfix, select the other version I want to diff it against.
+        -- Navigate to the each buffer and do a :diffthis . Is there a better way?
       }
     end,
     enabled = true,
@@ -33,7 +36,8 @@ return {
 
   { -- https://github.com/lewis6991/gitsigns.nvim
     'lewis6991/gitsigns.nvim',
-    cset_handlersmd = { 'Gitsigns' },
+    -- cmd = { 'Gitsigns' },
+    event = 'BufRead',
     opts = {
       signs = {
         add = { text = '+' },
@@ -43,7 +47,7 @@ return {
         changedelete = { text = '~_' },
         untracked = { text = '┆' },
       },
-      -- signcolumn = false,
+      signs_staged_enable = false,
     },
     keys = {
       -- misc
@@ -56,6 +60,8 @@ return {
       -- hunks
       { ']h', '<CMD>Gitsigns next_hunk<CR>', desc = 'git next hunk' },
       { '[h', '<CMD>Gitsigns prev_hunk<CR>', desc = 'git prev hunk' },
+      { ']H', '<CMD>Gitsigns nav_hunk first<CR>', desc = 'git prev hunk' },
+      { '[H', '<CMD>Gitsigns nav_hunk last<CR>', desc = 'git prev hunk' },
       { ']p', '<CMD>Gitsigns preview_hunk<CR>', desc = 'git preview hunk' },
       { '<leader>ghs', '<CMD>Gitsigns stage_hunk<CR>', desc = 'git stage hunk', mode = { 'n', 'v' } },
       { '<leader>ghr', '<CMD>Gitsigns reset_hunk<CR>', desc = 'git reset hunk', mode = { 'n', 'v' } },
@@ -83,7 +89,7 @@ return {
       { '<leader>gdf', '<CMD>DiffviewToggleFiles<CR>', desc = 'diffview files' },
       { '<leader>gdh', '<CMD>DiffviewFileHistory %<CR>', desc = 'diffview file history' },
     },
-    enabled = true,
+    enabled = false,
   },
   {
     'nvim-treesitter/nvim-treesitter',

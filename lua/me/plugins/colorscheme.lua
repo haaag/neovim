@@ -14,7 +14,7 @@ return {
         styles = {
           comments = { 'italic' },
           conditionals = { 'italic' },
-          loops = {},
+          loops = { 'italic' },
           functions = {},
           keywords = {},
           strings = { 'italic' },
@@ -105,7 +105,7 @@ return {
           strings = true,
           emphasis = true,
           comments = true,
-          operators = false,
+          operators = true,
           folds = true,
         },
         strikethrough = true,

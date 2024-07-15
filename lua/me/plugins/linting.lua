@@ -23,6 +23,7 @@ return {
         ['javascript'] = { 'eslint_d' },
         ['javascriptreact'] = { 'eslint_d' },
         ['markdown'] = { 'markdownlint', 'write_good', 'alex' },
+        ['make'] = { 'checkmake' },
         ['python'] = { 'mypy' },
         ['sh'] = { 'shellcheck' },
         ['typescript'] = { 'eslint_d' },

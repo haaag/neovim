@@ -79,6 +79,7 @@ local lsp = {
 
 local debug = {
   signs = {
+    -- 
     breakpoint = '',
     breakpoint_condition = 'ﴫ•',
     breakpoint_rejected = 'ﴫ•',

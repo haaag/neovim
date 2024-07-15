@@ -1,17 +1,16 @@
 -- treesitter.lua
--- https://github.com/nvim-treesitter/nvim-treesitter
--- Highlight, edit, and navigate code
 
-return {
+return { -- https://github.com/nvim-treesitter/nvim-treesitter
   {
     'nvim-treesitter/nvim-treesitter',
     version = false,
     enabled = true,
+    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
     build = ':TSUpdate',
     event = { 'BufReadPost', 'BufNewFile' },
-    cmd = { 'TSUpdateSync' },
+    cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
     keys = {
-      { '<c-space>', desc = 'Increment selection' },
+      { '<c-space>', desc = 'Increment selection', mode = 'x' },
       { '<bs>', desc = 'Schrink selection', mode = 'x' },
     },
     dependencies = {
@@ -26,15 +25,14 @@ return {
       },
       indent = {
         enable = true,
-        -- disable = { 'python', 'css' },
       },
       autotag = {
         enable = false,
       },
       context = {
-        enabled = false,
-        max_lines = 10,
-        multiline_threshold = 10,
+        enabled = true,
+        max_lines = 8,
+        multiline_threshold = 8,
       },
       ensure_installed = {
         'bash',
@@ -59,7 +57,7 @@ return {
         keymaps = {
           init_selection = '<C-space>',
           node_incremental = '<C-space>',
-          scope_incremental = '<nop>',
+          scope_incremental = false,
           node_decremental = '<bs>',
         },
       },
@@ -69,7 +67,11 @@ return {
           enable = false,
         },
         move = {
-          enable = false,
+          enable = true,
+          goto_next_start = { [']f'] = '@function.outer', [']c'] = '@class.outer', [']a'] = '@parameter.inner' },
+          goto_next_end = { [']F'] = '@function.outer', [']C'] = '@class.outer', [']A'] = '@parameter.inner' },
+          goto_previous_start = { ['[f'] = '@function.outer', ['[c'] = '@class.outer', ['[a'] = '@parameter.inner' },
+          goto_previous_end = { ['[F'] = '@function.outer', ['[C'] = '@class.outer', ['[A'] = '@parameter.inner' },
         },
         select = {
           enable = true,

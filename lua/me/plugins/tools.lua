@@ -12,7 +12,7 @@ return {
 
   { -- https://github.com/folke/todo-comments.nvim
     'folke/todo-comments.nvim',
-    cmd = { 'TodoTrouble', 'TodoTelescope' },
+    cmd = { 'TodoTrouble', 'TodoTelescope', 'TodoQuickFix', 'TodoLocList' },
     opts = {
       keywords = {
         WIP = { icon = ' ', color = 'warning' },
@@ -25,9 +25,9 @@ return {
     keys = {
       { "]t", function() require("todo-comments").jump_next() end, desc = "next todo comment" },
       { "[t", function() require("todo-comments").jump_prev() end, desc = "previous todo comment" },
-      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "todo (trouble)" },
-      { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME,WIP,NOTE,HACK<cr>", desc = "TODO/FIX/FIXME (trouble)" },
-      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "search todo" },
+      { "<leader>xt", "<CMD>TodoTelescope<CR>", desc = "todo telescope" },
+      { "<leader>xT", "<CMD>TodoTrouble keywords=TODO,FIX,FIXME,WIP,NOTE,HACK<CR>", desc = "TODO/FIX/FIXME (trouble)" },
+      { "<leader>st", "<CMD>TodoTelescope<CR>", desc = "search todo" },
     },
     enabled = true,
   },
@@ -59,6 +59,16 @@ return {
       { '<leader>mp', '<CMD>PeekOpen<CR>', desc = 'peek open' },
       { '<leader>mP', '<CMD>PeekClose<CR>', desc = 'peek close' },
     },
+    enabled = true,
+  },
+
+  { -- https://github.com/szw/vim-maximizer
+    'szw/vim-maximizer',
+    config = function()
+      vim.g.maximizer_set_default_mapping = 1
+      vim.g.maximizer_set_mapping_with_bang = 1
+      vim.keymap.set('n', '<C-w>O', '<CMD>MaximizerToggle!<CR>', { desc = 'toggle maximizer' })
+    end,
     enabled = true,
   },
 }

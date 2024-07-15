@@ -6,9 +6,14 @@ local minimalist = false
 function M.statusline()
   if Utils.boolme(vim.opt_local.laststatus._value) then
     vim.opt_local.laststatus = 0
-  else
-    vim.opt_local.laststatus = 3
+    return
   end
+  vim.opt_local.laststatus = 3
+end
+
+function M.laststatus()
+  local choice = Utils.input('which statusline?> ')
+  vim.opt_local.laststatus = tonumber(choice)
 end
 
 function M.numbers()
@@ -18,12 +23,11 @@ function M.numbers()
 end
 
 function M.signcolumn()
-  local value = Utils.boolme(vim.opt_local.signcolumn._value)
-  if value then
+  if Utils.boolme(vim.opt_local.signcolumn._value) then
     vim.opt_local.signcolumn = 'no'
-  else
-    vim.opt_local.signcolumn = 'yes'
+    return
   end
+  vim.opt_local.signcolumn = 'yes'
 end
 
 function M.gitsings()
@@ -52,6 +56,10 @@ end
 
 function M.inlay_hints()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end
+
+function M.scrollsync()
+  vim.cmd('set scb!')
 end
 
 return M

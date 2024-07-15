@@ -11,10 +11,7 @@ return {
       { '<leader>bw', '<CMD>LocalHighlightToggle<CR>', desc = 'toggle highlight word' },
     },
     config = function()
-      vim.api.nvim_set_hl(0, 'MyLocalHighlight', {
-        underline = true,
-        bold = true,
-      })
+      vim.api.nvim_set_hl(0, 'MyLocalHighlight', { underline = true, bold = true })
       require('local-highlight').setup({
         hlgroup = 'MyLocalHighlight',
         cw_hlgroup = nil,
