@@ -1,10 +1,10 @@
+---@class me.utils.toggle
 local M = {}
 
-local Utils = require('me.config.utils')
 local minimalist = false
 
 function M.statusline()
-  if Utils.boolme(vim.opt_local.laststatus._value) then
+  if Core.boolme(vim.opt_local.laststatus._value) then
     vim.opt_local.laststatus = 0
     return
   end
@@ -12,18 +12,18 @@ function M.statusline()
 end
 
 function M.laststatus()
-  local choice = Utils.input('which statusline?> ')
+  local choice = Core.input('which statusline?> ')
   vim.opt_local.laststatus = tonumber(choice)
 end
 
 function M.numbers()
-  local enabled = not Utils.boolme(vim.opt_local.relativenumber._value)
+  local enabled = not Core.boolme(vim.opt_local.relativenumber._value)
   vim.opt_local.number = enabled
   vim.opt_local.relativenumber = enabled
 end
 
 function M.signcolumn()
-  if Utils.boolme(vim.opt_local.signcolumn._value) then
+  if Core.boolme(vim.opt_local.signcolumn._value) then
     vim.opt_local.signcolumn = 'no'
     return
   end

@@ -4,7 +4,6 @@ return {
     enabled = true,
     event = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
     config = function()
-      local augroup = require('me.config.utils').augroup
       local autocmd = vim.api.nvim_create_autocmd
       local lint = require('lint')
 
@@ -31,7 +30,7 @@ return {
       }
 
       autocmd({ 'InsertLeave', 'BufWritePost' }, {
-        group = augroup('lint'),
+        group = Core.augroup('lint'),
         callback = function()
           lint.try_lint()
         end,

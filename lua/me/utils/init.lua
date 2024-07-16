@@ -1,6 +1,15 @@
--- simple helpers functions
-
+---@class me.utils: Core
+---@field toggle me.utils.toggle
+---@field lsp me.utils.lsp
+---@field icons me.utils.icons
 local M = {}
+
+setmetatable(M, {
+  __index = function(t, k)
+    t[k] = require('me.utils.' .. k)
+    return t[k]
+  end,
+})
 
 M.highlight = setmetatable({}, {
   __newindex = function(_, hlgroup, args)
@@ -22,25 +31,8 @@ M.highlight = setmetatable({}, {
   end,
 })
 
-function M.toggle_signcolumn()
-  ---@diagnostic disable-next-line: undefined-field
-  local value = M.boolme(vim.opt_local.signcolumn._value)
-  if value then
-    vim.opt_local.signcolumn = 'no'
-  else
-    vim.opt_local.signcolumn = 'yes'
-  end
-end
-
-function M.minimalist()
-  vim.opt_local.relativenumber = false
-  vim.opt_local.number = false
-  vim.opt_local.laststatus = 0
-  vim.opt_local.signcolumn = 'no'
-end
-
 -- M.confirmation = function(mesg, choices)
-function M.confirmation(mesg, choices)
+function M.confirm(mesg, choices)
   local valid_choices = {}
 
   for _, choice in ipairs(choices) do
@@ -155,10 +147,6 @@ function M.boolme(value)
   end
 
   return true
-end
-
-function M.toggle(value)
-  return not value
 end
 
 function M.augroup(name)

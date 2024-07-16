@@ -3,7 +3,7 @@ local M = {}
 M.setup = function()
   local cmp = require('cmp')
   local luasnip = require('luasnip')
-  local icons = require('me.config.icons').lsp.kinds
+  local icons = Core.icons.lsp_kinds()
 
   vim.api.nvim_set_hl(0, 'CmpGhostText', { link = 'Comment', default = true })
 
@@ -19,6 +19,7 @@ M.setup = function()
       },
     },
 
+    ---@diagnostic disable-next-line: missing-fields
     formatting = {
       format = function(entry, vim_item)
         vim_item.kind = string.format('%s %s', icons[vim_item.kind], vim_item.kind)
@@ -57,6 +58,7 @@ M.setup = function()
       ['<C-y>'] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
+        ---@diagnostic disable-next-line: redundant-parameter
       }, { 'i', 'c' }),
       ['<c-space>'] = cmp.mapping.complete(),
     },
@@ -74,8 +76,7 @@ M.setup = function()
       },
     },
 
-    -- sorting = defaults.sorting,
-
+    ---@diagnostic disable-next-line: missing-fields
     sorting = {
       comparators = {
         cmp.config.compare.offset,

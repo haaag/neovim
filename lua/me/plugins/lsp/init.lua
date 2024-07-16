@@ -1,7 +1,5 @@
 -- lsp-config
 
-local Utils = require('me.plugins.lsp.utils')
-
 return {
 
   { -- https://github.com/j-hui/fidget.nvim
@@ -69,13 +67,13 @@ return {
       diagnostic.set_handlers()
       vim.diagnostic.config(diagnostic.defaults())
 
-      Utils.logfile_size()
-      Utils.on_attach(function(_, bufnr)
+      Core.lsp.check_logfile_size()
+      Core.lsp.on_attach(function(_, bufnr)
         require('me.plugins.lsp.keys').on_attach(bufnr)
       end)
 
       local servers = opts.servers
-      local capabilities = Utils.capabilities()
+      local capabilities = Core.lsp.capabilities()
 
       require('mason-lspconfig').setup({ ensure_installed = vim.tbl_keys(servers) })
       require('mason-lspconfig').setup_handlers({

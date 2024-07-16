@@ -3,8 +3,6 @@
 local map = vim.keymap.set
 local options = { noremap = true, silent = true }
 local silent = { silent = true }
-local Util = require('me.config.utils')
-local Toggle = require('me.config.toggle')
 
 -- shortcut to use blackhole register by default
 map('v', 'd', '"_d', options)
@@ -69,17 +67,17 @@ map('n', '<leader>qG', '<CMD>clast<CR>', { desc = 'quickfix last' })
 
 -- personal
 -- stylua: ignore start
-map("n", '<leader>bb', function() Toggle.scrollsync() end, { desc = 'scrolling synchronously'})
+map("n", '<leader>bb', function() Core.toggle.scrollsync() end, { desc = 'scrolling synchronously'})
 map('n', '<leader>bC', '<CMD>TSContextToggle<CR>', { desc = 'toggle treesitter context' })
-map('n', '<leader>bi', function() Toggle.inlay_hints() end, { desc = 'toggle inlay hints' })
-map('n', '<leader>bg', function() Toggle.gitsings() end, { desc = 'toggle git signs' })
-map('n', '<leader>bl', function() Toggle.statusline() end, { desc = 'toggle statusline' })
-map('n', '<leader>bL', function() Toggle.laststatus() end, { desc = 'set laststatus' })
-map('n', '<leader>bM', function() Toggle.minimalist() end, { desc = 'toggle minimalist' })
-map('n', '<leader>bn', function() Toggle.numbers() end, { desc = 'toggle numbers' })
-map('n', '<leader>bs', function() Toggle.diagnostic_signs() end, { desc = 'toggle diagnostics signs' })
-map('n', '<leader>bS', function() Toggle.signcolumn() end, { desc = 'toggle signcolumn' })
-map('n', '<leader>ma', function() Util.set_root() end, { desc = 'set current root' })
+map('n', '<leader>bi', function() Core.toggle.inlay_hints() end, { desc = 'toggle inlay hints' })
+map('n', '<leader>bg', function() Core.toggle.gitsings() end, { desc = 'toggle git signs' })
+map('n', '<leader>bl', function() Core.toggle.statusline() end, { desc = 'toggle statusline' })
+map('n', '<leader>bL', function() Core.toggle.laststatus() end, { desc = 'set laststatus' })
+map('n', '<leader>bM', function() Core.toggle.minimalist() end, { desc = 'toggle minimalist' })
+map('n', '<leader>bn', function() Core.toggle.numbers() end, { desc = 'toggle numbers' })
+map('n', '<leader>bs', function() Core.toggle.diagnostic_signs() end, { desc = 'toggle diagnostics signs' })
+map('n', '<leader>bS', function() Core.toggle.signcolumn() end, { desc = 'toggle signcolumn' })
+map('n', '<leader>ma', function() Core.set_root() end, { desc = 'set current root' })
 
 -- LSP
 -- map('n', '<leader>ls', '<CMD>LspStart<CR>', { desc = 'lsp start' })

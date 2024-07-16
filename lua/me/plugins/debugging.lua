@@ -1,5 +1,5 @@
-local Utils = require('me.config.utils')
-local enabled = Utils.boolme(os.getenv('NVIM_DEBUG'))
+-- local enabled = Core.boolme(os.getenv('NVIM_DEBUG'))
+local enabled = true
 
 return {
   { -- https://github.com/mfussenegger/nvim-dap
@@ -40,8 +40,8 @@ return {
     config = function()
       local dap = require('dap')
       local dapui = require('dapui')
-      local icons = require('me.config.icons').debug
-      require('nvim-dap-virtual-text').setup()
+      local icons = Core.icons.dap()
+      require('nvim-dap-virtual-text').setup({})
 
       -- dap signs
       local signs = {

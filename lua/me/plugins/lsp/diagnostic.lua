@@ -1,9 +1,8 @@
 -- diagnostic.lua
-local icons = require('me.config.icons').lsp.diagnostic
-
 local M = {}
 
 function M.defaults()
+  local icons = Core.icons.lsp_diagnostic()
   return {
     virtual_lines = false,
     virtual_text = false,

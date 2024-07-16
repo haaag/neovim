@@ -1,3 +1,5 @@
+_G.Core = require('me.utils')
+
 require('me.config.options')
 require('me.config.lazy')
 

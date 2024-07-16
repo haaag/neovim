@@ -1,6 +1,5 @@
 -- autocmd.lua
-local Utils = require('me.config.utils')
-local augroup = Utils.augroup
+local augroup = Core.augroup
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd('TextYankPost', {
@@ -72,6 +71,6 @@ autocmd({ 'TermOpen' }, {
 autocmd({ 'BufEnter' }, {
   group = augroup('auto_root'),
   callback = function()
-    Utils.get_root()
+    Core.get_root()
   end,
 })

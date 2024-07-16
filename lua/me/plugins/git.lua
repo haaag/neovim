@@ -1,13 +1,11 @@
 -- git.lua
-local Utils = require('me.config.utils')
-
 local git_push = function()
   if vim.bo.ft ~= 'fugitive' then
     print('Not in vim-fugitive buffer')
     return
   end
 
-  local confirm = Utils.confirmation('Push changes? [y/n]: ', { 'Yes', 'y' })
+  local confirm = Core.confirm('Push changes? [y/n]: ', { 'Yes', 'y' })
   if confirm then
     vim.cmd('Git push')
   end
@@ -22,7 +20,7 @@ return {
         { '<leader>go', '<CMD>tab Git<CR>', desc = 'git fugitive tab' },
         { '<leader>gw', '<CMD>Gw<CR>', desc = 'git write' },
         { '<leader>gp', git_push, desc = 'git push' },
-        { '<leader>gf', Utils.find_files, desc = 'git files' },
+        { '<leader>gf', Core.find_files, desc = 'git files' },
         { '<leader>ga', '<CMD>Git commit --amend --no-edit<CR>', desc = 'git amend' },
         { '<leader>gc', '<CMD>Gvdiffsplit!<CR>', desc = 'git merge conflict' },
         { '<leader>gl', '<CMD>0Gclog<CR>', desc = 'show file versions' },
