@@ -2,7 +2,7 @@
 local M = {}
 
 function M.defaults()
-  local icons = Core.icons.lsp_diagnostic()
+  local icons = Core.icons.lsp().diagnostic
   return {
     virtual_lines = false,
     virtual_text = false,

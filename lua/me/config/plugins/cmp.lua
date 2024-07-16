@@ -3,7 +3,7 @@ local M = {}
 M.setup = function()
   local cmp = require('cmp')
   local luasnip = require('luasnip')
-  local icons = Core.icons.lsp_kinds()
+  local icons = Core.icons.lsp().kinds
 
   vim.api.nvim_set_hl(0, 'CmpGhostText', { link = 'Comment', default = true })
 

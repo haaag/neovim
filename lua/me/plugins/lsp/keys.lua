@@ -1,5 +1,4 @@
 -- LSP keys
-
 local M = {}
 
 function M.on_attach(bufnr)
@@ -15,6 +14,9 @@ function M.on_attach(bufnr)
   nmap('gI', vim.lsp.buf.implementation, 'goto implementation')
   nmap('<leader>lD', vim.lsp.buf.type_definition, 'type definition')
   nmap('<leader>lS', require('telescope.builtin').lsp_document_symbols, 'document symbols')
+  nmap('<leader>lI', '<CMD>LspInfo<CR>', 'info')
+  nmap('<leader>lc', vim.lsp.codelens.run, 'run codelens')
+  nmap('<leader>lC', vim.lsp.codelens.refresh, 'refresh n display codelens')
 
   nmap('K', vim.lsp.buf.hover, 'hover documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'signature documentation')

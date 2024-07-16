@@ -1,5 +1,4 @@
--- colors.lua
-
+---@class me.utils.colors
 local M = {}
 
 M.tokyonight_storm = function()
@@ -174,25 +173,6 @@ M.material_deep_ocean = function()
     cyan = '#4abaaf',
     white = '#EEFFFF',
     grey = '#545c7e',
-    darkgrey = '#545c7e',
-  }
-end
-
-M.vim_nightfly = function()
-  return {
-    background = 'NONE',
-    foreground = '#A6ACCD',
-    black = '#011627',
-    red = '#fc514e',
-    green = '#C3E88D',
-    yellow = '#e3d18a',
-    orange = '#f78c6c',
-    blue = '#82aaff',
-    magenta = '#C792EA',
-    violet = '#B480D6',
-    cyan = '#21c7a8',
-    white = '#c3ccdc',
-    grey = '#acb4c2',
     darkgrey = '#545c7e',
   }
 end

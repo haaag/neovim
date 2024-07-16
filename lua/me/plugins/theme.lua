@@ -1,6 +1,6 @@
 return {
 
-  { -- https://github.com/catppuccin/nvim
+  --[[ { -- https://github.com/catppuccin/nvim
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
@@ -50,13 +50,45 @@ return {
       require('catppuccin').setup(opts)
       vim.cmd.colorscheme('catppuccin')
     end,
+  }, ]]
+
+  { -- https://github.com/sainnhe/gruvbox-material
+    'sainnhe/gruvbox-material',
+    lazy = false,
+    priority = 1000,
+    enabled = true,
+    config = function()
+      vim.api.nvim_set_hl(0, '@constant.python', { link = 'Purple', default = true })
+      vim.api.nvim_set_hl(0, '@constant.go', { link = 'Purple', default = true })
+      vim.api.nvim_set_hl(0, '@constant.bash', { link = 'Purple', default = true })
+      vim.o.background = 'dark'
+      vim.g.gruvbox_material_enable_bold = false
+      vim.g.gruvbox_material_enable_italic = true
+      vim.g.gruvbox_material_transparent_background = true
+      vim.g.gruvbox_material_dim_inactive_windows = false
+      vim.g.gruvbox_material_disable_italic_comment = false
+      vim.g.gruvbox_material_diagnostic_text_highlight = true
+      vim.g.gruvbox_material_background = 'hard' -- hard, medium, soft
+      vim.g.gruvbox_material_diagnostic_virtual_text = 'colored' -- grey, colored, highlighted
+      vim.g.gruvbox_material_spell_foreground = 'colored' -- none
+      vim.g.gruvbox_material_ui_contrast = 'low' -- 'high'
+      vim.g.gruvbox_material_show_eob = true
+      vim.g.gruvbox_material_current_word = 'underline'
+      vim.g.gruvbox_material_menu_selection_background = 'red'
+      vim.g.gruvbox_material_float_style = 'bright' -- 'bright', 'dim'
+      vim.g.gruvbox_material_foreground = 'orignal' -- 'material' 'original' 'mix'
+      vim.g.gruvbox_material_diagnostic_line_highlight = true
+      vim.g.gruvbox_material_visual = 'grey background' -- 'reverse'
+      vim.g.gruvbox_material_inlay_hints_background = 'none' -- 'dimmed'
+      vim.cmd('colorscheme gruvbox-material')
+    end,
   },
 
   --[[ { -- https://github.com/folke/tokyonight.nvim
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
-    enabled = false,
+    enabled = true,
     opts = function()
       return {
         style = 'storm',
@@ -89,41 +121,4 @@ return {
       tokyonight.load()
     end,
   }, ]]
-
-  { -- https://github.com/ellisonleao/gruvbox.nvim
-    'ellisonleao/gruvbox.nvim',
-    lazy = false,
-    priority = 1000,
-    enabled = true,
-    config = function()
-      require('gruvbox').setup({
-        terminal_colors = true,
-        undercurl = true,
-        underline = true,
-        bold = false,
-        italic = {
-          strings = true,
-          emphasis = true,
-          comments = true,
-          operators = true,
-          folds = true,
-        },
-        strikethrough = true,
-        invert_selection = false,
-        invert_signs = false,
-        invert_tabline = true,
-        invert_intend_guides = false,
-        inverse = true, -- invert background for search, diffs, statuslines and errors
-        contrast = 'hard', -- can be "hard", "soft" or empty string
-        dim_inactive = false,
-        transparent_mode = true,
-        palette_overrides = {},
-        overrides = {
-          SignColumn = { bg = 'NONE' },
-        },
-      })
-      vim.o.background = 'dark'
-      vim.cmd('colorscheme gruvbox')
-    end,
-  },
 }

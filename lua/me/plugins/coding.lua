@@ -53,9 +53,6 @@ return {
   { -- https://github.com/Exafunction/codeium.vim
     'Exafunction/codeium.vim',
     cmd = { 'CodeiumEnable', 'Codeium' },
-    keys = {
-      { '<leader>lc', '<CMD>CodeiumEnable<CR>', desc = 'start codeium' },
-    },
     enabled = true,
     config = function()
       vim.g.codeium_enabled = false
