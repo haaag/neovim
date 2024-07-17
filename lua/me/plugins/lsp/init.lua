@@ -19,7 +19,6 @@ return {
     keys = { '<leader>ls', '<CMD>LspStart<CR>', desc = 'lsp start' },
     enabled = true,
     dependencies = {
-      { 'folke/neodev.nvim', opts = {} },
       { -- https://github.com/williamboman/mason.nvim
         'mason.nvim',
         opts = {
