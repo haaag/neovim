@@ -1,7 +1,6 @@
--- lsp-config
+-- lsp.config
 
 return {
-
   { -- https://github.com/j-hui/fidget.nvim
     'j-hui/fidget.nvim',
     event = 'LspAttach',
@@ -62,14 +61,13 @@ return {
     ---@param opts PluginLspOpts
     config = function(_, opts)
       -- diagnostics
-      local diagnostic = require('me.plugins.lsp.diagnostic')
-      diagnostic.set_keys()
-      diagnostic.set_handlers()
-      vim.diagnostic.config(diagnostic.defaults())
+      Core.lsp.diagnostic.set_keymaps()
+      Core.lsp.diagnostic.set_handlers()
+      vim.diagnostic.config(Core.lsp.diagnostic.defaults)
 
       Core.lsp.check_logfile_size()
       Core.lsp.on_attach(function(_, bufnr)
-        require('me.plugins.lsp.keys').on_attach(bufnr)
+        Core.lsp.keymaps(bufnr)
       end)
 
       local servers = opts.servers

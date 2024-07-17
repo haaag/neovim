@@ -1,6 +1,7 @@
 ---@class me.utils: Core
 ---@field toggle me.utils.toggle
 ---@field lsp me.utils.lsp
+---@field diagnostic me.utils.lsp
 ---@field icons me.utils.icons
 ---@field colors me.utils.colors
 local M = {}
