@@ -22,6 +22,7 @@ autocmd({ 'FileType' }, {
     'neotest-output',
     'neotest-output-panel',
     'fugitive',
+    'dap-float',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

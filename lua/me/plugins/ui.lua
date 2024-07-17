@@ -212,6 +212,7 @@ return {
           miniclue.gen_clues.z(),
 
           { mode = 'n', keys = '<Leader>b', desc = '+buffers' },
+          { mode = 'n', keys = '<Leader>d', desc = '+debugging' },
           { mode = 'n', keys = '<Leader>e', desc = '+edit' },
           { mode = 'n', keys = '<Leader>g', desc = '+git' },
           { mode = 'n', keys = '<Leader>gd', desc = '+diff' },
