@@ -66,33 +66,19 @@ return {
       vim.keymap.set('i', '<M-,>', function()
         return vim.fn['codeium#CycleCompletions'](-1)
       end, { expr = true })
-      -- vim.keymap.set('i', '<C-x>', function()
-      --   return vim.fn['codeium#Clear']()
-      -- end, { expr = true })
     end,
   },
 
   { -- https://github.com/folke/lazydev.nvim
     'folke/lazydev.nvim',
     ft = 'lua', -- only load on lua files
+    cmd = 'LazyDev',
     enabled = true,
-    dependencies = {
-      { -- optional completion source for require statements and module annotations
-        'hrsh7th/nvim-cmp',
-        opts = function(_, opts)
-          opts.sources = opts.sources or {}
-          table.insert(opts.sources, {
-            name = 'lazydev',
-            group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-          })
-        end,
-      },
-    },
     opts = {
       library = {
-        -- See the configuration section for more details
         -- Load luvit types when the `vim.uv` word is found
         { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        { path = 'Core', words = { 'Core' } },
       },
     },
   },

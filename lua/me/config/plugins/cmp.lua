@@ -3,7 +3,6 @@ local M = {}
 M.setup = function()
   local cmp = require('cmp')
   local luasnip = require('luasnip')
-  local icons = Core.icons.lsp().kinds
 
   vim.api.nvim_set_hl(0, 'CmpGhostText', { link = 'Comment', default = true })
 
@@ -21,17 +20,24 @@ M.setup = function()
 
     ---@diagnostic disable-next-line: missing-fields
     formatting = {
-      format = function(entry, vim_item)
-        vim_item.kind = string.format('%s %s', icons[vim_item.kind], vim_item.kind)
-        vim_item.menu = ({
-          codeium = '[codeium]',
-          nvim_lsp = '[lsp]',
-          buffer = '[buf]',
-          luasnip = '[snip]',
-          nvim_lua = '[lua]',
-          path = '[path]',
-        })[entry.source.name]
-        return vim_item
+      format = function(_, item)
+        local icons = Core.icons.lsp().kinds
+        if icons[item.kind] then
+          item.kind = icons[item.kind] .. item.kind
+        end
+
+        local widths = {
+          abbr = vim.g.cmp_widths and vim.g.cmp_widths.abbr or 40,
+          menu = vim.g.cmp_widths and vim.g.cmp_widths.menu or 30,
+        }
+
+        for key, width in pairs(widths) do
+          if item[key] and vim.fn.strdisplaywidth(item[key]) > width then
+            item[key] = vim.fn.strcharpart(item[key], 0, width - 1) .. '…'
+          end
+        end
+
+        return item
       end,
     },
 

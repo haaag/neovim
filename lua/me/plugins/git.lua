@@ -1,14 +1,30 @@
 -- git.lua
-local git_push = function()
-  if vim.bo.ft ~= 'fugitive' then
+
+---@return boolean
+local fugitive_buf = function()
+  return vim.bo.ft == 'fugitive'
+end
+
+---@param question string
+---@param cmd string
+local function gitconfirm(question, cmd)
+  if not fugitive_buf() then
     print('Not in vim-fugitive buffer')
     return
   end
 
-  local confirm = Core.confirm('Push changes? [y/n]: ', { 'Yes', 'y' })
+  local confirm = Core.confirm(question .. ' [y/n]: ', { 'Yes', 'y' })
   if confirm then
-    vim.cmd('Git push')
+    vim.cmd(cmd)
   end
+end
+
+local git_push = function()
+  gitconfirm('Push changes?', 'Git push')
+end
+
+local git_amend = function()
+  gitconfirm('Amend changes?', 'Git commit --amend --no-edit')
 end
 
 return {
@@ -21,7 +37,7 @@ return {
         { '<leader>gw', '<CMD>Gw<CR>', desc = 'git write' },
         { '<leader>gp', git_push, desc = 'git push' },
         { '<leader>gf', Core.find_files, desc = 'git files' },
-        { '<leader>ga', '<CMD>Git commit --amend --no-edit<CR>', desc = 'git amend' },
+        { '<leader>ga', git_amend, desc = 'git amend' },
         { '<leader>gc', '<CMD>Gvdiffsplit!<CR>', desc = 'git merge conflict' },
         { '<leader>gl', '<CMD>0Gclog<CR>', desc = 'show file versions' },
         -- :0Glog - select one version, which opens up in a split. Then use gO to open another vertical split.

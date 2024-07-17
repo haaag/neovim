@@ -44,7 +44,7 @@ function M.lsp()
       Value         = ' ',
       Variable      = '󰀫 ',
     },
-    diagnostic = {
+    diagnostics = {
       Error         = ' ',
       Hint          = ' ',
       Info          = ' ',

@@ -39,6 +39,7 @@ return {
     'akinsho/bufferline.nvim',
     after = 'gruvbox',
     event = 'VeryLazy',
+    enabled = true,
     dependencies = { -- https://github.com/tiagovla/scope.nvim
       'tiagovla/scope.nvim',
       config = true,
@@ -59,7 +60,6 @@ return {
         },
       }
     end,
-    enabled = true,
   },
 
   { -- https://github.com/NvChad/nvim-colorizer.lua

@@ -1,6 +1,7 @@
 return {
   { -- https://github.com/hrsh7th/nvim-cmp
     'hrsh7th/nvim-cmp',
+    version = false,
     event = 'InsertEnter',
     dependencies = {
       'hrsh7th/cmp-buffer',
@@ -15,8 +16,11 @@ return {
   },
   { -- https://github.com/L3MON4D3/LuaSnip
     'L3MON4D3/LuaSnip',
-    event = 'VeryLazy',
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    event = 'InsertEnter',
+    dependencies = {
+      'rafamadriz/friendly-snippets',
+      after = 'luasnip',
+    },
     version = 'v2.*',
     build = 'make install_jsregexp',
     main = 'me.config.plugins.luasnip',

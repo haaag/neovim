@@ -18,36 +18,33 @@ return { -- https://github.com/nvim-treesitter/nvim-treesitter
       'nvim-treesitter/nvim-treesitter-context',
       -- 'windwp/nvim-ts-autotag',
     },
+    opts_extend = { 'ensure_installed' },
+    ---@type TSConfig
+    ---@diagnostic disable-next-line: missing-fields
     opts = {
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
-      indent = {
-        enable = true,
-      },
-      autotag = {
-        enable = false,
-      },
-      context = {
-        enabled = true,
-        max_lines = 8,
-        multiline_threshold = 8,
-      },
+      highlight = { enable = true, additional_vim_regex_highlighting = false },
+      indent = { enable = true },
+      context = { enabled = true, max_lines = 8, multiline_threshold = 8 },
       ensure_installed = {
         'bash',
         'c',
-        'c_sharp',
         'cmake',
         'cpp',
         'css',
-        'org',
         'html',
+        'jsdoc',
+        'json',
+        'jsonc',
         'markdown',
         'markdown_inline',
+        'org',
+        'printf',
+        'query',
         'rasi',
+        'regex',
         'rust',
         'sql',
+        'toml',
         'vim',
         'vimdoc',
         'yaml',
@@ -63,9 +60,7 @@ return { -- https://github.com/nvim-treesitter/nvim-treesitter
       },
       textobjects = {
         enable = true,
-        swap = {
-          enable = false,
-        },
+        swap = { enable = false },
         move = {
           enable = true,
           goto_next_start = { [']f'] = '@function.outer', [']c'] = '@class.outer', [']a'] = '@parameter.inner' },

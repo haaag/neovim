@@ -64,11 +64,14 @@ return {
 
   { -- https://github.com/szw/vim-maximizer
     'szw/vim-maximizer',
+    cmd = { 'MaximizerToggle' },
     config = function()
       vim.g.maximizer_set_default_mapping = 1
       vim.g.maximizer_set_mapping_with_bang = 1
-      vim.keymap.set('n', '<C-w>O', '<CMD>MaximizerToggle!<CR>', { desc = 'toggle maximizer' })
     end,
+    keys = {
+      { '<C-w>O', '<CMD>MaximizerToggle!<CR>', { desc = 'toggle maximizer' } },
+    },
     enabled = true,
   },
 

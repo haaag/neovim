@@ -105,15 +105,14 @@ local dap_go = {
     request = 'launch',
     program = '${file}',
   },
-  {
+  { -- configuration for debugging test files
     type = 'delve',
-    name = 'Debug test', -- configuration for debugging test files
+    name = 'Debug test',
     request = 'launch',
     mode = 'test',
     program = '${file}',
   },
-  -- works with go.mod packages and sub packages
-  {
+  { -- works with go.mod packages and sub packages
     type = 'delve',
     name = 'Debug test (go.mod)',
     request = 'launch',
@@ -164,25 +163,18 @@ return {
       set_icons()
       dapui.setup(dapui_config)
 
-      dap.listeners.before.attach.dapui_config = function()
-        dapui.open()
-      end
-      dap.listeners.before.launch.dapui_config = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated.dapui_config = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited.dapui_config = function()
-        dapui.close()
-      end
+      -- stylua: ignore start
+      dap.listeners.before.attach.dapui_config = function() dapui.open() end
+      dap.listeners.before.launch.dapui_config = function() dapui.open() end
+      dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
+      dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
+      -- stylua: ignore end
 
       ----------------
       -- dap-python --
       ----------------
       dap.configurations.python = dap_python
       local path = os.getenv('XDG_DATA_HOME') .. '/nvim/mason/packages/debugpy/venv/bin/python'
-      print(path)
       require('dap-python').setup(path)
       ----------------
       --   dap-go   --

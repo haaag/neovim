@@ -1,6 +1,6 @@
 ---@class me.utils.lsp.diagnostic
 local M = {}
-local icons = Core.icons.lsp().diagnostic
+local icons = Core.icons.lsp().diagnostics
 
 M.defaults = {
   virtual_lines = false,

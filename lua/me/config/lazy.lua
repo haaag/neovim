@@ -25,7 +25,7 @@ require('lazy').setup({
     -- { import = 'me.plugins.lsp.servers.json' },
   },
   defaults = { lazy = false },
-  install = { colorscheme = { 'catppuccin' } },
+  install = { colorscheme = { 'gruvbox-material' } },
   checker = { enabled = false },
   diff = {
     cmd = 'terminal_git',
@@ -38,7 +38,7 @@ require('lazy').setup({
     rtp = {
       disabled_plugins = {
         'gzip',
-        'matchit',
+        -- 'matchit',
         -- "matchparen",
         'netrwPlugin',
         'tarPlugin',

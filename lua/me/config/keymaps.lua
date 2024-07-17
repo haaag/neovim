@@ -25,8 +25,8 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- use ctlr + hjkl to resize windows:
 map('n', '<C-h>', ':vertical resize -2<CR>', options)
 map('n', '<C-l>', ':vertical resize +2<CR>', options)
-map('n', '<C-j>', ':horizontal resize -2<CR>', options)
-map('n', '<C-k>', ':horizontal resize +2<CR>', options)
+map('n', '<C-J>', ':horizontal resize -2<CR>', options)
+map('n', '<C-K>', ':horizontal resize +2<CR>', options)
 
 -- keep search results centred
 map('n', 'n', 'nzzzv', silent)
