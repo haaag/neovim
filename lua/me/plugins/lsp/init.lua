@@ -34,7 +34,6 @@ return {
       },
       'williamboman/mason-lspconfig.nvim', -- https://github.com/williamboman/mason-lspconfig.nvim
     },
-    ---@class PluginLspOpts
     opts = {
       inlay_hints = { enabled = true },
       document_highlight = { enabled = true },
@@ -58,7 +57,6 @@ return {
       },
       setup = {},
     },
-    ---@param opts PluginLspOpts
     config = function(_, opts)
       -- diagnostics
       Core.lsp.diagnostic.set_keymaps()

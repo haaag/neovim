@@ -1,6 +1,5 @@
 ---@class me.utils.toggle
 local M = {}
-
 local minimalist = false
 
 function M.statusline()

@@ -33,7 +33,8 @@ M.highlight = setmetatable({}, {
   end,
 })
 
--- M.confirmation = function(mesg, choices)
+---@param mesg string
+---@param choices string[]
 function M.confirm(mesg, choices)
   local valid_choices = {}
 
@@ -51,6 +52,8 @@ function M.confirm(mesg, choices)
   end
 end
 
+---@param mesg string
+---@return string
 function M.input(mesg)
   local choice = vim.fn.input(mesg)
   choice = choice:lower()
@@ -142,6 +145,8 @@ function M.contains(array, target)
   return false
 end
 
+---@param value string
+---@return boolean
 function M.boolme(value)
   local falseish = { 'false', 'no', 'n', '0', 0, false, nil, 'nil' }
   if M.contains(falseish, value) then
@@ -151,6 +156,7 @@ function M.boolme(value)
   return true
 end
 
+---@param name string
 function M.augroup(name)
   return vim.api.nvim_create_augroup('me_' .. name, { clear = true })
 end
