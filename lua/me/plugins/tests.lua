@@ -64,7 +64,7 @@ return {
   -- stylua: ignore
   keys = {
     { "<leader>tt", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "test run file" },
-    { "<leader>tT", function() require("neotest").run.run(vim.loop.cwd()) end, desc = "test run all files" },
+    { "<leader>tT", function() require("neotest").run.run(vim.uv.cwd()) end, desc = "test run all files" },
     { "<leader>tr", function() require("neotest").run.run() end, desc = "test run nearest" },
     { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "test toggle summary" },
     { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "test show output" },

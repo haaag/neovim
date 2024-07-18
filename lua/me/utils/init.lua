@@ -62,7 +62,7 @@ end
 function M.set_root()
   ---@type string?
   local path = vim.api.nvim_buf_get_name(0)
-  path = path ~= '' and vim.loop.fs_realpath(path) or nil
+  path = path ~= '' and vim.uv.fs_realpath(path) or nil
   ---@type string[]
   local root_patterns = { '.git', 'Makefile', 'lua' }
   local roots = {}
@@ -73,7 +73,7 @@ function M.set_root()
         return vim.uri_to_fname(ws.uri)
       end, workspace) or client.config.root_dir and { client.config.root_dir } or {}
       for _, p in ipairs(paths) do
-        local r = vim.loop.fs_realpath(p)
+        local r = vim.uv.fs_realpath(p)
         if path:find(r, 1, true) then
           roots[#roots + 1] = r
         end
@@ -86,10 +86,10 @@ function M.set_root()
   ---@type string?
   local root = roots[1]
   if not root then
-    path = path and vim.fs.dirname(path) or vim.loop.cwd()
+    path = path and vim.fs.dirname(path) or vim.uv.cwd()
     ---@type string?
     root = vim.fs.find(root_patterns, { path = path, upward = true })[1]
-    root = root and vim.fs.dirname(root) or vim.loop.cwd()
+    root = root and vim.fs.dirname(root) or vim.uv.cwd()
   end
   ---@cast root string
   return root
@@ -127,7 +127,7 @@ end
 function M.find_files()
   local builtin
   local theme = require('telescope.themes')
-  if vim.loop.fs_stat(vim.loop.cwd() .. '/.git') then
+  if vim.uv.fs_stat(vim.uv.cwd() .. '/.git') then
     builtin = 'git_files'
   else
     builtin = 'find_files'
@@ -158,6 +158,16 @@ end
 ---@param name string
 function M.augroup(name)
   return vim.api.nvim_create_augroup('me_' .. name, { clear = true })
+end
+
+---@param name string
+function M.get_plugin(name)
+  return require('lazy.core.config').spec.plugins[name]
+end
+
+---@param plugin string
+function M.has(plugin)
+  return M.get_plugin(plugin) ~= nil
 end
 
 return M
