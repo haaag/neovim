@@ -1,6 +1,6 @@
 -- lsp.servers.go
--- https://github.com/neovim/nvim-lspconfig
-return {
+
+return { -- https://github.com/neovim/nvim-lspconfig
   {
     'neovim/nvim-lspconfig',
     opts = {
@@ -53,30 +53,37 @@ return {
           -- workaround for gopls not supporting semanticTokensProvider
           -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
           Core.lsp.on_attach(function(client, _)
-            if client.name == 'gopls' then
-              if not client.server_capabilities.semanticTokensProvider then
-                local semantic = client.config.capabilities.textDocument.semanticTokens
-                client.server_capabilities.semanticTokensProvider = {
-                  full = true,
-                  legend = {
-                    tokenTypes = semantic.tokenTypes,
-                    tokenModifiers = semantic.tokenModifiers,
-                  },
-                  range = true,
-                }
-              end
+            if not client.server_capabilities.semanticTokensProvider then
+              local semantic = client.config.capabilities.textDocument.semanticTokens
+              client.server_capabilities.semanticTokensProvider = {
+                full = true,
+                legend = {
+                  tokenTypes = semantic.tokenTypes,
+                  tokenModifiers = semantic.tokenModifiers,
+                },
+                range = true,
+              }
             end
-          end)
+            ---@diagnostic disable-next-line: redundant-parameter
+          end, 'gopls')
           -- end workaround
         end,
       },
     },
   },
-  {
+  { -- https://github.com/nvim-treesitter/nvim-treesitter
     'nvim-treesitter/nvim-treesitter',
     opts = function(_, opts)
       if type(opts.ensure_installed) == 'table' then
         vim.list_extend(opts.ensure_installed, { 'go', 'gomod', 'gowork', 'gosum' })
+      end
+    end,
+  },
+  { -- https://github.com/williamboman/mason.nvim
+    'williamboman/mason.nvim',
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == 'table' then
+        vim.list_extend(opts.ensure_installed, { 'goimports', 'golangci-lint', 'staticcheck' })
       end
     end,
   },

@@ -95,10 +95,7 @@ return {
         'shellcheck',
         'markdownlint',
         'write-good',
-        'goimports',
-        'golangci-lint',
         'alex',
-        'staticcheck',
       },
     },
     config = function(_, opts)
