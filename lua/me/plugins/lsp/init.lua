@@ -45,14 +45,6 @@ return {
         docker_compose_language_service = {
           autostart = true,
         },
-        ruff_lsp = {
-          autostart = true,
-          settings = {
-            ruff_lsp = {
-              fix = false,
-            },
-          },
-        },
       },
       setup = {},
     },
@@ -97,10 +89,8 @@ return {
     opts = {
       ensure_installed = {
         'stylua',
-        'ruff',
         'shfmt',
         'prettier',
-        'debugpy',
         'eslint_d',
         'shellcheck',
         'markdownlint',

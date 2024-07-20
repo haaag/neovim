@@ -43,6 +43,20 @@ function M.capabilities()
   )
 end
 
+M.action = setmetatable({}, {
+  __index = function(_, action)
+    return function()
+      vim.lsp.buf.code_action({
+        apply = true,
+        context = {
+          only = { action },
+          diagnostics = {},
+        },
+      })
+    end
+  end,
+})
+
 ---@param bufnr number
 function M.keymaps(bufnr)
   ---@param keys string
