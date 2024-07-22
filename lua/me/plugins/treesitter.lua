@@ -24,7 +24,7 @@ return { -- https://github.com/nvim-treesitter/nvim-treesitter
     opts = {
       highlight = { enable = true, additional_vim_regex_highlighting = false },
       indent = { enable = true },
-      context = { enabled = true, max_lines = 8, multiline_threshold = 8 },
+      context = { enabled = true, mode = 'cursor', max_lines = 3 },
       ensure_installed = {
         'bash',
         'c',

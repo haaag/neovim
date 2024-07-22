@@ -6,12 +6,11 @@ return {
     enabled = true,
     config = function()
       local conform = require('conform')
-
       conform.setup({
         formatters_by_ft = {
           ['_'] = { 'trim_whitespace' },
           ['css'] = { 'prettier' },
-          ['go'] = { 'goimports' },
+          ['go'] = { 'goimports', 'gofumpt' },
           ['html'] = { 'prettier' },
           ['javascript'] = { 'prettier' },
           ['javascriptreact'] = { 'prettier' },
@@ -25,6 +24,10 @@ return {
           ['typescript'] = { 'prettier' },
           ['typescriptreact'] = { 'prettier' },
           ['yaml'] = { 'prettier' },
+        },
+
+        formatters = {
+          injected = { options = { ignore_errors = true } },
         },
 
         --[[ format_on_save = {

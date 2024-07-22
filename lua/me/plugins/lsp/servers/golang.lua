@@ -85,7 +85,7 @@ return { -- https://github.com/neovim/nvim-lspconfig
     'williamboman/mason.nvim',
     opts = function(_, opts)
       if type(opts.ensure_installed) == 'table' then
-        vim.list_extend(opts.ensure_installed, { 'goimports', 'golangci-lint', 'staticcheck' })
+        vim.list_extend(opts.ensure_installed, { 'goimports', 'golangci-lint', 'staticcheck', 'gofumpt' })
       end
     end,
   },

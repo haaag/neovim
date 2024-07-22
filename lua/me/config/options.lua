@@ -1,6 +1,5 @@
 -- settings.lua
 local opt = vim.opt
-
 -- <leader>
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -16,7 +15,7 @@ opt.undodir       = vim.fn.stdpath('state') .. '/undodir'
 opt.undolevels    = 10000
 opt.ignorecase    = true -- Case insensitive searching UNLESS /C or capital in search
 opt.smartcase     = true -- Case insensitive searching UNLESS /C or capital in search
-opt.signcolumn    = 'yes' -- Signcolumn
+opt.signcolumn    = 'auto' -- Signcolumn
 opt.breakindent   = true -- Enable break indent
 opt.smartindent   = true -- Insert indents automatically
 opt.shiftround    = true -- Round indent
@@ -50,7 +49,8 @@ opt.wildmode      = 'longest:full,full' -- Command-line completion mode
 opt.winminwidth   = 5 -- Minimum window width
 opt.pumblend      = 10 -- Popup blend
 opt.splitkeep     = 'cursor' -- cursor, screen, topline, scroll behavior when opening, closing or resizing horizontal splits
-opt.list          = false -- Show some invisible characters (tabs...
+opt.list          = true -- Show some invisible characters (tabs...
+opt.listchars     = { tab = '» ' }
 opt.inccommand    = "nosplit" -- preview incremental substitute
 opt.confirm       = true -- Confirm to save changes before exiting modified buffer
 opt.showbreak     = '↪'

@@ -43,20 +43,20 @@ function M.confirm(mesg, choices)
     valid_choices[choice:lower()] = true
   end
 
-  local choice = vim.fn.input(mesg)
+  local choice = vim.fn.input({ prompt = mesg })
   choice = choice:lower()
 
-  if valid_choices[choice] then
-    return true
-  else
+  if not valid_choices[choice] then
     return false
   end
+
+  return true
 end
 
 ---@param mesg string
 ---@return string
 function M.input(mesg)
-  local choice = vim.fn.input(mesg)
+  local choice = vim.fn.input({ prompt = mesg })
   choice = choice:lower()
   return choice
 end
@@ -170,6 +170,13 @@ end
 ---@param plugin string
 function M.has(plugin)
   return M.get_plugin(plugin) ~= nil
+end
+
+--- checks if a given command is executable
+---@param cmd string? command to check
+---@return boolean
+M.is_executable = function(cmd)
+  return cmd and vim.fn.executable(cmd) == 1 or false
 end
 
 return M

@@ -74,6 +74,7 @@ return {
       { '<leader>dpd', function() require('dap-python').debug_selection() end, desc = 'python: debug selection' },
     },
     opts = function()
+      -- TODO: check if `pypath` exists
       local pypath = os.getenv('XDG_DATA_HOME') .. '/nvim/mason/packages/debugpy/venv/bin/python'
       require('dap').configurations.python = {
         {
