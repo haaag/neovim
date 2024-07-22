@@ -1,31 +1,5 @@
 -- git.lua
-
----@return boolean
-local fugitive_buf = function()
-  return vim.bo.ft == 'fugitive'
-end
-
----@param question string
----@param cmd string
-local function gitconfirm(question, cmd)
-  if not fugitive_buf() then
-    print('Not in vim-fugitive buffer')
-    return
-  end
-
-  local confirm = Core.confirm(question .. ' [y/n]: ', { 'Yes', 'y' })
-  if confirm then
-    vim.cmd(cmd)
-  end
-end
-
-local git_push = function()
-  gitconfirm('Push changes?', 'Git push')
-end
-
-local git_amend = function()
-  gitconfirm('Amend changes?', 'Git commit --amend --no-edit')
-end
+local Git = Core.git
 
 return {
   { -- https://github.com/tpope/vim-fugitive
@@ -33,11 +7,12 @@ return {
     cmd = { 'Git', 'G', 'Gw' },
     keys = function()
       return {
-        { '<leader>go', '<CMD>tab Git<CR>', desc = 'git fugitive tab' },
+        { '<leader>go', '<CMD>tab Git<CR>', desc = 'git fugitive' },
         { '<leader>gw', '<CMD>Gw<CR>', desc = 'git write' },
-        { '<leader>gp', git_push, desc = 'git push' },
+        { '<leader>gp', Git.push, desc = 'git push' },
         { '<leader>gf', Core.find_files, desc = 'git files' },
-        { '<leader>ga', git_amend, desc = 'git amend' },
+        { '<leader>ga', Git.amend_noedit, desc = 'git amend noedit' },
+        { '<leader>gA', Git.amend, desc = 'git amend' },
         { '<leader>gc', '<CMD>Gvdiffsplit!<CR>', desc = 'git merge conflict' },
         { '<leader>gl', '<CMD>0Gclog<CR>', desc = 'show file versions' },
         -- :0Glog - select one version, which opens up in a split. Then use gO to open another vertical split.
@@ -50,7 +25,6 @@ return {
 
   { -- https://github.com/lewis6991/gitsigns.nvim
     'lewis6991/gitsigns.nvim',
-    -- cmd = { 'Gitsigns' },
     event = 'BufRead',
     opts = {
       signs = {
@@ -105,17 +79,15 @@ return {
     },
     enabled = false,
   },
-  {
+
+  { -- https://github.com/nvim-treesitter/nvim-treesitter
     'nvim-treesitter/nvim-treesitter',
     opts = function(_, opts)
       if type(opts.ensure_installed) == 'table' then
-        vim.list_extend(opts.ensure_installed, {
-          'diff',
-          'git_rebase',
-          'gitattributes',
-          'gitcommit',
-          'gitignore',
-        })
+        vim.list_extend(
+          opts.ensure_installed,
+          { 'diff', 'git_rebase', 'gitattributes', 'gitcommit', 'gitignore', 'git_config' }
+        )
       end
     end,
   },
