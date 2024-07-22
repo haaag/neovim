@@ -40,6 +40,7 @@ return {
       },
     },
   },
+
   { -- https://github.com/nvim-treesitter/nvim-treesitter
     'nvim-treesitter/nvim-treesitter',
     opts = function(_, opts)
@@ -48,12 +49,51 @@ return {
       end
     end,
   },
+
   { -- https://github.com/williamboman/mason.nvim
     'williamboman/mason.nvim',
     opts = function(_, opts)
       if type(opts.ensure_installed) == 'table' then
         vim.list_extend(opts.ensure_installed, { 'debugpy' })
       end
+    end,
+  },
+
+  { -- https://github.com/mfussenegger/nvim-dap
+    'mfussenegger/nvim-dap',
+    optional = true,
+    dependencies = { -- https://github.com/mfussenegger/nvim-dap-python
+      'mfussenegger/nvim-dap-python',
+      enabled = Core.config.debug,
+    },
+    -- stylua: ignore
+    keys = {
+      { '<leader>dp', '', desc = '+python'},
+      { '<leader>dpm', function() require('dap-python').test_method() end, desc = 'python: test method' },
+      { '<leader>dpc', function() require('dap-python').test_class() end, desc = 'python: test class' },
+      { '<leader>dpd', function() require('dap-python').debug_selection() end, desc = 'python: debug selection' },
+    },
+    opts = function()
+      local pypath = os.getenv('XDG_DATA_HOME') .. '/nvim/mason/packages/debugpy/venv/bin/python'
+      require('dap').configurations.python = {
+        {
+          type = 'python',
+          request = 'launch',
+          name = 'Launch file',
+          program = '${file}',
+          pythonPath = function()
+            local cwd = vim.fn.getcwd()
+            if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
+              return cwd .. '/venv/bin/python'
+            elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+              return cwd .. '/.venv/bin/python'
+            else
+              return vim.fn.exepath('python3') or vim.fn.exepath('python')
+            end
+          end,
+        },
+      }
+      require('dap-python').setup(pypath)
     end,
   },
 }

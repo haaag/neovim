@@ -71,6 +71,7 @@ return { -- https://github.com/neovim/nvim-lspconfig
       },
     },
   },
+
   { -- https://github.com/nvim-treesitter/nvim-treesitter
     'nvim-treesitter/nvim-treesitter',
     opts = function(_, opts)
@@ -79,12 +80,55 @@ return { -- https://github.com/neovim/nvim-lspconfig
       end
     end,
   },
+
   { -- https://github.com/williamboman/mason.nvim
     'williamboman/mason.nvim',
     opts = function(_, opts)
       if type(opts.ensure_installed) == 'table' then
         vim.list_extend(opts.ensure_installed, { 'goimports', 'golangci-lint', 'staticcheck' })
       end
+    end,
+  },
+
+  { -- https://github.com/mfussenegger/nvim-dap
+    'mfussenegger/nvim-dap',
+    optional = true,
+    dependencies = { -- https://github.com/mfussenegger/nvim-dap-python
+      'mfussenegger/nvim-dap-python',
+      enabled = Core.config.debug,
+    },
+    opts = function()
+      local dap = require('dap')
+      dap.adapters.delve = {
+        type = 'server',
+        port = '${port}',
+        executable = {
+          command = 'dlv',
+          args = { 'dap', '-l', '127.0.0.1:${port}' },
+        },
+      }
+      dap.configurations.go = {
+        {
+          type = 'delve',
+          name = 'Debug',
+          request = 'launch',
+          program = '${file}',
+        },
+        { -- configuration for debugging test files
+          type = 'delve',
+          name = 'Debug test',
+          request = 'launch',
+          mode = 'test',
+          program = '${file}',
+        },
+        { -- works with go.mod packages and sub packages
+          type = 'delve',
+          name = 'Debug test (go.mod)',
+          request = 'launch',
+          mode = 'test',
+          program = './${relativeFileDirname}',
+        },
+      }
     end,
   },
 }

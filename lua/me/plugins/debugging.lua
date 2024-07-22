@@ -1,5 +1,3 @@
--- local enabled = Core.boolme(os.getenv('NVIM_DEBUG'))
-local enabled = true
 local icons = Core.icons.dap()
 
 ---@param config {args?:string[]|fun():string[]?}
@@ -79,57 +77,14 @@ local dapui_config = {
   },
 }
 
-local dap_python = {
-  {
-    type = 'python',
-    request = 'launch',
-    name = 'Launch file',
-    program = '${file}',
-    pythonPath = function()
-      local cwd = vim.fn.getcwd()
-      if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-        return cwd .. '/venv/bin/python'
-      elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-        return cwd .. '/.venv/bin/python'
-      else
-        return vim.fn.exepath('python3') or vim.fn.exepath('python')
-      end
-    end,
-  },
-}
-
-local dap_go = {
-  {
-    type = 'delve',
-    name = 'Debug',
-    request = 'launch',
-    program = '${file}',
-  },
-  { -- configuration for debugging test files
-    type = 'delve',
-    name = 'Debug test',
-    request = 'launch',
-    mode = 'test',
-    program = '${file}',
-  },
-  { -- works with go.mod packages and sub packages
-    type = 'delve',
-    name = 'Debug test (go.mod)',
-    request = 'launch',
-    mode = 'test',
-    program = './${relativeFileDirname}',
-  },
-}
-
 return {
   { -- https://github.com/mfussenegger/nvim-dap
     'mfussenegger/nvim-dap',
     lazy = true,
-    enabled = enabled,
+    enabled = Core.config.debug,
     dependencies = {
       'rcarriga/nvim-dap-ui',
       'nvim-neotest/nvim-nio',
-      'mfussenegger/nvim-dap-python', -- https://github.com/mfussenegger/nvim-dap-python
       'theHamsta/nvim-dap-virtual-text',
     },
     -- stylua: ignore
@@ -151,43 +106,19 @@ return {
       { '<leader>ds', function() require('dap').session() end, desc = 'session' },
       { '<leader>dt', function() require('dap').terminate() end, desc = 'terminate' },
       { '<leader>dw', function() require('dap.ui.widgets').hover() end, desc = 'widgets' },
-      -- python
-      { '<leader>dpm', function() require('dap-python').test_method() end, desc = 'python: test method' },
-      { '<leader>dpc', function() require('dap-python').test_class() end, desc = 'python: test class' },
-      { '<leader>dpd', function() require('dap-python').debug_selection() end, desc = 'python: debug selection' },
     },
     config = function()
+      vim.print('From debugging')
       local dap = require('dap')
       local dapui = require('dapui')
       require('nvim-dap-virtual-text').setup({})
       set_icons()
       dapui.setup(dapui_config)
-
       -- stylua: ignore start
       dap.listeners.before.attach.dapui_config = function() dapui.open() end
       dap.listeners.before.launch.dapui_config = function() dapui.open() end
       dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
       dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
-      -- stylua: ignore end
-
-      ----------------
-      -- dap-python --
-      ----------------
-      dap.configurations.python = dap_python
-      local path = os.getenv('XDG_DATA_HOME') .. '/nvim/mason/packages/debugpy/venv/bin/python'
-      require('dap-python').setup(path)
-      ----------------
-      --   dap-go   --
-      ----------------
-      dap.adapters.delve = {
-        type = 'server',
-        port = '${port}',
-        executable = {
-          command = 'dlv',
-          args = { 'dap', '-l', '127.0.0.1:${port}' },
-        },
-      }
-      dap.configurations.go = dap_go
     end,
   },
 }

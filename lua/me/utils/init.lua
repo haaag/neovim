@@ -3,6 +3,7 @@
 ---@field lsp me.utils.lsp
 ---@field icons me.utils.icons
 ---@field colors me.utils.colors
+---@field config me.utils.config
 local M = {}
 
 setmetatable(M, {
