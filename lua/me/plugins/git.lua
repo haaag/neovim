@@ -7,6 +7,7 @@ return {
     cmd = { 'Git', 'G', 'Gw' },
     keys = function()
       return {
+        -- TODO: create <leader>ga for 'git actions'
         { '<leader>go', '<CMD>tab Git<CR>', desc = 'git fugitive' },
         { '<leader>gw', '<CMD>Gw<CR>', desc = 'git write' },
         { '<leader>gp', Git.push, desc = 'git push' },
@@ -38,14 +39,10 @@ return {
       signs_staged_enable = false,
     },
     keys = {
-      -- misc
+      { '<leader>g', '', desc = '+git' },
       { '<leader>gb', '<CMD>Gitsigns toggle_current_line_blame<CR>', desc = 'git toggle blame' },
-      -- telescope
-      { '<leader>gts', '<CMD>Telescope git_status<CR>', desc = 'git telescope status' },
-      { '<leader>gtx', '<CMD>Telescope git_stash<CR>', desc = 'git telescope stash' },
-      { '<leader>gtB', '<CMD>Telescope git_branches<CR>', desc = 'git telescope branches' },
-      { '<leader>gtb', '<CMD>Telescope git_bcommits<CR>', desc = 'git telescope buffer Commits' },
       -- hunks
+      { '<leader>gh', '', desc = '+hunks' },
       { ']h', '<CMD>Gitsigns next_hunk<CR>', desc = 'git next hunk' },
       { '[h', '<CMD>Gitsigns prev_hunk<CR>', desc = 'git prev hunk' },
       { ']H', '<CMD>Gitsigns nav_hunk first<CR>', desc = 'git prev hunk' },
@@ -72,6 +69,7 @@ return {
     cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
     config = true,
     keys = {
+      { '<leader>gd', '', desc = '+diff' },
       { '<leader>gdo', '<CMD>DiffviewOpen<CR>', desc = 'diffview open' },
       { '<leader>gdc', '<CMD>DiffviewClose<CR>', desc = 'diffview close' },
       { '<leader>gdf', '<CMD>DiffviewToggleFiles<CR>', desc = 'diffview files' },

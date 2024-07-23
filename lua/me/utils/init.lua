@@ -179,4 +179,23 @@ M.is_executable = function(cmd)
   return cmd and vim.fn.executable(cmd) == 1 or false
 end
 
+---@param keys string
+---@param func function|string
+---@param desc string
+---@param mode? string|string[]
+M.keymap = function(keys, func, desc, mode)
+  mode = mode or 'n'
+  vim.keymap.set(mode, keys, func, { desc = desc })
+end
+
+---@param bufnr number
+---@param keys string
+---@param func function|string
+---@param desc string
+---@param mode? string|string[]
+M.keymap_buf = function(bufnr, keys, func, desc, mode)
+  mode = mode or 'n'
+  vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
+end
+
 return M

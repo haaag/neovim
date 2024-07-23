@@ -212,17 +212,8 @@ return {
           miniclue.gen_clues.z(),
 
           { mode = 'n', keys = '<Leader>b', desc = '+buffers' },
-          { mode = 'n', keys = '<Leader>d', desc = '+debugging' },
-          { mode = 'n', keys = '<Leader>e', desc = '+edit' },
-          { mode = 'n', keys = '<Leader>g', desc = '+git' },
-          { mode = 'n', keys = '<Leader>gd', desc = '+diff' },
-          { mode = 'n', keys = '<Leader>gh', desc = '+hunks' },
-          { mode = 'n', keys = '<Leader>gt', desc = '+telescope' },
-          { mode = 'n', keys = '<Leader>l', desc = '+lsp' },
+          { mode = 'n', keys = '<Leader>m', desc = '+misc' },
           { mode = 'n', keys = '<Leader>lw', desc = '+workspace' },
-          { mode = 'n', keys = '<Leader>s', desc = '+search' },
-          { mode = 'n', keys = '<Leader>t', desc = '+test' },
-          { mode = 'n', keys = '<Leader>q', desc = '+quickfix' },
         },
       })
     end,

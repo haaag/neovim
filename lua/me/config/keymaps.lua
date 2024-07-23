@@ -1,83 +1,79 @@
--- keymaps
-
-local map = vim.keymap.set
+-- me.config.keymaps
+local nmap = vim.keymap.set
+local map = Core.keymap
+local toggle = Core.toggle
 local options = { noremap = true, silent = true }
 local silent = { silent = true }
 
 -- shortcut to use blackhole register by default
-map('v', 'd', '"_d', options)
-map('v', 'D', '"_D', options)
-map('v', 'c', '"_c', options)
-map('v', 'C', '"_C', options)
-map('v', 'x', '"_x', options)
-map('v', 'X', '"_X', options)
-map('n', 'd', '"_d', options)
-map('n', 'D', '"_D', options)
-map('n', 'c', '"_c', options)
-map('n', 'C', '"_C', options)
-map('n', 'x', '"_x', options)
-map('n', 'X', '"_X', options)
+nmap('v', 'd', '"_d', options)
+nmap('v', 'D', '"_D', options)
+nmap('v', 'c', '"_c', options)
+nmap('v', 'C', '"_C', options)
+nmap('v', 'x', '"_x', options)
+nmap('v', 'X', '"_X', options)
+nmap('n', 'd', '"_d', options)
+nmap('n', 'D', '"_D', options)
+nmap('n', 'c', '"_c', options)
+nmap('n', 'C', '"_C', options)
+nmap('n', 'x', '"_x', options)
+nmap('n', 'X', '"_X', options)
 
 -- remap for dealing with word wrap
-map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+nmap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+nmap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- use ctlr + hjkl to resize windows:
-map('n', '<C-h>', ':vertical resize -2<CR>', options)
-map('n', '<C-l>', ':vertical resize +2<CR>', options)
-map('n', '<C-J>', ':horizontal resize -2<CR>', options)
-map('n', '<C-K>', ':horizontal resize +2<CR>', options)
+nmap('n', '<C-h>', '<CMD>vertical resize -2<CR>', options)
+nmap('n', '<C-l>', '<CMD>vertical resize +2<CR>', options)
+nmap('n', '<C-J>', '<CMD>horizontal resize -2<CR>', options)
+nmap('n', '<C-K>', '<CMD>horizontal resize +2<CR>', options)
 
 -- keep search results centred
-map('n', 'n', 'nzzzv', silent)
-map('n', 'N', 'Nzzzv', silent)
+nmap('n', 'n', 'nzzzv', silent)
+nmap('n', 'N', 'Nzzzv', silent)
 
 -- make y yank to end of the line
-map('n', 'Y', 'y$', silent)
+nmap('n', 'Y', 'y$', silent)
 
 -- move lines
-map('v', 'K', ":move '<-2<CR>gv-gv", {})
-map('v', 'J', ":move '>+1<CR>gv-gv", {})
+nmap('v', 'K', "<CMD>move '<-2<CR>gv-gv", {})
+nmap('v', 'J', "<CMD>move '>+1<CR>gv-gv", {})
 
 -- c-d 'n c-u centred
-map('n', '<C-d>', '<C-d>zz', silent)
-map('n', '<C-u>', '<C-u>zz', silent)
+nmap('n', '<C-d>', '<C-d>zz', silent)
+nmap('n', '<C-u>', '<C-u>zz', silent)
 
 -- buffers
-map('n', '<M-}>', '<CMD>bnext<CR>', { desc = 'next buffer' })
-map('n', '<M-{>', '<CMD>bprevious<CR>', { desc = 'previous buffer' })
-map('n', '<C-S-]>', '<CMD>bnext<CR>', { desc = 'next buffer' })
-map('n', '<C-S-[>', '<CMD>bprevious<CR>', { desc = 'previous buffer' })
-map('n', '<C-Left>', '<CMD>bprevious<CR>', { desc = 'previous buffer' })
-map('n', '<C-Right>', '<CMD>bnext<CR>', { desc = 'next buffer' })
-map('n', '<leader>qq', '<CMD>q<CR>', { desc = 'quit' })
+map('<M-}>', '<CMD>bnext<CR>', 'next buffer')
+map('<M-{>', '<CMD>bprevious<CR>', 'previous buffer')
+map('<C-Left>', '<CMD>bprevious<CR>', 'previous buffer')
+map('<C-Right>', '<CMD>bnext<CR>', 'next buffer')
 
 -- files
-map('n', '<leader>eb', '<CMD>e ~/apps/vimwiki/cookbook/cookbook.md<CR>', { desc = 'edit cookbook' })
-map('n', '<leader>ew', '<CMD>e ~/apps/vimwiki/index.md<CR>', { desc = 'edit vimwiki' })
-map('n', '<leader>ez', '<CMD>e ~/.config/zsh/.zshrc<CR>', { desc = 'edit zshrc' })
-map('n', '<leader>ex', '<CMD>e ~/.Xresources<CR>', { desc = 'edit xresources' })
-map('n', '<leader>es', '<CMD>e ~/.config/sxhkd/sxhkdrc<CR>', { desc = 'edit sxhkdrc' })
+map('<leader>e', '', '+edit')
+map('<leader>ez', '<CMD>edit ~/.config/zsh/.zshrc<CR>', 'edit zshrc')
+map('<leader>ex', '<CMD>edit ~/.config/X11/xresources<CR>', 'edit xresources')
+map('<leader>es', '<CMD>edit ~/.config/sxhkd/sxhkdrc<CR>', 'edit sxhkdrc')
 
 -- quickfix
-map('n', '<leader>qc', '<CMD>cclose<CR>', { desc = 'quickfix close' })
-map('n', '<leader>qo', '<CMD>copen<CR>', { desc = 'quickfix open' })
-map('n', '<leader>qg', '<CMD>cfirst<CR>', { desc = 'quickfix first' })
-map('n', '<leader>qG', '<CMD>clast<CR>', { desc = 'quickfix last' })
+map('<leader>q', '', '+quickfix')
+map('<leader>qc', '<CMD>cclose<CR>', 'quickfix close')
+map('<leader>qo', '<CMD>copen<CR>', 'quickfix open')
+map('<leader>qg', '<CMD>cfirst<CR>', 'quickfix first')
+map('<leader>qG', '<CMD>clast<CR>', 'quickfix last')
 
 -- personal
 -- stylua: ignore start
-map("n", '<leader>bb', function() Core.toggle.scrollsync() end, { desc = 'scrolling synchronously'})
-map('n', '<leader>bC', '<CMD>TSContextToggle<CR>', { desc = 'toggle treesitter context' })
-map('n', '<leader>bi', function() Core.toggle.inlay_hints() end, { desc = 'toggle inlay hints' })
-map('n', '<leader>bg', function() Core.toggle.gitsings() end, { desc = 'toggle git signs' })
-map('n', '<leader>bl', function() Core.toggle.statusline() end, { desc = 'toggle statusline' })
-map('n', '<leader>bL', function() Core.toggle.laststatus() end, { desc = 'set laststatus' })
-map('n', '<leader>bM', function() Core.toggle.minimalist() end, { desc = 'toggle minimalist' })
-map('n', '<leader>bn', function() Core.toggle.numbers() end, { desc = 'toggle numbers' })
-map('n', '<leader>bs', function() Core.toggle.diagnostic_signs() end, { desc = 'toggle diagnostics signs' })
-map('n', '<leader>bS', function() Core.toggle.signcolumn() end, { desc = 'toggle signcolumn' })
-map('n', '<leader>ma', function() Core.set_root() end, { desc = 'set current root' })
-
--- LSP
--- map('n', '<leader>ls', '<CMD>LspStart<CR>', { desc = 'lsp start' })
+map('<leader>bb', function() toggle.scrollsync() end, 'scrolling synchronously')
+map('<leader>bC', '<CMD>TSContextToggle<CR>', 'toggle treesitter context')
+map('<leader>bi', function() toggle.inlay_hints() end, 'toggle inlay hints')
+map('<leader>bg', function() toggle.gitsings() end, 'toggle git signs')
+map('<leader>bl', function() toggle.statusline() end, 'toggle statusline')
+map('<leader>bL', function() toggle.laststatus() end, 'set laststatus')
+map('<leader>bM', function() toggle.minimalist() end, 'toggle minimalist')
+map('<leader>bn', function() toggle.numbers() end, 'toggle numbers')
+map('<leader>bs', function() toggle.diagnostic_signs() end, 'toggle diagnostics signs')
+map('<leader>bS', function() toggle.signcolumn() end, 'toggle signcolumn')
+map('<leader>ma', function() Core.set_root() end, 'set current root')
+-- stylua: ignore stop

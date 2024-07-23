@@ -25,8 +25,8 @@ return {
     keys = {
       { "]t", function() require("todo-comments").jump_next() end, desc = "next todo comment" },
       { "[t", function() require("todo-comments").jump_prev() end, desc = "previous todo comment" },
-      { "<leader>xt", "<CMD>TodoTelescope<CR>", desc = "todo telescope" },
-      { "<leader>xT", "<CMD>TodoTrouble keywords=TODO,FIX,FIXME,WIP,NOTE,HACK<CR>", desc = "TODO/FIX/FIXME (trouble)" },
+      { "<leader>mt", "<CMD>TodoTelescope<CR>", desc = "todo telescope" },
+      { "<leader>mT", "<CMD>TodoTrouble keywords=TODO,FIX,FIXME,WIP,NOTE,HACK<CR>", desc = "TODO/FIX/FIXME (trouble)" },
       { "<leader>st", "<CMD>TodoTelescope<CR>", desc = "search todo" },
     },
     enabled = true,
@@ -38,8 +38,8 @@ return {
     opts = { use_diagnostic_signs = true },
     keys = {
       -- stylua: ignore
-      { "<leader>xx", "<CMD>TroubleToggle document_diagnostics<CR>", desc = "document diagnostics (trouble)" },
-      { '<leader>xX', '<CMD>TroubleToggle workspace_diagnostics<CR>', desc = 'workspace diagnostics (trouble)' },
+      { "<leader>mx", "<CMD>TroubleToggle document_diagnostics<CR>", desc = "document diagnostics (trouble)" },
+      { '<leader>mX', '<CMD>TroubleToggle workspace_diagnostics<CR>', desc = 'workspace diagnostics (trouble)' },
     },
     enabled = true,
   },

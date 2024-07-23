@@ -9,14 +9,11 @@ return {
     enabled = true,
     dependencies = {
       { 'nvim-lua/plenary.nvim' },
-      -- { -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
-      --   'nvim-telescope/telescope-fzf-native.nvim',
-      --   build = 'make',
-      -- },
       { 'nvim-telescope/telescope-project.nvim' }, -- https://github.com/nvim-telescope/telescope-project.nvim
     },
     -- luacheck: ignore
     keys = {
+      { '<leader>s', '', desc = '+search' },
       -- search
       { '<C-p>', '<CMD>Telescope find_files theme=get_ivy<CR>', desc = 'search files' },
       { '<leader>?', '<CMD>Telescope oldfiles<CR>', desc = '[?] find recently opened files' },
@@ -30,7 +27,6 @@ return {
       { '<leader>sg', '<CMD>Telescope live_grep<CR>', desc = 'search by grep' },
       { '<leader>sd', '<CMD>Telescope diagnostics<CR>', desc = 'search diagnostics' },
       { '<leader>sh', '<CMD>Telescope help_tags<CR>', desc = 'search help' },
-      { '<leader>su', '<CMD>Telescope undo<CR>', desc = 'search undo' },
       { '<leader>sk', '<CMD>Telescope keymaps<CR>', desc = 'search keymaps' },
       { '<leader>:', '<CMD>Telescope command_history<CR>', desc = 'search command History' },
       {
@@ -43,6 +39,12 @@ return {
         "<CMD>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy({previewer = false}))<CR>",
         desc = '[/] fuzzily search in current buffer]',
       },
+      -- git
+      { '<leader>gt', '', desc = '+telescope' },
+      { '<leader>gts', '<CMD>Telescope git_status<CR>', desc = 'git telescope status' },
+      { '<leader>gtx', '<CMD>Telescope git_stash<CR>', desc = 'git telescope stash' },
+      { '<leader>gtB', '<CMD>Telescope git_branches<CR>', desc = 'git telescope branches' },
+      { '<leader>gtb', '<CMD>Telescope git_bcommits<CR>', desc = 'git telescope buffer Commits' },
     },
   },
 

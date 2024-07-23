@@ -1,6 +1,8 @@
 ---@class me.utils.lsp
 local M = {}
 
+M.diagnostic = require('me.utils.diagnostic')
+
 ---@param on_attach function
 function M.on_attach(on_attach)
   vim.api.nvim_create_autocmd('LspAttach', {
@@ -59,36 +61,28 @@ M.action = setmetatable({}, {
 
 ---@param bufnr number
 function M.keymaps(bufnr)
-  ---@param keys string
-  ---@param func function|string
-  ---@param desc string
-  ---@param mode? string|string[]
-  local map = function(keys, func, desc, mode)
-    mode = mode or 'n'
-    vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
-  end
+  local map = Core.keymap_buf
+  map(bufnr, 'gd', vim.lsp.buf.definition, 'goto definition')
+  map(bufnr, 'gr', require('telescope.builtin').lsp_references, 'goto references')
+  map(bufnr, 'gI', vim.lsp.buf.implementation, 'goto implementation')
+  map(bufnr, 'gD', vim.lsp.buf.declaration, 'goto declaration')
+  map(bufnr, 'gy', vim.lsp.buf.type_definition, 'type definition')
+  map(bufnr, 'K', vim.lsp.buf.hover, 'hover documentation')
+  map(bufnr, '<c-k>', vim.lsp.buf.signature_help, 'signature documentation', 'i')
 
-  map('gd', vim.lsp.buf.definition, 'goto definition')
-  map('gr', require('telescope.builtin').lsp_references, 'goto references')
-  map('gI', vim.lsp.buf.implementation, 'goto implementation')
-  map('gD', vim.lsp.buf.declaration, 'goto declaration')
-  map('gy', vim.lsp.buf.type_definition, 'type definition')
-  map('K', vim.lsp.buf.hover, 'hover documentation')
-  map('<c-k>', vim.lsp.buf.signature_help, 'signature documentation', 'i')
-  map('<leader>lr', vim.lsp.buf.rename, 'rename')
-  map('<leader>la', vim.lsp.buf.code_action, 'code action', { 'n', 'v' })
-  map('<leader>lS', require('telescope.builtin').lsp_document_symbols, 'document symbols')
-  map('<leader>lI', '<CMD>LspInfo<CR>', 'info')
-  map('<leader>lc', vim.lsp.codelens.run, 'run codelens', { 'n', 'v' })
-  map('<leader>lC', vim.lsp.codelens.refresh, 'refresh n display codelens')
-  map('<leader>lws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'workspace symbols')
-  map('<leader>lwa', vim.lsp.buf.add_workspace_folder, 'workspace add folder')
-  map('<leader>lwr', vim.lsp.buf.remove_workspace_folder, 'workspace remove Folder')
-  map('<leader>lwl', function()
+  map(bufnr, '<leader>l', '', '+lsp')
+  map(bufnr, '<leader>lr', vim.lsp.buf.rename, 'rename')
+  map(bufnr, '<leader>la', vim.lsp.buf.code_action, 'code action', { 'n', 'v' })
+  map(bufnr, '<leader>lS', require('telescope.builtin').lsp_document_symbols, 'document symbols')
+  map(bufnr, '<leader>lI', '<CMD>LspInfo<CR>', 'info')
+  map(bufnr, '<leader>lc', vim.lsp.codelens.run, 'run codelens', { 'n', 'v' })
+  map(bufnr, '<leader>lC', vim.lsp.codelens.refresh, 'refresh n display codelens')
+  map(bufnr, '<leader>lws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'workspace symbols')
+  map(bufnr, '<leader>lwa', vim.lsp.buf.add_workspace_folder, 'workspace add folder')
+  map(bufnr, '<leader>lwr', vim.lsp.buf.remove_workspace_folder, 'workspace remove Folder')
+  map(bufnr, '<leader>lwl', function()
     vim.print(vim.lsp.buf.list_workspace_folders())
   end, 'workspace list folders')
 end
-
-M.diagnostic = require('me.utils.diagnostic')
 
 return M
