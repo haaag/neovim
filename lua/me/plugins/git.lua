@@ -7,15 +7,16 @@ return {
     cmd = { 'Git', 'G', 'Gw' },
     keys = function()
       return {
-        -- TODO: create <leader>ga for 'git actions'
+        { '<leader>g', '', desc = '+git' },
         { '<leader>go', '<CMD>tab Git<CR>', desc = 'git fugitive' },
-        { '<leader>gw', '<CMD>Gw<CR>', desc = 'git write' },
-        { '<leader>gp', Git.push, desc = 'git push' },
         { '<leader>gf', Core.find_files, desc = 'git files' },
-        { '<leader>ga', Git.amend_noedit, desc = 'git amend noedit' },
-        { '<leader>gA', Git.amend, desc = 'git amend' },
-        { '<leader>gc', '<CMD>Gvdiffsplit!<CR>', desc = 'git merge conflict' },
-        { '<leader>gl', '<CMD>0Gclog<CR>', desc = 'show file versions' },
+        { '<leader>ga', '', desc = '+actions' },
+        { '<leader>gaa', Git.amend_noedit, desc = 'git amend noedit' },
+        { '<leader>gap', Git.push, desc = 'git push' },
+        { '<leader>gaA', Git.amend, desc = 'git amend' },
+        { '<leader>gd', '', desc = '+diff' },
+        { '<leader>gdc', '<CMD>Gvdiffsplit!<CR>', desc = 'resolve conflict' },
+        { '<leader>gdl', '<CMD>0Gclog<CR>', desc = 'show file versions' },
         -- :0Glog - select one version, which opens up in a split. Then use gO to open another vertical split.
         -- Go back to quickfix, select the other version I want to diff it against.
         -- Navigate to the each buffer and do a :diffthis . Is there a better way?
@@ -39,7 +40,6 @@ return {
       signs_staged_enable = false,
     },
     keys = {
-      { '<leader>g', '', desc = '+git' },
       { '<leader>gb', '<CMD>Gitsigns toggle_current_line_blame<CR>', desc = 'git toggle blame' },
       -- hunks
       { '<leader>gh', '', desc = '+hunks' },
@@ -64,7 +64,7 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/sindrets/diffview.nvim
+  --[[ { -- https://github.com/sindrets/diffview.nvim
     'sindrets/diffview.nvim',
     cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
     config = true,
@@ -76,7 +76,7 @@ return {
       { '<leader>gdh', '<CMD>DiffviewFileHistory %<CR>', desc = 'diffview file history' },
     },
     enabled = false,
-  },
+  }, ]]
 
   { -- https://github.com/nvim-treesitter/nvim-treesitter
     'nvim-treesitter/nvim-treesitter',

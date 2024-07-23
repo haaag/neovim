@@ -47,17 +47,17 @@ local dapui_config = {
         'stacks',
         'watches',
       },
-      size = 80,
+      size = 40,
       position = 'left',
     },
     {
-      elements = { 'repl', 'console' },
-      size = 10,
+      elements = { 'repl' },
+      size = 4,
       position = 'bottom',
     },
   },
   controls = {
-    enabled = false,
+    enabled = true,
     -- Display controls in this element
     element = 'repl',
     icons = icons.constrols,
@@ -65,7 +65,7 @@ local dapui_config = {
   floating = {
     max_height = 0.9,
     max_width = 0.5, -- Floats will be treated as percentage of your screen.
-    border = vim.g.border_chars, -- Border style. Can be 'single', 'double' or 'rounded'
+    border = 'rounded', -- vim.g.border_chars, -- Border style. Can be 'single', 'double' or 'rounded'
     mappings = {
       close = { 'q', '<Esc>' },
     },
@@ -109,7 +109,6 @@ return {
       { '<leader>dw', function() require('dap.ui.widgets').hover() end, desc = 'widgets' },
     },
     config = function()
-      vim.print('From debugging')
       local dap = require('dap')
       local dapui = require('dapui')
       require('nvim-dap-virtual-text').setup({})

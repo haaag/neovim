@@ -24,10 +24,10 @@ nmap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 nmap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- use ctlr + hjkl to resize windows:
-nmap('n', '<C-h>', '<CMD>vertical resize -2<CR>', options)
-nmap('n', '<C-l>', '<CMD>vertical resize +2<CR>', options)
-nmap('n', '<C-J>', '<CMD>horizontal resize -2<CR>', options)
-nmap('n', '<C-K>', '<CMD>horizontal resize +2<CR>', options)
+nmap('n', '<C-h>', ':vertical resize -2<CR>', options)
+nmap('n', '<C-l>', ':vertical resize +2<CR>', options)
+-- nmap('n', '<C-J>', ':horizontal resize -2<CR>', options) -- conflict with luasnip
+-- nmap('n', '<C-K>', ':horizontal resize +2<CR>', options) -- conflict with luasnip
 
 -- keep search results centred
 nmap('n', 'n', 'nzzzv', silent)
@@ -37,8 +37,8 @@ nmap('n', 'N', 'Nzzzv', silent)
 nmap('n', 'Y', 'y$', silent)
 
 -- move lines
-nmap('v', 'K', "<CMD>move '<-2<CR>gv-gv", {})
-nmap('v', 'J', "<CMD>move '>+1<CR>gv-gv", {})
+nmap('v', 'K', ":move '<-2<CR>gv-gv", {})
+nmap('v', 'J', ":move '>+1<CR>gv-gv", {})
 
 -- c-d 'n c-u centred
 nmap('n', '<C-d>', '<C-d>zz', silent)
@@ -77,3 +77,7 @@ map('<leader>bs', function() toggle.diagnostic_signs() end, 'toggle diagnostics 
 map('<leader>bS', function() toggle.signcolumn() end, 'toggle signcolumn')
 map('<leader>ma', function() Core.set_root() end, 'set current root')
 -- stylua: ignore stop
+
+-- misc
+map('<leader>mL', ':Lazy<CR>', 'open Lazy')
+map('<leader>mM', ':Mason<CR>', 'open mason')

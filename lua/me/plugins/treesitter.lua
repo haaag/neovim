@@ -26,6 +26,7 @@ return { -- https://github.com/nvim-treesitter/nvim-treesitter
       indent = { enable = true },
       context = { enabled = true, mode = 'cursor', max_lines = 3 },
       ensure_installed = {
+        'asm',
         'bash',
         'c',
         'cmake',

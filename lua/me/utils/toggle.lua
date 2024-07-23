@@ -3,11 +3,13 @@ local M = {}
 local minimalist = false
 
 function M.statusline()
-  if Core.boolme(vim.opt_local.laststatus._value) then
+  ---@diagnostic disable-next-line: undefined-field
+  local value = vim.opt_local.laststatus._value
+  if not Core.contains({ '0', 0 }, value) then
     vim.opt_local.laststatus = 0
-    return
+  else
+    vim.opt_local.laststatus = 3
   end
-  vim.opt_local.laststatus = 3
 end
 
 function M.laststatus()

@@ -85,7 +85,10 @@ return { -- https://github.com/neovim/nvim-lspconfig
     'williamboman/mason.nvim',
     opts = function(_, opts)
       if type(opts.ensure_installed) == 'table' then
-        vim.list_extend(opts.ensure_installed, { 'goimports', 'golangci-lint', 'staticcheck', 'gofumpt' })
+        vim.list_extend(
+          opts.ensure_installed,
+          { 'goimports-reviser', 'golangci-lint', 'staticcheck', 'gofumpt', 'golines' }
+        )
       end
     end,
   },
@@ -93,9 +96,10 @@ return { -- https://github.com/neovim/nvim-lspconfig
   { -- https://github.com/mfussenegger/nvim-dap
     'mfussenegger/nvim-dap',
     optional = true,
-    dependencies = { -- https://github.com/mfussenegger/nvim-dap-python
-      'mfussenegger/nvim-dap-python',
-      enabled = Core.config.debug,
+    enabled = Core.config.debug,
+    dependencies = {
+      { 'williamboman/mason.nvim', opts = { ensure_installed = { 'delve' } } },
+      { 'leoluz/nvim-dap-go', opts = {}, enabled = Core.config.debug },
     },
     opts = function()
       local dap = require('dap')
@@ -130,5 +134,23 @@ return { -- https://github.com/neovim/nvim-lspconfig
         },
       }
     end,
+  },
+
+  { -- https://github.com/nvim-neotest/neotest
+    'nvim-neotest/neotest',
+    dependencies = {
+      {
+        'nvim-neotest/neotest-go', -- https://github.com/nvim-neotest/neotest-go
+        enabled = Core.config.testing,
+      },
+    },
+    opts = {
+      adapters = {
+        ['neotest-go'] = {
+          go_test_args = { '-v', '-race', '-count=1', '-timeout=60s' },
+          dap_go_enabled = true,
+        },
+      },
+    },
   },
 }

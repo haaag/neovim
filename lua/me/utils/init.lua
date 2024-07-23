@@ -8,9 +8,9 @@
 local M = {}
 
 setmetatable(M, {
-  __index = function(t, k)
-    t[k] = require('me.utils.' .. k)
-    return t[k]
+  __index = function(tbl, key)
+    tbl[key] = require('me.utils.' .. key)
+    return tbl[key]
   end,
 })
 
@@ -43,7 +43,7 @@ function M.confirm(mesg, choices)
     valid_choices[choice:lower()] = true
   end
 
-  local choice = vim.fn.input({ prompt = mesg })
+  local choice = vim.fn.input({ prompt = mesg }) ---@type string
   choice = choice:lower()
 
   if not valid_choices[choice] then
@@ -149,7 +149,7 @@ end
 ---@param value string
 ---@return boolean
 function M.boolme(value)
-  local falseish = { 'false', 'no', 'n', '0', 0, false, nil, 'nil' }
+  local falseish = { 'false', 'no', 'n', '1', 1, false, nil, 'nil' }
   if M.contains(falseish, value) then
     return false
   end
@@ -167,6 +167,17 @@ function M.get_plugin(name)
   return require('lazy.core.config').spec.plugins[name]
 end
 
+---@param varname string
+---@param default any: if varname is not set
+---@return any
+function M.getenv(varname, default)
+  local value = os.getenv(varname)
+  if not value then
+    return default
+  end
+  return value
+end
+
 ---@param plugin string
 function M.has(plugin)
   return M.get_plugin(plugin) ~= nil
@@ -182,7 +193,7 @@ end
 ---@param keys string
 ---@param func function|string
 ---@param desc string
----@param mode? string|string[]
+---@param mode? string|string[]: defaults to 'n'
 M.keymap = function(keys, func, desc, mode)
   mode = mode or 'n'
   vim.keymap.set(mode, keys, func, { desc = desc })
@@ -192,7 +203,7 @@ end
 ---@param keys string
 ---@param func function|string
 ---@param desc string
----@param mode? string|string[]
+---@param mode? string|string[]: defaults to 'n'
 M.keymap_buf = function(bufnr, keys, func, desc, mode)
   mode = mode or 'n'
   vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })

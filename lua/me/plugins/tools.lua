@@ -26,13 +26,13 @@ return {
       { "]t", function() require("todo-comments").jump_next() end, desc = "next todo comment" },
       { "[t", function() require("todo-comments").jump_prev() end, desc = "previous todo comment" },
       { "<leader>mt", "<CMD>TodoTelescope<CR>", desc = "todo telescope" },
-      { "<leader>mT", "<CMD>TodoTrouble keywords=TODO,FIX,FIXME,WIP,NOTE,HACK<CR>", desc = "TODO/FIX/FIXME (trouble)" },
+      -- { "<leader>mT", "<CMD>TodoTrouble keywords=TODO,FIX,FIXME,WIP,NOTE,HACK<CR>", desc = "TODO/FIX/FIXME (trouble)" },
       { "<leader>st", "<CMD>TodoTelescope<CR>", desc = "search todo" },
     },
     enabled = true,
   },
 
-  { -- https://github.com/folke/trouble.nvim
+  --[[ { -- https://github.com/folke/trouble.nvim
     'folke/trouble.nvim',
     cmd = { 'TroubleToggle', 'Trouble' },
     opts = { use_diagnostic_signs = true },
@@ -42,7 +42,7 @@ return {
       { '<leader>mX', '<CMD>TroubleToggle workspace_diagnostics<CR>', desc = 'workspace diagnostics (trouble)' },
     },
     enabled = true,
-  },
+  }, ]]
 
   { -- https://github.com/toppair/peek.nvim
     'toppair/peek.nvim',
@@ -62,7 +62,7 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/szw/vim-maximizer
+  --[[ { -- https://github.com/szw/vim-maximizer
     'szw/vim-maximizer',
     cmd = { 'MaximizerToggle' },
     config = function()
@@ -73,7 +73,7 @@ return {
       { '<C-w>O', '<CMD>MaximizerToggle!<CR>', { desc = 'toggle maximizer' } },
     },
     enabled = true,
-  },
+  }, ]]
 
   { -- https://github.com/mbbill/undotree
     'mbbill/undotree',

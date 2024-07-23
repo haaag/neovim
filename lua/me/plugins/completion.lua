@@ -8,7 +8,7 @@ return {
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp',
       'davidsierradz/cmp-conventionalcommits',
-      'lukas-reineke/cmp-under-comparator',
+      -- 'lukas-reineke/cmp-under-comparator',
       'saadparwaiz1/cmp_luasnip',
     },
     main = 'me.config.plugins.cmp',

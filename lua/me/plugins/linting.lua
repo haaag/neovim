@@ -18,7 +18,7 @@ return {
       lint.linters_by_ft = {
         ['*'] = { 'codespell', 'misspell', 'typos' },
         ['c'] = { 'cpplint' },
-        ['go'] = { 'golangcilint' }, -- 'revive' },
+        ['go'] = { 'golangcilint' },
         ['javascript'] = { 'eslint_d' },
         ['javascriptreact'] = { 'eslint_d' },
         ['markdown'] = { 'markdownlint', 'write_good', 'alex' },

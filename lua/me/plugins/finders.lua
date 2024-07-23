@@ -3,7 +3,6 @@
 return {
   { -- https://github.com/nvim-telescope/telescope.nvim
     'nvim-telescope/telescope.nvim',
-    -- event = 'VeryLazy',
     version = '0.1.x',
     cmd = { 'Telescope' },
     enabled = true,

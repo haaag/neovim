@@ -52,8 +52,8 @@ function M.set_keymaps()
   local map = vim.keymap.set
   map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Diagnostic Prev' })
   map('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostic Next' })
-  map('n', '[a', vim.diagnostic.open_float, { desc = 'Diagnostic Float' })
-  map('n', ']a', vim.diagnostic.open_float, { desc = 'Diagnostic Float' })
+  map('n', '[D', vim.diagnostic.open_float, { desc = 'Diagnostic Float' })
+  map('n', ']D', vim.diagnostic.open_float, { desc = 'Diagnostic Float' })
 end
 
 return M

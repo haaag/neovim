@@ -1,6 +1,6 @@
 return {
 
-  { -- https://github.com/echasnovski/mini.surround
+  --[[ { -- https://github.com/echasnovski/mini.surround
     'echasnovski/mini.surround',
     keys = function(plugin, keys)
       -- Populate the keys based on the user's options
@@ -32,7 +32,7 @@ return {
       require('mini.surround').setup(opts)
     end,
     enabled = true,
-  },
+  }, ]]
 
   { -- https://github.com/numToStr/Comment.nvim
     'numToStr/Comment.nvim',

@@ -21,11 +21,11 @@ return {
             },
           },
         },
-        ruff_lsp = {
+        ruff = {
           enabled = true,
           autostart = true,
           settings = {
-            ruff_lsp = {
+            ruff = {
               fix = false,
             },
           },
@@ -34,7 +34,10 @@ return {
             local map = vim.keymap.set
             map('n', '<leader>lo', Core.lsp.action['source.organizeImports'], { buffer = bufnr, desc = 'organize imports' })
             map('n', '<leader>lF', Core.lsp.action['source.fixAll'], { buffer = bufnr, desc = 'fix all' })
-            client.server_capabilities.hoverProvider = false
+            -- Disable hover in favor of basedpyright
+            if client.name == 'ruff' then
+              client.server_capabilities.hoverProvider = false
+            end
           end,
         },
       },
@@ -62,9 +65,9 @@ return {
   { -- https://github.com/mfussenegger/nvim-dap
     'mfussenegger/nvim-dap',
     optional = true,
+    enabled = Core.config.debug,
     dependencies = { -- https://github.com/mfussenegger/nvim-dap-python
-      'mfussenegger/nvim-dap-python',
-      enabled = Core.config.debug,
+      { 'mfussenegger/nvim-dap-python', ft = 'python', enabled = Core.config.debug },
     },
     -- stylua: ignore
     keys = {
@@ -82,6 +85,7 @@ return {
           request = 'launch',
           name = 'Launch file',
           program = '${file}',
+          -- justMyCode = false,
           pythonPath = function()
             local cwd = vim.fn.getcwd()
             if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
@@ -96,5 +100,18 @@ return {
       }
       require('dap-python').setup(pypath)
     end,
+  },
+
+  { -- https://github.com/nvim-neotest/neotest
+    'nvim-neotest/neotest',
+    enabled = Core.config.testing,
+    dependencies = { -- https://github.com/nvim-neotest/neotest-python
+      { 'nvim-neotest/neotest-python', enabled = Core.config.testing },
+    },
+    opts = {
+      adapters = {
+        ['neotest-python'] = {},
+      },
+    },
   },
 }

@@ -41,6 +41,25 @@ M.tokyonight_night = function()
   }
 end
 
+M.tokyonight_day = function()
+  return {
+    background = '#e1e2e7',
+    foreground = '#3760bf',
+    black = '#b4b5b9',
+    red = '#f52a65',
+    green = '#587539',
+    yellow = '#8c6c3e',
+    orange = '#ff9e64',
+    blue = '#2e7de9',
+    magenta = '#9d7cd8',
+    violet = '#9854f1',
+    cyan = '#007197',
+    white = '#6172b0',
+    lightgrey = '#c0caf5',
+    darkgrey = '#545c7e',
+  }
+end
+
 M.gruvbox_medium = function()
   return {
     background = '#282828',

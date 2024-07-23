@@ -10,7 +10,7 @@ return {
         formatters_by_ft = {
           ['_'] = { 'trim_whitespace' },
           ['css'] = { 'prettier' },
-          ['go'] = { 'goimports', 'gofumpt' },
+          ['go'] = { 'goimports-reviser', 'golines', 'gofumpt', 'golines' },
           ['html'] = { 'prettier' },
           ['javascript'] = { 'prettier' },
           ['javascriptreact'] = { 'prettier' },
@@ -19,7 +19,7 @@ return {
           ['lua'] = { 'stylua' },
           ['markdown'] = { 'prettier' },
           ['markdown.mdx'] = { 'prettier' },
-          ['python'] = { 'ruff_format' },
+          ['python'] = { 'ruff_format', 'ruff_organize_imports' },
           ['sh'] = { 'shfmt' },
           ['typescript'] = { 'prettier' },
           ['typescriptreact'] = { 'prettier' },
@@ -32,7 +32,7 @@ return {
 
         --[[ format_on_save = {
           lsp_fallback = true,
-          timeout_ms = 1000,
+          timeout_ms = 3000,
         }, ]]
       })
 

@@ -1,23 +1,20 @@
-local enabled = Core.boolme(os.getenv('NVIM_TEST'))
+-- me.plugins.testing
 
 return {
   { -- https://github.com/nvim-neotest/neotest
     'nvim-neotest/neotest',
-    enabled = enabled,
-    dependencies = {
-      'nvim-neotest/neotest-python',
-      'nvim-neotest/neotest-go',
-    },
+    enabled = Core.config.testing,
+    dependencies = { 'nvim-neotest/nvim-nio' },
     opts = {
-      adapters = {
-        ['neotest-python'] = {},
-        ['neotest-go'] = {},
-      },
       status = { virtual_text = true },
       output = { open_on_run = true },
       quickfix = {
         open = function()
-          vim.cmd('Trouble quickfix')
+          if Core.has('trouble.nvim') then
+            require('trouble').open({ mode = 'quickfix', focus = false })
+          else
+            vim.cmd('copen')
+          end
         end,
       },
     },
@@ -73,5 +70,14 @@ return {
     { '<leader>tS', function() require('neotest').run.stop() end, desc = 'test stop' },
     { '<leader>tl', function() require('neotest').run.run_last() end, desc = 'test run last' },
   },
+  },
+
+  { -- https://github.com/mfussenegger/nvim-dap
+    'mfussenegger/nvim-dap',
+    optional = true,
+    -- stylua: ignore
+    keys = {
+      { "<leader>td", function() require("neotest").run.run({strategy = "dap"}) end, desc = "test and debug nearest" },
+    },
   },
 }
