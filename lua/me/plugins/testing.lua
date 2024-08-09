@@ -3,7 +3,7 @@
 return {
   { -- https://github.com/nvim-neotest/neotest
     'nvim-neotest/neotest',
-    enabled = Core.config.testing,
+    enabled = Core.env.testing,
     dependencies = { 'nvim-neotest/nvim-nio' },
     opts = {
       status = { virtual_text = true },

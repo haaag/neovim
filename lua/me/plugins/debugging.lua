@@ -81,7 +81,7 @@ return {
   { -- https://github.com/mfussenegger/nvim-dap
     'mfussenegger/nvim-dap',
     lazy = true,
-    enabled = Core.config.debug,
+    enabled = Core.env.debug,
     dependencies = {
       'rcarriga/nvim-dap-ui',
       'nvim-neotest/nvim-nio',

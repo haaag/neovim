@@ -96,10 +96,10 @@ return { -- https://github.com/neovim/nvim-lspconfig
   { -- https://github.com/mfussenegger/nvim-dap
     'mfussenegger/nvim-dap',
     optional = true,
-    enabled = Core.config.debug,
+    enabled = Core.env.debug,
     dependencies = {
       { 'williamboman/mason.nvim', opts = { ensure_installed = { 'delve' } } },
-      { 'leoluz/nvim-dap-go', opts = {}, enabled = Core.config.debug },
+      { 'leoluz/nvim-dap-go', opts = {}, enabled = Core.env.debug },
     },
     opts = function()
       local dap = require('dap')
@@ -141,7 +141,7 @@ return { -- https://github.com/neovim/nvim-lspconfig
     dependencies = {
       {
         'nvim-neotest/neotest-go', -- https://github.com/nvim-neotest/neotest-go
-        enabled = Core.config.testing,
+        enabled = Core.env.testing,
       },
     },
     opts = {

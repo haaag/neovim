@@ -65,9 +65,9 @@ return {
   { -- https://github.com/mfussenegger/nvim-dap
     'mfussenegger/nvim-dap',
     optional = true,
-    enabled = Core.config.debug,
+    enabled = Core.env.debug,
     dependencies = { -- https://github.com/mfussenegger/nvim-dap-python
-      { 'mfussenegger/nvim-dap-python', ft = 'python', enabled = Core.config.debug },
+      { 'mfussenegger/nvim-dap-python', ft = 'python', enabled = Core.env.debug },
     },
     -- stylua: ignore
     keys = {
@@ -77,8 +77,7 @@ return {
       { '<leader>dpd', function() require('dap-python').debug_selection() end, desc = 'python: debug selection' },
     },
     opts = function()
-      -- TODO: check if `pypath` exists
-      local pypath = os.getenv('XDG_DATA_HOME') .. '/nvim/mason/packages/debugpy/venv/bin/python'
+      local pypath = Core.env.xdg_data_home() .. '/nvim/mason/packages/debugpy/venv/bin/python'
       require('dap').configurations.python = {
         {
           type = 'python',
@@ -104,9 +103,9 @@ return {
 
   { -- https://github.com/nvim-neotest/neotest
     'nvim-neotest/neotest',
-    enabled = Core.config.testing,
+    enabled = Core.env.testing,
     dependencies = { -- https://github.com/nvim-neotest/neotest-python
-      { 'nvim-neotest/neotest-python', enabled = Core.config.testing },
+      { 'nvim-neotest/neotest-python', enabled = Core.env.testing },
     },
     opts = {
       adapters = {

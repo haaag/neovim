@@ -18,8 +18,7 @@ end
 function M.check_logfile_size()
   local MAX_MB = 5
   local logname = 'lsp.log'
-  local xdgstate = os.getenv('XDG_STATE_HOME') or os.getenv('HOME') .. '/.local/state'
-  local logpath = xdgstate .. '/nvim/' .. logname
+  local logpath = Core.env.xdg_state_home() .. '/nvim/' .. logname
   local logfile = io.open(logpath, 'r')
 
   if not logfile then
