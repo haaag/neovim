@@ -38,7 +38,6 @@ return {
       document_highlight = { enabled = true },
       servers = {
         clangd = { autostart = false },
-        marksman = {},
         jsonls = { autostart = false },
         taplo = {},
         docker_compose_language_service = {
@@ -90,11 +89,8 @@ return {
     opts_extend = { 'ensure_installed' },
     opts = {
       ensure_installed = {
-        'alex',
         'checkmake',
-        'markdownlint',
         'prettier',
-        'write-good',
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
