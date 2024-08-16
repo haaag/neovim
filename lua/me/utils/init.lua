@@ -210,4 +210,19 @@ M.keymap_buf = function(bufnr, keys, func, desc, mode)
   vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
 end
 
+---@generic T
+---@param list T[]
+---@return T[]
+function M.dedup(list)
+  local ret = {}
+  local seen = {}
+  for _, v in ipairs(list) do
+    if not seen[v] then
+      table.insert(ret, v)
+      seen[v] = true
+    end
+  end
+  return ret
+end
+
 return M

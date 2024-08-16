@@ -80,4 +80,3 @@ map('<leader>ma', function() Core.set_root() end, 'set current root')
 
 -- misc
 map('<leader>mL', ':Lazy<CR>', 'open Lazy')
-map('<leader>mM', ':Mason<CR>', 'open mason')

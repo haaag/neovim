@@ -1,20 +1,22 @@
+-- me.plugins.linting
+
+local autocmd = vim.api.nvim_create_autocmd
+local shellcheckrc = {
+  '--format',
+  'json',
+  '--rcfile',
+  os.getenv('HOME') .. '/.dotfiles/shellcheck/shellcheckrc',
+  '-',
+}
+
 return {
   { -- https://github.com/mfussenegger/nvim-lint
     'mfussenegger/nvim-lint',
     enabled = true,
     event = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
     config = function()
-      local autocmd = vim.api.nvim_create_autocmd
       local lint = require('lint')
-
-      lint.linters.shellcheck.args = {
-        '--format',
-        'json',
-        '--rcfile',
-        os.getenv('HOME') .. '/.dotfiles/shellcheck/shellcheckrc',
-        '-',
-      }
-
+      lint.linters.shellcheck.args = shellcheckrc
       lint.linters_by_ft = {
         ['*'] = { 'codespell', 'misspell', 'typos' },
         ['c'] = { 'cpplint' },

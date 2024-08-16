@@ -1,4 +1,4 @@
--- lsp.servers.pyright
+-- lsp.servers.basedpyright
 return {
   { -- https://github.com/neovim/nvim-lspconfig
     'neovim/nvim-lspconfig',
@@ -57,7 +57,7 @@ return {
     'williamboman/mason.nvim',
     opts = function(_, opts)
       if type(opts.ensure_installed) == 'table' then
-        vim.list_extend(opts.ensure_installed, { 'debugpy' })
+        vim.list_extend(opts.ensure_installed, { 'debugpy', 'mypy' })
       end
     end,
   },

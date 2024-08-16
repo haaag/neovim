@@ -27,7 +27,6 @@ return { -- https://github.com/nvim-treesitter/nvim-treesitter
       context = { enabled = true, mode = 'cursor', max_lines = 3 },
       ensure_installed = {
         'asm',
-        'bash',
         'c',
         'cmake',
         'cpp',
@@ -91,6 +90,9 @@ return { -- https://github.com/nvim-treesitter/nvim-treesitter
       },
     },
     config = function(_, opts)
+      if type(opts.ensure_installed) == 'table' then
+        opts.ensure_installed = Core.dedup(opts.ensure_installed)
+      end
       require('nvim-treesitter.configs').setup(opts)
     end,
   },

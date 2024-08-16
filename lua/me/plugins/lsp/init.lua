@@ -37,7 +37,6 @@ return {
       inlay_hints = { enabled = true },
       document_highlight = { enabled = true },
       servers = {
-        bashls = {},
         clangd = { autostart = false },
         marksman = {},
         jsonls = { autostart = false },
@@ -85,28 +84,31 @@ return {
   { -- https://github.com/williamboman/mason.nvim
     'williamboman/mason.nvim',
     cmd = 'Mason',
+    keys = { { '<leader>mM', '<CMD>Mason<CR>', desc = 'open mason' } },
+    build = ':MasonUpdate',
     enabled = true,
+    opts_extend = { 'ensure_installed' },
     opts = {
       ensure_installed = {
-        'stylua',
-        'shfmt',
-        'prettier',
-        'eslint_d',
-        'shellcheck',
-        'markdownlint',
-        'write-good',
         'alex',
+        'checkmake',
+        'markdownlint',
+        'prettier',
+        'write-good',
       },
     },
+    ---@param opts MasonSettings | {ensure_installed: string[]}
     config = function(_, opts)
       require('mason').setup(opts)
       local mr = require('mason-registry')
-      for _, tool in ipairs(opts.ensure_installed) do
-        local p = mr.get_package(tool)
-        if not p:is_installed() then
-          p:install()
+      mr.refresh(function()
+        for _, tool in ipairs(opts.ensure_installed) do
+          local p = mr.get_package(tool)
+          if not p:is_installed() then
+            p:install()
+          end
         end
-      end
+      end)
     end,
   },
 }
