@@ -61,6 +61,12 @@ return {
       { '<leader>ghl', '<CMD>Gitsigns toggle_linehl<CR>', desc = 'git highlight line' },
       { '<leader>ghn', '<CMD>Gitsigns toggle_numhl<CR>', desc = 'git highlight numbers' },
     },
+    dependencies = { -- https://github.com/nvim-treesitter/nvim-treesitter
+      'nvim-treesitter/nvim-treesitter',
+      opts = {
+        ensure_installed = { 'diff', 'git_rebase', 'gitattributes', 'gitcommit', 'gitignore', 'git_config' },
+      },
+    },
     enabled = true,
   },
 
@@ -77,16 +83,4 @@ return {
     },
     enabled = false,
   }, ]]
-
-  { -- https://github.com/nvim-treesitter/nvim-treesitter
-    'nvim-treesitter/nvim-treesitter',
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == 'table' then
-        vim.list_extend(
-          opts.ensure_installed,
-          { 'diff', 'git_rebase', 'gitattributes', 'gitcommit', 'gitignore', 'git_config' }
-        )
-      end
-    end,
-  },
 }

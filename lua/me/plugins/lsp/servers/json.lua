@@ -21,7 +21,8 @@ return {
       },
     },
   },
-  {
+
+  { -- https://github.com/nvim-treesitter/nvim-treesitter
     'nvim-treesitter/nvim-treesitter',
     opts = function(_, opts)
       if type(opts.ensure_installed) == 'table' then

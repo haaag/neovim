@@ -18,20 +18,8 @@ return {
     cmd = { 'LspStart' },
     keys = { '<leader>ls', '<CMD>LspStart<CR>', desc = 'lsp start' },
     enabled = true,
-    dependencies = {
-      { -- https://github.com/williamboman/mason.nvim
-        'mason.nvim',
-        opts = {
-          ui = {
-            icons = {
-              package_installed = '●',
-              package_pending = '➜',
-              package_uninstalled = '○',
-            },
-          },
-        },
-      },
-      'williamboman/mason-lspconfig.nvim', -- https://github.com/williamboman/mason-lspconfig.nvim
+    dependencies = { -- https://github.com/williamboman/mason-lspconfig.nvim
+      'williamboman/mason-lspconfig.nvim',
     },
     opts = {
       inlay_hints = { enabled = true },

@@ -22,7 +22,7 @@ require('lazy').setup({
     { import = 'me.plugins.lsp.servers.typescript' },
     { import = 'me.plugins.lsp.servers.bashlsp' },
     { import = 'me.plugins.lsp.servers.markdown' },
-    -- { import = 'me.plugins.lsp.servers.json' },
+    { import = 'me.plugins.lsp.servers.json' },
   },
   defaults = { lazy = false },
   install = { colorscheme = { 'gruvbox-material' } },

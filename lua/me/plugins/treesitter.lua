@@ -6,6 +6,9 @@ return { -- https://github.com/nvim-treesitter/nvim-treesitter
     version = false,
     enabled = true,
     lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+    init = function(_)
+      require('nvim-treesitter.query_predicates')
+    end,
     build = ':TSUpdate',
     event = { 'BufReadPost', 'BufNewFile' },
     cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
@@ -32,9 +35,6 @@ return { -- https://github.com/nvim-treesitter/nvim-treesitter
         'cpp',
         'css',
         'html',
-        'jsdoc',
-        'json',
-        'jsonc',
         'printf',
         'query',
         'rasi',
@@ -45,6 +45,7 @@ return { -- https://github.com/nvim-treesitter/nvim-treesitter
         'vim',
         'vimdoc',
         'yaml',
+        'zathurarc',
       },
       incremental_selection = {
         enable = true,
