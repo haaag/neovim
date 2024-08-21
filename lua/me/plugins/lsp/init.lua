@@ -28,6 +28,7 @@ return {
         clangd = { autostart = false },
         jsonls = { autostart = false },
         taplo = {},
+        yamlls = {},
         docker_compose_language_service = {
           autostart = true,
         },
@@ -76,6 +77,13 @@ return {
     enabled = true,
     opts_extend = { 'ensure_installed' },
     opts = {
+      ui = {
+        icons = {
+          package_installed = '●',
+          package_pending = '➜',
+          package_uninstalled = '○',
+        },
+      },
       ensure_installed = {
         'checkmake',
         'prettier',

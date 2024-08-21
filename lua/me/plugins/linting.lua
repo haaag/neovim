@@ -19,7 +19,8 @@ return {
       lint.linters.shellcheck.args = shellcheckrc
       lint.linters_by_ft = {
         ['*'] = { 'codespell', 'misspell', 'typos' },
-        ['c'] = { 'cpplint' },
+        -- ['c'] = { 'cpplint' },
+        -- ['gitcommit'] = { 'commitlint' },
         ['go'] = { 'golangcilint' },
         ['javascript'] = { 'eslint_d' },
         ['javascriptreact'] = { 'eslint_d' },

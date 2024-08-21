@@ -1,3 +1,5 @@
+-- me.config.plugins.cmp
+
 local M = {}
 
 M.setup = function()

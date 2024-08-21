@@ -21,6 +21,7 @@ return {
           ['markdown.mdx'] = { 'prettier' },
           ['python'] = { 'ruff_format', 'ruff_organize_imports' },
           ['sh'] = { 'shfmt' },
+          ['sql'] = { 'sleek' },
           ['typescript'] = { 'prettier' },
           ['typescriptreact'] = { 'prettier' },
           ['yaml'] = { 'prettier' },

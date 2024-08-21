@@ -46,19 +46,7 @@ return { -- https://github.com/yioneko/vtsls
         },
       },
       setup = {
-        tsserver = function(_, opts)
-          --[[ require('me.plugins.lsp.utils').on_attach(function(client, buffer)
-            -- add_whichkey(client, buffer)
-            -- require("lsp-inlayhints").on_attach(client, buffer)
-          end)
-          -- require("typescript").setup({ server = opts })
-          require('typescript').setup({
-            server = {
-              capabilities = load_capabilities(),
-              settings = settings,
-              handlers = handlers,
-            },
-          }) ]]
+        tsserver = function()
           return true
         end,
       },

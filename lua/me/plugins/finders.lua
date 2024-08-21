@@ -49,7 +49,9 @@ return {
 
   { -- https://github.com/stevearc/oil.nvim
     'stevearc/oil.nvim',
-    opts = {},
+    opts = {
+      delete_to_trash = true,
+    },
     cmd = { 'Oil' },
     keys = {
       { '-', '<CMD>Oil<CR>', desc = 'open parent directory' },

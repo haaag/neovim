@@ -20,15 +20,15 @@ function M.confirm(question, cmd)
 end
 
 function M.push()
-  M.confirm('push changes?', 'Git push')
+  M.confirm('git: push changes?', 'Git push')
 end
 
 function M.amend_noedit()
-  M.confirm('amend changes?', 'Git commit --amend --no-edit')
+  M.confirm('git: amend changes?', 'Git commit --amend --no-edit')
 end
 
 function M.amend()
-  M.confirm('amend changes with edition?', 'Git commit --amend')
+  M.confirm('git: amend changes with edition?', 'Git commit --amend')
 end
 
 return M

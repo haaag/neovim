@@ -1,3 +1,5 @@
+-- me.config.plugins.luasnip
+
 local M = {}
 
 function M.setup()

@@ -1,6 +1,7 @@
 -- settings.lua
 local opt = vim.opt
--- <leader>
+
+-- follow the <leader>
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 

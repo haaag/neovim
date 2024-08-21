@@ -3,7 +3,6 @@
 ---@field lsp me.utils.lsp
 ---@field icons me.utils.icons
 ---@field colors me.utils.colors
----@field config me.utils.config
 ---@field git me.utils.git
 ---@field env me.utils.env
 local M = {}
@@ -138,6 +137,9 @@ function M.find_files()
   require('telescope.builtin')[builtin](theme.get_ivy())
 end
 
+---@param array string[]
+---@param target any
+---@return boolean
 function M.contains(array, target)
   for _, value in ipairs(array) do
     if value == target then
@@ -223,6 +225,23 @@ function M.dedup(list)
     end
   end
   return ret
+end
+
+---@param cmd string
+---@return string|nil
+M.which = function(cmd)
+  local result = io.popen('which ' .. cmd, 'r')
+  if not result then
+    return nil
+  end
+
+  local path = result:read('*a')
+  if path == '' then
+    return nil
+  end
+
+  result:close()
+  return path
 end
 
 return M

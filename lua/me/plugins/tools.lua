@@ -59,7 +59,7 @@ return {
       { '<leader>mp', '<CMD>PeekOpen<CR>', desc = 'peek open' },
       { '<leader>mP', '<CMD>PeekClose<CR>', desc = 'peek close' },
     },
-    enabled = true,
+    enabled = Core.is_executable('deno'),
   },
 
   --[[ { -- https://github.com/szw/vim-maximizer

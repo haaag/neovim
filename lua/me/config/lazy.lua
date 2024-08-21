@@ -2,6 +2,17 @@
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.uv.fs_stat(lazypath) then
+  vim.api.nvim_echo({
+    {
+      'installing lazy.nvim, the modern plugin manager for neovim...\n',
+      'WarningMsg',
+    },
+    {
+      'Press any key to continue...\n',
+      'MoreMsg',
+    },
+  }, true, {})
+
   vim.fn.system({
     'git',
     'clone',
@@ -10,7 +21,11 @@ if not vim.uv.fs_stat(lazypath) then
     'https://github.com/folke/lazy.nvim.git',
     lazypath,
   })
+
+  vim.fn.getchar()
 end
+
+-- add lazy.nvim to runtimepath
 vim.opt.runtimepath:prepend(lazypath)
 
 require('lazy').setup({
@@ -25,15 +40,17 @@ require('lazy').setup({
     { import = 'me.plugins.lsp.servers.json' },
   },
   defaults = { lazy = false },
-  install = { colorscheme = { 'gruvbox-material' } },
+  install = { colorscheme = { 'habamax' } },
   checker = { enabled = false },
+  ui = {
+    browser = Core.getenv('BROWSER', 'firefox'),
+  },
   diff = {
     cmd = 'terminal_git',
   },
   performance = {
     cache = {
       enabled = true,
-      -- disable_events = {},
     },
     rtp = {
       disabled_plugins = {

@@ -62,7 +62,7 @@ return {
       vim.api.nvim_set_hl(0, '@constant.go', { link = 'Purple', default = true })
       vim.api.nvim_set_hl(0, '@constant.bash', { link = 'Purple', default = true })
       vim.o.background = 'dark'
-      vim.g.gruvbox_material_enable_bold = true
+      vim.g.gruvbox_material_enable_bold = false
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_transparent_background = true
       vim.g.gruvbox_material_dim_inactive_windows = false
