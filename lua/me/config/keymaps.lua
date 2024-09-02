@@ -80,3 +80,5 @@ map('<leader>ma', function() Core.set_root() end, 'set current root')
 
 -- misc
 map('<leader>mL', ':Lazy<CR>', 'open Lazy')
+map('<leader>bdA', function () vim.cmd('bufdo bd') end, 'close all')
+map('<leader>bdC', function () vim.cmd('%bd|e#|bd#') end, 'close all but this one')

@@ -4,8 +4,9 @@ return {
     'echasnovski/mini.bufremove',
     -- stylua: ignore
     keys = {
-      { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "buffer delete" },
-      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "buffer delete (force)" },
+      { '<leader>bd', '', desc = '+buffers' },
+      { "<leader>bdc", function() require("mini.bufremove").delete(0, false) end, desc = "buffer delete" },
+      { "<leader>bdF", function() require("mini.bufremove").delete(0, true) end, desc = "buffer delete (force)" },
     },
     enabled = true,
   },
