@@ -63,4 +63,9 @@ function M.scrollsync()
   vim.cmd('set scb!')
 end
 
+function M.fmt_on_save()
+  vim.g.enable_autoformat = not vim.g.enable_autoformat
+  vim.print('toggle autofmt: ' .. tostring(vim.g.enable_autoformat))
+end
+
 return M
