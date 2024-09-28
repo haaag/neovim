@@ -228,3 +228,5 @@ end
 M.warnme = function(s)
   vim.api.nvim_echo({ { s, 'WarningMsg' } }, true, {})
 end
+
+return M
