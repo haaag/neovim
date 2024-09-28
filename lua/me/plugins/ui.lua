@@ -25,9 +25,7 @@ return {
 
   { -- my.statusline.nvim
     dir = '~/dev/lua/stat.nvim',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {},
     event = 'VeryLazy',
     lazy = false,

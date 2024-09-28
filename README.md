@@ -29,9 +29,8 @@
 
 ### 💻 Code
 
-- [coq_nvim](https://github.com/ms-jpq/coq_nvim) - A completion engine
-- [mini.surround](https://github.com/echasnovski/mini.surround) - Module of
-  `mini.nvim` for working with text surroundings
+- [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - A completion plugin for
+  neovim coded in Lua.
 - [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim) - Smart and
   Powerful comment plugin.
 - [stevearc/aerial.nvim](https://github.com/stevearc/aerial.nvim) -
@@ -47,13 +46,11 @@
   Buffer removing (unshow, delete, wipeout) while saving window layout.
 - [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim) -
   Highlight and search for todo comments like TODO, etc.
-- [folke/trouble.nvim](https://github.com/folke/trouble.nvim) - Show
-  diagnostics, references, quickfix and location.
 
 ### 🔎 Finders & Explorers
 
-- [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) -
-  Highly extendable fuzzy finder over lists.
+- [ibhagwan/fzf-lua](https://github.com/ibhagwan/fzf-lua) - Improved fzf.vim written in
+  lua.
 - [stevearc/oil.nvim](https://github.com/stevearc/oil.nvim) -
   A vim-vinegar like file explorer.
 - [ggandor/leap.nvim](https://github.com/ggandor/leap.nvim) - Leap is a
@@ -73,14 +70,9 @@
 
 ### 🌈 Colorschemes
 
-- [folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim) - A dark and
-  light theme.
-- [ellisonleao/gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) -
+- ⭐[ellisonleao/gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) -
   A port of gruvbox community theme to lua with treesitter and semantic
   highlights support!
-- ⭐ [catppuccin/nvim](https://github.com/catppuccin/nvim) - Catppuccin is a
-  community-driven pastel theme that aims to be the middle ground between low
-  and high contrast themes
 
 ### 🎨 UI
 
@@ -88,7 +80,7 @@
   Nerd fonts moved some symbols with version 3.0
 - [tzachar/local-highlight.nvim](https://github.com/tzachar/local-highlight.nvim) -
   Using regexes and extmarks to highlight uses of word under the cursor.
-- [echasnovski/mini.tabline](https://github.com/echasnovski/mini.tabline) -
+- [akinsho/bufferline.nvim](https://github.com/akinsho/bufferline.nvim) -
   Minimal and fast tabline showing listed buffers.
 - [nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) -
   High-performance color highlighter which has no external dependencies!.

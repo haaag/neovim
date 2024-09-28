@@ -58,9 +58,6 @@ return {
     priority = 1000,
     enabled = true,
     config = function()
-      vim.api.nvim_set_hl(0, '@constant.python', { link = 'Purple', default = true })
-      vim.api.nvim_set_hl(0, '@constant.go', { link = 'Purple', default = true })
-      vim.api.nvim_set_hl(0, '@constant.bash', { link = 'Purple', default = true })
       vim.o.background = 'dark'
       vim.g.gruvbox_material_enable_bold = false
       vim.g.gruvbox_material_enable_italic = true
@@ -74,7 +71,7 @@ return {
       vim.g.gruvbox_material_ui_contrast = 'low' -- 'high'
       vim.g.gruvbox_material_show_eob = true
       vim.g.gruvbox_material_current_word = 'underline'
-      vim.g.gruvbox_material_menu_selection_background = 'red'
+      -- vim.g.gruvbox_material_menu_selection_background = 'red'
       vim.g.gruvbox_material_float_style = 'bright' -- 'bright', 'dim'
       vim.g.gruvbox_material_foreground = 'orignal' -- 'material' 'original' 'mix'
       vim.g.gruvbox_material_diagnostic_line_highlight = true

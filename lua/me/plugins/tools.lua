@@ -66,10 +66,13 @@ return {
   },
 
   { -- fzf-projects
-    dir = '~/dev/git/lualang/fzf-projects.nvim',
+    'haaag/projects.nvim',
     dependencies = { 'ibhagwan/fzf-lua' },
     cmd = { 'Projects' },
-    opts = {},
+    opts = {
+      prompt = 'Projects>> ',
+      color = true,
+    },
     keys = {
       { '<leader>sp', '<CMD>Projects<CR>', desc = 'search projects' },
     },

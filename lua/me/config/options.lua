@@ -8,7 +8,7 @@ vim.g.maplocalleader = ' '
 -- stylua: ignore start
 opt.clipboard     = 'unnamedplus' -- clipboard
 opt.hlsearch      = false -- Set highlight on search
-opt.mouse         = 'a' -- Enable mouse mode
+opt.mouse         = '' -- Enable mouse mode
 opt.swapfile      = false -- No swap file
 opt.backup        = false -- No backup file
 opt.undofile      = true
@@ -25,7 +25,7 @@ opt.tabstop       = 2 -- Number of spaces tabs count for
 opt.expandtab     = true -- Use spaces instead of tabs
 opt.cmdheight     = 1 -- More space for displaying messages
 opt.showtabline   = 1 -- Disable tabline
-opt.tabline       = ""
+opt.tabline       = ''
 opt.splitbelow    = true -- Horizontal splits will automatically be below
 opt.splitright    = true -- Vertical splits will automatically be to the right
 opt.laststatus    = 0 -- Always display the status line

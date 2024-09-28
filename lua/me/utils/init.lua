@@ -1,4 +1,4 @@
----@class me.utils: Core
+---@class Core
 ---@field toggle me.utils.toggle
 ---@field lsp me.utils.lsp
 ---@field icons me.utils.icons
@@ -38,12 +38,12 @@ M.highlight = setmetatable({}, {
 ---@param choices string[]
 function M.confirm(mesg, choices)
   local valid_choices = {}
-
   for _, choice in ipairs(choices) do
     valid_choices[choice:lower()] = true
   end
 
-  local choice = vim.fn.input({ prompt = mesg }) ---@type string
+  ---@type string
+  local choice = vim.fn.input({ prompt = mesg })
   choice = choice:lower()
 
   if not valid_choices[choice] then
@@ -75,7 +75,7 @@ function M.get_root()
   ---@type string[]
   local roots = {}
   if path then
-    for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+    for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
       local workspace = client.config.workspace_folders
       local paths = workspace and vim.tbl_map(function(ws)
         return vim.uri_to_fname(ws.uri)

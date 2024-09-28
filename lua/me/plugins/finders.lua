@@ -13,8 +13,8 @@ return {
         ['ctrl-u'] = 'half-page-up',
         ['ctrl-/'] = 'toggle-preview',
       }
-      local actions = require('fzf-lua.actions')
       require('fzf-lua').setup({
+        Core.getenv('TMUX_FZF_PROFILE', 'defult'), -- env var setted in `tmux.conf`
         defaults = {
           winopts = {
             preview = { hidden = 'hidden' },
@@ -31,7 +31,7 @@ return {
     end,
     -- stylua: ignore start
     keys = {
-      { '<leader>s', '', desc = '+search' },
+      { '<leader>s', '', desc = '+search', mode = { 'n', 'v' } },
       -- search
       { '<C-p>', '<CMD>FzfLua files<CR>', desc = 'search files' },
       -- { '<C-p>', function() Core.find_files() end, desc = 'search files' },
@@ -42,7 +42,8 @@ return {
       { '<leader>sr', '<CMD>FzfLua resume<CR>', desc = 'search resume' },
       { '<leader>sh', '<CMD>FzfLua helptags<CR>', desc = 'search help' },
       { '<leader>sg', '<CMD>FzfLua live_grep<CR>', desc = 'search by grep' },
-      { '<leader>sw', '<CMD>FzfLua grep_cword<CR>', desc = 'search current word' },
+      { '<leader>sw', '<CMD>FzfLua grep_cword<CR>', desc = 'search current word', mode = 'n' },
+      { '<leader>sw', '<CMD>FzfLua grep_visual<CR>', desc = 'search current word', mode = 'v' },
       { '<leader><space>', function()
         require('fzf-lua').buffers({
           winopts = {
