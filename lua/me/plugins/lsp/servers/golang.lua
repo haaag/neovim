@@ -1,7 +1,7 @@
 -- lsp.servers.go
 
-return { -- https://github.com/neovim/nvim-lspconfig
-  {
+return {
+  { -- https://github.com/neovim/nvim-lspconfig
     'neovim/nvim-lspconfig',
     opts = {
       servers = {

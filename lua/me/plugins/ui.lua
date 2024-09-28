@@ -24,14 +24,13 @@ return {
   },
 
   { -- my.statusline.nvim
-    dir = tostring(os.getenv('HOME')) .. '/dev/lua/stat.nvim',
+    dir = '~/dev/lua/stat.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
     },
     opts = {},
     event = 'VeryLazy',
     lazy = false,
-    config = true,
     enabled = true,
   },
 

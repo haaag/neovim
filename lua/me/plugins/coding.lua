@@ -50,7 +50,7 @@ return {
     },
   },
 
-  { -- https://github.com/Exafunction/codeium.vim
+  --[[ { -- https://github.com/Exafunction/codeium.vim
     'Exafunction/codeium.vim',
     cmd = { 'CodeiumEnable', 'Codeium' },
     enabled = true,
@@ -67,7 +67,7 @@ return {
         return vim.fn['codeium#CycleCompletions'](-1)
       end, { expr = true })
     end,
-  },
+  }, ]]
 
   { -- https://github.com/folke/lazydev.nvim
     'folke/lazydev.nvim',

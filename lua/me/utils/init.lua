@@ -61,12 +61,18 @@ function M.input(mesg)
   return choice
 end
 
-function M.set_root()
+M.root_patterns = { '.git', '/lua' }
+-- returns the root directory based on:
+-- * lsp workspace folders
+-- * lsp root_dir
+-- * root pattern of filename of the current buffer
+-- * root pattern of cwd
+---@return string
+function M.get_root()
   ---@type string?
   local path = vim.api.nvim_buf_get_name(0)
-  path = path ~= '' and vim.uv.fs_realpath(path) or nil
+  path = path ~= '' and vim.loop.fs_realpath(path) or nil
   ---@type string[]
-  local root_patterns = { '.git', 'Makefile', 'lua' }
   local roots = {}
   if path then
     for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
@@ -75,7 +81,7 @@ function M.set_root()
         return vim.uri_to_fname(ws.uri)
       end, workspace) or client.config.root_dir and { client.config.root_dir } or {}
       for _, p in ipairs(paths) do
-        local r = vim.uv.fs_realpath(p)
+        local r = vim.loop.fs_realpath(p)
         if path:find(r, 1, true) then
           roots[#roots + 1] = r
         end
@@ -88,42 +94,13 @@ function M.set_root()
   ---@type string?
   local root = roots[1]
   if not root then
-    path = path and vim.fs.dirname(path) or vim.uv.cwd()
+    path = path and vim.fs.dirname(path) or vim.loop.cwd()
     ---@type string?
-    root = vim.fs.find(root_patterns, { path = path, upward = true })[1]
-    root = root and vim.fs.dirname(root) or vim.uv.cwd()
+    root = vim.fs.find(M.root_patterns, { path = path, upward = true })[1]
+    root = root and vim.fs.dirname(root) or vim.loop.cwd()
   end
   ---@cast root string
   return root
-end
-
-function M.get_root()
-  -- Array of file names indicating root directory. Modify to your liking.
-  local root_patterns = { '.git', 'Makefile', 'lua' }
-
-  -- Cache to use for speed up (at cost of possibly outdated results)
-  local root_cache = {}
-
-  -- Get directory path to start search from
-  local path = vim.api.nvim_buf_get_name(0)
-  if path == '' then
-    return
-  end
-  path = vim.fs.dirname(path)
-
-  -- Try cache and resort to searching upward for root directory
-  local root = root_cache[path]
-  if root == nil then
-    local root_file = vim.fs.find(root_patterns, { path = path, upward = true })[1]
-    if root_file == nil then
-      return
-    end
-    root = vim.fs.dirname(root_file)
-    root_cache[path] = root
-  end
-
-  -- Set current directory
-  vim.fn.chdir(root)
 end
 
 function M.find_files()

@@ -2,6 +2,9 @@
 return {
   { -- https://github.com/neovim/nvim-lspconfig
     'neovim/nvim-lspconfig',
+    keys = {
+      { '<leader>lp', '', desc = '+python' },
+    },
     opts = {
       servers = {
         basedpyright = { -- https://github.com/DetachHead/basedpyright
@@ -24,6 +27,12 @@ return {
         ruff = {
           enabled = true,
           autostart = true,
+          cmd_env = { RUFF_TRACE = 'messages' },
+          init_options = {
+            settings = {
+              logLevel = 'error',
+            },
+          },
           settings = {
             ruff = {
               fix = false,
@@ -32,8 +41,8 @@ return {
           -- stylua: ignore
           on_attach = function(client, bufnr)
             local map = vim.keymap.set
-            map('n', '<leader>lo', Core.lsp.action['source.organizeImports'], { buffer = bufnr, desc = 'organize imports' })
-            map('n', '<leader>lF', Core.lsp.action['source.fixAll'], { buffer = bufnr, desc = 'fix all' })
+            map('n', '<leader>lpo', Core.lsp.action['source.organizeImports'], { buffer = bufnr, desc = 'organize imports' })
+            map('n', '<leader>lpf', Core.lsp.action['source.fixAll'], { buffer = bufnr, desc = 'fix all' })
             -- Disable hover in favor of basedpyright
             if client.name == 'ruff' then
               client.server_capabilities.hoverProvider = false

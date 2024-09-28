@@ -6,22 +6,30 @@ return {
       servers = {
         lua_ls = {
           autostart = true,
-          on_attach = function(client, _)
-            client.server_capabilities.semanticTokensProvider = nil
-          end,
+          -- on_attach = function(client, _)
+          --   client.server_capabilities.semanticTokensProvider = nil
+          -- end,
           settings = {
             Lua = {
-              format = { enable = false },
-              telemetry = { enable = false },
-              workspace = { checkThirdParty = false },
-              completion = { callSnippet = 'Replace' },
-              hint = { enable = true },
-              diagnostics = {
+              workspace = {
+                checkThirdParty = false,
+              },
+              codeLens = {
                 enable = true,
-                globals = {
-                  'vim',
-                  'xplr',
-                },
+              },
+              completion = {
+                callSnippet = 'Replace',
+              },
+              doc = {
+                privateName = { '^_' },
+              },
+              hint = {
+                enable = true,
+                setType = false,
+                paramType = true,
+                paramName = 'Disable',
+                semicolon = 'Disable',
+                arrayIndex = 'Disable',
               },
             },
           },

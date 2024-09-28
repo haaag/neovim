@@ -82,6 +82,18 @@ return {
         desc = 'fuzzy complete file',
       },
     },
+    --[[
+    --  FzfLua files winopts={row=0,col=0}
+    -- :lua require("fzf-lua").files({ winopts = { row = 1 } })
+    -- Using the recursive option format
+    -- :lua require("fzf-lua").files({ ["winopts.row"] = 1 })
+    -- :FzfLua files winopts.row=1
+    -- lua require'fzf-lua'.lsp_document_symbols({winopts = {preview={wrap='wrap'}}})
+    -- winopts = { preview = { hidden = "nohidden" } }
+    -- lua require'fzf-lua'.lsp_code_actions({ winopts = {relative='cursor',row=1.01, col=0, height=0.2, width=0.5,  preview = { hidden = "hidden" }} })
+    -- lua require'fzf-lua'.lsp_code_actions({ winopts = {relative='cursor', preview = { hidden = "hidden" }} })
+
+    --]]
   },
 
   { -- https://github.com/stevearc/oil.nvim

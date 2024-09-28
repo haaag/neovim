@@ -75,10 +75,11 @@ map('<leader>bM', function() toggle.minimalist() end, 'toggle minimalist')
 map('<leader>bn', function() toggle.numbers() end, 'toggle numbers')
 map('<leader>bs', function() toggle.diagnostic_signs() end, 'toggle diagnostics signs')
 map('<leader>bS', function() toggle.signcolumn() end, 'toggle signcolumn')
-map('<leader>ma', function() Core.set_root() end, 'set current root')
+map('<leader>ma', function() Core.get_root() end, 'set current root')
 -- stylua: ignore stop
 
 -- misc
 map('<leader>mL', ':Lazy<CR>', 'open Lazy')
 map('<leader>bdA', function () vim.cmd('bufdo bd') end, 'close all')
 map('<leader>bdC', function () vim.cmd('%bd|e#|bd#') end, 'close all but this one')
+map('<leader>ls', '<CMD>LspStart<CR>', 'lsp start')
