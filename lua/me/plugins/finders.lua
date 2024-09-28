@@ -1,49 +1,86 @@
 -- finders.lua
 
 return {
-  { -- https://github.com/nvim-telescope/telescope.nvim
-    'nvim-telescope/telescope.nvim',
-    version = '0.1.x',
-    cmd = { 'Telescope' },
+  { -- https://github.com/ibhagwan/fzf-lua
+    'ibhagwan/fzf-lua',
+    lazy = false,
     enabled = true,
-    dependencies = {
-      { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-project.nvim' }, -- https://github.com/nvim-telescope/telescope-project.nvim
-    },
-    -- luacheck: ignore
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    cmd = { 'FzfLua' },
+    config = function()
+      local defaults = {
+        ['ctrl-d'] = 'half-page-down',
+        ['ctrl-u'] = 'half-page-up',
+        ['ctrl-/'] = 'toggle-preview',
+      }
+      local actions = require('fzf-lua.actions')
+      require('fzf-lua').setup({
+        defaults = {
+          winopts = {
+            preview = { hidden = 'hidden' },
+          },
+        },
+        keymap = {
+          builtin = defaults,
+          fzf = defaults,
+        },
+        files = {
+          prompt = 'Files❯ ',
+        },
+      })
+    end,
+    -- stylua: ignore start
     keys = {
       { '<leader>s', '', desc = '+search' },
       -- search
-      { '<C-p>', '<CMD>Telescope find_files theme=get_ivy<CR>', desc = 'search files' },
-      { '<leader>?', '<CMD>Telescope oldfiles<CR>', desc = '[?] find recently opened files' },
+      { '<C-p>', '<CMD>FzfLua files<CR>', desc = 'search files' },
+      -- { '<C-p>', function() Core.find_files() end, desc = 'search files' },
+      { '<leader>?', '<CMD>FzfLua oldfiles<CR>', desc = '[?] find recently opened files' },
+      { '<leader>:', '<CMD>FzfLua command_history<CR>', desc = 'search command History' },
+      { '<leader>/', '<CMD>FzfLua grep_curbuf<CR>', desc = 'fuzzily search in current buf' },
+      { '<leader>sf', '<CMD>FzfLua files<CR>', desc = 'search all files' },
+      { '<leader>sr', '<CMD>FzfLua resume<CR>', desc = 'search resume' },
+      { '<leader>sh', '<CMD>FzfLua helptags<CR>', desc = 'search help' },
+      { '<leader>sg', '<CMD>FzfLua live_grep<CR>', desc = 'search by grep' },
+      { '<leader>sw', '<CMD>FzfLua grep_cword<CR>', desc = 'search current word' },
+      { '<leader><space>', function()
+        require('fzf-lua').buffers({
+          winopts = {
+            relative = 'cursor',
+            row = 1.00,
+            col = 0,
+            height = 0.3,
+            width = 0.5,
+            preview = { hidden = 'hidden' },
+          },
+        })
+      end, desc = 'search buffers' },
+      -- git search
+      { '<leader>gs', '', desc = '+finders' },
+      { '<leader>gss', '<CMD>FzfLua git_status<CR>', desc = 'git status' },
+      { '<leader>gsx', '<CMD>FzfLua git_stash<CR>', desc = 'git stash' },
+      { '<leader>gsB', '<CMD>FzfLua git_branches<CR>', desc = 'git branches' },
+      { '<leader>gsb', '<CMD>FzfLua git_bcommits<CR>', desc = 'git buffer Commits' },
+      -- misc
+      -- stylua: ignore stop
       {
-        '<leader>sp',
-        "<CMD>lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>",
-        desc = 'search project',
+        mode = { 'i' },
+        '<C-x><C-f>',
+        function()
+          require('fzf-lua').complete_file({
+            cmd = 'rg --files',
+            winopts = {
+              relative = 'cursor',
+              row = 1.00,
+              col = 0,
+              height = 0.3,
+              width = 0.4,
+              preview = { hidden = 'hidden' },
+            },
+          })
+        end,
+        desc = 'fuzzy complete file',
       },
-      { '<leader>sr', '<CMD>Telescope resume<CR>', desc = 'search resume' },
-      { '<leader>sw', '<CMD>Telescope grep_string<CR>', desc = 'search current [W]ord' },
-      { '<leader>sg', '<CMD>Telescope live_grep<CR>', desc = 'search by grep' },
-      { '<leader>sd', '<CMD>Telescope diagnostics<CR>', desc = 'search diagnostics' },
-      { '<leader>sh', '<CMD>Telescope help_tags<CR>', desc = 'search help' },
-      { '<leader>sk', '<CMD>Telescope keymaps<CR>', desc = 'search keymaps' },
-      { '<leader>:', '<CMD>Telescope command_history<CR>', desc = 'search command History' },
-      {
-        '<leader><space>',
-        "<CMD>lua require('telescope.builtin').buffers(require('telescope.themes').get_cursor({ previewer = false }))<CR>",
-        desc = 'search buffers',
-      },
-      {
-        '<leader>/',
-        "<CMD>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy({previewer = false}))<CR>",
-        desc = '[/] fuzzily search in current buffer]',
-      },
-      -- git
-      { '<leader>gt', '', desc = '+telescope' },
-      { '<leader>gts', '<CMD>Telescope git_status<CR>', desc = 'git telescope status' },
-      { '<leader>gtx', '<CMD>Telescope git_stash<CR>', desc = 'git telescope stash' },
-      { '<leader>gtB', '<CMD>Telescope git_branches<CR>', desc = 'git telescope branches' },
-      { '<leader>gtb', '<CMD>Telescope git_bcommits<CR>', desc = 'git telescope buffer Commits' },
     },
   },
 

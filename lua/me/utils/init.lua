@@ -127,14 +127,17 @@ function M.get_root()
 end
 
 function M.find_files()
-  local builtin
-  local theme = require('telescope.themes')
   if vim.uv.fs_stat(vim.uv.cwd() .. '/.git') then
-    builtin = 'git_files'
+    require('fzf-lua').git_files()
   else
-    builtin = 'find_files'
+    require('fzf-lua').files()
   end
-  require('telescope.builtin')[builtin](theme.get_ivy())
+end
+
+function M.manpages()
+  vim.cmd('FzfLua manpages previewer=man_native')
+  -- FzfLua manpages previewer=man_native
+  -- require('fzf-lua').manpages({ previewer = { 'man_native' } })
 end
 
 ---@param array string[]
@@ -244,4 +247,7 @@ M.which = function(cmd)
   return path
 end
 
-return M
+---@param s string
+M.warnme = function(s)
+  vim.api.nvim_echo({ { s, 'WarningMsg' } }, true, {})
+end

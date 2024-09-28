@@ -3,6 +3,38 @@ local M = {}
 
 M.diagnostic = require('me.utils.diagnostic')
 
+M.action = setmetatable({}, {
+  __index = function(_, action)
+    return function()
+      vim.lsp.buf.code_action({
+        apply = true,
+        context = {
+          only = { action },
+          diagnostics = {},
+        },
+      })
+    end
+  end,
+})
+
+M.code_action = function()
+  if not Core.has('fzf-lua') then
+    Core.warnme('fzf-lua not installed. https://github.com/ibhagwan/fzf-lua')
+    return
+  end
+
+  return require('fzf-lua').lsp_code_actions({
+    winopts = {
+      relative = 'cursor',
+      row = 1.01,
+      col = 0,
+      height = 0.3,
+      width = 0.5,
+      preview = { hidden = 'hidden' },
+    },
+  })
+end
+
 ---@param on_attach function
 function M.on_attach(on_attach)
   vim.api.nvim_create_autocmd('LspAttach', {
@@ -45,39 +77,35 @@ function M.capabilities()
   )
 end
 
-M.action = setmetatable({}, {
-  __index = function(_, action)
-    return function()
-      vim.lsp.buf.code_action({
-        apply = true,
-        context = {
-          only = { action },
-          diagnostics = {},
-        },
-      })
-    end
-  end,
-})
-
 ---@param bufnr number
 function M.keymaps(bufnr)
   local map = Core.keymap_buf
-  map(bufnr, 'gd', vim.lsp.buf.definition, 'goto definition')
-  map(bufnr, 'gr', require('telescope.builtin').lsp_references, 'goto references')
+  map(bufnr, 'gd', function()
+    require('fzf-lua').lsp_definitions({ unique_line_items = true })
+  end, 'goto definition')
+  -- map(bufnr, 'gd', vim.lsp.buf.definition, 'goto definition')
+  -- map(bufnr, 'gr', '<CMD>FzfLua lsp_references<CR>', 'goto references')
+  map(bufnr, 'gr', function()
+    require('fzf-lua').lsp_references({ unique_line_items = true })
+  end, 'goto references')
   map(bufnr, 'gI', vim.lsp.buf.implementation, 'goto implementation')
   map(bufnr, 'gD', vim.lsp.buf.declaration, 'goto declaration')
   map(bufnr, 'gy', vim.lsp.buf.type_definition, 'type definition')
   map(bufnr, 'K', vim.lsp.buf.hover, 'hover documentation')
   map(bufnr, '<c-k>', vim.lsp.buf.signature_help, 'signature documentation', 'i')
-
-  map(bufnr, '<leader>l', '', '+lsp')
+  -- lsp
+  map(bufnr, '<leader>l', '', '+lsp', { 'n', 'v' })
   map(bufnr, '<leader>lr', vim.lsp.buf.rename, 'rename')
-  map(bufnr, '<leader>la', vim.lsp.buf.code_action, 'code action', { 'n', 'v' })
-  map(bufnr, '<leader>lS', require('telescope.builtin').lsp_document_symbols, 'document symbols')
+  map(bufnr, '<leader>la', function()
+    M.code_action()
+  end, 'code action', { 'n', 'v' })
+  map(bufnr, '<leader>ld', function()
+    require('fzf-lua').lsp_document_symbols({ winopts = { preview = { wrap = 'wrap' } } })
+  end, 'document symbols')
   map(bufnr, '<leader>lI', '<CMD>LspInfo<CR>', 'info')
   map(bufnr, '<leader>lc', vim.lsp.codelens.run, 'run codelens', { 'n', 'v' })
   map(bufnr, '<leader>lC', vim.lsp.codelens.refresh, 'refresh n display codelens')
-  map(bufnr, '<leader>lws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'workspace symbols')
+  map(bufnr, '<leader>lws', '<CMD>FzfLua lsp_workspace_symbols<CR>', 'workspace symbols')
   map(bufnr, '<leader>lwa', vim.lsp.buf.add_workspace_folder, 'workspace add folder')
   map(bufnr, '<leader>lwr', vim.lsp.buf.remove_workspace_folder, 'workspace remove Folder')
   map(bufnr, '<leader>lwl', function()

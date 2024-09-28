@@ -57,17 +57,18 @@ autocmd({ 'BufWritePost' }, {
   desc = 'reload dunstrc after buffer write',
 })
 
-autocmd({ 'TermOpen' }, {
-  group = augroup('open_term'),
-  callback = function()
-    local opts = { noremap = true }
-    vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
-    vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
-    vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
-    vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
-    vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
-  end,
-})
+-- this breaks fzf
+-- autocmd({ 'TermOpen' }, {
+--   group = augroup('open_term'),
+--   callback = function()
+--     local opts = { noremap = true }
+--     vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+--     vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+--     vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+--     vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+--     vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+--   end,
+-- })
 
 autocmd({ 'BufEnter' }, {
   group = augroup('auto_root'),

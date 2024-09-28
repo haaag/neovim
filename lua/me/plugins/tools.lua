@@ -22,28 +22,23 @@ return {
     config = function(_, opts)
       require('todo-comments').setup(opts)
     end,
-    -- stylua: ignore
     keys = {
-      { "]t", function() require("todo-comments").jump_next() end, desc = "next todo comment" },
-      { "[t", function() require("todo-comments").jump_prev() end, desc = "previous todo comment" },
-      { "<leader>mt", "<CMD>TodoTelescope<CR>", desc = "todo telescope" },
-      -- { "<leader>mT", "<CMD>TodoTrouble keywords=TODO,FIX,FIXME,WIP,NOTE,HACK<CR>", desc = "TODO/FIX/FIXME (trouble)" },
-      { "<leader>st", "<CMD>TodoTelescope<CR>", desc = "search todo" },
+      -- stylua: ignore start
+      { ']t', function() require('todo-comments').jump_next() end, desc = 'next todo comment' },
+      { '[t', function() require('todo-comments').jump_prev() end, desc = 'previous todo comment' },
+      -- stylua: ignore stop
+      { '<leader>mt', '<CMD>TodoFzfLua<CR>', desc = 'todo telescope' },
+      { '<leader>sT', '<CMD>TodoFzfLua<CR>', desc = 'search todo' },
+      { '<leader>mT', function()
+        if Core.has('trouble.nvim') then
+          vim.cmd('<CMD>TodoTrouble keywords=TODO,FIX,FIXME,WIP,NOTE,HACK<CR>')
+        else
+          Core.warnme('trouble.nvim not installed\n')
+        end
+      end, desc = 'TODO/FIX/FIXME (trouble)' },
     },
     enabled = true,
   },
-
-  --[[ { -- https://github.com/folke/trouble.nvim
-    'folke/trouble.nvim',
-    cmd = { 'TroubleToggle', 'Trouble' },
-    opts = { use_diagnostic_signs = true },
-    keys = {
-      -- stylua: ignore
-      { "<leader>mx", "<CMD>TroubleToggle document_diagnostics<CR>", desc = "document diagnostics (trouble)" },
-      { '<leader>mX', '<CMD>TroubleToggle workspace_diagnostics<CR>', desc = 'workspace diagnostics (trouble)' },
-    },
-    enabled = true,
-  }, ]]
 
   { -- https://github.com/toppair/peek.nvim
     'toppair/peek.nvim',
@@ -63,23 +58,21 @@ return {
     enabled = Core.is_executable('deno'),
   },
 
-  --[[ { -- https://github.com/szw/vim-maximizer
-    'szw/vim-maximizer',
-    cmd = { 'MaximizerToggle' },
-    config = function()
-      vim.g.maximizer_set_default_mapping = 1
-      vim.g.maximizer_set_mapping_with_bang = 1
-    end,
-    keys = {
-      { '<C-w>O', '<CMD>MaximizerToggle!<CR>', { desc = 'toggle maximizer' } },
-    },
-    enabled = true,
-  }, ]]
-
   { -- https://github.com/mbbill/undotree
     'mbbill/undotree',
     keys = {
-      { '<F4>', '<CMD>UndotreeToggle<CR>', desc = 'undotree' },
+      { '<leader>gu', '<CMD>UndotreeToggle<CR>', desc = 'undotree' },
     },
+  },
+
+  { -- fzf-projects
+    dir = '~/dev/git/lualang/fzf-projects.nvim',
+    dependencies = { 'ibhagwan/fzf-lua' },
+    cmd = { 'Projects' },
+    opts = {},
+    keys = {
+      { '<leader>sp', '<CMD>Projects<CR>', desc = 'search projects' },
+    },
+    enabled = true,
   },
 }

@@ -7,7 +7,7 @@ return {
     cmd = { 'Git', 'G', 'Gw' },
     keys = function()
       return {
-        { '<leader>g', '', desc = '+git' },
+        { '<leader>g', '', desc = '+git', mode = { 'n', 'v' } },
         { '<leader>go', '<CMD>tab Git<CR>', desc = 'git fugitive' },
         { '<leader>gf', Core.find_files, desc = 'git files' },
         { '<leader>ga', '', desc = '+actions' },
@@ -42,7 +42,7 @@ return {
     keys = {
       { '<leader>gb', '<CMD>Gitsigns toggle_current_line_blame<CR>', desc = 'git toggle blame' },
       -- hunks
-      { '<leader>gh', '', desc = '+hunks' },
+      { '<leader>gh', '', desc = '+hunks', mode = { 'n', 'v' } },
       { ']h', '<CMD>Gitsigns next_hunk<CR>', desc = 'git next hunk' },
       { '[h', '<CMD>Gitsigns prev_hunk<CR>', desc = 'git prev hunk' },
       { ']H', '<CMD>Gitsigns nav_hunk first<CR>', desc = 'git prev hunk' },

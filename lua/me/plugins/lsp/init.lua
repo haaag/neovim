@@ -14,9 +14,8 @@ return {
 
   { -- https://github.com/neovim/nvim-lspconfig
     'neovim/nvim-lspconfig',
-    event = 'InsertEnter',
+    -- event = 'InsertEnter',
     cmd = { 'LspStart' },
-    keys = { '<leader>ls', '<CMD>LspStart<CR>', desc = 'lsp start' },
     enabled = true,
     dependencies = { -- https://github.com/williamboman/mason-lspconfig.nvim
       'williamboman/mason-lspconfig.nvim',
