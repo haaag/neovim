@@ -41,19 +41,17 @@ return {
   },
 
   { -- https://github.com/toppair/peek.nvim
+    -- dependencies: webkit2gtk (webview)
     'toppair/peek.nvim',
     build = 'deno task --quiet build:fast',
-    cmd = { 'PeekClose', 'PeekOpen' },
-    config = function()
-      require('peek').setup({
-        theme = 'light',
-      })
-      vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
-      vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
-    end,
+    opts = {
+      theme = 'light',
+      app = 'webview',
+    },
+    -- stylua: ignore
     keys = {
-      { '<leader>mp', '<CMD>PeekOpen<CR>', desc = 'peek open' },
-      { '<leader>mP', '<CMD>PeekClose<CR>', desc = 'peek close' },
+      { '<leader>mp', function() require('peek').open() end, desc = 'peek open' },
+      { '<leader>mP', function () require('peek').close() end, desc = 'peek close' },
     },
     enabled = Core.is_executable('deno'),
   },
@@ -65,8 +63,8 @@ return {
     },
   },
 
-  { -- fzf-projects
-    'haaag/projects.nvim',
+  { -- projects with fzf
+    dir = '~/dev/git/lualang/projects.nvim',
     dependencies = { 'ibhagwan/fzf-lua' },
     cmd = { 'Projects' },
     opts = {

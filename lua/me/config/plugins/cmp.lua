@@ -36,7 +36,7 @@ M.setup = function()
     ---@diagnostic disable-next-line: missing-fields
     formatting = {
       format = function(_, item)
-        local icons = Core.icons.lsp().kinds
+        local icons = Core.icons.lsp.kinds
         if icons[item.kind] then
           item.kind = icons[item.kind] .. item.kind
         end
@@ -85,8 +85,8 @@ M.setup = function()
     },
 
     sources = {
-      { name = 'nvim_lsp' },
       { name = 'luasnip' },
+      { name = 'nvim_lsp' },
       { name = 'buffer' },
       { name = 'path' },
     },

@@ -1,116 +1,111 @@
 ---@class me.utils.icons
 local M = {}
 
-function M.lsp()
-  -- stylua: ignore
-  return {
-    kinds = {
-      Array         = ' ',
-      Boolean       = '󰨙 ',
-      Class         = ' ',
-      Codeium       = '󰘦 ',
-      Color         = ' ',
-      Control       = ' ',
-      Collapsed     = ' ',
-      Constant      = '󰏿 ',
-      Constructor   = ' ',
-      Enum          = ' ',
-      EnumMember    = ' ',
-      Event         = ' ',
-      Field         = ' ',
-      File          = ' ',
-      Folder        = ' ',
-      Function      = '󰊕 ',
-      Interface     = ' ',
-      Key           = ' ',
-      Keyword       = ' ',
-      Method        = '󰊕 ',
-      Module        = ' ',
-      Namespace     = '󰦮 ',
-      Null          = ' ',
-      Number        = '󰎠 ',
-      Object        = ' ',
-      Operator      = ' ',
-      Package       = ' ',
-      Property      = ' ',
-      Reference     = ' ',
-      Snippet       = ' ',
-      String        = ' ',
-      Struct        = '󰆼 ',
-      TabNine       = '󰏚 ',
-      Text          = ' ',
-      TypeParameter = ' ',
-      Unit          = ' ',
-      Value         = ' ',
-      Variable      = '󰀫 ',
-    },
-    diagnostics = {
-      Error         = ' ',
-      Hint          = ' ',
-      Info          = ' ',
-      Warn          = ' ',
-    },
-  }
-end
+-- stylua: ignore
+M.lsp = {
+  kinds = {
+    Array         = ' ',
+    Boolean       = '󰨙 ',
+    Class         = ' ',
+    Codeium       = '󰘦 ',
+    Color         = ' ',
+    Control       = ' ',
+    Collapsed     = ' ',
+    Constant      = '󰏿 ',
+    Constructor   = ' ',
+    Enum          = ' ',
+    EnumMember    = ' ',
+    Event         = ' ',
+    Field         = ' ',
+    File          = ' ',
+    Folder        = ' ',
+    Function      = '󰊕 ',
+    Interface     = ' ',
+    Key           = ' ',
+    Keyword       = ' ',
+    Method        = '󰊕 ',
+    Module        = ' ',
+    Namespace     = '󰦮 ',
+    Null          = ' ',
+    Number        = '󰎠 ',
+    Object        = ' ',
+    Operator      = ' ',
+    Package       = ' ',
+    Property      = ' ',
+    Reference     = ' ',
+    Snippet       = ' ',
+    String        = ' ',
+    Struct        = '󰆼 ',
+    TabNine       = '󰏚 ',
+    Text          = ' ',
+    TypeParameter = ' ',
+    Unit          = ' ',
+    Value         = ' ',
+    Variable      = '󰀫 ',
+  },
+  diagnostics = {
+    Error         = ' ',
+    Hint          = ' ',
+    Info          = ' ',
+    Warn          = ' ',
+  },
+}
 
-function M.dap()
-  -- stylua: ignore
-  return {
-    signs = {
-      breakpoint           = '', -- 
-      breakpoint_condition = 'ﴫ•',
-      breakpoint_rejected  = 'ﴫ•',
-      log_point            = '.>',
-      stopped              = '⇥',
-    },
-    ui = {
-      expanded             = '▾',
-      collapsed            = '▸',
-      circular             = '',
-    },
-    constrols = {
-      pause                = '',
-      play                 = '',
-      step_into            = '',
-      step_over            = '',
-      step_out             = '',
-      step_back            = '',
-      run_last             = '',
-      terminate            = '',
-    },
-  }
-end
+-- stylua: ignore
+M.dap = {
+  signs = {
+    breakpoint    = '', -- 
+    breakpoint_condition = 'ﴫ•',
+    breakpoint_rejected = 'ﴫ•',
+    log_point     = '.>',
+    stopped       = '⇥',
+  },
+  ui = {
+    expanded      = '▾',
+    collapsed     = '▸',
+    circular      = '',
+  },
+  constrols       = {
+    pause         = '',
+    play          = '',
+    step_into     = '',
+    step_over     = '',
+    step_out      = '',
+    step_back     = '',
+    run_last      = '',
+    terminate     = '',
+  },
+}
 
-function M.dadbod()
-  -- stylua: ignore
-  return {
+M.dadbod = {
+  {
     expanded = {
-      db                = '▾ 󰆼',
-      buffers           = '▾ ',
-      saved_queries     = '▾ ',
-      schemas           = '▾ ',
-      schema            = '▾ ',
-      tables            = '▾ 藺',
-      table             = '▾ ',
+      db = '▾ 󰆼',
+      buffers = '▾ ',
+      saved_queries = '▾ ',
+      schemas = '▾ ',
+      schema = '▾ ',
+      tables = '▾ 藺',
+      table = '▾ ',
     },
     collapsed = {
-      db                = '▸ ',
-      buffers           = '▸ ',
-      saved_queries     = '▸ ',
-      schemas           = '▸ ',
-      schema            = '▸ ',
-      tables            = '▸ 藺',
-      table             = '▸ ',
+      db = '▸ ',
+      buffers = '▸ ',
+      saved_queries = '▸ ',
+      schemas = '▸ ',
+      schema = '▸ ',
+      tables = '▸ 藺',
+      table = '▸ ',
     },
-    saved_query         = '',
-    new_query           = '璘',
-    tables              = '離',
-    buffers             = '﬘',
-    add_connection      = '',
-    connection_ok       = '✓',
-    connection_error    = '✕',
-  }
-end
+    saved_query = '',
+    new_query = '璘',
+    tables = '離',
+    buffers = '﬘',
+    add_connection = '',
+    connection_ok = '✓',
+    connection_error = '✕',
+  },
+}
 
 function M.all()
   -- stylua: ignore

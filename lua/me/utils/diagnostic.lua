@@ -1,6 +1,6 @@
 ---@class me.utils.lsp.diagnostic
 local M = {}
-local icons = Core.icons.lsp().diagnostics
+local icons = Core.icons.lsp.diagnostics
 
 M.defaults = {
   virtual_lines = false,
@@ -8,7 +8,7 @@ M.defaults = {
   virtual_text = {
     spacing = 4,
     source = 'if_many',
-    prefix = '',
+    prefix = '■',
   },
   update_in_insert = false,
   underline = true,

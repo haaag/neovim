@@ -1,4 +1,4 @@
-local icons = Core.icons.dap()
+local icons = Core.icons.dap
 
 ---@param config {args?:string[]|fun():string[]?}
 local function get_args(config)

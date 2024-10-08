@@ -8,7 +8,7 @@ vim.g.maplocalleader = ' '
 -- stylua: ignore start
 opt.clipboard     = 'unnamedplus' -- clipboard
 opt.hlsearch      = false -- Set highlight on search
-opt.mouse         = '' -- Enable mouse mode
+opt.mouse         = 'a' -- Enable mouse mode
 opt.swapfile      = false -- No swap file
 opt.backup        = false -- No backup file
 opt.undofile      = true
