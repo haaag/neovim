@@ -107,6 +107,29 @@ return {
     enabled = true,
   },
 
+  { -- https://github.com/haaag/projects.nvim
+    -- 'haaag/projects.nvim',
+    dir = '~/dev/git/lualang/projects.nvim',
+    dependencies = {
+      'ibhagwan/fzf-lua',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      prompt = 'Projects>> ',
+      color = true,
+      icons = {
+        enabled = true,
+        default = '',
+        warning = '',
+        color = '#fd4d5d',
+      },
+    },
+    keys = {
+      { '<leader>sp', '<CMD>FzfLuaProjects<CR>', desc = 'search projects' },
+    },
+    enabled = true,
+  },
+
   { -- https://github.com/stevearc/oil.nvim
     'stevearc/oil.nvim',
     opts = {
