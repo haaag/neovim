@@ -16,6 +16,11 @@ local enabled = function(varname)
   return Core.boolme(Core.getenv(varname, false))
 end
 
+---@return string?
+M.xdg_home = function()
+  return HOME
+end
+
 ---@return string
 M.xdg_data_home = function()
   return M.get('DATA_HOME', HOME .. '/.local/share')

@@ -1,11 +1,16 @@
 -- me.plugins.linting
 
 local autocmd = vim.api.nvim_create_autocmd
+local shell_path = Core.env.xdg_home() .. '/dot/shellcheck/shellcheckrc'
+if not Core.file_exist(shell_path) then
+  Core.warnme('linting: shellcheckrc not found\n')
+end
+
 local shellcheckrc = {
   '--format',
   'json',
   '--rcfile',
-  os.getenv('HOME') .. '/.dotfiles/shellcheck/shellcheckrc',
+  shell_path,
   '-',
 }
 

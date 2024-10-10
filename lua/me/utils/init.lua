@@ -229,4 +229,15 @@ M.warnme = function(s)
   vim.api.nvim_echo({ { s, 'WarningMsg' } }, true, {})
 end
 
+---@return boolean
+---@param f string
+M.file_exist = function(f)
+  local file = io.open(f, 'r')
+  if not file then
+    return false
+  end
+
+  return true
+end
+
 return M
