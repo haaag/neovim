@@ -1,6 +1,6 @@
 return {
   { -- https://github.com/hrsh7th/nvim-cmp
-    'hrsh7th/nvim-cmp',
+    'iguanacucumber/magazine.nvim',
     version = false,
     event = 'InsertEnter',
     dependencies = {

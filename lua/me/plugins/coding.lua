@@ -34,12 +34,6 @@ return {
     enabled = true,
   }, ]]
 
-  { -- https://github.com/numToStr/Comment.nvim
-    'numToStr/Comment.nvim',
-    config = true,
-    enabled = true,
-  },
-
   { -- https://github.com/stevearc/aerial.nvim
     'stevearc/aerial.nvim',
     opts = { show_guides = true },

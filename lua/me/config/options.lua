@@ -25,7 +25,7 @@ opt.tabstop       = 2 -- Number of spaces tabs count for
 opt.expandtab     = true -- Use spaces instead of tabs
 opt.cmdheight     = 1 -- More space for displaying messages
 opt.showtabline   = 1 -- Disable tabline
-opt.tabline       = ''
+-- opt.tabline       = ''
 opt.splitbelow    = true -- Horizontal splits will automatically be below
 opt.splitright    = true -- Vertical splits will automatically be to the right
 opt.laststatus    = 0 -- Always display the status line
@@ -56,11 +56,14 @@ opt.inccommand    = "nosplit" -- preview incremental substitute
 opt.confirm       = true -- Confirm to save changes before exiting modified buffer
 opt.showbreak     = '↪'
 opt.smoothscroll  = true
+opt.foldmethod    = "expr"
+opt.foldexpr      = "nvim_treesitter#foldexpr()"
+opt.foldenable    = false
 
 -- see :h shortmess
 opt.shortmess:append({
   W = true, -- don't give "written" or "[w]" when writing a file
-  I = true, -- don't give the intro message when starting Vim
+  I = false, -- don't give the intro message when starting Vim
   c = true, -- don't give |ins-completion-menu| messages
   C = true, -- don't give messages while scanning for ins-completion items, for instance "scanning tags"
 })

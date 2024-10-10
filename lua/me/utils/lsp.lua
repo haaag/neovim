@@ -80,15 +80,8 @@ end
 ---@param bufnr number
 function M.keymaps(bufnr)
   local map = Core.keymap_buf
-  --[[ map(bufnr, 'gd', function()
-    require('fzf-lua').lsp_definitions({ unique_line_items = true })
-  end, 'goto definition') ]]
-  map(bufnr, 'gr', function()
-    require('fzf-lua').lsp_references({ unique_line_items = true })
-  end, 'goto references')
   map(bufnr, 'gd', vim.lsp.buf.definition, 'goto definition')
-  map(bufnr, 'gD', vim.lsp.buf.declaration, 'goto declaration')
-  -- map(bufnr, 'gr', vim.lsp.buf.references, 'goto references')
+  map(bufnr, 'gr', vim.lsp.buf.references, 'goto references')
   map(bufnr, 'gI', vim.lsp.buf.implementation, 'goto implementation')
   map(bufnr, 'gD', vim.lsp.buf.declaration, 'goto declaration')
   map(bufnr, 'gy', vim.lsp.buf.type_definition, 'type definition')

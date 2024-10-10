@@ -62,18 +62,4 @@ return {
       { '<leader>gu', '<CMD>UndotreeToggle<CR>', desc = 'undotree' },
     },
   },
-
-  { -- projects with fzf
-    dir = '~/dev/git/lualang/projects.nvim',
-    dependencies = { 'ibhagwan/fzf-lua' },
-    cmd = { 'Projects' },
-    opts = {
-      prompt = 'Projects>> ',
-      color = true,
-    },
-    keys = {
-      { '<leader>sp', '<CMD>Projects<CR>', desc = 'search projects' },
-    },
-    enabled = true,
-  },
 }

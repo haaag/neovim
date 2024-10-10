@@ -3,6 +3,7 @@
 return { -- https://github.com/nvim-treesitter/nvim-treesitter
   {
     'nvim-treesitter/nvim-treesitter',
+    event = { 'BufReadPost', 'BufNewFile' },
     version = false,
     enabled = true,
     lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
@@ -10,7 +11,6 @@ return { -- https://github.com/nvim-treesitter/nvim-treesitter
       require('nvim-treesitter.query_predicates')
     end,
     build = ':TSUpdate',
-    event = { 'BufReadPost', 'BufNewFile' },
     cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
     keys = {
       { '<c-space>', desc = 'Increment selection', mode = 'x' },

@@ -154,6 +154,7 @@ end
 ---@param default any: if varname is not set
 ---@return any
 function M.getenv(varname, default)
+  -- TODO: checkout `vim.env`
   local value = os.getenv(varname)
   if not value then
     return default

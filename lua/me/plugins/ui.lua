@@ -3,6 +3,7 @@ return {
   { -- https://github.com/nvim-tree/nvim-web-devicons
     'nvim-tree/nvim-web-devicons',
     enabled = true,
+    lazy = true,
   },
 
   { -- https://github.com/tzachar/local-highlight.nvim
@@ -25,33 +26,33 @@ return {
 
   { -- my.statusline.nvim
     dir = '~/dev/lua/stat.nvim',
+    cmd = 'Statusline',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
+    keys = {
+      { '<leader>bl', '<CMD>Statusline<CR>', desc = 'toggle statusline' },
+    },
     opts = {},
-    event = 'VeryLazy',
-    lazy = false,
+    lazy = true,
     enabled = true,
   },
 
   { -- https://github.com/akinsho/bufferline.nvim
     'akinsho/bufferline.nvim',
     after = 'gruvbox',
-    event = 'VeryLazy',
+    lazy = false,
     enabled = true,
-    dependencies = { -- https://github.com/tiagovla/scope.nvim
-      'tiagovla/scope.nvim',
-      config = true,
-      enabled = true,
-    },
     opts = function()
+      local icons = Core.icons.all()
       local bufferline = require('bufferline')
       return {
         options = {
           style_preset = bufferline.style_preset.minimal,
           always_show_bufferline = false,
           show_buffer_close_icons = false,
-          modified_icon = '',
+          modified_icon = icons.ui.SmallCircle,
           indicator = {
-            icon = '▏',
+            -- icon = icons.bar.d,
+            icon = ' ',
             style = 'icon',
           },
         },
@@ -157,7 +158,7 @@ return {
   { -- https://github.com/echasnovski/mini.clue
     'echasnovski/mini.clue',
     version = false,
-    event = 'VeryLazy',
+    lazy = false,
     config = function()
       local miniclue = require('mini.clue')
       miniclue.setup({

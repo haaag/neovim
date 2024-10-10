@@ -3,7 +3,7 @@
 return {
   { -- https://github.com/ibhagwan/fzf-lua
     'ibhagwan/fzf-lua',
-    lazy = false,
+    lazy = true,
     enabled = true,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     cmd = { 'FzfLua' },
@@ -14,7 +14,7 @@ return {
         ['ctrl-/'] = 'toggle-preview',
       }
       require('fzf-lua').setup({
-        Core.getenv('TMUX_FZF_PROFILE', 'defult'), -- env var setted in `tmux.conf`
+        Core.getenv('TMUX_FZF_PROFILE', 'default'), -- env var setted in `tmux.conf`
         defaults = {
           winopts = {
             preview = { hidden = 'hidden' },
@@ -23,9 +23,6 @@ return {
         keymap = {
           builtin = defaults,
           fzf = defaults,
-        },
-        files = {
-          prompt = 'Files❯ ',
         },
       })
     end,
@@ -50,7 +47,7 @@ return {
             relative = 'cursor',
             row = 1.00,
             col = 0,
-            height = 0.3,
+            height = 0.4,
             width = 0.5,
             preview = { hidden = 'hidden' },
           },
@@ -83,18 +80,31 @@ return {
         desc = 'fuzzy complete file',
       },
     },
-    --[[
-    --  FzfLua files winopts={row=0,col=0}
-    -- :lua require("fzf-lua").files({ winopts = { row = 1 } })
-    -- Using the recursive option format
-    -- :lua require("fzf-lua").files({ ["winopts.row"] = 1 })
-    -- :FzfLua files winopts.row=1
-    -- lua require'fzf-lua'.lsp_document_symbols({winopts = {preview={wrap='wrap'}}})
-    -- winopts = { preview = { hidden = "nohidden" } }
-    -- lua require'fzf-lua'.lsp_code_actions({ winopts = {relative='cursor',row=1.01, col=0, height=0.2, width=0.5,  preview = { hidden = "hidden" }} })
-    -- lua require'fzf-lua'.lsp_code_actions({ winopts = {relative='cursor', preview = { hidden = "hidden" }} })
+  },
 
-    --]]
+  { -- https://github.com/haaag/projects.nvim
+    -- 'haaag/projects.nvim',
+    dir = '~/dev/git/lualang/projects.nvim',
+    dependencies = {
+      'ibhagwan/fzf-lua',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      previewer = {
+        enabled = true,
+      },
+      color = true,
+      icons = {
+        enabled = true,
+        default = '',
+        warning = '',
+        color = '#fd4d5d',
+      },
+    },
+    keys = {
+      { '<leader>sp', '<CMD>FzfLuaProjects<CR>', desc = 'search projects' },
+    },
+    enabled = true,
   },
 
   { -- https://github.com/stevearc/oil.nvim
