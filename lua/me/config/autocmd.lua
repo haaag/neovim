@@ -73,6 +73,6 @@ autocmd({ 'BufWritePost' }, {
 autocmd({ 'BufEnter' }, {
   group = augroup('auto_root'),
   callback = function()
-    Core.get_root()
+    vim.fn.chdir(Core.get_root())
   end,
 })

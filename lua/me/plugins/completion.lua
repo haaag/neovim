@@ -3,60 +3,45 @@ return {
     'saghen/blink.cmp',
     enabled = true,
     event = 'InsertEnter',
-    lazy = false, -- lazy loading handled internally
+    lazy = false,
     dependencies = { -- https://github.com/rafamadriz/friendly-snippets
       'rafamadriz/friendly-snippets',
     },
-
-    -- use a release tag to download pre-built binaries
     version = 'v0.*',
-    -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-    -- build = 'cargo build --release',
-
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     opts = {
       highlight = {
-        -- sets the fallback highlight groups to nvim-cmp's highlight groups
-        -- useful for when your theme doesn't support blink.cmp
-        -- will be removed in a future release, assuming themes add support
-        use_nvim_cmp_as_default = false,
+        use_nvim_cmp_as_default = true,
       },
-      -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-      -- adjusts spacing to ensure icons are aligned
-      nerd_font_variant = 'normal',
-
-      -- experimental auto-brackets support
+      nerd_font_variant = 'mono', -- 'normal'
       accept = { auto_brackets = { enabled = false } },
-      -- experimental signature help support
-      trigger = { signature_help = { enabled = false } },
-
+      trigger = { signature_help = { enabled = true } },
       windows = {
         autocomplete = {
           draw = 'reversed',
-          border = 'rounded',
+          border = vim.g.floating_window_border,
         },
         documentation = {
-          border = 'rounded',
+          border = vim.g.floating_window_border,
+          auto_show = true,
+          auto_show_delay_ms = 200,
         },
       },
-
       kind_icons = Core.icons.lsp.kinds,
-
       keymap = {
         show = '<C-space>',
         hide = '<C-e>',
         accept = '<C-y>',
         select_prev = { '<C-p>' },
         select_next = { '<C-n>' },
-
         show_documentation = {},
         hide_documentation = {},
         scroll_documentation_up = '<C-b>',
         scroll_documentation_down = '<C-f>',
-
         snippet_forward = '<Tab>',
         snippet_backward = '<S-Tab>',
       },
-
       sources = {
         -- similar to nvim-cmp's sources, but we point directly to the source's lua module
         -- multiple groups can be provided, where it'll fallback to the next group if the previous

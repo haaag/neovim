@@ -1,5 +1,4 @@
 vim.opt_local.colorcolumn = '120'
-
 vim.api.nvim_create_autocmd('LspAttach', {
   group = Core.augroup('luaLsp'),
   pattern = '*.lua',
