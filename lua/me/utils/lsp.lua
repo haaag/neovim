@@ -68,20 +68,22 @@ function M.check_logfile_size()
 end
 
 function M.capabilities()
-  local has_cmp, cmp_nvim = pcall(require, 'cmp_nvim_lsp')
+  local has_blink, blink = pcall(require, 'blink.cmp')
   return vim.tbl_deep_extend(
     'force',
     {},
     vim.lsp.protocol.make_client_capabilities(),
-    has_cmp and cmp_nvim.default_capabilities() or {}
+    has_blink and blink.get_lsp_capabilities() or {}
   )
 end
 
----@param bufnr number
+---@param bufnr integer
 function M.keymaps(bufnr)
   local map = Core.keymap_buf
   map(bufnr, 'gd', vim.lsp.buf.definition, 'goto definition')
-  map(bufnr, 'gr', vim.lsp.buf.references, 'goto references')
+  map(bufnr, 'gr', function()
+    require('fzf-lua').lsp_references({ unique_line_items = true })
+  end, 'goto references')
   map(bufnr, 'gI', vim.lsp.buf.implementation, 'goto implementation')
   map(bufnr, 'gD', vim.lsp.buf.declaration, 'goto declaration')
   map(bufnr, 'gy', vim.lsp.buf.type_definition, 'type definition')

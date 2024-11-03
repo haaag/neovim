@@ -29,8 +29,8 @@
 
 ### 💻 Code
 
-- [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - A completion plugin for
-  neovim coded in Lua.
+- [Saghen/blink.cmp](https://github.com/Saghen/blink.cmp) - Performant,
+  batteries-included completion plugin for Neovim.
 - [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim) - Smart and
   Powerful comment plugin.
 - [stevearc/aerial.nvim](https://github.com/stevearc/aerial.nvim) -

@@ -27,33 +27,12 @@ return {
           auto_show = true,
           auto_show_delay_ms = 200,
         },
-      },
-      kind_icons = Core.icons.lsp.kinds,
-      keymap = {
-        show = '<C-space>',
-        hide = '<C-e>',
-        accept = '<C-y>',
-        select_prev = { '<C-p>' },
-        select_next = { '<C-n>' },
-        show_documentation = {},
-        hide_documentation = {},
-        scroll_documentation_up = '<C-b>',
-        scroll_documentation_down = '<C-f>',
-        snippet_forward = '<Tab>',
-        snippet_backward = '<S-Tab>',
-      },
-      sources = {
-        -- similar to nvim-cmp's sources, but we point directly to the source's lua module
-        -- multiple groups can be provided, where it'll fallback to the next group if the previous
-        -- returns no completion items
-        -- WARN: This API will have breaking changes during the beta
-        providers = {
-          { 'blink.cmp.sources.path', name = 'Path', score_offset = 3 },
-          { 'blink.cmp.sources.lsp', name = 'LSP' },
-          { 'blink.cmp.sources.snippets', name = 'Snippets', score_offset = -3 },
-          { 'blink.cmp.sources.buffer', name = 'Buffer', fallback_for = { 'LSP' } },
+        ghost_text = {
+          enabled = true,
         },
       },
+      kind_icons = Core.icons.lsp.kinds,
+      keymap = 'default',
     },
   },
 }
