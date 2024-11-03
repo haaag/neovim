@@ -8,21 +8,10 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     cmd = { 'FzfLua' },
     config = function()
-      local defaults = {
-        ['ctrl-d'] = 'half-page-down',
-        ['ctrl-u'] = 'half-page-up',
-        ['ctrl-/'] = 'toggle-preview',
-      }
       require('fzf-lua').setup({
-        Core.getenv('TMUX_FZF_PROFILE', 'default'), -- env var setted in `tmux.conf`
-        defaults = {
-          winopts = {
-            preview = { hidden = 'hidden' },
-          },
-        },
-        keymap = {
-          builtin = defaults,
-          fzf = defaults,
+        'default',
+        fzf_opts = {
+          ['--layout'] = 'reverse-list',
         },
       })
     end,
@@ -30,12 +19,12 @@ return {
     keys = {
       { '<leader>s', '', desc = '+search', mode = { 'n', 'v' } },
       -- search
-      { '<C-p>', '<CMD>FzfLua files<CR>', desc = 'search files' },
       -- { '<C-p>', function() Core.find_files() end, desc = 'search files' },
+      { '<C-p>', '<CMD>FzfLua files<CR>', desc = 'search files' },
+      { '<leader>sf', function() require('fzf-lua').files({ cwd = vim.uv.cwd() }) end, desc = 'search all files' },
       { '<leader>?', '<CMD>FzfLua oldfiles<CR>', desc = '[?] find recently opened files' },
-      { '<leader>:', '<CMD>FzfLua command_history<CR>', desc = 'search command History' },
+      { '<leader>:', '<CMD>FzfLua command_history<CR>', desc = 'search command history' },
       { '<leader>/', '<CMD>FzfLua grep_curbuf<CR>', desc = 'fuzzily search in current buf' },
-      { '<leader>sf', '<CMD>FzfLua files<CR>', desc = 'search all files' },
       { '<leader>sr', '<CMD>FzfLua resume<CR>', desc = 'search resume' },
       { '<leader>sh', '<CMD>FzfLua helptags<CR>', desc = 'search help' },
       { '<leader>sg', '<CMD>FzfLua live_grep<CR>', desc = 'search by grep' },

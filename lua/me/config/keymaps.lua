@@ -63,22 +63,23 @@ map('<leader>qo', '<CMD>copen<CR>', 'quickfix open')
 map('<leader>qg', '<CMD>cfirst<CR>', 'quickfix first')
 map('<leader>qG', '<CMD>clast<CR>', 'quickfix last')
 
--- personal
--- stylua: ignore start
-map('<leader>bb', function() toggle.scrollsync() end, 'scrolling synchronously')
+-- toggle
+map('<leader>bb', toggle.scrollsync, 'scrolling synchronously')
 map('<leader>bC', '<CMD>TSContextToggle<CR>', 'toggle treesitter context')
-map('<leader>bi', function() toggle.inlay_hints() end, 'toggle inlay hints')
-map('<leader>bg', function() toggle.gitsings() end, 'toggle git signs')
-map('<leader>bL', function() toggle.laststatus() end, 'set laststatus')
-map('<leader>bM', function() toggle.minimalist() end, 'toggle minimalist')
-map('<leader>bn', function() toggle.numbers() end, 'toggle numbers')
-map('<leader>bs', function() toggle.diagnostic_signs() end, 'toggle diagnostics signs')
-map('<leader>bS', function() toggle.signcolumn() end, 'toggle signcolumn')
-map('<leader>ma', function() Core.get_root() end, 'set current root')
--- stylua: ignore stop
+map('<leader>bi', toggle.inlay_hints, 'toggle inlay hints')
+map('<leader>bg', toggle.gitsings, 'toggle git signs')
+map('<leader>bL', toggle.laststatus, 'set laststatus')
+map('<leader>bM', toggle.minimalist, 'toggle minimalist')
+map('<leader>bn', toggle.numbers, 'toggle numbers')
+map('<leader>bs', toggle.diagnostic_signs, 'toggle diagnostics signs')
+map('<leader>bS', toggle.signcolumn, 'toggle signcolumn')
+map('<C-w>m', toggle.maximize, 'toggle max')
+map('<leader>br', Core.set_root, 'set root')
 
 -- misc
+-- stylua: ignore start
 map('<leader>mL', ':Lazy<CR>', 'open Lazy')
 map('<leader>bdA', function () vim.cmd('bufdo bd') end, 'close all')
 map('<leader>bdC', function () vim.cmd('%bd|e#|bd#') end, 'close all but this one')
 map('<leader>ls', '<CMD>LspStart<CR>', 'lsp start')
+-- stylua: ignore stop

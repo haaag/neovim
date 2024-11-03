@@ -1,4 +1,4 @@
--- lsp.servers.luad_ls
+-- lsp.servers.lualang
 return {
   { -- https://github.com/neovim/nvim-lspconfig
     'neovim/nvim-lspconfig',
@@ -6,9 +6,11 @@ return {
       servers = {
         lua_ls = {
           autostart = true,
-          -- on_attach = function(client, _)
-          --   client.server_capabilities.semanticTokensProvider = nil
-          -- end,
+          on_attach = function(client, _)
+            if client.server_capabilities.semanticTokensProvider then
+              client.server_capabilities.semanticTokensProvider = nil
+            end
+          end,
           settings = {
             Lua = {
               workspace = {

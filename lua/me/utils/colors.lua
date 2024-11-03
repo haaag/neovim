@@ -197,7 +197,7 @@ M.material_deep_ocean = function()
 end
 
 M.current = function()
-  return M.gruvbox_hard()
+  return M.gruvbox_material_light()
 end
 
 return M

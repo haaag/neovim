@@ -45,6 +45,7 @@ return { -- https://github.com/nvim-treesitter/nvim-treesitter
         'vim',
         'vimdoc',
         'yaml',
+        'xresources',
         'zathurarc',
       },
       incremental_selection = {

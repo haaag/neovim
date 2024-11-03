@@ -19,13 +19,10 @@ return {
       trigger = { signature_help = { enabled = true } },
       windows = {
         autocomplete = {
-          draw = 'reversed',
+          -- draw = {
+          --   columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind' } },
+          -- },
           border = vim.g.floating_window_border,
-        },
-        documentation = {
-          border = vim.g.floating_window_border,
-          auto_show = true,
-          auto_show_delay_ms = 200,
         },
         ghost_text = {
           enabled = true,

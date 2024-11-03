@@ -58,8 +58,8 @@ return {
     priority = 1000,
     enabled = true,
     config = function()
-      vim.o.background = 'dark'
-      vim.g.gruvbox_material_enable_bold = false
+      vim.o.background = 'light'
+      vim.g.gruvbox_material_enable_bold = true
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_transparent_background = true
       vim.g.gruvbox_material_dim_inactive_windows = false
@@ -78,6 +78,9 @@ return {
       vim.g.gruvbox_material_visual = 'grey background' -- 'reverse'
       vim.g.gruvbox_material_inlay_hints_background = 'none' -- 'dimmed'
       vim.cmd('colorscheme gruvbox-material')
+      if vim.o.background == 'light' then
+        vim.api.nvim_set_hl(0, 'LineNr', { fg = '#7c6f64' })
+      end
     end,
   },
 

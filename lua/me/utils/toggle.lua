@@ -1,6 +1,11 @@
 ---@class me.utils.toggle
 local M = {}
 local minimalist = false
+local maximize = {
+  toggle = false,
+  prev_height = 0,
+  prev_width = 0,
+}
 
 function M.statusline()
   ---@diagnostic disable-next-line: undefined-field
@@ -66,6 +71,21 @@ end
 function M.fmt_on_save()
   vim.g.enable_autoformat = not vim.g.enable_autoformat
   vim.print('toggle autofmt: ' .. tostring(vim.g.enable_autoformat))
+end
+
+function M.maximize()
+  local win = vim.api.nvim_get_current_win()
+  maximize.toggle = not maximize.toggle
+
+  if maximize.toggle then
+    maximize.prev_height = vim.api.nvim_win_get_height(win)
+    maximize.prev_width = vim.api.nvim_win_get_width(win)
+    vim.cmd('wincmd |') -- maximize window width
+    vim.cmd('wincmd _') -- maximize window height
+  else
+    vim.api.nvim_win_set_height(win, maximize.prev_height)
+    vim.api.nvim_win_set_width(win, maximize.prev_width)
+  end
 end
 
 return M

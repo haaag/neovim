@@ -13,16 +13,17 @@ autocmd('TextYankPost', {
 autocmd({ 'FileType' }, {
   group = augroup('easy_close_q'),
   pattern = {
-    'qf',
+    'dap-float',
+    -- 'fugitive',
+    'git',
     'help',
-    'man',
     'lspinfo',
-    'startuptime',
-    'netrw',
+    'man',
     'neotest-output',
     'neotest-output-panel',
-    'fugitive',
-    'dap-float',
+    'netrw',
+    'qf',
+    'startuptime',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

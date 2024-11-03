@@ -241,4 +241,25 @@ M.file_exist = function(f)
   return true
 end
 
+---@param fname string
+---@param t table
+M.save_json = function(fname, t)
+  local data = vim.fn.json_encode(t)
+  if not data then
+    Core.warnme('write: failed to encode data to JSON')
+    return false
+  end
+
+  local success, err = pcall(vim.fn.writefile, { data }, fname)
+  if not success then
+    Core.warnme('write: ' .. err)
+  end
+
+  return success
+end
+
+function M.set_root()
+  vim.fn.chdir(Core.get_root())
+end
+
 return M

@@ -5,14 +5,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
     local map = Core.keymap_buf
     local bufnr = event.buf
-
     map(bufnr, 'gd', function()
       require('fzf-lua').lsp_definitions({ unique_line_items = true })
     end, 'goto definition')
-
-    map(bufnr, 'gr', function()
-      require('fzf-lua').lsp_references({ unique_line_items = true })
-    end, 'goto references')
   end,
   desc = 'set some LSP keybinds for LUA files',
 })
