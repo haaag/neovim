@@ -1,0 +1,23 @@
+{
+  "vim.print": {
+    "prefix": ["vp", "pp"],
+    "body": "vim.print(${1})",
+    "description": "vim print"
+  },
+  "module create": {
+    "prefix": ["Mlo"],
+    "body": [
+      "local M = {}\n",
+      "M.${1:fnName} = function($2)",
+      "\t$3",
+      "end\n",
+      "return M"
+    ],
+    "description": "module create"
+  },
+  "module fn": {
+    "prefix": ["Mfn"],
+    "body": ["M.${1:fnName} = function($2)", "\t$3", "end\n"],
+    "description": "module function"
+  }
+}
