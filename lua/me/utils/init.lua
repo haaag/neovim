@@ -5,6 +5,7 @@
 ---@field colors me.utils.colors
 ---@field git me.utils.git
 ---@field env me.utils.env
+---@field misc me.utils.misc
 local M = {}
 
 setmetatable(M, {

@@ -79,7 +79,8 @@ map('<leader>br', Core.set_root, 'set root')
 -- misc
 -- stylua: ignore start
 map('<leader>mL', ':Lazy<CR>', 'open Lazy')
-map('<leader>bdA', function () vim.cmd('bufdo bd') end, 'close all')
-map('<leader>bdC', function () vim.cmd('%bd|e#|bd#') end, 'close all but this one')
+map('<leader>bdA', function() vim.cmd('bufdo bd') end, 'close all')
+map('<leader>bdC', function() vim.cmd('%bd|e#|bd#') end, 'close all but this one')
 map('<leader>ls', '<CMD>LspStart<CR>', 'lsp start')
+map('<leader>mb', function() Core.misc.banner() end, 'insert banner' )
 -- stylua: ignore stop
