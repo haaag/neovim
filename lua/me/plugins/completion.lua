@@ -15,21 +15,25 @@ return {
         use_nvim_cmp_as_default = true,
       },
       nerd_font_variant = 'mono', -- 'normal'
-      accept = { auto_brackets = { enabled = false } },
-      trigger = { signature_help = { enabled = true } },
-      windows = {
-        autocomplete = {
-          -- draw = {
-          --   columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind' } },
-          -- },
+      completion = {
+        menu = {
           border = vim.g.floating_window_border,
         },
+        documentation = {
+          auto_show = true,
+          window = {
+            border = vim.g.floating_window_border,
+          },
+        },
+      },
+      windows = {
         ghost_text = {
           enabled = true,
         },
       },
       kind_icons = Core.icons.lsp.kinds,
-      keymap = 'default',
+      keymap = { preset = 'default' },
+      signature = { enabled = true },
     },
   },
 }
