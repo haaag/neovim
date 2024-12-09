@@ -1,18 +1,26 @@
 -- formatters
 
 local goimports = {
-  args = { '-rm-unused', '-format', '$FILENAME' },
+  args = { '-rm-unused', '-set-alias', '-format', '$FILENAME' },
 }
 
 return {
   { -- https://github.com/stevearc/conform.nvim
     'stevearc/conform.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     enabled = true,
     -- stylua: ignore
     keys = {
       { '<leader>lF', function() Core.toggle.fmt_on_save() end, desc = 'toggle fmt on save' },
+      {
+        "<leader>lf",
+        function()
+          require("conform").format({ lsp_fallback = true, async = false, timeout_ms = 1000 })
+        end,
+        mode = { "n", "v" },
+        desc = "format file or range (in visual mode)",
+      },
     },
     config = function()
       local conform = require('conform')
@@ -50,10 +58,6 @@ return {
           return { timeout_ms = 500, lsp_format = 'fallback', lsp_fallback = true }
         end,
       })
-
-      vim.keymap.set({ 'n', 'v' }, '<leader>lf', function()
-        conform.format({ lsp_fallback = true, async = false, timeout_ms = 1000 })
-      end, { desc = 'format file or range (in visual mode)' })
     end,
   },
 }
