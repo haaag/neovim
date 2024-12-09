@@ -1,0 +1,7 @@
+{
+  "if err :=": {
+    "prefix": "irr",
+    "body": ["if err := ${1}; err != nil {", "\treturn err", "}"],
+    "description": "Snippet for if err != nil"
+  }
+}
