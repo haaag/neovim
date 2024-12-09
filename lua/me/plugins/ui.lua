@@ -36,28 +36,10 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/akinsho/bufferline.nvim
-    'akinsho/bufferline.nvim',
-    after = 'gruvbox',
-    lazy = false,
-    enabled = true,
-    opts = function()
-      local icons = Core.icons.all()
-      local bufferline = require('bufferline')
-      return {
-        options = {
-          style_preset = bufferline.style_preset.minimal,
-          always_show_bufferline = false,
-          show_buffer_close_icons = false,
-          modified_icon = icons.ui.SmallCircle,
-          indicator = {
-            -- icon = icons.bar.d,
-            icon = ' ',
-            style = 'icon',
-          },
-        },
-      }
-    end,
+  { -- https://github.com/echasnovski/mini.nvim
+    'echasnovski/mini.tabline',
+    version = false,
+    opts = {},
   },
 
   { -- https://github.com/NvChad/nvim-colorizer.lua

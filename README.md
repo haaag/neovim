@@ -80,7 +80,7 @@
   Nerd fonts moved some symbols with version 3.0
 - [tzachar/local-highlight.nvim](https://github.com/tzachar/local-highlight.nvim) -
   Using regexes and extmarks to highlight uses of word under the cursor.
-- [akinsho/bufferline.nvim](https://github.com/akinsho/bufferline.nvim) -
+- [echasnovski/mini.tabline](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-tabline.md) -
   Minimal and fast tabline showing listed buffers.
 - [nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) -
   High-performance color highlighter which has no external dependencies!.
