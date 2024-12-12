@@ -231,6 +231,11 @@ M.warnme = function(s)
   vim.api.nvim_echo({ { s, 'WarningMsg' } }, true, {})
 end
 
+---@param s string
+M.notify = function(s)
+  vim.notify(s)
+end
+
 ---@return boolean
 ---@param f string
 M.file_exist = function(f)

@@ -29,7 +29,7 @@ return {
         formatters_by_ft = {
           ['_'] = { 'trim_whitespace' },
           ['css'] = { 'prettier' },
-          ['go'] = { 'goimports-reviser', 'golines', 'gofumpt', 'golines' },
+          ['go'] = { 'goimports-reviser', 'gofumpt', 'golines' },
           ['html'] = { 'prettier' },
           ['javascript'] = { 'prettier' },
           ['javascriptreact'] = { 'prettier' },

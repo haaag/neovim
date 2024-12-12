@@ -25,7 +25,6 @@ opt.tabstop       = 2 -- Number of spaces tabs count for
 opt.expandtab     = true -- Use spaces instead of tabs
 opt.cmdheight     = 1 -- More space for displaying messages
 opt.showtabline   = 1 -- Disable tabline
--- opt.tabline       = ''
 opt.splitbelow    = true -- Horizontal splits will automatically be below
 opt.splitright    = true -- Vertical splits will automatically be to the right
 opt.laststatus    = 0 -- Always display the status line
@@ -92,10 +91,16 @@ vim.g.floating_window_border_dark = {
 -- others
 vim.g.python3_host_prog = os.getenv('HOME') .. '/.local/debugpy/bin/python'
 vim.g.loaded_perl_provider = false
-vim.g.enable_autoformat = false
+vim.g.enable_autoformat = true
 
 -- cursor block
 vim.opt.guicursor = {
   'a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor',
   'sm:block-blinkwait175-blinkoff150-blinkon175',
 }
+
+vim.filetype.add({
+  extension = { scratchpad = 'scratchpad' },
+  filename = { ['Scratchpad'] = 'scratchpad' },
+  pattern = { ['%.scratchpad$'] = 'scratchpad' },
+})

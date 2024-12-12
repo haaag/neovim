@@ -9,9 +9,25 @@ return {
     cmd = { 'FzfLua' },
     config = function()
       require('fzf-lua').setup({
-        'default',
+        Core.env.get('TMUX_FZF_PROFILE', 'default'),
+        -- 'max-perf',
+        oldfiles = {
+          include_current_session = true,
+        },
+        previewers = {
+          builtin = {
+            syntax_limit_b = 1024 * 100, -- 100KB
+          },
+        },
         fzf_opts = {
           ['--layout'] = 'reverse-list',
+          ['--cycle'] = true,
+        },
+        keymap = {
+          fzf = {
+            -- use cltr-q to select all items and convert to quickfix list
+            ['ctrl-q'] = 'select-all+accept',
+          },
         },
       })
     end,
@@ -30,6 +46,7 @@ return {
       { '<leader>sg', '<CMD>FzfLua live_grep<CR>', desc = 'search by grep' },
       { '<leader>sw', '<CMD>FzfLua grep_cword<CR>', desc = 'search current word', mode = 'n' },
       { '<leader>sw', '<CMD>FzfLua grep_visual<CR>', desc = 'search current word', mode = 'v' },
+      { '<leader>s?', function() require('fzf-lua').oldfiles({ cwd_only = true, stat_file = true}) end, desc = 'cwd history files', mode = 'n'},
       { '<leader><space>', function()
         require('fzf-lua').buffers({
           winopts = {
@@ -72,7 +89,6 @@ return {
   },
 
   { -- https://github.com/haaag/projects.nvim
-    -- 'haaag/projects.nvim',
     dir = '~/dev/git/lualang/projects.nvim',
     dependencies = {
       'ibhagwan/fzf-lua',
@@ -84,33 +100,9 @@ return {
       },
       color = true,
       icons = {
-        enabled = true,
         default = '',
         warning = '',
-        color = '#fd4d5d',
-      },
-    },
-    keys = {
-      { '<leader>sp', '<CMD>FzfLuaProjects<CR>', desc = 'search projects' },
-    },
-    enabled = true,
-  },
-
-  { -- https://github.com/haaag/projects.nvim
-    -- 'haaag/projects.nvim',
-    dir = '~/dev/git/lualang/projects.nvim',
-    dependencies = {
-      'ibhagwan/fzf-lua',
-      'nvim-tree/nvim-web-devicons',
-    },
-    opts = {
-      prompt = 'Projects>> ',
-      color = true,
-      icons = {
         enabled = true,
-        default = '',
-        warning = '',
-        color = '#fd4d5d',
       },
     },
     keys = {

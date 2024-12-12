@@ -1,3 +1,5 @@
+local neocodeium_started = false
+
 return {
 
   { -- https://github.com/stevearc/aerial.nvim
@@ -14,7 +16,19 @@ return {
     'monkoose/neocodeium',
     cmd = 'NeoCodeium',
     keys = {
-      { '<leader>lS', '<CMD>NeoCodeium enable<CR>', desc = 'neocodeium start' },
+      {
+        '<leader>lS',
+        function()
+          if not neocodeium_started then
+            Core.notify('neocodeium started')
+            vim.cmd('NeoCodeium enable')
+            neocodeium_started = true
+          else
+            Core.notify('neocodeium already started')
+          end
+        end,
+        desc = 'neocodeium start',
+      },
     },
     config = function()
       local map = vim.keymap.set

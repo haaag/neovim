@@ -82,6 +82,7 @@
     "prefix": ["shhas"],
     "body": [
       "function _has {",
+      "\tlocal c",
       "\tlocal verbose=false",
       "\tif [[ \\$1 == '-v' ]]; then",
       "\t\tverbose=true",
@@ -92,9 +93,9 @@
       "\t\tif ! command -v \"\\$c\" &>/dev/null; then",
       "\t\t\t[[ \"\\$verbose\" == true ]] && _logerr \"\\$c not found\"",
       "\t\t\treturn 1",
-      "\tfi",
+      "\t\tfi",
       "\tdone",
-      "}\n"
+      "}"
     ],
     "description": "checks if commands exist"
   },

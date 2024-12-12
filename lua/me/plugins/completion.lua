@@ -11,12 +11,12 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-      highlight = {
-        use_nvim_cmp_as_default = true,
-      },
-      nerd_font_variant = 'mono', -- 'normal'
       completion = {
         menu = {
+          -- auto_show = false,
+          -- draw = {
+          --   columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', gap = 1, 'kind' } },
+          -- },
           border = vim.g.floating_window_border,
         },
         documentation = {
@@ -25,13 +25,28 @@ return {
             border = vim.g.floating_window_border,
           },
         },
+        ghost_text = { enabled = false },
       },
-      windows = {
-        ghost_text = {
-          enabled = true,
+      sources = {
+        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {
+          lazydev = {
+            name = 'LazyDev',
+            module = 'lazydev.integrations.blink',
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
         },
+        -- Remove 'buffer' if you don't want text completions, by default it's only enabled when LSP returns no items
+        -- default = { 'lsp', 'path', 'snippets', 'buffer' },
+        -- Disable cmdline completions
+        cmdline = {},
       },
-      kind_icons = Core.icons.lsp.kinds,
+      appearance = {
+        -- kind_icons = Core.icons.lsp.kinds,
+        nerd_font_variant = 'mono', -- 'normal'
+        use_nvim_cmp_as_default = true,
+      },
       keymap = { preset = 'default' },
       signature = { enabled = true },
     },

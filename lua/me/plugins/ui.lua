@@ -39,7 +39,9 @@ return {
   { -- https://github.com/echasnovski/mini.nvim
     'echasnovski/mini.tabline',
     version = false,
-    opts = {},
+    opts = {
+      show_icons = false,
+    },
   },
 
   { -- https://github.com/NvChad/nvim-colorizer.lua

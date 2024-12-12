@@ -1,15 +1,15 @@
 return {
 
-  --[[ { -- https://github.com/catppuccin/nvim
+  { -- https://github.com/catppuccin/nvim
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
     lazy = false,
-    enabled = true,
+    enabled = Core.env.get('NVIM_THEME', '') == 'catppuccin',
     opts = function()
       return {
-        flavour = 'mocha',
-        transparent_background = true,
+        flavour = 'latte',
+        transparent_background = false,
         show_end_of_buffer = true,
         styles = {
           comments = { 'italic' },
@@ -25,12 +25,14 @@ return {
           types = {},
           operators = {},
         },
+        default_integrations = false,
         integrations = {
-          cmp = true,
+          blink_cmp = true,
+          cmp = false,
           gitsigns = true,
           nvimtree = false,
           treesitter = true,
-          treesitter_context = false,
+          treesitter_context = true,
           neotest = true,
           lsp_trouble = true,
           which_key = false,
@@ -40,7 +42,7 @@ return {
           mason = true,
           dap = true,
           dap_ui = true,
-
+          fzf = true,
           indent_blankline = { enabled = true, colored_indent_levels = true },
           mini = { enabled = true, indentscope_color = '' },
         },
@@ -50,16 +52,16 @@ return {
       require('catppuccin').setup(opts)
       vim.cmd.colorscheme('catppuccin')
     end,
-  }, ]]
+  },
 
   { -- https://github.com/sainnhe/gruvbox-material
     'sainnhe/gruvbox-material',
     lazy = false,
     priority = 1000,
-    enabled = true,
+    enabled = Core.env.get('NVIM_THEME', '') == 'gruvbox',
     config = function()
       vim.o.background = 'light'
-      vim.g.gruvbox_material_enable_bold = true
+      vim.g.gruvbox_material_enable_bold = false
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_transparent_background = true
       vim.g.gruvbox_material_dim_inactive_windows = false
@@ -72,11 +74,12 @@ return {
       vim.g.gruvbox_material_show_eob = true
       vim.g.gruvbox_material_current_word = 'underline'
       -- vim.g.gruvbox_material_menu_selection_background = 'red'
-      vim.g.gruvbox_material_float_style = 'bright' -- 'bright', 'dim'
+      vim.g.gruvbox_material_float_style = 'day' -- 'day', 'dim'
       vim.g.gruvbox_material_foreground = 'orignal' -- 'material' 'original' 'mix'
       vim.g.gruvbox_material_diagnostic_line_highlight = true
       vim.g.gruvbox_material_visual = 'grey background' -- 'reverse'
       vim.g.gruvbox_material_inlay_hints_background = 'none' -- 'dimmed'
+      vim.g.gruvbox_material_better_performance = true
       vim.cmd('colorscheme gruvbox-material')
       if vim.o.background == 'light' then
         vim.api.nvim_set_hl(0, 'LineNr', { fg = '#7c6f64' })
@@ -84,11 +87,11 @@ return {
     end,
   },
 
-  --[[ { -- https://github.com/folke/tokyonight.nvim
+  { -- https://github.com/folke/tokyonight.nvim
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
-    enabled = true,
+    enabled = Core.env.get('NVIM_THEME', '') == 'tokyonight',
     opts = function()
       return {
         style = 'storm',
@@ -120,5 +123,5 @@ return {
       tokyonight.setup(opts)
       tokyonight.load()
     end,
-  }, ]]
+  },
 }

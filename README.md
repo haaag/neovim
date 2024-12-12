@@ -31,8 +31,6 @@
 
 - [Saghen/blink.cmp](https://github.com/Saghen/blink.cmp) - Performant,
   batteries-included completion plugin for Neovim.
-- [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim) - Smart and
-  Powerful comment plugin.
 - [stevearc/aerial.nvim](https://github.com/stevearc/aerial.nvim) -
   A code outline window for skimming and quick navigation
 

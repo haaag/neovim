@@ -25,7 +25,11 @@ return { -- https://github.com/nvim-treesitter/nvim-treesitter
     ---@type TSConfig
     ---@diagnostic disable-next-line: missing-fields
     opts = {
-      highlight = { enable = true, additional_vim_regex_highlighting = false },
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+        disable = { 'scratchpad' },
+      },
       indent = { enable = true },
       context = { enabled = true, mode = 'cursor', max_lines = 3 },
       ensure_installed = {

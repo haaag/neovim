@@ -3,8 +3,10 @@ local M = {}
 local minimalist = false
 local maximize = {
   toggle = false,
-  prev_height = 0,
-  prev_width = 0,
+  state = {
+    height = 0,
+    width = 0,
+  },
 }
 
 function M.statusline()
@@ -78,13 +80,13 @@ function M.maximize()
   maximize.toggle = not maximize.toggle
 
   if maximize.toggle then
-    maximize.prev_height = vim.api.nvim_win_get_height(win)
-    maximize.prev_width = vim.api.nvim_win_get_width(win)
+    maximize.state.height = vim.api.nvim_win_get_height(win)
+    maximize.state.width = vim.api.nvim_win_get_width(win)
     vim.cmd('wincmd |') -- maximize window width
     vim.cmd('wincmd _') -- maximize window height
   else
-    vim.api.nvim_win_set_height(win, maximize.prev_height)
-    vim.api.nvim_win_set_width(win, maximize.prev_width)
+    vim.api.nvim_win_set_height(win, maximize.state.height)
+    vim.api.nvim_win_set_width(win, maximize.state.width)
   end
 end
 

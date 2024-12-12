@@ -5,6 +5,8 @@ local toggle = Core.toggle
 local options = { noremap = true, silent = true }
 local silent = { silent = true }
 
+local lsp_started = false
+
 -- shortcut to use blackhole register by default
 nmap('v', 'd', '"_d', options)
 nmap('v', 'D', '"_D', options)
@@ -26,8 +28,8 @@ nmap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- use ctlr + hjkl to resize windows:
 nmap('n', '<C-h>', ':vertical resize -2<CR>', options)
 nmap('n', '<C-l>', ':vertical resize +2<CR>', options)
--- nmap('n', '<C-J>', ':horizontal resize -2<CR>', options) -- conflict with luasnip
--- nmap('n', '<C-K>', ':horizontal resize +2<CR>', options) -- conflict with luasnip
+nmap('n', '<C-J>', ':horizontal resize -2<CR>', options) -- conflict with luasnip
+nmap('n', '<C-K>', ':horizontal resize +2<CR>', options) -- conflict with luasnip
 
 -- keep search results centred
 nmap('n', 'n', 'nzzzv', silent)
@@ -75,12 +77,27 @@ map('<leader>bs', toggle.diagnostic_signs, 'toggle diagnostics signs')
 map('<leader>bS', toggle.signcolumn, 'toggle signcolumn')
 map('<C-w>m', toggle.maximize, 'toggle max')
 map('<leader>br', Core.set_root, 'set root')
+map('<leader>bB', function()
+  if vim.o.background == 'dark' then
+    vim.o.background = 'light'
+  else
+    vim.o.background = 'dark'
+  end
+end, 'set background')
 
 -- misc
 -- stylua: ignore start
 map('<leader>mL', ':Lazy<CR>', 'open Lazy')
 map('<leader>bdA', function() vim.cmd('bufdo bd') end, 'close all')
 map('<leader>bdC', function() vim.cmd('%bd|e#|bd#') end, 'close all but this one')
-map('<leader>ls', '<CMD>LspStart<CR>', 'lsp start')
+map('<leader>ls', function()
+  if not lsp_started then
+    Core.notify('lsp started')
+    vim.cmd('LspStart')
+    lsp_started = true
+  else
+    Core.notify('lsp already started')
+  end
+end, 'lsp start')
 map('<leader>mb', function() Core.misc.banner() end, 'insert banner' )
 -- stylua: ignore stop
