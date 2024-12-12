@@ -32,7 +32,7 @@
   "logerr": {
     "prefix": "shlogerr",
     "body": [
-      "function err {",
+      "function _logerr {",
       "\tprintf \"%s: %s\\n\" \"\\${PROG:-err}\" \"\\$*\" >&2",
       "\texit 1",
       "}\n\n"
@@ -68,8 +68,7 @@
   "loggers": {
     "prefix": "shloggers",
     "body": [
-      "PROG=\"\\${0##*/}\"\n",
-      "function err {",
+      "function _logerr {",
       "\tprintf \"%s: %s\\n\" \"\\${PROG:-err}\" \"\\$*\" >&2",
       "\texit 1",
       "}\n",
@@ -79,23 +78,10 @@
     ],
     "description": "logger functions"
   },
-  "_notify": {
-    "prefix": ["shnotify"],
-    "body": [
-      "function _notify {",
-      "\tlocal prog",
-      "\tlocal mesg=\"<b>\\$1</b>\"",
-      "\tlocal icon=\"\\${2:-dialog-warning}\"",
-      "\tprog=\\$(echo \"\\$PROG\" | tr '[:lower:]' '[:upper:]')",
-      "\tnotify-send -i \"\\$icon\" \"\\$prog\" \"\\$mesg\"",
-      "}\n"
-    ],
-    "description": "notification with the program name and a custom message."
-  },
   "has": {
     "prefix": ["shhas"],
     "body": [
-      "function has {",
+      "function _has {",
       "\tlocal verbose=false",
       "\tif [[ \\$1 == '-v' ]]; then",
       "\t\tverbose=true",
@@ -104,12 +90,69 @@
       "\tfor c in \"\\$@\"; do",
       "\t\tc=\"\\${c%% *}\"",
       "\t\tif ! command -v \"\\$c\" &>/dev/null; then",
-      "\t\t\t[[ \"\\$verbose\" == true ]] && err \"\\$c not found\"",
+      "\t\t\t[[ \"\\$verbose\" == true ]] && _logerr \"\\$c not found\"",
       "\t\t\treturn 1",
       "\tfi",
       "\tdone",
       "}\n"
     ],
     "description": "checks if commands exist"
+  },
+  "in_terminal": {
+    "prefix": ["shin_terminal"],
+    "body": [
+      "function _in_terminal {",
+      "\tif [[ -t 0 ]]; then",
+      "\t\treturn 0",
+      "\tfi",
+      "\treturn 1",
+      "}\n"
+    ],
+    "description": "checks if the script is running in a terminal"
+  },
+  "is_tty": {
+    "prefix": ["shistty"],
+    "body": [
+      "function _istty {",
+      "\tif [[ \"\\$(tty)\" =~ ^/dev/tty[0-9]+\\$ ]]; then",
+      "\t\treturn 0",
+      "\tfi",
+      "",
+      "\treturn 1",
+      "}\n"
+    ],
+    "description": "checks if the terminal is a TTY device"
+  },
+  "notifyme": {
+    "prefix": ["shnotifyme"],
+    "body": [
+      "function _notifyme {",
+      "\tlocal prog",
+      "\tlocal mesg=\"<b>\\$1</b>\"",
+      "\tlocal icon=\"\\${2:-dialog-warning}\"",
+      "\tprog=\\$(echo \"\\${PROG:-\\${0##*/}}\" | tr '[:lower:]' '[:upper:]')",
+      "\tnotify-send -i \"\\$icon\" \"\\$prog\" \"\\$mesg\"",
+      "}\n"
+    ],
+    "description": "sends a notification with a message and an optional icon, using the PROG variable or default to 'info'"
+  },
+  "is_available": {
+    "prefix": ["shis_available"],
+    "body": [
+      "function _is_available {",
+      "\tlocal target=\\$1",
+      "\tshift",
+      "\tlocal arr=(\"\\$@\")",
+      "",
+      "\tfor item in \"\\${arr[@]}\"; do",
+      "\t\tif [[ \"\\$item\" == \"\\$target\" ]]; then",
+      "\t\t\treturn 0",
+      "\t\tfi",
+      "\tdone",
+      "",
+      "\treturn 1",
+      "}\n"
+    ],
+    "description": "checks if a target is in the array"
   }
 }
