@@ -91,7 +91,7 @@ vim.g.floating_window_border_dark = {
 -- others
 vim.g.python3_host_prog = os.getenv('HOME') .. '/.local/debugpy/bin/python'
 vim.g.loaded_perl_provider = false
-vim.g.enable_autoformat = true
+vim.g.enable_autoformat = false
 
 -- cursor block
 vim.opt.guicursor = {

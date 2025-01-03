@@ -91,7 +91,7 @@
       "\tfor c in \"\\$@\"; do",
       "\t\tc=\"\\${c%% *}\"",
       "\t\tif ! command -v \"\\$c\" &>/dev/null; then",
-      "\t\t\t[[ \"\\$verbose\" == true ]] && _logerr \"\\$c not found\"",
+      "\t\t\t[[ \"\\$verbose\" == true ]] && _logerr \"\\$c dependency not found\"",
       "\t\t\treturn 1",
       "\t\tfi",
       "\tdone",

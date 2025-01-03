@@ -12,6 +12,7 @@ return {
     ---@type blink.cmp.Config
     opts = {
       completion = {
+        accept = { auto_brackets = { enabled = false } },
         menu = {
           -- auto_show = false,
           -- draw = {

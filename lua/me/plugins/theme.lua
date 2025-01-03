@@ -70,7 +70,7 @@ return {
       vim.g.gruvbox_material_background = 'hard' -- hard, medium, soft
       vim.g.gruvbox_material_diagnostic_virtual_text = 'colored' -- grey, colored, highlighted
       vim.g.gruvbox_material_spell_foreground = 'colored' -- none
-      vim.g.gruvbox_material_ui_contrast = 'low' -- 'high'
+      vim.g.gruvbox_material_ui_contrast = 'high' -- 'low'
       vim.g.gruvbox_material_show_eob = true
       vim.g.gruvbox_material_current_word = 'underline'
       -- vim.g.gruvbox_material_menu_selection_background = 'red'

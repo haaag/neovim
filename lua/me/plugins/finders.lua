@@ -10,7 +10,10 @@ return {
     config = function()
       require('fzf-lua').setup({
         Core.env.get('TMUX_FZF_PROFILE', 'default'),
-        -- 'max-perf',
+        defaults = {
+          file_icons = true,
+          git_icons = true,
+        },
         oldfiles = {
           include_current_session = true,
         },
@@ -37,6 +40,7 @@ return {
       -- search
       -- { '<C-p>', function() Core.find_files() end, desc = 'search files' },
       { '<C-p>', '<CMD>FzfLua files<CR>', desc = 'search files' },
+      ---@diagnostic disable-next-line: undefined-field
       { '<leader>sf', function() require('fzf-lua').files({ cwd = vim.uv.cwd() }) end, desc = 'search all files' },
       { '<leader>?', '<CMD>FzfLua oldfiles<CR>', desc = '[?] find recently opened files' },
       { '<leader>:', '<CMD>FzfLua command_history<CR>', desc = 'search command history' },
@@ -100,8 +104,6 @@ return {
       },
       color = true,
       icons = {
-        default = '',
-        warning = '',
         enabled = true,
       },
     },

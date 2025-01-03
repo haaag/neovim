@@ -11,12 +11,8 @@ local maximize = {
 
 function M.statusline()
   ---@diagnostic disable-next-line: undefined-field
-  local value = vim.opt_local.laststatus._value
-  if not Core.contains({ '0', 0 }, value) then
-    vim.opt_local.laststatus = 0
-  else
-    vim.opt_local.laststatus = 3
-  end
+  local laststatus = vim.opt_local.laststatus._value
+  vim.opt_local.laststatus = vim.tbl_contains({ '0' }, tostring(laststatus)) and 0 or 3
 end
 
 function M.laststatus()
@@ -25,12 +21,14 @@ function M.laststatus()
 end
 
 function M.numbers()
+  ---@diagnostic disable-next-line: undefined-field
   local enabled = not Core.boolme(vim.opt_local.relativenumber._value)
   vim.opt_local.number = enabled
   vim.opt_local.relativenumber = enabled
 end
 
 function M.signcolumn()
+  ---@diagnostic disable-next-line: undefined-field
   if Core.boolme(vim.opt_local.signcolumn._value) then
     vim.opt_local.signcolumn = 'no'
     return

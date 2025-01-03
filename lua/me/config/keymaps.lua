@@ -8,18 +8,18 @@ local silent = { silent = true }
 local lsp_started = false
 
 -- shortcut to use blackhole register by default
-nmap('v', 'd', '"_d', options)
-nmap('v', 'D', '"_D', options)
-nmap('v', 'c', '"_c', options)
-nmap('v', 'C', '"_C', options)
-nmap('v', 'x', '"_x', options)
-nmap('v', 'X', '"_X', options)
-nmap('n', 'd', '"_d', options)
-nmap('n', 'D', '"_D', options)
-nmap('n', 'c', '"_c', options)
-nmap('n', 'C', '"_C', options)
-nmap('n', 'x', '"_x', options)
-nmap('n', 'X', '"_X', options)
+-- nmap('v', 'd', '"_d', options)
+-- nmap('v', 'D', '"_D', options)
+-- nmap('v', 'c', '"_c', options)
+-- nmap('v', 'C', '"_C', options)
+-- nmap('v', 'x', '"_x', options)
+-- nmap('v', 'X', '"_X', options)
+-- nmap('n', 'd', '"_d', options)
+-- nmap('n', 'D', '"_D', options)
+-- nmap('n', 'c', '"_c', options)
+-- nmap('n', 'C', '"_C', options)
+-- nmap('n', 'x', '"_x', options)
+-- nmap('n', 'X', '"_X', options)
 
 -- remap for dealing with word wrap
 nmap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })

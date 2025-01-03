@@ -26,7 +26,7 @@ return {
         ['*'] = { 'codespell', 'misspell', 'typos' },
         -- ['c'] = { 'cpplint' },
         -- ['gitcommit'] = { 'commitlint' },
-        ['go'] = { 'golangcilint' },
+        ['go'] = { 'golangcilint', 'typos' },
         ['javascript'] = { 'eslint_d' },
         ['javascriptreact'] = { 'eslint_d' },
         ['make'] = { 'checkmake' },
@@ -37,10 +37,15 @@ return {
         ['typescriptreact'] = { 'eslint_d' },
       }
 
-      autocmd({ 'InsertLeave', 'BufWritePost' }, {
+      autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
         group = Core.augroup('lint'),
         callback = function()
-          lint.try_lint()
+          -- Only run the linter in buffers that you can modify in order to
+          -- avoid superfluous noise, notably within the handy LSP pop-ups that
+          -- describe the hovered symbol using Markdown.
+          if vim.opt_local.modifiable:get() then
+            lint.try_lint()
+          end
         end,
         desc = 'lint code via nvim-lint',
       })

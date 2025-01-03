@@ -1,4 +1,4 @@
-local neocodeium_started = false
+local neocodeium_enabled = false
 
 return {
 
@@ -19,24 +19,20 @@ return {
       {
         '<leader>lS',
         function()
-          if not neocodeium_started then
-            Core.notify('neocodeium started')
-            vim.cmd('NeoCodeium enable')
-            neocodeium_started = true
-          else
-            Core.notify('neocodeium already started')
-          end
+          neocodeium_enabled = not neocodeium_enabled
+          vim.cmd('NeoCodeium toggle')
+          Core.notify(neocodeium_enabled and 'neocodeium enabled' or 'neocodeium disabled')
         end,
-        desc = 'neocodeium start',
+        desc = 'neocodeium toggle',
       },
     },
     config = function()
-      local map = vim.keymap.set
+      local map = Core.keymap
       local nc = require('neocodeium')
       nc.setup({ enabled = false })
 
-      map('i', '<C-g>', nc.accept)
-      map('i', '<M-;>', nc.cycle_or_complete)
+      map('<C-g>', nc.accept, 'neocodeium accept', 'i')
+      map('<M-;>', nc.cycle_or_complete, 'neocodeium cycle', 'i')
     end,
   },
 
