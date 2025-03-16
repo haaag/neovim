@@ -6,6 +6,8 @@
 ---@field git me.utils.git
 ---@field env me.utils.env
 ---@field misc me.utils.misc
+---@field retain me.utils.retain
+---@field fold me.utils.fold
 local M = {}
 
 setmetatable(M, {

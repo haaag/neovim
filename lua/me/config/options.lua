@@ -55,8 +55,11 @@ opt.inccommand    = "nosplit" -- preview incremental substitute
 opt.confirm       = true -- Confirm to save changes before exiting modified buffer
 opt.showbreak     = '↪'
 opt.smoothscroll  = true
-opt.foldmethod    = "expr"
-opt.foldexpr      = "nvim_treesitter#foldexpr()"
+opt.foldmethod    = 'expr'
+opt.foldminlines  = 0             -- Allow closing even 1-line folds.
+opt.foldexpr      = 'v:lua.Core.fold.expr(v:lnum)'
+-- opt.foldexpr      = "nvim_treesitter#foldexpr()"
+opt.foldtext      = 'v:lua.Core.fold.text()'
 opt.foldenable    = false
 
 -- see :h shortmess
