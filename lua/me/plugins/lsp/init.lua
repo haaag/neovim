@@ -24,7 +24,6 @@ return {
       inlay_hints = { enabled = true },
       document_highlight = { enabled = true },
       servers = {
-        clangd = { autostart = false },
         jsonls = { autostart = false },
         taplo = {},
         yamlls = {},
@@ -71,7 +70,6 @@ return {
   { -- https://github.com/williamboman/mason.nvim
     'williamboman/mason.nvim',
     cmd = 'Mason',
-    keys = { { '<leader>mM', '<CMD>Mason<CR>', desc = 'open mason' } },
     build = ':MasonUpdate',
     enabled = true,
     opts_extend = { 'ensure_installed' },

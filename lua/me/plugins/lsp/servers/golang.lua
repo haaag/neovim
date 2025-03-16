@@ -140,13 +140,13 @@ return {
     'nvim-neotest/neotest',
     dependencies = {
       {
-        'nvim-neotest/neotest-go', -- https://github.com/nvim-neotest/neotest-go
+        'fredrikaverpil/neotest-golang', -- https://github.com/fredrikaverpil/neotest-golang
         enabled = Core.env.testing,
       },
     },
     opts = {
       adapters = {
-        ['neotest-go'] = {
+        ['neotest-golang'] = {
           go_test_args = { '-v', '-race', '-count=1', '-timeout=60s' },
           dap_go_enabled = true,
         },

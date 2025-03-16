@@ -3,9 +3,6 @@ return { -- https://github.com/yioneko/vtsls
     'neovim/nvim-lspconfig',
     opts = {
       servers = {
-        tsserver = {
-          enabled = false,
-        },
         vtsls = {
           -- explicitly add default filetypes, so that we can extend
           -- them in related extras
@@ -44,11 +41,6 @@ return { -- https://github.com/yioneko/vtsls
             },
           },
         },
-      },
-      setup = {
-        tsserver = function()
-          return true
-        end,
       },
     },
   },
