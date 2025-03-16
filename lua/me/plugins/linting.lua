@@ -27,6 +27,7 @@ return {
         -- ['c'] = { 'cpplint' },
         -- ['gitcommit'] = { 'commitlint' },
         ['go'] = { 'golangcilint', 'typos' },
+        ['htmldjango'] = { 'djlint' },
         ['javascript'] = { 'eslint_d' },
         ['javascriptreact'] = { 'eslint_d' },
         ['make'] = { 'checkmake' },

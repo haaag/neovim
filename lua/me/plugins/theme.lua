@@ -74,15 +74,20 @@ return {
       vim.g.gruvbox_material_show_eob = true
       vim.g.gruvbox_material_current_word = 'underline'
       -- vim.g.gruvbox_material_menu_selection_background = 'red'
-      vim.g.gruvbox_material_float_style = 'day' -- 'day', 'dim'
+      vim.g.gruvbox_material_float_style = 'storm' -- 'storm', 'dim'
       vim.g.gruvbox_material_foreground = 'orignal' -- 'material' 'original' 'mix'
       vim.g.gruvbox_material_diagnostic_line_highlight = true
       vim.g.gruvbox_material_visual = 'grey background' -- 'reverse'
       vim.g.gruvbox_material_inlay_hints_background = 'none' -- 'dimmed'
       vim.g.gruvbox_material_better_performance = true
       vim.cmd('colorscheme gruvbox-material')
+
+      local set_hl = vim.api.nvim_set_hl
       if vim.o.background == 'light' then
-        vim.api.nvim_set_hl(0, 'LineNr', { fg = '#7c6f64' })
+        set_hl(0, 'LineNr', { fg = '#7c6f64' })
+        set_hl(0, 'Folded', { fg = '#928374', bg = '#e5d5ad', italic = true })
+      else
+        set_hl(0, 'Folded', { bg = '#3c3836', fg = '#83a598', italic = true })
       end
     end,
   },
@@ -94,7 +99,7 @@ return {
     enabled = Core.env.get('NVIM_THEME', '') == 'tokyonight',
     opts = function()
       return {
-        style = 'storm',
+        style = 'day',
         sidebars = {
           'qf',
           'vista_kind',

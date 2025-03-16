@@ -3,7 +3,7 @@ local M = {}
 local icons = Core.icons.lsp.diagnostics
 
 M.defaults = {
-  virtual_lines = false,
+  virtual_lines = true,
   -- virtual_text = false,
   virtual_text = {
     spacing = 4,

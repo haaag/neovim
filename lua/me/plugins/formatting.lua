@@ -14,9 +14,9 @@ return {
     keys = {
       { '<leader>lF', function() Core.toggle.fmt_on_save() end, desc = 'toggle fmt on save' },
       {
-        "<leader>lf",
+        "<leader>F",
         function()
-          require("conform").format({ lsp_fallback = true, async = false, timeout_ms = 1000 })
+          require("conform").format({ async = true, timeout_ms = 500 })
         end,
         mode = { "n", "v" },
         desc = "format file or range (in visual mode)",
@@ -31,6 +31,7 @@ return {
           ['css'] = { 'prettier' },
           ['go'] = { 'goimports-reviser', 'gofumpt', 'golines' },
           ['html'] = { 'prettier' },
+          ['htmldjango'] = { 'djlint' },
           ['javascript'] = { 'prettier' },
           ['javascriptreact'] = { 'prettier' },
           ['json'] = { 'prettier' },
@@ -40,7 +41,7 @@ return {
           ['markdown.mdx'] = { 'prettier' },
           ['python'] = { 'ruff_format', 'ruff_organize_imports' },
           ['sh'] = { 'shfmt' },
-          ['sql'] = { 'sleek' },
+          ['sql'] = { 'sqlfmt' },
           ['typescript'] = { 'prettier' },
           ['typescriptreact'] = { 'prettier' },
           ['yaml'] = { 'prettier' },

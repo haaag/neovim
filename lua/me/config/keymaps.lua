@@ -87,9 +87,8 @@ end, 'set background')
 
 -- misc
 -- stylua: ignore start
-map('<leader>mL', ':Lazy<CR>', 'open Lazy')
 map('<leader>bdA', function() vim.cmd('bufdo bd') end, 'close all')
-map('<leader>bdC', function() vim.cmd('%bd|e#|bd#') end, 'close all but this one')
+map('<leader>bda', function() vim.cmd('%bd|e#|bd#') end, 'close all but this one')
 map('<leader>ls', function()
   if not lsp_started then
     Core.notify('lsp started')

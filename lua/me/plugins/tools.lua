@@ -46,7 +46,7 @@ return {
     build = 'deno task --quiet build:fast',
     opts = {
       theme = 'light',
-      app = 'webview',
+      app = 'webview', -- webview
     },
     -- stylua: ignore
     keys = {
