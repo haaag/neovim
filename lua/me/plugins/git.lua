@@ -15,8 +15,18 @@ return {
         { '<leader>gap', Git.push, desc = 'git push' },
         { '<leader>gaA', Git.amend, desc = 'git amend' },
         { '<leader>gd', '', desc = '+diff' },
-        { '<leader>gdc', '<CMD>Gvdiffsplit!<CR>', desc = 'resolve conflict' },
+        {
+          '<leader>gdc',
+          function()
+            -- so i can use '[c' ']c'
+            vim.cmd('TSBufDisable textobjects.move')
+            vim.cmd('Gvdiffsplit!')
+          end,
+          desc = 'resolve conflict',
+        },
         { '<leader>gdl', '<CMD>0Gclog<CR>', desc = 'show file versions' },
+        { '<leader>g2', '<CMD>diffget //2<CR>', desc = '//2 accept our changes' },
+        { '<leader>g3', '<CMD>diffget //3<CR>', desc = '//3 accept their changes' },
         -- :0Glog - select one version, which opens up in a split. Then use gO to open another vertical split.
         -- Go back to quickfix, select the other version I want to diff it against.
         -- Navigate to the each buffer and do a :diffthis . Is there a better way?

@@ -12,13 +12,19 @@ return {
       { '<leader>bw', '<CMD>LocalHighlightToggle<CR>', desc = 'toggle highlight word' },
     },
     config = function()
-      vim.api.nvim_set_hl(0, 'MyLocalHighlight', { underline = true, bold = true })
+      local folded_hl = vim.api.nvim_get_hl(0, { name = 'Folded', link = false })
+      vim.api.nvim_set_hl(0, 'MyLocalHighlight', {
+        italic = false,
+        bold = false,
+        bg = folded_hl.bg,
+      })
       require('local-highlight').setup({
         hlgroup = 'MyLocalHighlight',
         cw_hlgroup = nil,
         insert_mode = false,
         min_match_len = 1,
         max_match_len = math.huge,
+        animate = { enabled = false },
       })
     end,
     enabled = true,

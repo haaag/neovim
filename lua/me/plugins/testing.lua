@@ -4,17 +4,16 @@ return {
   { -- https://github.com/nvim-neotest/neotest
     'nvim-neotest/neotest',
     enabled = Core.env.testing,
-    dependencies = { 'nvim-neotest/nvim-nio' },
+    dependencies = {
+      'nvim-neotest/nvim-nio',
+      'nvim-lua/plenary.nvim',
+    },
     opts = {
       status = { virtual_text = true },
       output = { open_on_run = true },
       quickfix = {
         open = function()
-          if Core.has('trouble.nvim') then
-            require('trouble').open({ mode = 'quickfix', focus = false })
-          else
-            vim.cmd('copen')
-          end
+          vim.cmd('copen')
         end,
       },
     },
@@ -44,8 +43,11 @@ return {
               local meta = getmetatable(adapter)
               if adapter.setup then
                 adapter.setup(config)
+              elseif adapter.adapter then
+                adapter.adapter(config)
+                adapter = adapter.adapter
               elseif meta and meta.__call then
-                adapter(config)
+                adapter = adapter(config)
               else
                 error('Adapter ' .. name .. ' does not support setup')
               end
@@ -58,8 +60,8 @@ return {
 
       require('neotest').setup(opts)
     end,
-  -- stylua: ignore
-  keys = {
+    keys = {
+    -- stylua: ignore start
     { '<leader>t', '', desc = '+testing' },
     { '<leader>tt', function() require('neotest').run.run(vim.fn.expand('%')) end, desc = 'test run file' },
     { '<leader>tT', function() require('neotest').run.run(vim.uv.cwd()) end, desc = 'test run all files' },
@@ -69,7 +71,8 @@ return {
     { '<leader>tO', function() require('neotest').output_panel.toggle() end, desc = 'test toggle output panel' },
     { '<leader>tS', function() require('neotest').run.stop() end, desc = 'test stop' },
     { '<leader>tl', function() require('neotest').run.run_last() end, desc = 'test run last' },
-  },
+      -- stylua: ignore end
+    },
   },
 
   { -- https://github.com/mfussenegger/nvim-dap
