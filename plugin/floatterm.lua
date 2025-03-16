@@ -1,4 +1,3 @@
-local autocmd = vim.api.nvim_create_autocmd
 local state = {
   floating = {
     buf = -1,
@@ -6,8 +5,8 @@ local state = {
   },
 }
 
-Core.keymap('<C-\\>', '<CMD>FloatTerm<CR>', 'toggle term', { 'n', 't' })
-Core.keymap('<ESC><ESC>', '<C-\\><C-n>', 'term normal', 't')
+-- Core.keymap('<C-\\>', '<CMD>FloatTerm<CR>', 'toggle term', { 'n', 't' })
+-- Core.keymap('<ESC><ESC>', '<C-\\><C-n>', 'term normal', 't')
 
 local function create_floating_window(opts)
   opts = opts or {}
@@ -48,10 +47,12 @@ local toggle_term = function()
   end
 end
 
-vim.api.nvim_create_user_command('FloatTerm', toggle_term, {})
+-- vim.api.nvim_create_user_command('FloatTerm', toggle_term, {})
 
-autocmd({ 'TermOpen' }, {
-  callback = function()
-    vim.cmd('startinsert')
-  end,
-})
+-- this autocmd interferes with neotest
+-- local autocmd = vim.api.nvim_create_autocmd
+-- autocmd({ 'TermOpen' }, {
+--   callback = function()
+--     vim.cmd('startinsert')
+--   end,
+-- })
