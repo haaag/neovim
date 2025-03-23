@@ -6,7 +6,13 @@ return {
     opts = {
       servers = {
         harper_ls = {
+          filetypes = { 'markdown' },
           autostart = true,
+          settings = {
+            ['harper-ls'] = {
+              isolateEnglish = true,
+            },
+          },
         },
       },
     },

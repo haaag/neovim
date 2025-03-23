@@ -47,7 +47,7 @@ return {
       local servers = opts.servers
       local capabilities = Core.lsp.capabilities()
 
-      require('mason-lspconfig').setup({ ensure_installed = vim.tbl_keys(servers) })
+      require('mason-lspconfig').setup({ ensure_installed = vim.tbl_keys(servers), automatic_installation = false })
       require('mason-lspconfig').setup_handlers({
         function(server)
           local server_opts = servers[server] or {}
