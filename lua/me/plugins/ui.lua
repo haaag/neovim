@@ -14,8 +14,8 @@ return {
     config = function()
       local folded_hl = vim.api.nvim_get_hl(0, { name = 'Folded', link = false })
       vim.api.nvim_set_hl(0, 'MyLocalHighlight', {
-        italic = false,
-        bold = false,
+        italic = true,
+        bold = true,
         bg = folded_hl.bg,
       })
       require('local-highlight').setup({
@@ -47,6 +47,7 @@ return {
     version = false,
     opts = {
       show_icons = false,
+      tabpage_section = 'right',
     },
   },
 

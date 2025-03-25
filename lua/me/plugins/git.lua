@@ -18,18 +18,27 @@ return {
         {
           '<leader>gdc',
           function()
-            -- so i can use '[c' ']c'
-            vim.cmd('TSBufDisable textobjects.move')
-            vim.cmd('Gvdiffsplit!')
+            vim.cmd('TSBufDisable textobjects.move') -- disable in treesitter '[c' ']c'
+            vim.cmd('Gvdiffsplit!') -- go to next change '[c' ']c'
           end,
           desc = 'resolve conflict',
         },
-        { '<leader>gdl', '<CMD>0Gclog<CR>', desc = 'show file versions' },
         { '<leader>g2', '<CMD>diffget //2<CR>', desc = '//2 accept our changes' },
         { '<leader>g3', '<CMD>diffget //3<CR>', desc = '//3 accept their changes' },
         -- :0Glog - select one version, which opens up in a split. Then use gO to open another vertical split.
         -- Go back to quickfix, select the other version I want to diff it against.
         -- Navigate to the each buffer and do a :diffthis . Is there a better way?
+        { '<leader>gdl', '<CMD>0Gclog<CR>', desc = 'show file versions' },
+        {
+          '<leader>gD',
+          function()
+            vim.cmd('only') -- close all other windows
+            vim.cmd('diffoff!') -- turn off diff mode
+            vim.cmd('Gdiffsplit') -- open a Git diff split
+          end,
+          mode = 'n',
+          desc = 'Open Git diff split',
+        },
       }
     end,
     enabled = true,
