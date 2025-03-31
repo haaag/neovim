@@ -35,8 +35,6 @@ return {
     },
     config = function(_, opts)
       -- diagnostics
-      Core.lsp.diagnostic.set_keymaps()
-      Core.lsp.diagnostic.set_handlers()
       vim.diagnostic.config(Core.lsp.diagnostic.defaults)
 
       Core.lsp.check_logfile_size()

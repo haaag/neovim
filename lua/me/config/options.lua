@@ -43,8 +43,7 @@ opt.spelllang     = { 'en_us', 'es' } -- spellcheck
 opt.cursorline    = false         -- Enable highlighting of the current line
 opt.grepformat    = '%f:%l:%c:%m' -- grep
 opt.grepprg       = 'rg --vimgrep'-- grep
-opt.formatoptions = 'jcroqlnt'    -- tcqj
-opt.conceallevel  = 2             -- Hide * markup for bold and italic
+opt.conceallevel  = 1             -- Hide * markup for bold and italic
 opt.wildmode      = 'longest:full,full' -- Command-line completion mode
 opt.winminwidth   = 5             -- Minimum window width
 opt.pumblend      = 10            -- Popup blend
@@ -57,17 +56,17 @@ opt.showbreak     = '↪'
 opt.smoothscroll  = true
 opt.foldmethod    = 'expr'
 opt.foldminlines  = 0             -- Allow closing even 1-line folds.
-opt.foldexpr      = 'v:lua.Core.fold.expr(v:lnum)'
--- opt.foldexpr      = "nvim_treesitter#foldexpr()"
-opt.foldtext      = 'v:lua.Core.fold.text()'
+-- opt.foldexpr      = 'v:lua.Core.fold.expr(v:lnum)'
+opt.foldexpr      = "nvim_treesitter#foldexpr()"
+-- opt.foldtext      = 'v:lua.Core.fold.text()'
 opt.foldenable    = false
 -- others: {{{
 -- see :h shortmess
 opt.shortmess:append({
-  W = true, -- don't give "written" or "[w]" when writing a file
-  I = false, -- don't give the intro message when starting Vim
-  c = true, -- don't give |ins-completion-menu| messages
-  C = true, -- don't give messages while scanning for ins-completion items, for instance "scanning tags"
+  W = true,   -- don't give "written" or "[w]" when writing a file
+  I = false,  -- don't give the intro message when starting Vim
+  c = true,   -- don't give |ins-completion-menu| messages
+  C = true,   -- don't give messages while scanning for ins-completion items, for instance "scanning tags"
 })
 opt.fillchars = {
   diff = '╱',
@@ -77,17 +76,18 @@ opt.fillchars = {
   foldopen = '',
   foldsep = ' ',
 }
-vim.g.floating_window_border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' }
-vim.g.floating_window_border_dark = {
-  { '╭', 'FloatBorderDark' },
-  { '─', 'FloatBorderDark' },
-  { '╮', 'FloatBorderDark' },
-  { '│', 'FloatBorderDark' },
-  { '╯', 'FloatBorderDark' },
-  { '─', 'FloatBorderDark' },
-  { '╰', 'FloatBorderDark' },
-  { '│', 'FloatBorderDark' },
-}
+
+opt.formatoptions = 'jcroqlnt'
+-- j – auto-remove comment leaders when joining lines (e.g., removes -- in Lua).
+-- c – auto-wrap comments using textwidth.
+-- r – insert comment leader (--, #, etc.) automatically when pressing <Enter> in a comment.
+-- o – insert comment leader when using o or O in normal mode.
+-- q – allow gq to format comments with textwidth.
+-- l – do not break lines that are longer than textwidth if they have a long word.
+-- n – recognize numbered lists and indent properly.
+-- t – auto-wrap normal text (not in comments) to textwidth.
+
+opt.winborder     = 'single'     -- Defines the default border style of floating windows
 vim.g.python3_host_prog = os.getenv('HOME') .. '/.local/debugpy/bin/python'
 vim.g.loaded_perl_provider = false
 vim.g.enable_autoformat = false

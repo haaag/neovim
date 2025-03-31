@@ -2,13 +2,26 @@
 local M = {}
 local icons = Core.icons.lsp.diagnostics
 
+---@param diagnostic vim.Diagnostic
+---@return string
+local dformat = function(diagnostic)
+  return string.format('%s: %s', diagnostic.code, diagnostic.message)
+end
+
 M.defaults = {
-  virtual_lines = true,
+  virtual_lines = false,
+  -- virtual_lines = {
+  --   current_line = false,
+  --   ---@param diagnostic vim.Diagnostic
+  --   format = dformat,
+  -- },
   -- virtual_text = false,
   virtual_text = {
     spacing = 4,
     source = 'if_many',
-    prefix = '■',
+    -- prefix = '■',
+    current_line = true,
+    format = dformat,
   },
   update_in_insert = false,
   underline = true,
@@ -30,30 +43,5 @@ M.defaults = {
     prefix = '',
   },
 }
-
-function M.set_handlers()
-  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = 'rounded',
-  })
-
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = 'rounded',
-  })
-
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = 'single',
-    silent = true,
-    focusable = false,
-    close_events = { 'InsertCharPre', 'CursorMoved' },
-  })
-end
-
-function M.set_keymaps()
-  local map = vim.keymap.set
-  map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Diagnostic Prev' })
-  map('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostic Next' })
-  map('n', '[D', vim.diagnostic.open_float, { desc = 'Diagnostic Float' })
-  map('n', ']D', vim.diagnostic.open_float, { desc = 'Diagnostic Float' })
-end
 
 return M

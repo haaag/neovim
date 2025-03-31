@@ -2,7 +2,7 @@ return {
   { -- https://github.com/Saghen/blink.cmp
     'saghen/blink.cmp',
     enabled = true,
-    event = 'InsertEnter',
+    event = 'VeryLazy',
     lazy = false,
     dependencies = { -- https://github.com/rafamadriz/friendly-snippets
       'rafamadriz/friendly-snippets',
