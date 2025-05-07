@@ -166,6 +166,7 @@ function M.getenv(varname, default)
 end
 
 ---@param plugin string
+---@return boolean
 function M.has(plugin)
   return M.get_plugin(plugin) ~= nil
 end
@@ -268,6 +269,32 @@ end
 
 function M.set_root()
   vim.fn.chdir(Core.get_root())
+end
+
+-- trim string
+function M.trim(str)
+  return str:gsub('^%s*(.-)%s*$', '%1')
+end
+
+-- garbage collector log file
+---@param path string
+---@param size_kb number
+function M.gc_logfile(path, size_kb)
+  size_kb = size_kb or 500
+  local logfile = io.open(path, 'r')
+  if not logfile then
+    return
+  end
+
+  local size_bytes = logfile:seek('end')
+  logfile:close()
+
+  local kilobytes = size_bytes / 1024
+
+  if kilobytes > size_kb then
+    Core.warnme(string.format('Log file size: %.2f KB exceeds limit of %d KB\nRemoving %s', kilobytes, size_kb, path))
+    os.remove(path)
+  end
 end
 
 return M

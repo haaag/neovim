@@ -1,14 +1,5 @@
 -- lsp.servers.bashlsp
 return {
-  { -- https://github.com/neovim/nvim-lspconfig
-    'neovim/nvim-lspconfig',
-    opts = {
-      servers = {
-        bashls = {},
-      },
-    },
-  },
-
   { -- https://github.com/nvim-treesitter/nvim-treesitter
     'nvim-treesitter/nvim-treesitter',
     opts = function(_, opts)

@@ -45,27 +45,6 @@ function M.on_attach(on_attach)
   })
 end
 
--- checks if lsp logfile size is > max_mb and removed
-function M.check_logfile_size()
-  local MAX_MB = 5
-  local logname = 'lsp.log'
-  local logpath = Core.env.xdg_state_home() .. '/nvim/' .. logname
-  local logfile = io.open(logpath, 'r')
-
-  if not logfile then
-    return
-  end
-
-  local bytes = logfile:seek('end')
-  logfile:close()
-  local mega = bytes / 1024 / 1024
-
-  if mega > MAX_MB then
-    print('LSP logfile size: ' .. math.floor(mega) .. ' MB. Removing ' .. logpath)
-    os.remove(logpath)
-  end
-end
-
 function M.capabilities()
   local has_blink, blink = pcall(require, 'blink.cmp')
   return vim.tbl_deep_extend(

@@ -1,5 +1,4 @@
 -- lsp.config
-
 return {
   { -- https://github.com/j-hui/fidget.nvim
     'j-hui/fidget.nvim',
@@ -12,59 +11,6 @@ return {
     enabled = true,
   },
 
-  { -- https://github.com/neovim/nvim-lspconfig
-    'neovim/nvim-lspconfig',
-    -- event = 'InsertEnter',
-    cmd = { 'LspStart' },
-    enabled = true,
-    dependencies = { -- https://github.com/williamboman/mason-lspconfig.nvim
-      'williamboman/mason-lspconfig.nvim',
-    },
-    opts = {
-      inlay_hints = { enabled = true },
-      document_highlight = { enabled = true },
-      servers = {
-        jsonls = { autostart = false },
-        taplo = {},
-        yamlls = {},
-        docker_compose_language_service = {
-          autostart = true,
-        },
-      },
-      setup = {},
-    },
-    config = function(_, opts)
-      -- diagnostics
-      vim.diagnostic.config(Core.lsp.diagnostic.defaults)
-
-      Core.lsp.check_logfile_size()
-      Core.lsp.on_attach(function(_, bufnr)
-        Core.lsp.keymaps(bufnr)
-      end)
-
-      local servers = opts.servers
-      local capabilities = Core.lsp.capabilities()
-
-      require('mason-lspconfig').setup({ ensure_installed = vim.tbl_keys(servers), automatic_installation = false })
-      require('mason-lspconfig').setup_handlers({
-        function(server)
-          local server_opts = servers[server] or {}
-          server_opts.capabilities = capabilities
-          if opts.setup[server] then
-            if opts.setup[server](server, server_opts) then
-              return
-            end
-          elseif opts.setup['*'] then
-            if opts.setup['*'](server, server_opts) then
-              return
-            end
-          end
-          require('lspconfig')[server].setup(server_opts)
-        end,
-      })
-    end,
-  },
-
   { -- https://github.com/williamboman/mason.nvim
     'williamboman/mason.nvim',
     cmd = 'Mason',
@@ -74,9 +20,9 @@ return {
     opts = {
       ui = {
         icons = {
-          package_installed = '●',
+          package_installed = '',
           package_pending = '➜',
-          package_uninstalled = '○',
+          package_uninstalled = '',
         },
       },
       ensure_installed = {
@@ -97,5 +43,10 @@ return {
         end
       end)
     end,
+  },
+
+  { -- https://github.com/b0o/SchemaStore.nvim
+    'b0o/SchemaStore.nvim',
+    enable = true,
   },
 }

@@ -1,16 +1,5 @@
 -- lsp.servers.markdownlsp
 return {
-  { -- https://github.com/neovim/nvim-lspconfig
-    'neovim/nvim-lspconfig',
-    opts = {
-      servers = {
-        marksman = {
-          autostart = false,
-        },
-      },
-    },
-  },
-
   { -- https://github.com/nvim-treesitter/nvim-treesitter
     'nvim-treesitter/nvim-treesitter',
     opts = function(_, opts)

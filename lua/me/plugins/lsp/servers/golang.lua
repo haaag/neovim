@@ -1,76 +1,36 @@
 -- lsp.servers.go
 
-return {
-  { -- https://github.com/neovim/nvim-lspconfig
-    'neovim/nvim-lspconfig',
-    opts = {
-      servers = {
-        gopls = {
-          autostart = true,
-          settings = {
-            gopls = {
-              gofumpt = true,
-              codelenses = {
-                gc_details = false,
-                generate = true,
-                regenerate_cgo = true,
-                run_govulncheck = true,
-                test = true,
-                tidy = true,
-                upgrade_dependency = true,
-                vendor = true,
-              },
-              hints = {
-                assignVariableTypes = true,
-                compositeLiteralFields = true,
-                compositeLiteralTypes = true,
-                constantValues = true,
-                functionTypeParameters = true,
-                parameterNames = true,
-                rangeVariableTypes = true,
-              },
-              analyses = {
-                nilness = true,
-                unusedparams = true,
-                unusedwrite = true,
-                useany = true,
-              },
-              usePlaceholders = true,
-              completeUnimported = true,
-              staticcheck = true,
-              directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
-              semanticTokens = true,
-            },
-          },
-          init_options = {
-            usePlaceholders = true,
-          },
-        },
-      },
-      setup = {
-        gopls = function(_, opts)
-          -- workaround for gopls not supporting semanticTokensProvider
-          -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
-          Core.lsp.on_attach(function(client, _)
-            if not client.server_capabilities.semanticTokensProvider then
-              local semantic = client.config.capabilities.textDocument.semanticTokens
-              client.server_capabilities.semanticTokensProvider = {
-                full = true,
-                legend = {
-                  tokenTypes = semantic.tokenTypes,
-                  tokenModifiers = semantic.tokenModifiers,
-                },
-                range = true,
-              }
-            end
-            ---@diagnostic disable-next-line: redundant-parameter
-          end, 'gopls')
-          -- end workaround
-        end,
-      },
-    },
-  },
+local function load_env_file()
+  local env = {}
+  local cwd = vim.fn.getcwd()
+  local env_file = cwd .. '/.env'
 
+  if vim.fn.filereadable(env_file) == 0 then
+    return env
+  end
+
+  -- confirm user
+  local q = "Load envs variables from '" .. env_file .. "'? [Y/n]: "
+  if not Core.confirm(q, { 'Yes', 'y', '' }) then
+    return env
+  end
+
+  for line in io.lines(env_file) do
+    local key, val = line:match('^%s*([%w_]+)%s*=%s*(.*)%s*$')
+    if key and val then
+      -- Remove possible surrounding quotes
+      val = val:gsub([["]], ''):gsub([[]], '')
+      env[key] = val
+    end
+  end
+
+  Core.warnme("Loaded envs variables from '" .. env_file .. "'")
+  vim.print(env)
+
+  return env
+end
+
+return {
   { -- https://github.com/nvim-treesitter/nvim-treesitter
     'nvim-treesitter/nvim-treesitter',
     opts = function(_, opts)
@@ -112,21 +72,28 @@ return {
       }
       dap.configurations.go = {
         {
-          type = 'delve',
           name = 'Debug',
+          type = 'delve',
           request = 'launch',
           program = '${file}',
         },
-        { -- configuration for debugging test files
+        {
+          name = 'Debug with env',
           type = 'delve',
+          request = 'launch',
+          program = '${file}',
+          env = load_env_file,
+        },
+        { -- configuration for debugging test files
           name = 'Debug test',
+          type = 'delve',
           request = 'launch',
           mode = 'test',
           program = '${file}',
         },
         { -- works with go.mod packages and sub packages
-          type = 'delve',
           name = 'Debug test (go.mod)',
+          type = 'delve',
           request = 'launch',
           mode = 'test',
           program = './${relativeFileDirname}',

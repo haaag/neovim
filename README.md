@@ -13,13 +13,8 @@
 
 ### 💫 LSP
 
-- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - A
-  collection of common configurations for neovim's built-in language server
-  client.
 - [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) - Easily
   install and manage LSP servers, DAP servers, linters, and formatters.
-- [williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) -
-  Bridges mason.nvim with the lspconfig plugin
 - [j-hui/fidget.nvim](https://github.com/j-hui/fidget.nvim) - Standalone UI for
   nvim-lsp progress. Eye candy for the impatient.
 - [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim) -
@@ -40,8 +35,6 @@
   Treesitter configurations and abstraction layer for neovim.
 - [nvim-treesitter/nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) -
   Create your own textobjects using tree-sitter queries!.
-- [echasnovski/mini.bufremove](https://github.com/echasnovski/mini.bufremove) -
-  Buffer removing (unshow, delete, wipeout) while saving window layout.
 - [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim) -
   Highlight and search for todo comments like TODO, etc.
 
@@ -60,17 +53,13 @@
 
 - [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Super
   fast git decorations implemented purely in lua/teal.
-- [sindrets/diffview.nvim](https://github.com/sindrets/diffview.nvim) -
-  Interface for easily cycling through diffs for all modified files for any git
-  rev.
 - [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive) - Fugitive is the
   premier Vim plugin for Git.
 
 ### 🌈 Colorschemes
 
-- ⭐[ellisonleao/gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) -
-  A port of gruvbox community theme to lua with treesitter and semantic
-  highlights support!
+- [sainnhe/gruvbox-material](https://github.com/sainnhe/gruvbox-material) -
+  Gruvbox with Material Palette
 
 ### 🎨 UI
 

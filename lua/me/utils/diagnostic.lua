@@ -1,11 +1,12 @@
 ---@class me.utils.lsp.diagnostic
 local M = {}
-local icons = Core.icons.lsp.diagnostics
+local icons = Core.icons.lsp.diagnostics.filled
 
 ---@param diagnostic vim.Diagnostic
 ---@return string
 local dformat = function(diagnostic)
-  return string.format('%s: %s', diagnostic.code, diagnostic.message)
+  local code = diagnostic.code or diagnostic.source
+  return string.format('%s: %s', code, diagnostic.message)
 end
 
 M.defaults = {
@@ -19,9 +20,9 @@ M.defaults = {
   virtual_text = {
     spacing = 4,
     source = 'if_many',
-    -- prefix = '■',
     current_line = true,
-    format = dformat,
+    -- prefix = '■',
+    -- format = dformat,
   },
   update_in_insert = false,
   underline = true,
