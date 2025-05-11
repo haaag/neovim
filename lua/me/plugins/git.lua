@@ -48,15 +48,26 @@ return {
     'lewis6991/gitsigns.nvim',
     event = 'InsertEnter',
     opts = {
+      -- stylua: ignore start
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '-' },
-        changedelete = { text = '~_' },
-        untracked = { text = '┆' },
+        add           = { text = '+'  },
+        change        = { text = '~'  },
+        delete        = { text = '_'  },
+        topdelete     = { text = '-'  },
+        changedelete  = { text = '~_' },
+        untracked     = { text = '┆'  },
       },
-      signs_staged_enable = false,
+      signs_staged = {
+        add           = { text = '+'  },
+        change        = { text = '~'  },
+        delete        = { text = '_'  },
+        topdelete     = { text = '-'  },
+        changedelete  = { text = '~_' },
+        untracked     = { text = '┆'  },
+      },
+      -- stylua: ignore end
+      signs_staged_enable = vim.o.background == 'dark',
+      numhl = false,
     },
     keys = {
       { '<leader>gb', '<CMD>Gitsigns toggle_current_line_blame<CR>', desc = 'git toggle blame' },
@@ -75,6 +86,10 @@ return {
       { '<leader>ghp', '<CMD>Gitsigns preview_hunk<CR>', desc = 'git preview hunk' },
       { '<leader>ghd', '<CMD>Gitsigns diffthis<CR>', desc = 'git diff this hunk' },
       { '<leader>ghD', '<CMD>lua require"gitsigns".diffthis("~")<CR>', desc = 'git diff this ~' },
+      { '<leader>ghq', '<CMD>Gitsign setqflist<CR>', desc = 'hunks quickfix' },
+      -- visual
+      { 'gh', '<CMD>Gitsigns stage_hunk<CR>', desc = 'git stage hunk', mode = { 'o', 'x' } },
+      { 'gH', '<CMD>Gitsigns stage_buffer<CR>', desc = 'git stage buffer', mode = { 'o', 'x' } },
       { 'ih', ':<C-U>Gitsigns select_hunk<CR>', desc = 'git select hunk', mode = { 'o', 'x' } },
       -- highlights
       { '<leader>ghl', '<CMD>Gitsigns toggle_linehl<CR>', desc = 'git highlight line' },
