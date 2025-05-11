@@ -5,32 +5,32 @@ local autocmd = vim.api.nvim_create_autocmd
 autocmd('TextYankPost', {
   group = augroup('highlight_yank'),
   callback = function()
-    vim.highlight.on_yank()
+    (vim.hl or vim.highlight).on_yank()
   end,
   desc = 'highlight on yank',
 })
 
 autocmd({ 'FileType' }, {
-  group = augroup('easy_close_q'),
+  group = augroup('easy_close_Q'),
   pattern = {
     'dap-float',
-    -- 'fugitive',
+    'fugitive',
     'git',
     'help',
     'lspinfo',
     'man',
-    -- 'neotest-output',
-    -- 'neotest-output-panel',
-    -- 'neotest-summary',
+    'neotest-output',
+    'neotest-output-panel',
+    'neotest-summary',
     'netrw',
     'qf',
     'startuptime',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set('n', 'q', '<CMD>close<CR>', { buffer = event.buf, silent = true })
+    vim.keymap.set('n', 'Q', '<CMD>close<CR>', { buffer = event.buf, silent = true })
   end,
-  desc = "use 'q' to quit from common plugins",
+  desc = "use 'Q' to quit from common plugins",
 })
 
 autocmd('BufReadPost', {
@@ -55,8 +55,26 @@ autocmd({ 'BufWritePost' }, {
 autocmd({ 'BufWritePost' }, {
   group = augroup('Dunstrc'),
   pattern = { 'dunstrc' },
-  command = '!dunst-themes -r',
+  command = '!dunst-ts -r',
   desc = 'reload dunstrc after buffer write',
+})
+
+autocmd({ 'FileType' }, {
+  group = augroup('json_conceal'),
+  pattern = { 'json', 'jsonc', 'json5' },
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+  desc = 'fix conceallevel for json files',
+})
+
+autocmd('FileType', {
+  group = augroup('wrap_spell'),
+  pattern = { 'text', 'plaintex', 'typst', 'gitcommit', 'markdown' },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
+  end,
 })
 
 autocmd({ 'BufEnter' }, {

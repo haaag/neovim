@@ -1,7 +1,15 @@
 -- formatters
 
-local goimports = {
-  args = { '-rm-unused', '-set-alias', '-format', '$FILENAME' },
+local fmtcfg = {
+  goimports = {
+    args = { '-rm-unused', '-set-alias', '-format', '$FILENAME' },
+  },
+  texfmt = {
+    args = { '-s', '--nowrap' },
+  },
+  golines = {
+    args = { '-m', '110' },
+  },
 }
 
 return {
@@ -22,9 +30,15 @@ return {
         desc = "format file or range (in visual mode)",
       },
     },
+    init = function()
+      local logpath = Core.env.xdg_state_home() .. '/nvim/' .. 'conform.log'
+      Core.gc_logfile(logpath, 500)
+    end,
     config = function()
       local conform = require('conform')
-      conform.formatters['goimports-reviser'] = goimports
+      conform.formatters['goimports-reviser'] = fmtcfg.goimports
+      conform.formatters['tex-fmt'] = fmtcfg.texfmt
+      conform.formatters['golines'] = fmtcfg.golines
       conform.setup({
         formatters_by_ft = {
           ['_'] = { 'trim_whitespace' },
@@ -42,6 +56,7 @@ return {
           ['python'] = { 'ruff_format', 'ruff_organize_imports' },
           ['sh'] = { 'shfmt' },
           ['sql'] = { 'sqlfmt' },
+          ['tex'] = { 'tex-fmt' },
           ['typescript'] = { 'prettier' },
           ['typescriptreact'] = { 'prettier' },
           ['yaml'] = { 'prettier' },

@@ -34,7 +34,6 @@ require('lazy').setup({
     { import = 'me.plugins.lsp.servers.lualang' },
     { import = 'me.plugins.lsp.servers.golang' },
     { import = 'me.plugins.lsp.servers.python' },
-    { import = 'me.plugins.lsp.servers.harper' },
     { import = 'me.plugins.lsp.servers.typescript' },
     { import = 'me.plugins.lsp.servers.bashlsp' },
     { import = 'me.plugins.lsp.servers.markdown' },

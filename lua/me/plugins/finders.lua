@@ -1,5 +1,7 @@
 -- finders.lua
 
+local default_fzf_profile = 'border-fused'
+
 return {
   { -- https://github.com/ibhagwan/fzf-lua
     'ibhagwan/fzf-lua',
@@ -9,7 +11,7 @@ return {
     cmd = { 'FzfLua' },
     config = function()
       require('fzf-lua').setup({
-        Core.env.get('TMUX_FZF_PROFILE', 'default'),
+        Core.env.get('TMUX_FZF_PROFILE', default_fzf_profile),
         defaults = {
           file_icons = false,
           git_icons = false,
@@ -23,7 +25,9 @@ return {
           },
         },
         fzf_opts = {
-          ['--layout'] = 'reverse-list',
+          -- https://github.com/ibhagwan/fzf-lua/issues/1929
+          -- ['--layout'] = 'reverse-list',
+          ['--pointer'] = '',
           ['--cycle'] = true,
         },
         keymap = {

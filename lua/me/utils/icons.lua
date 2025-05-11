@@ -73,20 +73,48 @@ M.lsp = {
     Value         = '',
     Variable      = '󰀫',
   },
+  lang = {
+    c             = "󰙱",
+    cpp           = "󰙲",
+    csharp        = "󰌛",
+    css           = "󰌜",
+    default       = "󰈮",
+    go            = "󰟓",
+    html          = "󰌝",
+    java          = "󰬷",
+    javascript    = "",
+    kotlin        = "󱈙",
+    lua           = "󰢱",
+    python        = "󰌠",
+    ruby          = "󰴭",
+    rust          = "󱘗",
+    typescript    = "󰛦",
+  },
   diagnostics = {
-    Error         = ' ',
-    Hint          = ' ',
-    Info          = ' ',
-    Warn          = ' ',
+    filled = {
+      Error       = ' ',
+      Hint        = ' ',
+      Info        = ' ',
+      Warn        = ' ',
+      WarnTriangle = ' ',
+    },
+    outline = {
+      Error       = '✗ ',
+      Hint        = 'h ',
+      Info        = 'i ',
+      Warn        = 'w ',
+      WarnTriangle = ' ',
+
+    },
   },
 }
 
 -- stylua: ignore
 M.dap = {
   signs = {
-    breakpoint    = '', -- 
-    breakpoint_condition = 'ﴫ•',
-    breakpoint_rejected = 'ﴫ•',
+    breakpoint    = '󰃤', -- '' -- 
+    breakpoint_condition = '󰃤•',
+    breakpoint_rejected = '󰃤✗',
     log_point     = '.>',
     stopped       = '⇥',
   },
@@ -195,15 +223,20 @@ function M.all()
       aerial            = 'Ξ ',
     },
     bar = {
-      a = '┃',
-      b = '│',
-      c = '│',
-      d = '▏',
-      f = '│',
-      g = '¦',
-      h = '┊',
-      i = '▏',
-      j = '│',
+      a                 = '┃',
+      b                 = '│',
+      c                 = '│',
+      d                 = '▏',
+      f                 = '│',
+      g                 = '¦',
+      h                 = '┊',
+      i                 = '▏',
+      j                 = '│',
+    },
+    separators = {
+      --  ╱         • ╍ 
+      sep1              = '[',
+      sep2              = ']',
     },
   }
 end

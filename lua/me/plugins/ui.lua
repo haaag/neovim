@@ -3,6 +3,15 @@ return {
   { -- https://github.com/nvim-tree/nvim-web-devicons
     'nvim-tree/nvim-web-devicons',
     enabled = true,
+    opts = {
+      override_by_extension = {
+        ['gomarks'] = {
+          icon = Core.icons.lsp.kinds.Field,
+          color = '#81e043',
+          name = 'Bookmark',
+        },
+      },
+    },
     lazy = true,
   },
 
@@ -39,16 +48,17 @@ return {
     },
     opts = {},
     lazy = true,
-    enabled = true,
+    enabled = Core.env.get('NVIM_THEME', '') ~= 'retrobox',
   },
 
   { -- https://github.com/echasnovski/mini.nvim
     'echasnovski/mini.tabline',
-    version = false,
+    version = '*',
     opts = {
       show_icons = false,
       tabpage_section = 'right',
     },
+    enabled = true,
   },
 
   { -- https://github.com/NvChad/nvim-colorizer.lua
@@ -150,6 +160,7 @@ return {
     'echasnovski/mini.clue',
     version = false,
     lazy = false,
+    enabled = true,
     config = function()
       local miniclue = require('mini.clue')
       miniclue.setup({

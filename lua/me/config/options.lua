@@ -5,6 +5,9 @@ local opt = vim.opt
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- colorscheme
+vim.o.background = 'light'
+
 -- stylua: ignore start
 opt.clipboard     = 'unnamedplus' -- clipboard
 opt.hlsearch      = false         -- Set highlight on search
@@ -55,10 +58,10 @@ opt.confirm       = true          -- Confirm to save changes before exiting modi
 opt.showbreak     = '↪'
 opt.smoothscroll  = true
 opt.foldmethod    = 'expr'
-opt.foldminlines  = 0             -- Allow closing even 1-line folds.
--- opt.foldexpr      = 'v:lua.Core.fold.expr(v:lnum)'
-opt.foldexpr      = "nvim_treesitter#foldexpr()"
+-- opt.foldminlines  = 0             -- Allow closing even 1-line folds.
+opt.foldexpr      = 'v:lua.Core.fold.expr(v:lnum)'
 -- opt.foldtext      = 'v:lua.Core.fold.text()'
+-- opt.foldexpr      = "nvim_treesitter#foldexpr()"
 opt.foldenable    = false
 -- others: {{{
 -- see :h shortmess
@@ -89,7 +92,7 @@ opt.formatoptions = 'jcroqlnt'
 
 opt.winborder     = 'single'     -- Defines the default border style of floating windows
 vim.g.python3_host_prog = os.getenv('HOME') .. '/.local/debugpy/bin/python'
-vim.g.loaded_perl_provider = false
+vim.g.loaded_perl_provider = 0
 vim.g.enable_autoformat = false
 
 -- cursor block
@@ -97,8 +100,15 @@ vim.opt.guicursor = {
   'a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor',
   'sm:block-blinkwait175-blinkoff150-blinkon175',
 }
-vim.filetype.add({
+
+-- types
+local ft = vim.filetype
+ft.add({
   extension = { scratchpad = 'scratchpad' },
   filename = { ['Scratchpad'] = 'scratchpad' },
   pattern = { ['%.scratchpad$'] = 'scratchpad' },
+})
+ft.add({
+  extension = { gomarks = 'gomarks' },
+  pattern = { ['%.gomarks$'] = 'gomarks' },
 })

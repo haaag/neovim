@@ -119,6 +119,8 @@ return {
       dap.listeners.before.launch.dapui_config = function() dapui.open() end
       dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
       dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
+      Core.keymap('<leader>d?', function() dapui.eval(nil, { enter = true }) end, 'eval var under cursor')
+      -- stylua: ignore end
     end,
   },
 }

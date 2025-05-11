@@ -60,7 +60,6 @@ return {
     priority = 1000,
     enabled = Core.env.get('NVIM_THEME', '') == 'gruvbox',
     config = function()
-      vim.o.background = 'light'
       vim.g.gruvbox_material_enable_bold = false
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_transparent_background = true
@@ -83,11 +82,15 @@ return {
       vim.cmd('colorscheme gruvbox-material')
 
       local set_hl = vim.api.nvim_set_hl
+      local light = Core.colors.gruvbox_light_medium()
+      local dark = Core.colors.gruvbox_dark_medium()
       if vim.o.background == 'light' then
-        set_hl(0, 'LineNr', { fg = '#7c6f64' })
-        set_hl(0, 'Folded', { fg = '#928374', bg = '#e5d5ad', italic = true })
+        set_hl(0, 'LineNr', { fg = light.lightgrey })
+        set_hl(0, 'Folded', { fg = dark.lightgrey, bg = '#e5d5ad', italic = true })
+        set_hl(0, 'MatchParen', { bg = dark.white, fg = light.orange, bold = true })
       else
-        set_hl(0, 'Folded', { bg = '#3c3836', fg = '#83a598', italic = true })
+        set_hl(0, 'Folded', { bg = light.foreground, fg = dark.blue, italic = true })
+        set_hl(0, 'MatchParen', { bg = light.foreground, fg = dark.orange, bold = true })
       end
     end,
   },

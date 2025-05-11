@@ -13,30 +13,26 @@ return {
 
   { -- https://github.com/folke/todo-comments.nvim
     'folke/todo-comments.nvim',
-    cmd = { 'TodoTrouble', 'TodoTelescope', 'TodoQuickFix', 'TodoLocList' },
+    cmd = { 'TodoFzfLua', 'TodoQuickFix' },
     opts = {
       keywords = {
         WIP = { icon = ' ', color = 'warning' },
       },
     },
-    config = function(_, opts)
-      require('todo-comments').setup(opts)
-    end,
     keys = {
       -- stylua: ignore start
       { ']t', function() require('todo-comments').jump_next() end, desc = 'next todo comment' },
       { '[t', function() require('todo-comments').jump_prev() end, desc = 'previous todo comment' },
-      -- stylua: ignore stop
-      { '<leader>mt', '<CMD>TodoFzfLua<CR>', desc = 'todo telescope' },
-      { '<leader>sT', '<CMD>TodoFzfLua<CR>', desc = 'search todo' },
+      { '<leader>st', '<CMD>TodoFzfLua<CR>', desc = 'search TODO|FIX|FIXME|WIP' },
       { '<leader>mT', function()
-        if Core.has('trouble.nvim') then
-          vim.cmd('<CMD>TodoTrouble keywords=TODO,FIX,FIXME,WIP,NOTE,HACK<CR>')
-        else
-          Core.warnme('trouble.nvim not installed\n')
+        if not Core.has('trouble.nvim') then
+          Core.warnme('todo-comments.nvim: "trouble.nvim" not installed\n')
+          return
         end
+        vim.cmd('<CMD>TodoTrouble keywords=TODO,FIX,FIXME,WIP,NOTE,HACK<CR>')
       end, desc = 'TODO/FIX/FIXME (trouble)' },
     },
+    -- stylua: ignore end
     enabled = true,
   },
 

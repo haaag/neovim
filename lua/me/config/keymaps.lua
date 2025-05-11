@@ -5,8 +5,6 @@ local toggle = Core.toggle
 local options = { noremap = true, silent = true }
 local silent = { silent = true }
 
-local lsp_started = false
-
 -- shortcut to use blackhole register by default
 -- nmap('v', 'd', '"_d', options)
 -- nmap('v', 'D', '"_D', options)
@@ -87,16 +85,7 @@ end, 'set background')
 
 -- misc
 -- stylua: ignore start
-map('<leader>bdA', function() vim.cmd('bufdo bd') end, 'close all')
-map('<leader>bda', function() vim.cmd('%bd|e#|bd#') end, 'close all but this one')
-map('<leader>ls', function()
-  if not lsp_started then
-    Core.notify('lsp started')
-    vim.cmd('LspStart')
-    lsp_started = true
-  else
-    Core.notify('lsp already started')
-  end
-end, 'lsp start')
+-- map('<leader>bdA', function() vim.cmd('bufdo bd') end, 'close all')
+-- map('<leader>bda', function() vim.cmd('%bd|e#|bd#') end, 'close all but this one')
 map('<leader>mb', function() Core.misc.banner() end, 'insert banner' )
--- stylua: ignore stop
+-- stylua: ignore end
